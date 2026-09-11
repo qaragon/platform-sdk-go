@@ -26,24 +26,30 @@ type RequestCreateContestRequest struct {
 	ChannelId string `json:"channel_id"`
 	Description *string `json:"description,omitempty"`
 	Difficulty *string `json:"difficulty,omitempty"`
+	// EnrollmentTiming opts this contest into pre-enrollment (ADR 0058): any contest type may carry one, regardless of whether its type structurally requires it. When omitted on a type that requires enrollment, the platform defaults one (AsNewContest); nil otherwise.
+	EnrollmentTiming *DomainTiming `json:"enrollment_timing,omitempty"`
 	GroupingType *string `json:"grouping_type,omitempty"`
 	JudgingMethod *string `json:"judging_method,omitempty"`
 	JurorSelectionMode *string `json:"juror_selection_mode,omitempty"`
-	NoOfGroups int32 `json:"no_of_groups"`
+	NoOfGroups *int32 `json:"no_of_groups,omitempty"`
 	NoOfPuzzles *int32 `json:"no_of_puzzles,omitempty"`
+	NoOfWinners *int32 `json:"no_of_winners,omitempty"`
 	Quorum *int32 `json:"quorum,omitempty"`
 	RatingModel *string `json:"rating_model,omitempty"`
 	Reward DomainReward `json:"reward"`
+	// Check-in (`checkin`) contests only (uman#238). The client sends room_size (people per room) + no_of_winners (individual winners); the module derives no_of_groups/winners_per_group. room_visibility toggles member-visible display names (default hidden). Optional at the struct level (enforced by checkin.Module.ValidateCreate); nil for every other contest type.
+	RoomSize *int32 `json:"room_size,omitempty"`
+	RoomVisibility *string `json:"room_visibility,omitempty"`
 	RulePreset *string `json:"rule_preset,omitempty"`
-	SourceId string `json:"source_id"`
+	SourceId *string `json:"source_id,omitempty"`
 	SourceType string `json:"source_type"`
 	SponsorshipPackageId *string `json:"sponsorship_package_id,omitempty"`
 	TeamSetId *string `json:"team_set_id,omitempty"`
 	TieBreak *string `json:"tie_break,omitempty"`
 	Timing DomainTiming `json:"timing"`
 	Title string `json:"title"`
-	WinnersPerGroup int32 `json:"winners_per_group"`
-	ZoneAdvantage int32 `json:"zone_advantage"`
+	WinnersPerGroup *int32 `json:"winners_per_group,omitempty"`
+	ZoneAdvantage *int32 `json:"zone_advantage,omitempty"`
 }
 
 type _RequestCreateContestRequest RequestCreateContestRequest
@@ -52,17 +58,13 @@ type _RequestCreateContestRequest RequestCreateContestRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequestCreateContestRequest(channelId string, noOfGroups int32, reward DomainReward, sourceId string, sourceType string, timing DomainTiming, title string, winnersPerGroup int32, zoneAdvantage int32) *RequestCreateContestRequest {
+func NewRequestCreateContestRequest(channelId string, reward DomainReward, sourceType string, timing DomainTiming, title string) *RequestCreateContestRequest {
 	this := RequestCreateContestRequest{}
 	this.ChannelId = channelId
-	this.NoOfGroups = noOfGroups
 	this.Reward = reward
-	this.SourceId = sourceId
 	this.SourceType = sourceType
 	this.Timing = timing
 	this.Title = title
-	this.WinnersPerGroup = winnersPerGroup
-	this.ZoneAdvantage = zoneAdvantage
 	return &this
 }
 
@@ -194,6 +196,38 @@ func (o *RequestCreateContestRequest) SetDifficulty(v string) {
 	o.Difficulty = &v
 }
 
+// GetEnrollmentTiming returns the EnrollmentTiming field value if set, zero value otherwise.
+func (o *RequestCreateContestRequest) GetEnrollmentTiming() DomainTiming {
+	if o == nil || IsNil(o.EnrollmentTiming) {
+		var ret DomainTiming
+		return ret
+	}
+	return *o.EnrollmentTiming
+}
+
+// GetEnrollmentTimingOk returns a tuple with the EnrollmentTiming field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestCreateContestRequest) GetEnrollmentTimingOk() (*DomainTiming, bool) {
+	if o == nil || IsNil(o.EnrollmentTiming) {
+		return nil, false
+	}
+	return o.EnrollmentTiming, true
+}
+
+// HasEnrollmentTiming returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasEnrollmentTiming() bool {
+	if o != nil && !IsNil(o.EnrollmentTiming) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnrollmentTiming gets a reference to the given DomainTiming and assigns it to the EnrollmentTiming field.
+func (o *RequestCreateContestRequest) SetEnrollmentTiming(v DomainTiming) {
+	o.EnrollmentTiming = &v
+}
+
 // GetGroupingType returns the GroupingType field value if set, zero value otherwise.
 func (o *RequestCreateContestRequest) GetGroupingType() string {
 	if o == nil || IsNil(o.GroupingType) {
@@ -290,28 +324,36 @@ func (o *RequestCreateContestRequest) SetJurorSelectionMode(v string) {
 	o.JurorSelectionMode = &v
 }
 
-// GetNoOfGroups returns the NoOfGroups field value
+// GetNoOfGroups returns the NoOfGroups field value if set, zero value otherwise.
 func (o *RequestCreateContestRequest) GetNoOfGroups() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.NoOfGroups) {
 		var ret int32
 		return ret
 	}
-
-	return o.NoOfGroups
+	return *o.NoOfGroups
 }
 
-// GetNoOfGroupsOk returns a tuple with the NoOfGroups field value
+// GetNoOfGroupsOk returns a tuple with the NoOfGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RequestCreateContestRequest) GetNoOfGroupsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NoOfGroups) {
 		return nil, false
 	}
-	return &o.NoOfGroups, true
+	return o.NoOfGroups, true
 }
 
-// SetNoOfGroups sets field value
+// HasNoOfGroups returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasNoOfGroups() bool {
+	if o != nil && !IsNil(o.NoOfGroups) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoOfGroups gets a reference to the given int32 and assigns it to the NoOfGroups field.
 func (o *RequestCreateContestRequest) SetNoOfGroups(v int32) {
-	o.NoOfGroups = v
+	o.NoOfGroups = &v
 }
 
 // GetNoOfPuzzles returns the NoOfPuzzles field value if set, zero value otherwise.
@@ -344,6 +386,38 @@ func (o *RequestCreateContestRequest) HasNoOfPuzzles() bool {
 // SetNoOfPuzzles gets a reference to the given int32 and assigns it to the NoOfPuzzles field.
 func (o *RequestCreateContestRequest) SetNoOfPuzzles(v int32) {
 	o.NoOfPuzzles = &v
+}
+
+// GetNoOfWinners returns the NoOfWinners field value if set, zero value otherwise.
+func (o *RequestCreateContestRequest) GetNoOfWinners() int32 {
+	if o == nil || IsNil(o.NoOfWinners) {
+		var ret int32
+		return ret
+	}
+	return *o.NoOfWinners
+}
+
+// GetNoOfWinnersOk returns a tuple with the NoOfWinners field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestCreateContestRequest) GetNoOfWinnersOk() (*int32, bool) {
+	if o == nil || IsNil(o.NoOfWinners) {
+		return nil, false
+	}
+	return o.NoOfWinners, true
+}
+
+// HasNoOfWinners returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasNoOfWinners() bool {
+	if o != nil && !IsNil(o.NoOfWinners) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoOfWinners gets a reference to the given int32 and assigns it to the NoOfWinners field.
+func (o *RequestCreateContestRequest) SetNoOfWinners(v int32) {
+	o.NoOfWinners = &v
 }
 
 // GetQuorum returns the Quorum field value if set, zero value otherwise.
@@ -434,6 +508,70 @@ func (o *RequestCreateContestRequest) SetReward(v DomainReward) {
 	o.Reward = v
 }
 
+// GetRoomSize returns the RoomSize field value if set, zero value otherwise.
+func (o *RequestCreateContestRequest) GetRoomSize() int32 {
+	if o == nil || IsNil(o.RoomSize) {
+		var ret int32
+		return ret
+	}
+	return *o.RoomSize
+}
+
+// GetRoomSizeOk returns a tuple with the RoomSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestCreateContestRequest) GetRoomSizeOk() (*int32, bool) {
+	if o == nil || IsNil(o.RoomSize) {
+		return nil, false
+	}
+	return o.RoomSize, true
+}
+
+// HasRoomSize returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasRoomSize() bool {
+	if o != nil && !IsNil(o.RoomSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoomSize gets a reference to the given int32 and assigns it to the RoomSize field.
+func (o *RequestCreateContestRequest) SetRoomSize(v int32) {
+	o.RoomSize = &v
+}
+
+// GetRoomVisibility returns the RoomVisibility field value if set, zero value otherwise.
+func (o *RequestCreateContestRequest) GetRoomVisibility() string {
+	if o == nil || IsNil(o.RoomVisibility) {
+		var ret string
+		return ret
+	}
+	return *o.RoomVisibility
+}
+
+// GetRoomVisibilityOk returns a tuple with the RoomVisibility field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestCreateContestRequest) GetRoomVisibilityOk() (*string, bool) {
+	if o == nil || IsNil(o.RoomVisibility) {
+		return nil, false
+	}
+	return o.RoomVisibility, true
+}
+
+// HasRoomVisibility returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasRoomVisibility() bool {
+	if o != nil && !IsNil(o.RoomVisibility) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoomVisibility gets a reference to the given string and assigns it to the RoomVisibility field.
+func (o *RequestCreateContestRequest) SetRoomVisibility(v string) {
+	o.RoomVisibility = &v
+}
+
 // GetRulePreset returns the RulePreset field value if set, zero value otherwise.
 func (o *RequestCreateContestRequest) GetRulePreset() string {
 	if o == nil || IsNil(o.RulePreset) {
@@ -466,28 +604,36 @@ func (o *RequestCreateContestRequest) SetRulePreset(v string) {
 	o.RulePreset = &v
 }
 
-// GetSourceId returns the SourceId field value
+// GetSourceId returns the SourceId field value if set, zero value otherwise.
 func (o *RequestCreateContestRequest) GetSourceId() string {
-	if o == nil {
+	if o == nil || IsNil(o.SourceId) {
 		var ret string
 		return ret
 	}
-
-	return o.SourceId
+	return *o.SourceId
 }
 
-// GetSourceIdOk returns a tuple with the SourceId field value
+// GetSourceIdOk returns a tuple with the SourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RequestCreateContestRequest) GetSourceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SourceId) {
 		return nil, false
 	}
-	return &o.SourceId, true
+	return o.SourceId, true
 }
 
-// SetSourceId sets field value
+// HasSourceId returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasSourceId() bool {
+	if o != nil && !IsNil(o.SourceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceId gets a reference to the given string and assigns it to the SourceId field.
 func (o *RequestCreateContestRequest) SetSourceId(v string) {
-	o.SourceId = v
+	o.SourceId = &v
 }
 
 // GetSourceType returns the SourceType field value
@@ -658,52 +804,68 @@ func (o *RequestCreateContestRequest) SetTitle(v string) {
 	o.Title = v
 }
 
-// GetWinnersPerGroup returns the WinnersPerGroup field value
+// GetWinnersPerGroup returns the WinnersPerGroup field value if set, zero value otherwise.
 func (o *RequestCreateContestRequest) GetWinnersPerGroup() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WinnersPerGroup) {
 		var ret int32
 		return ret
 	}
-
-	return o.WinnersPerGroup
+	return *o.WinnersPerGroup
 }
 
-// GetWinnersPerGroupOk returns a tuple with the WinnersPerGroup field value
+// GetWinnersPerGroupOk returns a tuple with the WinnersPerGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RequestCreateContestRequest) GetWinnersPerGroupOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WinnersPerGroup) {
 		return nil, false
 	}
-	return &o.WinnersPerGroup, true
+	return o.WinnersPerGroup, true
 }
 
-// SetWinnersPerGroup sets field value
+// HasWinnersPerGroup returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasWinnersPerGroup() bool {
+	if o != nil && !IsNil(o.WinnersPerGroup) {
+		return true
+	}
+
+	return false
+}
+
+// SetWinnersPerGroup gets a reference to the given int32 and assigns it to the WinnersPerGroup field.
 func (o *RequestCreateContestRequest) SetWinnersPerGroup(v int32) {
-	o.WinnersPerGroup = v
+	o.WinnersPerGroup = &v
 }
 
-// GetZoneAdvantage returns the ZoneAdvantage field value
+// GetZoneAdvantage returns the ZoneAdvantage field value if set, zero value otherwise.
 func (o *RequestCreateContestRequest) GetZoneAdvantage() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ZoneAdvantage) {
 		var ret int32
 		return ret
 	}
-
-	return o.ZoneAdvantage
+	return *o.ZoneAdvantage
 }
 
-// GetZoneAdvantageOk returns a tuple with the ZoneAdvantage field value
+// GetZoneAdvantageOk returns a tuple with the ZoneAdvantage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RequestCreateContestRequest) GetZoneAdvantageOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ZoneAdvantage) {
 		return nil, false
 	}
-	return &o.ZoneAdvantage, true
+	return o.ZoneAdvantage, true
 }
 
-// SetZoneAdvantage sets field value
+// HasZoneAdvantage returns a boolean if a field has been set.
+func (o *RequestCreateContestRequest) HasZoneAdvantage() bool {
+	if o != nil && !IsNil(o.ZoneAdvantage) {
+		return true
+	}
+
+	return false
+}
+
+// SetZoneAdvantage gets a reference to the given int32 and assigns it to the ZoneAdvantage field.
 func (o *RequestCreateContestRequest) SetZoneAdvantage(v int32) {
-	o.ZoneAdvantage = v
+	o.ZoneAdvantage = &v
 }
 
 func (o RequestCreateContestRequest) MarshalJSON() ([]byte, error) {
@@ -726,6 +888,9 @@ func (o RequestCreateContestRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Difficulty) {
 		toSerialize["difficulty"] = o.Difficulty
 	}
+	if !IsNil(o.EnrollmentTiming) {
+		toSerialize["enrollment_timing"] = o.EnrollmentTiming
+	}
 	if !IsNil(o.GroupingType) {
 		toSerialize["grouping_type"] = o.GroupingType
 	}
@@ -735,9 +900,14 @@ func (o RequestCreateContestRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.JurorSelectionMode) {
 		toSerialize["juror_selection_mode"] = o.JurorSelectionMode
 	}
-	toSerialize["no_of_groups"] = o.NoOfGroups
+	if !IsNil(o.NoOfGroups) {
+		toSerialize["no_of_groups"] = o.NoOfGroups
+	}
 	if !IsNil(o.NoOfPuzzles) {
 		toSerialize["no_of_puzzles"] = o.NoOfPuzzles
+	}
+	if !IsNil(o.NoOfWinners) {
+		toSerialize["no_of_winners"] = o.NoOfWinners
 	}
 	if !IsNil(o.Quorum) {
 		toSerialize["quorum"] = o.Quorum
@@ -746,10 +916,18 @@ func (o RequestCreateContestRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["rating_model"] = o.RatingModel
 	}
 	toSerialize["reward"] = o.Reward
+	if !IsNil(o.RoomSize) {
+		toSerialize["room_size"] = o.RoomSize
+	}
+	if !IsNil(o.RoomVisibility) {
+		toSerialize["room_visibility"] = o.RoomVisibility
+	}
 	if !IsNil(o.RulePreset) {
 		toSerialize["rule_preset"] = o.RulePreset
 	}
-	toSerialize["source_id"] = o.SourceId
+	if !IsNil(o.SourceId) {
+		toSerialize["source_id"] = o.SourceId
+	}
 	toSerialize["source_type"] = o.SourceType
 	if !IsNil(o.SponsorshipPackageId) {
 		toSerialize["sponsorship_package_id"] = o.SponsorshipPackageId
@@ -762,8 +940,12 @@ func (o RequestCreateContestRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["timing"] = o.Timing
 	toSerialize["title"] = o.Title
-	toSerialize["winners_per_group"] = o.WinnersPerGroup
-	toSerialize["zone_advantage"] = o.ZoneAdvantage
+	if !IsNil(o.WinnersPerGroup) {
+		toSerialize["winners_per_group"] = o.WinnersPerGroup
+	}
+	if !IsNil(o.ZoneAdvantage) {
+		toSerialize["zone_advantage"] = o.ZoneAdvantage
+	}
 	return toSerialize, nil
 }
 
@@ -773,14 +955,10 @@ func (o *RequestCreateContestRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"channel_id",
-		"no_of_groups",
 		"reward",
-		"source_id",
 		"source_type",
 		"timing",
 		"title",
-		"winners_per_group",
-		"zone_advantage",
 	}
 
 	allProperties := make(map[string]interface{})

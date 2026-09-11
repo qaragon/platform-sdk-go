@@ -37,14 +37,16 @@ func (r ApiCreateContestsByIdEnrollmentRequest) XActingAs(xActingAs string) ApiC
 	return r
 }
 
-func (r ApiCreateContestsByIdEnrollmentRequest) Execute() (*DomainParticipationResponse, *http.Response, error) {
+func (r ApiCreateContestsByIdEnrollmentRequest) Execute() (*DomainEnrollmentResponse, *http.Response, error) {
 	return r.ApiService.CreateContestsByIdEnrollmentExecute(r)
 }
 
 /*
-CreateContestsByIdEnrollment Enroll in a Contest
+CreateContestsByIdEnrollment Enroll in a contest's pre-enrollment pool
 
-Enroll in a Contest
+Declares the caller's intent to play before play opens (ADR 0058). Only
+valid for a required-enrollment contest (Contest.EnrollmentTiming != nil), and
+only inside that window. Idempotent — a repeat call returns the existing row.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Contest ID
@@ -59,13 +61,13 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollment(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return DomainParticipationResponse
-func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreateContestsByIdEnrollmentRequest) (*DomainParticipationResponse, *http.Response, error) {
+//  @return DomainEnrollmentResponse
+func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreateContestsByIdEnrollmentRequest) (*DomainEnrollmentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainParticipationResponse
+		localVarReturnValue  *DomainEnrollmentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ParticipationAPIService.CreateContestsByIdEnrollment")
@@ -121,6 +123,17 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreat
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v HandlerErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v HandlerErrorResponse
@@ -475,6 +488,9 @@ func (r ApiDeleteContestsByIdEnrollmentRequest) Execute() (*http.Response, error
 
 /*
 DeleteContestsByIdEnrollment Withdraw the caller's enrollment from a contest
+
+Hard-deletes the caller's enrollment row (ADR 0058). Idempotent — withdrawing
+a member who was never enrolled is a no-op, not an error.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Contest ID

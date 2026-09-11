@@ -33,7 +33,7 @@ type ApiGetChannelsByIdStandingsRequest struct {
 	xActingAs *string
 }
 
-// Standings window: week | all_time (default all_time)
+// Standings window: week | month | all_time (default all_time)
 func (r ApiGetChannelsByIdStandingsRequest) Window(window string) ApiGetChannelsByIdStandingsRequest {
 	r.window = &window
 	return r
@@ -56,12 +56,15 @@ func (r ApiGetChannelsByIdStandingsRequest) Execute() (*DomainLeaderboardRespons
 }
 
 /*
-GetChannelsByIdStandings Get a channel's season standings (ranked by cumulative score)
+GetChannelsByIdStandings Get a channel's season standings (ranked by cumulative participation points)
 
-Season standings for a channel, ranked by cumulative raw score — the
-prediction/creative metric (distinct from participation points). The
-window selects a single period bucket: "week" (the current week) or
-"all_time" (lifetime). Read acting-as the channel owner.
+Season standings for a channel, ranked by cumulative participation
+points — the same metric grading accumulates into the board and the
+client surfaces per member. The window selects a single period bucket:
+"week" (the current week) or "all_time" (lifetime). Read acting-as the
+channel owner. The response echoes leaderboard_visibility; when it is
+"hidden" the rankings/member_rank are withheld from everyone but the
+owner.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Channel ID

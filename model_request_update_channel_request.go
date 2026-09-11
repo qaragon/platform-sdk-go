@@ -25,6 +25,7 @@ type RequestUpdateChannelRequest struct {
 	AccessType *string `json:"access_type,omitempty"`
 	HeaderImageUrl string `json:"header_image_url"`
 	IsFanChannel *bool `json:"is_fan_channel,omitempty"`
+	LeaderboardVisibility *string `json:"leaderboard_visibility,omitempty"`
 	Name string `json:"name"`
 	Regions []RequestRegion `json:"regions,omitempty"`
 	Size int32 `json:"size"`
@@ -140,6 +141,38 @@ func (o *RequestUpdateChannelRequest) SetIsFanChannel(v bool) {
 	o.IsFanChannel = &v
 }
 
+// GetLeaderboardVisibility returns the LeaderboardVisibility field value if set, zero value otherwise.
+func (o *RequestUpdateChannelRequest) GetLeaderboardVisibility() string {
+	if o == nil || IsNil(o.LeaderboardVisibility) {
+		var ret string
+		return ret
+	}
+	return *o.LeaderboardVisibility
+}
+
+// GetLeaderboardVisibilityOk returns a tuple with the LeaderboardVisibility field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestUpdateChannelRequest) GetLeaderboardVisibilityOk() (*string, bool) {
+	if o == nil || IsNil(o.LeaderboardVisibility) {
+		return nil, false
+	}
+	return o.LeaderboardVisibility, true
+}
+
+// HasLeaderboardVisibility returns a boolean if a field has been set.
+func (o *RequestUpdateChannelRequest) HasLeaderboardVisibility() bool {
+	if o != nil && !IsNil(o.LeaderboardVisibility) {
+		return true
+	}
+
+	return false
+}
+
+// SetLeaderboardVisibility gets a reference to the given string and assigns it to the LeaderboardVisibility field.
+func (o *RequestUpdateChannelRequest) SetLeaderboardVisibility(v string) {
+	o.LeaderboardVisibility = &v
+}
+
 // GetName returns the Name field value
 func (o *RequestUpdateChannelRequest) GetName() string {
 	if o == nil {
@@ -236,6 +269,9 @@ func (o RequestUpdateChannelRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["header_image_url"] = o.HeaderImageUrl
 	if !IsNil(o.IsFanChannel) {
 		toSerialize["is_fan_channel"] = o.IsFanChannel
+	}
+	if !IsNil(o.LeaderboardVisibility) {
+		toSerialize["leaderboard_visibility"] = o.LeaderboardVisibility
 	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Regions) {

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateContestsByIdEnrollment**](ParticipationAPI.md#CreateContestsByIdEnrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a Contest
+[**CreateContestsByIdEnrollment**](ParticipationAPI.md#CreateContestsByIdEnrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a contest&#39;s pre-enrollment pool
 [**CreateContestsByIdParticipate**](ParticipationAPI.md#CreateContestsByIdParticipate) | **Post** /v2/contests/{id}/participate | Create Participation
 [**CreateParticipationByIdStart**](ParticipationAPI.md#CreateParticipationByIdStart) | **Post** /v2/participation/{id}/start | Log the start of a participation
 [**DeleteContestsByIdEnrollment**](ParticipationAPI.md#DeleteContestsByIdEnrollment) | **Delete** /v2/contests/{id}/enrollment | Withdraw the caller&#39;s enrollment from a contest
@@ -21,9 +21,9 @@ Method | HTTP request | Description
 
 ## CreateContestsByIdEnrollment
 
-> DomainParticipationResponse CreateContestsByIdEnrollment(ctx, id).XActingAs(xActingAs).Execute()
+> DomainEnrollmentResponse CreateContestsByIdEnrollment(ctx, id).XActingAs(xActingAs).Execute()
 
-Enroll in a Contest
+Enroll in a contest's pre-enrollment pool
 
 
 
@@ -50,7 +50,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ParticipationAPI.CreateContestsByIdEnrollment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByIdEnrollment`: DomainParticipationResponse
+	// response from `CreateContestsByIdEnrollment`: DomainEnrollmentResponse
 	fmt.Fprintf(os.Stdout, "Response from `ParticipationAPI.CreateContestsByIdEnrollment`: %v\n", resp)
 }
 ```
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainParticipationResponse**](DomainParticipationResponse.md)
+[**DomainEnrollmentResponse**](DomainEnrollmentResponse.md)
 
 ### Authorization
 
@@ -240,6 +240,8 @@ Name | Type | Description  | Notes
 > DeleteContestsByIdEnrollment(ctx, id).XActingAs(xActingAs).Execute()
 
 Withdraw the caller's enrollment from a contest
+
+
 
 ### Example
 

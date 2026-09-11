@@ -28,6 +28,8 @@ type DomainChannel struct {
 	HeaderImageUrl *string `json:"header_image_url,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IsFanChannel *bool `json:"is_fan_channel,omitempty"`
+	// Owner-set: \"visible\" (default) or \"hidden\" (standings withheld from non-owners)
+	LeaderboardVisibility *string `json:"leaderboard_visibility,omitempty"`
 	// Set when authenticated; omitted when not subscribed
 	MemberSubscription *DomainMemberSubscriptionSummary `json:"member_subscription,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -277,6 +279,38 @@ func (o *DomainChannel) HasIsFanChannel() bool {
 // SetIsFanChannel gets a reference to the given bool and assigns it to the IsFanChannel field.
 func (o *DomainChannel) SetIsFanChannel(v bool) {
 	o.IsFanChannel = &v
+}
+
+// GetLeaderboardVisibility returns the LeaderboardVisibility field value if set, zero value otherwise.
+func (o *DomainChannel) GetLeaderboardVisibility() string {
+	if o == nil || IsNil(o.LeaderboardVisibility) {
+		var ret string
+		return ret
+	}
+	return *o.LeaderboardVisibility
+}
+
+// GetLeaderboardVisibilityOk returns a tuple with the LeaderboardVisibility field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainChannel) GetLeaderboardVisibilityOk() (*string, bool) {
+	if o == nil || IsNil(o.LeaderboardVisibility) {
+		return nil, false
+	}
+	return o.LeaderboardVisibility, true
+}
+
+// HasLeaderboardVisibility returns a boolean if a field has been set.
+func (o *DomainChannel) HasLeaderboardVisibility() bool {
+	if o != nil && !IsNil(o.LeaderboardVisibility) {
+		return true
+	}
+
+	return false
+}
+
+// SetLeaderboardVisibility gets a reference to the given string and assigns it to the LeaderboardVisibility field.
+func (o *DomainChannel) SetLeaderboardVisibility(v string) {
+	o.LeaderboardVisibility = &v
 }
 
 // GetMemberSubscription returns the MemberSubscription field value if set, zero value otherwise.
@@ -533,6 +567,9 @@ func (o DomainChannel) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IsFanChannel) {
 		toSerialize["is_fan_channel"] = o.IsFanChannel
+	}
+	if !IsNil(o.LeaderboardVisibility) {
+		toSerialize["leaderboard_visibility"] = o.LeaderboardVisibility
 	}
 	if !IsNil(o.MemberSubscription) {
 		toSerialize["member_subscription"] = o.MemberSubscription

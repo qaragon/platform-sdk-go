@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Difficulty** | Pointer to **string** |  | [optional] 
+**EnrollmentTiming** | Pointer to [**DomainTiming**](DomainTiming.md) | EnrollmentTiming, when non-nil, is the pre-enrollment window (ADR 0058): a member must enroll within [StartAt, EndAt] to participate. nil means the contest does not require enrollment. | [optional] 
 **EntryBasedConfig** | Pointer to [**EntryBasedContestConfig**](EntryBasedContestConfig.md) | Present only for entry-based (creative) contests — juror sizing + judging config (uman#221) | [optional] 
 **FairPlayGrouping** | Pointer to **bool** | @deprecated | [optional] 
 **GroupingType** | Pointer to **string** | &#39;system&#39; or &#39;open&#39; | [optional] 
@@ -152,6 +153,31 @@ SetDifficulty sets Difficulty field to given value.
 `func (o *DomainContest) HasDifficulty() bool`
 
 HasDifficulty returns a boolean if a field has been set.
+
+### GetEnrollmentTiming
+
+`func (o *DomainContest) GetEnrollmentTiming() DomainTiming`
+
+GetEnrollmentTiming returns the EnrollmentTiming field if non-nil, zero value otherwise.
+
+### GetEnrollmentTimingOk
+
+`func (o *DomainContest) GetEnrollmentTimingOk() (*DomainTiming, bool)`
+
+GetEnrollmentTimingOk returns a tuple with the EnrollmentTiming field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnrollmentTiming
+
+`func (o *DomainContest) SetEnrollmentTiming(v DomainTiming)`
+
+SetEnrollmentTiming sets EnrollmentTiming field to given value.
+
+### HasEnrollmentTiming
+
+`func (o *DomainContest) HasEnrollmentTiming() bool`
+
+HasEnrollmentTiming returns a boolean if a field has been set.
 
 ### GetEntryBasedConfig
 

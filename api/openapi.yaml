@@ -34,6 +34,8 @@ tags:
   x-displayName: Tournaments
 - name: Sponsorships
   x-displayName: Sponsorships
+- name: CheckIn
+  x-displayName: CheckIn
 - name: CreativeContests
   x-displayName: CreativeContests
 - name: Participation
@@ -932,10 +934,13 @@ paths:
   /v2/channels/{id}/standings:
     get:
       description: |-
-        Season standings for a channel, ranked by cumulative raw score — the
-        prediction/creative metric (distinct from participation points). The
-        window selects a single period bucket: "week" (the current week) or
-        "all_time" (lifetime). Read acting-as the channel owner.
+        Season standings for a channel, ranked by cumulative participation
+        points — the same metric grading accumulates into the board and the
+        client surfaces per member. The window selects a single period bucket:
+        "week" (the current week) or "all_time" (lifetime). Read acting-as the
+        channel owner. The response echoes leaderboard_visibility; when it is
+        "hidden" the rankings/member_rank are withheld from everyone but the
+        owner.
       operationId: getChannelsByIdStandings
       parameters:
       - description: Channel ID
@@ -946,7 +951,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "Standings window: week | all_time (default all_time)"
+      - description: "Standings window: week | month | all_time (default all_time)"
         explode: true
         in: query
         name: window
@@ -985,7 +990,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Handler.ErrorResponse'
           description: Not Found
-      summary: Get a channel's season standings (ranked by cumulative score)
+      summary: Get a channel's season standings (ranked by cumulative participation
+        points)
       tags:
       - Leaderboard
   /v2/channels/{id}/subscriptions:
@@ -2533,6 +2539,67 @@ paths:
       summary: Update a contest
       tags:
       - Contests
+  /v2/contests/{id}/assignments:
+    get:
+      description: |-
+        "What's my status" for a check-in contest. Enrolling itself happens via the
+        shared POST /contests/{id}/enrollment (ADR 0058); this only reads where batch
+        room formation left the caller: not enrolled (404), enrolled but rooms haven't
+        formed yet ("enrolled"), or placed ("assigned", with room number + private key).
+      operationId: getContestsByIdAssignments
+      parameters:
+      - description: Contest ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/checkin.AssignmentResponseResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Internal Server Error
+      summary: Get the caller's check-in assignment status
+      tags:
+      - CheckIn
   /v2/contests/{id}/ballots:
     post:
       description: |-
@@ -2621,8 +2688,85 @@ paths:
       summary: Serve a community-judging matchup
       tags:
       - CreativeContests
+  /v2/contests/{id}/check-ins:
+    post:
+      description: |-
+        The caller enters a roommate's key to confirm they're paired up. The room
+        confirms once every member has checked in; a room of one auto-confirms at
+        formation and never reaches this endpoint.
+      operationId: createContestsByIdCheckIns
+      parameters:
+      - description: Contest ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/checkin.checkInRequest'
+        description: Roommate's key
+        required: true
+        x-originalParamName: request
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/checkin.CheckInResponseResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Not Found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Internal Server Error
+      summary: Check in with a roommate's key
+      tags:
+      - CheckIn
   /v2/contests/{id}/enrollment:
     delete:
+      description: |-
+        Hard-deletes the caller's enrollment row (ADR 0058). Idempotent — withdrawing
+        a member who was never enrolled is a no-op, not an error.
       operationId: deleteContestsByIdEnrollment
       parameters:
       - description: Contest ID
@@ -2644,8 +2788,8 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          description: OK
+        "204":
+          description: No Content
         "404":
           content:
             application/json:
@@ -2662,7 +2806,10 @@ paths:
       tags:
       - Participation
     post:
-      description: Enroll in a Contest
+      description: |-
+        Declares the caller's intent to play before play opens (ADR 0058). Only
+        valid for a required-enrollment contest (Contest.EnrollmentTiming != nil), and
+        only inside that window. Idempotent — a repeat call returns the existing row.
       operationId: createContestsByIdEnrollment
       parameters:
       - description: Contest ID
@@ -2688,8 +2835,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Domain.ParticipationResponse'
+                $ref: '#/components/schemas/Domain.EnrollmentResponse'
           description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Bad Request
         "404":
           content:
             application/json:
@@ -2702,7 +2855,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Handler.ErrorResponse'
           description: Internal Server Error
-      summary: Enroll in a Contest
+      summary: Enroll in a contest's pre-enrollment pool
       tags:
       - Participation
   /v2/contests/{id}/entries:
@@ -4072,6 +4225,143 @@ paths:
       summary: Get question statistics for a contest (Contest Owner or Admin Only)
       tags:
       - Contests
+  /v2/contests/{id}/rooms:
+    get:
+      description: |-
+        Creator only. Offset-paginated via "after" (the last room_number seen) and
+        "limit". The creator always sees member display names regardless of the
+        contest's room_visibility setting.
+      operationId: getContestsByIdRooms
+      parameters:
+      - description: Contest ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Last room_number seen (0 for the first page)
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Page size
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/checkin.RoomListResponseResponse'
+          description: OK
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Internal Server Error
+      summary: List every room in a check-in contest
+      tags:
+      - CheckIn
+  /v2/contests/{id}/rooms/{roomNumber}:
+    get:
+      description: |-
+        The contest creator, or a member of that room. Display names are included
+        only for the creator or when the contest's room_visibility is "visible".
+      operationId: getContestsByIdRoomsByRoomNumber
+      parameters:
+      - description: Contest ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Room number
+        explode: false
+        in: path
+        name: roomNumber
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/checkin.RoomResponseResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handler.ErrorResponse'
+          description: Internal Server Error
+      summary: Get one room in a check-in contest
+      tags:
+      - CheckIn
   /v2/contests/{id}/scoreboard:
     get:
       deprecated: true
@@ -10526,6 +10816,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -10636,6 +10927,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -10725,6 +11017,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -10827,6 +11120,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -10883,6 +11177,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -11263,6 +11558,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -11365,6 +11661,7 @@ components:
               deduction_pct_description: deduction_pct_description
             id: id
             contest_id: contest_id
+          enrollment_timing: ""
           fair_play_grouping: true
           id: id
           state: state
@@ -11574,6 +11871,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -11676,6 +11974,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -11955,6 +12254,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -12057,6 +12357,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -12266,6 +12567,7 @@ components:
                   contests_count: 6
                   subscribers_count: 1
                 is_fan_channel: true
+                leaderboard_visibility: leaderboard_visibility
                 name: name
                 id: id
                 header_image_url: header_image_url
@@ -12368,6 +12670,7 @@ components:
                   deduction_pct_description: deduction_pct_description
                 id: id
                 contest_id: contest_id
+              enrollment_timing: ""
               fair_play_grouping: true
               id: id
               state: state
@@ -12521,6 +12824,7 @@ components:
           contests_count: 6
           subscribers_count: 1
         is_fan_channel: true
+        leaderboard_visibility: leaderboard_visibility
         name: name
         id: id
         header_image_url: header_image_url
@@ -12541,6 +12845,10 @@ components:
           type: string
         is_fan_channel:
           type: boolean
+        leaderboard_visibility:
+          description: "Owner-set: \"visible\" (default) or \"hidden\" (standings\
+            \ withheld from non-owners)"
+          type: string
         member_subscription:
           allOf:
           - $ref: '#/components/schemas/Domain.MemberSubscriptionSummary'
@@ -12609,6 +12917,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -12653,6 +12962,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -12710,6 +13020,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -12823,6 +13134,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -12925,6 +13237,7 @@ components:
             deduction_pct_description: deduction_pct_description
           id: id
           contest_id: contest_id
+        enrollment_timing: ""
         fair_play_grouping: true
         id: id
         state: state
@@ -12975,6 +13288,13 @@ components:
           type: string
         difficulty:
           type: string
+        enrollment_timing:
+          allOf:
+          - $ref: '#/components/schemas/Domain.Timing'
+          description: |-
+            EnrollmentTiming, when non-nil, is the pre-enrollment window (ADR
+            0058): a member must enroll within [StartAt, EndAt] to participate.
+            nil means the contest does not require enrollment.
         entry_based_config:
           allOf:
           - $ref: '#/components/schemas/EntryBasedContest.Config'
@@ -13286,6 +13606,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -13388,6 +13709,7 @@ components:
               deduction_pct_description: deduction_pct_description
             id: id
             contest_id: contest_id
+          enrollment_timing: ""
           fair_play_grouping: true
           id: id
           state: state
@@ -13474,6 +13796,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -13576,6 +13899,7 @@ components:
               deduction_pct_description: deduction_pct_description
             id: id
             contest_id: contest_id
+          enrollment_timing: ""
           fair_play_grouping: true
           id: id
           state: state
@@ -13675,6 +13999,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -13777,6 +14102,7 @@ components:
               deduction_pct_description: deduction_pct_description
             id: id
             contest_id: contest_id
+          enrollment_timing: ""
           fair_play_grouping: true
           id: id
           state: state
@@ -13830,12 +14156,14 @@ components:
       - prediction
       - majority
       - creative
+      - checkin
       type: string
       x-enum-varnames:
       - ContestTypeMC
       - ContestTypePrediction
       - ContestTypeMajority
       - ContestTypeEntryBased
+      - ContestTypeCheckIn
     Domain.Country:
       example:
         continent_name: continent_name
@@ -13857,6 +14185,455 @@ components:
           type: string
         native_name:
           type: string
+      type: object
+    Domain.Enrollment:
+      example:
+        contest:
+          tenant_id: tenant_id
+          puzzle_sheet_id: puzzle_sheet_id
+          sponsor: ""
+          winners_per_group: 2
+          channel:
+            owner:
+              tenant_id: tenant_id
+              country:
+                continent_name: continent_name
+                code: code
+                name: name
+                continent_code: continent_code
+                currency: currency
+                native_name: native_name
+              metadata:
+                key: metadata
+              profile_pic: profile_pic
+              created_at: created_at
+              last_name: last_name
+              display_name: display_name
+              country_code: country_code
+              is_official: true
+              company: company
+              id: id
+              first_name: first_name
+              header_image_url: header_image_url
+            access_type: access_type
+            code: code
+            regions:
+            - code: code
+              name: name
+              id: id
+              type: type
+            - code: code
+              name: name
+              id: id
+              type: type
+            access_code: access_code
+            created_at: created_at
+            member_subscription: ""
+            size: 0
+            stats:
+              contests_count: 6
+              subscribers_count: 1
+            is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
+            name: name
+            id: id
+            header_image_url: header_image_url
+            venue_id: venue_id
+          created_at: created_at
+          description: description
+          member_participation:
+            can_participate: true
+            can_participate_reasons:
+            - can_participate_reasons
+            - can_participate_reasons
+            team:
+              icon_url: icon_url
+              name: name
+              id: id
+              sort_order: 0
+            enrolled: true
+            participation_id: participation_id
+            status: status
+          participation_rules:
+            minimum_participation_won:
+              total: 2
+              monthly: 5
+              weekly: 7
+            maximum_participation_won:
+              total: 2
+              monthly: 5
+              weekly: 7
+            new_members_only: true
+            minimum_participation:
+              total: 2
+              monthly: 5
+              weekly: 7
+            member_can_enroll: true
+            description: description
+            id: id
+            preset: preset
+            contest_id: contest_id
+            maximum_participation:
+              total: 2
+              monthly: 5
+              weekly: 7
+          title: title
+          grouping_type: grouping_type
+          team_set:
+            teams:
+            - icon_url: icon_url
+              name: name
+              id: id
+              sort_order: 0
+            - icon_url: icon_url
+              name: name
+              id: id
+              sort_order: 0
+            name: name
+            id: id
+            category: category
+            type: type
+            channel_id: channel_id
+            tags:
+            - tags
+            - tags
+          time_penalty_configuration:
+          - color: color
+            zone: zone
+            description: description
+            reduction: reduction
+          - color: color
+            zone: zone
+            description: description
+            reduction: reduction
+          submission_zone_configuration:
+            orange_zone:
+              zone_pct_description: zone_pct_description
+              color: color
+              deduction_pct: 9
+              zone_pct: 3
+              title: title
+              deduction_pct_description: deduction_pct_description
+            green_zone:
+              zone_pct_description: zone_pct_description
+              color: color
+              deduction_pct: 9
+              zone_pct: 3
+              title: title
+              deduction_pct_description: deduction_pct_description
+            blue_zone:
+              zone_pct_description: zone_pct_description
+              color: color
+              deduction_pct: 9
+              zone_pct: 3
+              title: title
+              deduction_pct_description: deduction_pct_description
+            red_zone:
+              zone_pct_description: zone_pct_description
+              color: color
+              deduction_pct: 9
+              zone_pct: 3
+              title: title
+              deduction_pct_description: deduction_pct_description
+            id: id
+            contest_id: contest_id
+          enrollment_timing: ""
+          fair_play_grouping: true
+          id: id
+          state: state
+          reward:
+            redemption_condition: redemption_condition
+            reward_type: money
+            currency: currency
+            value: value
+          entry_based_config: ""
+          no_of_puzzles: 1
+          question_type: ""
+          timing:
+            end_at: end_at
+            start_at: start_at
+          source_type: ""
+          no_of_groups: 6
+          difficulty: difficulty
+          sender:
+            tenant_id: tenant_id
+            country:
+              continent_name: continent_name
+              code: code
+              name: name
+              continent_code: continent_code
+              currency: currency
+              native_name: native_name
+            metadata:
+              key: metadata
+            profile_pic: profile_pic
+            created_at: created_at
+            last_name: last_name
+            display_name: display_name
+            country_code: country_code
+            is_official: true
+            company: company
+            id: id
+            first_name: first_name
+            header_image_url: header_image_url
+          no_of_winners: 5
+          source_id: source_id
+          header_image_url: header_image_url
+        member:
+          tenant_id: tenant_id
+          country:
+            continent_name: continent_name
+            code: code
+            name: name
+            continent_code: continent_code
+            currency: currency
+            native_name: native_name
+          metadata:
+            key: metadata
+          profile_pic: profile_pic
+          created_at: created_at
+          last_name: last_name
+          display_name: display_name
+          country_code: country_code
+          is_official: true
+          company: company
+          id: id
+          first_name: first_name
+          header_image_url: header_image_url
+        created_at: created_at
+        id: id
+      properties:
+        contest:
+          $ref: '#/components/schemas/Domain.Contest'
+        created_at:
+          type: string
+        id:
+          type: string
+        member:
+          $ref: '#/components/schemas/Domain.PlatformIdentity'
+      type: object
+    Domain.EnrollmentResponse:
+      example:
+        data:
+          contest:
+            tenant_id: tenant_id
+            puzzle_sheet_id: puzzle_sheet_id
+            sponsor: ""
+            winners_per_group: 2
+            channel:
+              owner:
+                tenant_id: tenant_id
+                country:
+                  continent_name: continent_name
+                  code: code
+                  name: name
+                  continent_code: continent_code
+                  currency: currency
+                  native_name: native_name
+                metadata:
+                  key: metadata
+                profile_pic: profile_pic
+                created_at: created_at
+                last_name: last_name
+                display_name: display_name
+                country_code: country_code
+                is_official: true
+                company: company
+                id: id
+                first_name: first_name
+                header_image_url: header_image_url
+              access_type: access_type
+              code: code
+              regions:
+              - code: code
+                name: name
+                id: id
+                type: type
+              - code: code
+                name: name
+                id: id
+                type: type
+              access_code: access_code
+              created_at: created_at
+              member_subscription: ""
+              size: 0
+              stats:
+                contests_count: 6
+                subscribers_count: 1
+              is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
+              name: name
+              id: id
+              header_image_url: header_image_url
+              venue_id: venue_id
+            created_at: created_at
+            description: description
+            member_participation:
+              can_participate: true
+              can_participate_reasons:
+              - can_participate_reasons
+              - can_participate_reasons
+              team:
+                icon_url: icon_url
+                name: name
+                id: id
+                sort_order: 0
+              enrolled: true
+              participation_id: participation_id
+              status: status
+            participation_rules:
+              minimum_participation_won:
+                total: 2
+                monthly: 5
+                weekly: 7
+              maximum_participation_won:
+                total: 2
+                monthly: 5
+                weekly: 7
+              new_members_only: true
+              minimum_participation:
+                total: 2
+                monthly: 5
+                weekly: 7
+              member_can_enroll: true
+              description: description
+              id: id
+              preset: preset
+              contest_id: contest_id
+              maximum_participation:
+                total: 2
+                monthly: 5
+                weekly: 7
+            title: title
+            grouping_type: grouping_type
+            team_set:
+              teams:
+              - icon_url: icon_url
+                name: name
+                id: id
+                sort_order: 0
+              - icon_url: icon_url
+                name: name
+                id: id
+                sort_order: 0
+              name: name
+              id: id
+              category: category
+              type: type
+              channel_id: channel_id
+              tags:
+              - tags
+              - tags
+            time_penalty_configuration:
+            - color: color
+              zone: zone
+              description: description
+              reduction: reduction
+            - color: color
+              zone: zone
+              description: description
+              reduction: reduction
+            submission_zone_configuration:
+              orange_zone:
+                zone_pct_description: zone_pct_description
+                color: color
+                deduction_pct: 9
+                zone_pct: 3
+                title: title
+                deduction_pct_description: deduction_pct_description
+              green_zone:
+                zone_pct_description: zone_pct_description
+                color: color
+                deduction_pct: 9
+                zone_pct: 3
+                title: title
+                deduction_pct_description: deduction_pct_description
+              blue_zone:
+                zone_pct_description: zone_pct_description
+                color: color
+                deduction_pct: 9
+                zone_pct: 3
+                title: title
+                deduction_pct_description: deduction_pct_description
+              red_zone:
+                zone_pct_description: zone_pct_description
+                color: color
+                deduction_pct: 9
+                zone_pct: 3
+                title: title
+                deduction_pct_description: deduction_pct_description
+              id: id
+              contest_id: contest_id
+            enrollment_timing: ""
+            fair_play_grouping: true
+            id: id
+            state: state
+            reward:
+              redemption_condition: redemption_condition
+              reward_type: money
+              currency: currency
+              value: value
+            entry_based_config: ""
+            no_of_puzzles: 1
+            question_type: ""
+            timing:
+              end_at: end_at
+              start_at: start_at
+            source_type: ""
+            no_of_groups: 6
+            difficulty: difficulty
+            sender:
+              tenant_id: tenant_id
+              country:
+                continent_name: continent_name
+                code: code
+                name: name
+                continent_code: continent_code
+                currency: currency
+                native_name: native_name
+              metadata:
+                key: metadata
+              profile_pic: profile_pic
+              created_at: created_at
+              last_name: last_name
+              display_name: display_name
+              country_code: country_code
+              is_official: true
+              company: company
+              id: id
+              first_name: first_name
+              header_image_url: header_image_url
+            no_of_winners: 5
+            source_id: source_id
+            header_image_url: header_image_url
+          member:
+            tenant_id: tenant_id
+            country:
+              continent_name: continent_name
+              code: code
+              name: name
+              continent_code: continent_code
+              currency: currency
+              native_name: native_name
+            metadata:
+              key: metadata
+            profile_pic: profile_pic
+            created_at: created_at
+            last_name: last_name
+            display_name: display_name
+            country_code: country_code
+            is_official: true
+            company: company
+            id: id
+            first_name: first_name
+            header_image_url: header_image_url
+          created_at: created_at
+          id: id
+      properties:
+        data:
+          $ref: '#/components/schemas/Domain.Enrollment'
+      required:
+      - data
       type: object
     Domain.Entry:
       example:
@@ -14068,6 +14845,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -14170,6 +14948,7 @@ components:
               deduction_pct_description: deduction_pct_description
             id: id
             contest_id: contest_id
+          enrollment_timing: ""
           fair_play_grouping: true
           id: id
           state: state
@@ -14368,6 +15147,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -14470,6 +15250,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -14636,6 +15417,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -14738,6 +15520,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -14936,6 +15719,7 @@ components:
                   contests_count: 6
                   subscribers_count: 1
                 is_fan_channel: true
+                leaderboard_visibility: leaderboard_visibility
                 name: name
                 id: id
                 header_image_url: header_image_url
@@ -15038,6 +15822,7 @@ components:
                   deduction_pct_description: deduction_pct_description
                 id: id
                 contest_id: contest_id
+              enrollment_timing: ""
               fair_play_grouping: true
               id: id
               state: state
@@ -15355,6 +16140,27 @@ components:
       type: object
     Domain.Leaderboard:
       example:
+        owner:
+          tenant_id: tenant_id
+          country:
+            continent_name: continent_name
+            code: code
+            name: name
+            continent_code: continent_code
+            currency: currency
+            native_name: native_name
+          metadata:
+            key: metadata
+          profile_pic: profile_pic
+          created_at: created_at
+          last_name: last_name
+          display_name: display_name
+          country_code: country_code
+          is_official: true
+          company: company
+          id: id
+          first_name: first_name
+          header_image_url: header_image_url
         rankings:
         - score: 2.3021358869347655
           current: 1
@@ -15459,31 +16265,12 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
             venue_id: venue_id
-        brand:
-          tenant_id: tenant_id
-          country:
-            continent_name: continent_name
-            code: code
-            name: name
-            continent_code: continent_code
-            currency: currency
-            native_name: native_name
-          metadata:
-            key: metadata
-          profile_pic: profile_pic
-          created_at: created_at
-          last_name: last_name
-          display_name: display_name
-          country_code: country_code
-          is_official: true
-          company: company
-          id: id
-          first_name: first_name
-          header_image_url: header_image_url
+        leaderboard_visibility: leaderboard_visibility
         member_rank:
           score: 2.3021358869347655
           current: 1
@@ -15514,12 +16301,18 @@ components:
             header_image_url: header_image_url
           points: 5.962133916683182
       properties:
-        brand:
-          $ref: '#/components/schemas/Domain.PlatformIdentity'
         context:
           $ref: '#/components/schemas/Domain.BoardContext'
+        leaderboard_visibility:
+          description: |-
+            LeaderboardVisibility echoes the channel's setting ("visible"/"hidden"). When
+            "hidden" the board is withheld from non-owners (empty Rankings/MemberRank); the
+            owner still gets the full board so their client can show a banner.
+          type: string
         member_rank:
           $ref: '#/components/schemas/Domain.LeaderboardRank'
+        owner:
+          $ref: '#/components/schemas/Domain.PlatformIdentity'
         period:
           $ref: '#/components/schemas/Domain.Period'
         rankings:
@@ -15585,6 +16378,27 @@ components:
     Domain.LeaderboardResponse:
       example:
         data:
+          owner:
+            tenant_id: tenant_id
+            country:
+              continent_name: continent_name
+              code: code
+              name: name
+              continent_code: continent_code
+              currency: currency
+              native_name: native_name
+            metadata:
+              key: metadata
+            profile_pic: profile_pic
+            created_at: created_at
+            last_name: last_name
+            display_name: display_name
+            country_code: country_code
+            is_official: true
+            company: company
+            id: id
+            first_name: first_name
+            header_image_url: header_image_url
           rankings:
           - score: 2.3021358869347655
             current: 1
@@ -15689,31 +16503,12 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
               venue_id: venue_id
-          brand:
-            tenant_id: tenant_id
-            country:
-              continent_name: continent_name
-              code: code
-              name: name
-              continent_code: continent_code
-              currency: currency
-              native_name: native_name
-            metadata:
-              key: metadata
-            profile_pic: profile_pic
-            created_at: created_at
-            last_name: last_name
-            display_name: display_name
-            country_code: country_code
-            is_official: true
-            company: company
-            id: id
-            first_name: first_name
-            header_image_url: header_image_url
+          leaderboard_visibility: leaderboard_visibility
           member_rank:
             score: 2.3021358869347655
             current: 1
@@ -15986,6 +16781,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -16088,6 +16884,7 @@ components:
               deduction_pct_description: deduction_pct_description
             id: id
             contest_id: contest_id
+          enrollment_timing: ""
           fair_play_grouping: true
           id: id
           state: state
@@ -16312,6 +17109,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -16414,6 +17212,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -16565,6 +17364,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -16667,6 +17467,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -16831,6 +17632,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -16933,6 +17735,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -17470,6 +18273,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -17572,6 +18376,7 @@ components:
               deduction_pct_description: deduction_pct_description
             id: id
             contest_id: contest_id
+          enrollment_timing: ""
           fair_play_grouping: true
           id: id
           state: state
@@ -17769,6 +18574,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -17871,6 +18677,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -18035,6 +18842,7 @@ components:
                 contests_count: 6
                 subscribers_count: 1
               is_fan_channel: true
+              leaderboard_visibility: leaderboard_visibility
               name: name
               id: id
               header_image_url: header_image_url
@@ -18137,6 +18945,7 @@ components:
                 deduction_pct_description: deduction_pct_description
               id: id
               contest_id: contest_id
+            enrollment_timing: ""
             fair_play_grouping: true
             id: id
             state: state
@@ -18334,6 +19143,7 @@ components:
                   contests_count: 6
                   subscribers_count: 1
                 is_fan_channel: true
+                leaderboard_visibility: leaderboard_visibility
                 name: name
                 id: id
                 header_image_url: header_image_url
@@ -18436,6 +19246,7 @@ components:
                   deduction_pct_description: deduction_pct_description
                 id: id
                 contest_id: contest_id
+              enrollment_timing: ""
               fair_play_grouping: true
               id: id
               state: state
@@ -19825,6 +20636,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -19915,6 +20727,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -19984,6 +20797,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -20066,6 +20880,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -20383,6 +21198,7 @@ components:
             contests_count: 6
             subscribers_count: 1
           is_fan_channel: true
+          leaderboard_visibility: leaderboard_visibility
           name: name
           id: id
           header_image_url: header_image_url
@@ -20621,6 +21437,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -20710,6 +21527,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -20812,6 +21630,7 @@ components:
               contests_count: 6
               subscribers_count: 1
             is_fan_channel: true
+            leaderboard_visibility: leaderboard_visibility
             name: name
             id: id
             header_image_url: header_image_url
@@ -23023,6 +23842,14 @@ components:
           - average
           - challenging
           type: string
+        enrollment_timing:
+          allOf:
+          - $ref: '#/components/schemas/Domain.Timing'
+          description: |-
+            EnrollmentTiming opts this contest into pre-enrollment (ADR 0058): any
+            contest type may carry one, regardless of whether its type structurally
+            requires it. When omitted on a type that requires enrollment, the
+            platform defaults one (AsNewContest); nil otherwise.
         grouping_type:
           enum:
           - system
@@ -23045,6 +23872,9 @@ components:
         no_of_puzzles:
           minimum: 0
           type: integer
+        no_of_winners:
+          minimum: 1
+          type: integer
         quorum:
           minimum: 0
           type: integer
@@ -23054,6 +23884,20 @@ components:
           type: string
         reward:
           $ref: '#/components/schemas/Domain.Reward'
+        room_size:
+          description: |-
+            Check-in (`checkin`) contests only (uman#238). The client sends room_size
+            (people per room) + no_of_winners (individual winners); the module derives
+            no_of_groups/winners_per_group. room_visibility toggles member-visible
+            display names (default hidden). Optional at the struct level (enforced by
+            checkin.Module.ValidateCreate); nil for every other contest type.
+          minimum: 2
+          type: integer
+        room_visibility:
+          enum:
+          - hidden
+          - visible
+          type: string
         rule_preset:
           type: string
         source_id:
@@ -23064,6 +23908,7 @@ components:
           - prediction
           - majority
           - creative
+          - checkin
           type: string
         sponsorship_package_id:
           type: string
@@ -23085,14 +23930,10 @@ components:
           type: integer
       required:
       - channel_id
-      - no_of_groups
       - reward
-      - source_id
       - source_type
       - timing
       - title
-      - winners_per_group
-      - zone_advantage
       type: object
     Request.CreateSponsorRequest:
       properties:
@@ -23309,6 +24150,11 @@ components:
           type: string
         is_fan_channel:
           type: boolean
+        leaderboard_visibility:
+          enum:
+          - visible
+          - hidden
+          type: string
         name:
           type: string
         regions:
@@ -23505,6 +24351,216 @@ components:
         data:
           $ref: '#/components/schemas/UserEventStatusResponse_data'
       title: UserEventStatusResponse
+      type: object
+    checkin.AssignmentResponse:
+      example:
+        room_size: 2
+        room_number: 1
+        key: "482"
+        status: assigned
+      properties:
+        key:
+          example: "482"
+          type: string
+        room_number:
+          example: 1
+          type: integer
+        room_size:
+          example: 2
+          type: integer
+        status:
+          example: assigned
+          type: string
+      type: object
+    checkin.AssignmentResponseResponse:
+      example:
+        data:
+          room_size: 2
+          room_number: 1
+          key: "482"
+          status: assigned
+      properties:
+        data:
+          $ref: '#/components/schemas/checkin.AssignmentResponse'
+      required:
+      - data
+      type: object
+    checkin.CheckInResponse:
+      example:
+        room_status: confirmed
+      properties:
+        room_status:
+          example: confirmed
+          type: string
+      type: object
+    checkin.CheckInResponseResponse:
+      example:
+        data:
+          room_status: confirmed
+      properties:
+        data:
+          $ref: '#/components/schemas/checkin.CheckInResponse'
+      required:
+      - data
+      type: object
+    checkin.RoomListPagination:
+      example:
+        after: 10
+      properties:
+        after:
+          example: 10
+          type: integer
+      type: object
+    checkin.RoomListResponse:
+      example:
+        pagination:
+          after: 10
+        data:
+        - size: 2
+          members:
+          - platform_identity_id: platform_identity_id
+            checked_in: true
+            checked_in_at: checked_in_at
+            display_name: display_name
+          - platform_identity_id: platform_identity_id
+            checked_in: true
+            checked_in_at: checked_in_at
+            display_name: display_name
+          room_number: 1
+          confirmed_at: confirmed_at
+          confirmed: true
+        - size: 2
+          members:
+          - platform_identity_id: platform_identity_id
+            checked_in: true
+            checked_in_at: checked_in_at
+            display_name: display_name
+          - platform_identity_id: platform_identity_id
+            checked_in: true
+            checked_in_at: checked_in_at
+            display_name: display_name
+          room_number: 1
+          confirmed_at: confirmed_at
+          confirmed: true
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/checkin.RoomResponse'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/checkin.RoomListPagination'
+      type: object
+    checkin.RoomListResponseResponse:
+      example:
+        data:
+          pagination:
+            after: 10
+          data:
+          - size: 2
+            members:
+            - platform_identity_id: platform_identity_id
+              checked_in: true
+              checked_in_at: checked_in_at
+              display_name: display_name
+            - platform_identity_id: platform_identity_id
+              checked_in: true
+              checked_in_at: checked_in_at
+              display_name: display_name
+            room_number: 1
+            confirmed_at: confirmed_at
+            confirmed: true
+          - size: 2
+            members:
+            - platform_identity_id: platform_identity_id
+              checked_in: true
+              checked_in_at: checked_in_at
+              display_name: display_name
+            - platform_identity_id: platform_identity_id
+              checked_in: true
+              checked_in_at: checked_in_at
+              display_name: display_name
+            room_number: 1
+            confirmed_at: confirmed_at
+            confirmed: true
+      properties:
+        data:
+          $ref: '#/components/schemas/checkin.RoomListResponse'
+      required:
+      - data
+      type: object
+    checkin.RoomMemberResponse:
+      example:
+        platform_identity_id: platform_identity_id
+        checked_in: true
+        checked_in_at: checked_in_at
+        display_name: display_name
+      properties:
+        checked_in:
+          type: boolean
+        checked_in_at:
+          type: string
+        display_name:
+          type: string
+        platform_identity_id:
+          type: string
+      type: object
+    checkin.RoomResponse:
+      example:
+        size: 2
+        members:
+        - platform_identity_id: platform_identity_id
+          checked_in: true
+          checked_in_at: checked_in_at
+          display_name: display_name
+        - platform_identity_id: platform_identity_id
+          checked_in: true
+          checked_in_at: checked_in_at
+          display_name: display_name
+        room_number: 1
+        confirmed_at: confirmed_at
+        confirmed: true
+      properties:
+        confirmed:
+          type: boolean
+        confirmed_at:
+          type: string
+        members:
+          items:
+            $ref: '#/components/schemas/checkin.RoomMemberResponse'
+          type: array
+        room_number:
+          example: 1
+          type: integer
+        size:
+          example: 2
+          type: integer
+      type: object
+    checkin.RoomResponseResponse:
+      example:
+        data:
+          size: 2
+          members:
+          - platform_identity_id: platform_identity_id
+            checked_in: true
+            checked_in_at: checked_in_at
+            display_name: display_name
+          - platform_identity_id: platform_identity_id
+            checked_in: true
+            checked_in_at: checked_in_at
+            display_name: display_name
+          room_number: 1
+          confirmed_at: confirmed_at
+          confirmed: true
+      properties:
+        data:
+          $ref: '#/components/schemas/checkin.RoomResponse'
+      required:
+      - data
+      type: object
+    checkin.checkInRequest:
+      properties:
+        key:
+          type: string
       type: object
     deleteBlocksById_200_response:
       example:
@@ -23896,6 +24952,7 @@ x-tagGroups:
   - Subscriptions
   - Tournaments
   - Sponsorships
+  - CheckIn
   - CreativeContests
   - Participation
   - Feeds

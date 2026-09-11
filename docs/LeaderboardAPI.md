@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetChannelsByIdStandings**](LeaderboardAPI.md#GetChannelsByIdStandings) | **Get** /v2/channels/{id}/standings | Get a channel&#39;s season standings (ranked by cumulative score)
+[**GetChannelsByIdStandings**](LeaderboardAPI.md#GetChannelsByIdStandings) | **Get** /v2/channels/{id}/standings | Get a channel&#39;s season standings (ranked by cumulative participation points)
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > DomainLeaderboardResponse GetChannelsByIdStandings(ctx, id).Window(window).Actor(actor).XActingAs(xActingAs).Execute()
 
-Get a channel's season standings (ranked by cumulative score)
+Get a channel's season standings (ranked by cumulative participation points)
 
 
 
@@ -30,7 +30,7 @@ import (
 
 func main() {
 	id := "id_example" // string | Channel ID
-	window := "window_example" // string | Standings window: week | all_time (default all_time) (optional)
+	window := "window_example" // string | Standings window: week | month | all_time (default all_time) (optional)
 	actor := "actor_example" // string | member (truncated view) | owner (full board, default) (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiGetChannelsByIdStandingsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **window** | **string** | Standings window: week | all_time (default all_time) | 
+ **window** | **string** | Standings window: week | month | all_time (default all_time) | 
  **actor** | **string** | member (truncated view) | owner (full board, default) | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 

@@ -24,6 +24,8 @@ type DomainContest struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Difficulty *string `json:"difficulty,omitempty"`
+	// EnrollmentTiming, when non-nil, is the pre-enrollment window (ADR 0058): a member must enroll within [StartAt, EndAt] to participate. nil means the contest does not require enrollment.
+	EnrollmentTiming *DomainTiming `json:"enrollment_timing,omitempty"`
 	// Present only for entry-based (creative) contests — juror sizing + judging config (uman#221)
 	EntryBasedConfig *EntryBasedContestConfig `json:"entry_based_config,omitempty"`
 	// @deprecated
@@ -203,6 +205,38 @@ func (o *DomainContest) HasDifficulty() bool {
 // SetDifficulty gets a reference to the given string and assigns it to the Difficulty field.
 func (o *DomainContest) SetDifficulty(v string) {
 	o.Difficulty = &v
+}
+
+// GetEnrollmentTiming returns the EnrollmentTiming field value if set, zero value otherwise.
+func (o *DomainContest) GetEnrollmentTiming() DomainTiming {
+	if o == nil || IsNil(o.EnrollmentTiming) {
+		var ret DomainTiming
+		return ret
+	}
+	return *o.EnrollmentTiming
+}
+
+// GetEnrollmentTimingOk returns a tuple with the EnrollmentTiming field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainContest) GetEnrollmentTimingOk() (*DomainTiming, bool) {
+	if o == nil || IsNil(o.EnrollmentTiming) {
+		return nil, false
+	}
+	return o.EnrollmentTiming, true
+}
+
+// HasEnrollmentTiming returns a boolean if a field has been set.
+func (o *DomainContest) HasEnrollmentTiming() bool {
+	if o != nil && !IsNil(o.EnrollmentTiming) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnrollmentTiming gets a reference to the given DomainTiming and assigns it to the EnrollmentTiming field.
+func (o *DomainContest) SetEnrollmentTiming(v DomainTiming) {
+	o.EnrollmentTiming = &v
 }
 
 // GetEntryBasedConfig returns the EntryBasedConfig field value if set, zero value otherwise.
@@ -1026,6 +1060,9 @@ func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Difficulty) {
 		toSerialize["difficulty"] = o.Difficulty
+	}
+	if !IsNil(o.EnrollmentTiming) {
+		toSerialize["enrollment_timing"] = o.EnrollmentTiming
 	}
 	if !IsNil(o.EntryBasedConfig) {
 		toSerialize["entry_based_config"] = o.EntryBasedConfig

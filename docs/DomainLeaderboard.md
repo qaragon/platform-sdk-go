@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Brand** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
 **Context** | Pointer to [**DomainBoardContext**](DomainBoardContext.md) |  | [optional] 
+**LeaderboardVisibility** | Pointer to **string** | LeaderboardVisibility echoes the channel&#39;s setting (\&quot;visible\&quot;/\&quot;hidden\&quot;). When \&quot;hidden\&quot; the board is withheld from non-owners (empty Rankings/MemberRank); the owner still gets the full board so their client can show a banner. | [optional] 
 **MemberRank** | Pointer to [**DomainLeaderboardRank**](DomainLeaderboardRank.md) |  | [optional] 
+**Owner** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
 **Period** | Pointer to [**DomainPeriod**](DomainPeriod.md) |  | [optional] 
 **Rankings** | Pointer to [**[]DomainLeaderboardRank**](DomainLeaderboardRank.md) |  | [optional] 
 
@@ -28,31 +29,6 @@ will change when the set of required properties is changed
 NewDomainLeaderboardWithDefaults instantiates a new DomainLeaderboard object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetBrand
-
-`func (o *DomainLeaderboard) GetBrand() DomainPlatformIdentity`
-
-GetBrand returns the Brand field if non-nil, zero value otherwise.
-
-### GetBrandOk
-
-`func (o *DomainLeaderboard) GetBrandOk() (*DomainPlatformIdentity, bool)`
-
-GetBrandOk returns a tuple with the Brand field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBrand
-
-`func (o *DomainLeaderboard) SetBrand(v DomainPlatformIdentity)`
-
-SetBrand sets Brand field to given value.
-
-### HasBrand
-
-`func (o *DomainLeaderboard) HasBrand() bool`
-
-HasBrand returns a boolean if a field has been set.
 
 ### GetContext
 
@@ -79,6 +55,31 @@ SetContext sets Context field to given value.
 
 HasContext returns a boolean if a field has been set.
 
+### GetLeaderboardVisibility
+
+`func (o *DomainLeaderboard) GetLeaderboardVisibility() string`
+
+GetLeaderboardVisibility returns the LeaderboardVisibility field if non-nil, zero value otherwise.
+
+### GetLeaderboardVisibilityOk
+
+`func (o *DomainLeaderboard) GetLeaderboardVisibilityOk() (*string, bool)`
+
+GetLeaderboardVisibilityOk returns a tuple with the LeaderboardVisibility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLeaderboardVisibility
+
+`func (o *DomainLeaderboard) SetLeaderboardVisibility(v string)`
+
+SetLeaderboardVisibility sets LeaderboardVisibility field to given value.
+
+### HasLeaderboardVisibility
+
+`func (o *DomainLeaderboard) HasLeaderboardVisibility() bool`
+
+HasLeaderboardVisibility returns a boolean if a field has been set.
+
 ### GetMemberRank
 
 `func (o *DomainLeaderboard) GetMemberRank() DomainLeaderboardRank`
@@ -103,6 +104,31 @@ SetMemberRank sets MemberRank field to given value.
 `func (o *DomainLeaderboard) HasMemberRank() bool`
 
 HasMemberRank returns a boolean if a field has been set.
+
+### GetOwner
+
+`func (o *DomainLeaderboard) GetOwner() DomainPlatformIdentity`
+
+GetOwner returns the Owner field if non-nil, zero value otherwise.
+
+### GetOwnerOk
+
+`func (o *DomainLeaderboard) GetOwnerOk() (*DomainPlatformIdentity, bool)`
+
+GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwner
+
+`func (o *DomainLeaderboard) SetOwner(v DomainPlatformIdentity)`
+
+SetOwner sets Owner field to given value.
+
+### HasOwner
+
+`func (o *DomainLeaderboard) HasOwner() bool`
+
+HasOwner returns a boolean if a field has been set.
 
 ### GetPeriod
 

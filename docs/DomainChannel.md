@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **HeaderImageUrl** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IsFanChannel** | Pointer to **bool** |  | [optional] 
+**LeaderboardVisibility** | Pointer to **string** | Owner-set: \&quot;visible\&quot; (default) or \&quot;hidden\&quot; (standings withheld from non-owners) | [optional] 
 **MemberSubscription** | Pointer to [**DomainMemberSubscriptionSummary**](DomainMemberSubscriptionSummary.md) | Set when authenticated; omitted when not subscribed | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Owner** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
@@ -212,6 +213,31 @@ SetIsFanChannel sets IsFanChannel field to given value.
 `func (o *DomainChannel) HasIsFanChannel() bool`
 
 HasIsFanChannel returns a boolean if a field has been set.
+
+### GetLeaderboardVisibility
+
+`func (o *DomainChannel) GetLeaderboardVisibility() string`
+
+GetLeaderboardVisibility returns the LeaderboardVisibility field if non-nil, zero value otherwise.
+
+### GetLeaderboardVisibilityOk
+
+`func (o *DomainChannel) GetLeaderboardVisibilityOk() (*string, bool)`
+
+GetLeaderboardVisibilityOk returns a tuple with the LeaderboardVisibility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLeaderboardVisibility
+
+`func (o *DomainChannel) SetLeaderboardVisibility(v string)`
+
+SetLeaderboardVisibility sets LeaderboardVisibility field to given value.
+
+### HasLeaderboardVisibility
+
+`func (o *DomainChannel) HasLeaderboardVisibility() bool`
+
+HasLeaderboardVisibility returns a boolean if a field has been set.
 
 ### GetMemberSubscription
 

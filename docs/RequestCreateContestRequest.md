@@ -8,30 +8,34 @@ Name | Type | Description | Notes
 **ChannelId** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Difficulty** | Pointer to **string** |  | [optional] 
+**EnrollmentTiming** | Pointer to [**DomainTiming**](DomainTiming.md) | EnrollmentTiming opts this contest into pre-enrollment (ADR 0058): any contest type may carry one, regardless of whether its type structurally requires it. When omitted on a type that requires enrollment, the platform defaults one (AsNewContest); nil otherwise. | [optional] 
 **GroupingType** | Pointer to **string** |  | [optional] 
 **JudgingMethod** | Pointer to **string** |  | [optional] 
 **JurorSelectionMode** | Pointer to **string** |  | [optional] 
-**NoOfGroups** | **int32** |  | 
+**NoOfGroups** | Pointer to **int32** |  | [optional] 
 **NoOfPuzzles** | Pointer to **int32** |  | [optional] 
+**NoOfWinners** | Pointer to **int32** |  | [optional] 
 **Quorum** | Pointer to **int32** |  | [optional] 
 **RatingModel** | Pointer to **string** |  | [optional] 
 **Reward** | [**DomainReward**](DomainReward.md) |  | 
+**RoomSize** | Pointer to **int32** | Check-in (&#x60;checkin&#x60;) contests only (uman#238). The client sends room_size (people per room) + no_of_winners (individual winners); the module derives no_of_groups/winners_per_group. room_visibility toggles member-visible display names (default hidden). Optional at the struct level (enforced by checkin.Module.ValidateCreate); nil for every other contest type. | [optional] 
+**RoomVisibility** | Pointer to **string** |  | [optional] 
 **RulePreset** | Pointer to **string** |  | [optional] 
-**SourceId** | **string** |  | 
+**SourceId** | Pointer to **string** |  | [optional] 
 **SourceType** | **string** |  | 
 **SponsorshipPackageId** | Pointer to **string** |  | [optional] 
 **TeamSetId** | Pointer to **string** |  | [optional] 
 **TieBreak** | Pointer to **string** |  | [optional] 
 **Timing** | [**DomainTiming**](DomainTiming.md) |  | 
 **Title** | **string** |  | 
-**WinnersPerGroup** | **int32** |  | 
-**ZoneAdvantage** | **int32** |  | 
+**WinnersPerGroup** | Pointer to **int32** |  | [optional] 
+**ZoneAdvantage** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewRequestCreateContestRequest
 
-`func NewRequestCreateContestRequest(channelId string, noOfGroups int32, reward DomainReward, sourceId string, sourceType string, timing DomainTiming, title string, winnersPerGroup int32, zoneAdvantage int32, ) *RequestCreateContestRequest`
+`func NewRequestCreateContestRequest(channelId string, reward DomainReward, sourceType string, timing DomainTiming, title string, ) *RequestCreateContestRequest`
 
 NewRequestCreateContestRequest instantiates a new RequestCreateContestRequest object
 This constructor will assign default values to properties that have it defined,
@@ -141,6 +145,31 @@ SetDifficulty sets Difficulty field to given value.
 
 HasDifficulty returns a boolean if a field has been set.
 
+### GetEnrollmentTiming
+
+`func (o *RequestCreateContestRequest) GetEnrollmentTiming() DomainTiming`
+
+GetEnrollmentTiming returns the EnrollmentTiming field if non-nil, zero value otherwise.
+
+### GetEnrollmentTimingOk
+
+`func (o *RequestCreateContestRequest) GetEnrollmentTimingOk() (*DomainTiming, bool)`
+
+GetEnrollmentTimingOk returns a tuple with the EnrollmentTiming field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnrollmentTiming
+
+`func (o *RequestCreateContestRequest) SetEnrollmentTiming(v DomainTiming)`
+
+SetEnrollmentTiming sets EnrollmentTiming field to given value.
+
+### HasEnrollmentTiming
+
+`func (o *RequestCreateContestRequest) HasEnrollmentTiming() bool`
+
+HasEnrollmentTiming returns a boolean if a field has been set.
+
 ### GetGroupingType
 
 `func (o *RequestCreateContestRequest) GetGroupingType() string`
@@ -235,6 +264,11 @@ and a boolean to check if the value has been set.
 
 SetNoOfGroups sets NoOfGroups field to given value.
 
+### HasNoOfGroups
+
+`func (o *RequestCreateContestRequest) HasNoOfGroups() bool`
+
+HasNoOfGroups returns a boolean if a field has been set.
 
 ### GetNoOfPuzzles
 
@@ -260,6 +294,31 @@ SetNoOfPuzzles sets NoOfPuzzles field to given value.
 `func (o *RequestCreateContestRequest) HasNoOfPuzzles() bool`
 
 HasNoOfPuzzles returns a boolean if a field has been set.
+
+### GetNoOfWinners
+
+`func (o *RequestCreateContestRequest) GetNoOfWinners() int32`
+
+GetNoOfWinners returns the NoOfWinners field if non-nil, zero value otherwise.
+
+### GetNoOfWinnersOk
+
+`func (o *RequestCreateContestRequest) GetNoOfWinnersOk() (*int32, bool)`
+
+GetNoOfWinnersOk returns a tuple with the NoOfWinners field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoOfWinners
+
+`func (o *RequestCreateContestRequest) SetNoOfWinners(v int32)`
+
+SetNoOfWinners sets NoOfWinners field to given value.
+
+### HasNoOfWinners
+
+`func (o *RequestCreateContestRequest) HasNoOfWinners() bool`
+
+HasNoOfWinners returns a boolean if a field has been set.
 
 ### GetQuorum
 
@@ -331,6 +390,56 @@ and a boolean to check if the value has been set.
 SetReward sets Reward field to given value.
 
 
+### GetRoomSize
+
+`func (o *RequestCreateContestRequest) GetRoomSize() int32`
+
+GetRoomSize returns the RoomSize field if non-nil, zero value otherwise.
+
+### GetRoomSizeOk
+
+`func (o *RequestCreateContestRequest) GetRoomSizeOk() (*int32, bool)`
+
+GetRoomSizeOk returns a tuple with the RoomSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoomSize
+
+`func (o *RequestCreateContestRequest) SetRoomSize(v int32)`
+
+SetRoomSize sets RoomSize field to given value.
+
+### HasRoomSize
+
+`func (o *RequestCreateContestRequest) HasRoomSize() bool`
+
+HasRoomSize returns a boolean if a field has been set.
+
+### GetRoomVisibility
+
+`func (o *RequestCreateContestRequest) GetRoomVisibility() string`
+
+GetRoomVisibility returns the RoomVisibility field if non-nil, zero value otherwise.
+
+### GetRoomVisibilityOk
+
+`func (o *RequestCreateContestRequest) GetRoomVisibilityOk() (*string, bool)`
+
+GetRoomVisibilityOk returns a tuple with the RoomVisibility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoomVisibility
+
+`func (o *RequestCreateContestRequest) SetRoomVisibility(v string)`
+
+SetRoomVisibility sets RoomVisibility field to given value.
+
+### HasRoomVisibility
+
+`func (o *RequestCreateContestRequest) HasRoomVisibility() bool`
+
+HasRoomVisibility returns a boolean if a field has been set.
+
 ### GetRulePreset
 
 `func (o *RequestCreateContestRequest) GetRulePreset() string`
@@ -375,6 +484,11 @@ and a boolean to check if the value has been set.
 
 SetSourceId sets SourceId field to given value.
 
+### HasSourceId
+
+`func (o *RequestCreateContestRequest) HasSourceId() bool`
+
+HasSourceId returns a boolean if a field has been set.
 
 ### GetSourceType
 
@@ -530,6 +644,11 @@ and a boolean to check if the value has been set.
 
 SetWinnersPerGroup sets WinnersPerGroup field to given value.
 
+### HasWinnersPerGroup
+
+`func (o *RequestCreateContestRequest) HasWinnersPerGroup() bool`
+
+HasWinnersPerGroup returns a boolean if a field has been set.
 
 ### GetZoneAdvantage
 
@@ -550,6 +669,11 @@ and a boolean to check if the value has been set.
 
 SetZoneAdvantage sets ZoneAdvantage field to given value.
 
+### HasZoneAdvantage
+
+`func (o *RequestCreateContestRequest) HasZoneAdvantage() bool`
+
+HasZoneAdvantage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

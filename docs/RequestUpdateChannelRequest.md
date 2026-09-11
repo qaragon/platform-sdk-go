@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AccessType** | Pointer to **string** |  | [optional] 
 **HeaderImageUrl** | **string** |  | 
 **IsFanChannel** | Pointer to **bool** |  | [optional] 
+**LeaderboardVisibility** | Pointer to **string** |  | [optional] 
 **Name** | **string** |  | 
 **Regions** | Pointer to [**[]RequestRegion**](RequestRegion.md) |  | [optional] 
 **Size** | **int32** |  | 
@@ -99,6 +100,31 @@ SetIsFanChannel sets IsFanChannel field to given value.
 `func (o *RequestUpdateChannelRequest) HasIsFanChannel() bool`
 
 HasIsFanChannel returns a boolean if a field has been set.
+
+### GetLeaderboardVisibility
+
+`func (o *RequestUpdateChannelRequest) GetLeaderboardVisibility() string`
+
+GetLeaderboardVisibility returns the LeaderboardVisibility field if non-nil, zero value otherwise.
+
+### GetLeaderboardVisibilityOk
+
+`func (o *RequestUpdateChannelRequest) GetLeaderboardVisibilityOk() (*string, bool)`
+
+GetLeaderboardVisibilityOk returns a tuple with the LeaderboardVisibility field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLeaderboardVisibility
+
+`func (o *RequestUpdateChannelRequest) SetLeaderboardVisibility(v string)`
+
+SetLeaderboardVisibility sets LeaderboardVisibility field to given value.
+
+### HasLeaderboardVisibility
+
+`func (o *RequestUpdateChannelRequest) HasLeaderboardVisibility() bool`
+
+HasLeaderboardVisibility returns a boolean if a field has been set.
 
 ### GetName
 

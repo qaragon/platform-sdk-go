@@ -56,6 +56,8 @@ type APIClient struct {
 
 	ChannelsAPI *ChannelsAPIService
 
+	CheckInAPI *CheckInAPIService
+
 	ContestPuzzlesAPI *ContestPuzzlesAPIService
 
 	ContestsAPI *ContestsAPIService
@@ -122,6 +124,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AnalyticsAPI = (*AnalyticsAPIService)(&c.common)
 	c.BlocksAPI = (*BlocksAPIService)(&c.common)
 	c.ChannelsAPI = (*ChannelsAPIService)(&c.common)
+	c.CheckInAPI = (*CheckInAPIService)(&c.common)
 	c.ContestPuzzlesAPI = (*ContestPuzzlesAPIService)(&c.common)
 	c.ContestsAPI = (*ContestsAPIService)(&c.common)
 	c.CreativeContestsAPI = (*CreativeContestsAPIService)(&c.common)

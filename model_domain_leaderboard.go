@@ -20,9 +20,11 @@ var _ MappedNullable = &DomainLeaderboard{}
 
 // DomainLeaderboard struct for DomainLeaderboard
 type DomainLeaderboard struct {
-	Brand *DomainPlatformIdentity `json:"brand,omitempty"`
 	Context *DomainBoardContext `json:"context,omitempty"`
+	// LeaderboardVisibility echoes the channel's setting (\"visible\"/\"hidden\"). When \"hidden\" the board is withheld from non-owners (empty Rankings/MemberRank); the owner still gets the full board so their client can show a banner.
+	LeaderboardVisibility *string `json:"leaderboard_visibility,omitempty"`
 	MemberRank *DomainLeaderboardRank `json:"member_rank,omitempty"`
+	Owner *DomainPlatformIdentity `json:"owner,omitempty"`
 	Period *DomainPeriod `json:"period,omitempty"`
 	Rankings []DomainLeaderboardRank `json:"rankings,omitempty"`
 }
@@ -42,38 +44,6 @@ func NewDomainLeaderboard() *DomainLeaderboard {
 func NewDomainLeaderboardWithDefaults() *DomainLeaderboard {
 	this := DomainLeaderboard{}
 	return &this
-}
-
-// GetBrand returns the Brand field value if set, zero value otherwise.
-func (o *DomainLeaderboard) GetBrand() DomainPlatformIdentity {
-	if o == nil || IsNil(o.Brand) {
-		var ret DomainPlatformIdentity
-		return ret
-	}
-	return *o.Brand
-}
-
-// GetBrandOk returns a tuple with the Brand field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainLeaderboard) GetBrandOk() (*DomainPlatformIdentity, bool) {
-	if o == nil || IsNil(o.Brand) {
-		return nil, false
-	}
-	return o.Brand, true
-}
-
-// HasBrand returns a boolean if a field has been set.
-func (o *DomainLeaderboard) HasBrand() bool {
-	if o != nil && !IsNil(o.Brand) {
-		return true
-	}
-
-	return false
-}
-
-// SetBrand gets a reference to the given DomainPlatformIdentity and assigns it to the Brand field.
-func (o *DomainLeaderboard) SetBrand(v DomainPlatformIdentity) {
-	o.Brand = &v
 }
 
 // GetContext returns the Context field value if set, zero value otherwise.
@@ -108,6 +78,38 @@ func (o *DomainLeaderboard) SetContext(v DomainBoardContext) {
 	o.Context = &v
 }
 
+// GetLeaderboardVisibility returns the LeaderboardVisibility field value if set, zero value otherwise.
+func (o *DomainLeaderboard) GetLeaderboardVisibility() string {
+	if o == nil || IsNil(o.LeaderboardVisibility) {
+		var ret string
+		return ret
+	}
+	return *o.LeaderboardVisibility
+}
+
+// GetLeaderboardVisibilityOk returns a tuple with the LeaderboardVisibility field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainLeaderboard) GetLeaderboardVisibilityOk() (*string, bool) {
+	if o == nil || IsNil(o.LeaderboardVisibility) {
+		return nil, false
+	}
+	return o.LeaderboardVisibility, true
+}
+
+// HasLeaderboardVisibility returns a boolean if a field has been set.
+func (o *DomainLeaderboard) HasLeaderboardVisibility() bool {
+	if o != nil && !IsNil(o.LeaderboardVisibility) {
+		return true
+	}
+
+	return false
+}
+
+// SetLeaderboardVisibility gets a reference to the given string and assigns it to the LeaderboardVisibility field.
+func (o *DomainLeaderboard) SetLeaderboardVisibility(v string) {
+	o.LeaderboardVisibility = &v
+}
+
 // GetMemberRank returns the MemberRank field value if set, zero value otherwise.
 func (o *DomainLeaderboard) GetMemberRank() DomainLeaderboardRank {
 	if o == nil || IsNil(o.MemberRank) {
@@ -138,6 +140,38 @@ func (o *DomainLeaderboard) HasMemberRank() bool {
 // SetMemberRank gets a reference to the given DomainLeaderboardRank and assigns it to the MemberRank field.
 func (o *DomainLeaderboard) SetMemberRank(v DomainLeaderboardRank) {
 	o.MemberRank = &v
+}
+
+// GetOwner returns the Owner field value if set, zero value otherwise.
+func (o *DomainLeaderboard) GetOwner() DomainPlatformIdentity {
+	if o == nil || IsNil(o.Owner) {
+		var ret DomainPlatformIdentity
+		return ret
+	}
+	return *o.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainLeaderboard) GetOwnerOk() (*DomainPlatformIdentity, bool) {
+	if o == nil || IsNil(o.Owner) {
+		return nil, false
+	}
+	return o.Owner, true
+}
+
+// HasOwner returns a boolean if a field has been set.
+func (o *DomainLeaderboard) HasOwner() bool {
+	if o != nil && !IsNil(o.Owner) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner gets a reference to the given DomainPlatformIdentity and assigns it to the Owner field.
+func (o *DomainLeaderboard) SetOwner(v DomainPlatformIdentity) {
+	o.Owner = &v
 }
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
@@ -214,14 +248,17 @@ func (o DomainLeaderboard) MarshalJSON() ([]byte, error) {
 
 func (o DomainLeaderboard) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Brand) {
-		toSerialize["brand"] = o.Brand
-	}
 	if !IsNil(o.Context) {
 		toSerialize["context"] = o.Context
 	}
+	if !IsNil(o.LeaderboardVisibility) {
+		toSerialize["leaderboard_visibility"] = o.LeaderboardVisibility
+	}
 	if !IsNil(o.MemberRank) {
 		toSerialize["member_rank"] = o.MemberRank
+	}
+	if !IsNil(o.Owner) {
+		toSerialize["owner"] = o.Owner
 	}
 	if !IsNil(o.Period) {
 		toSerialize["period"] = o.Period

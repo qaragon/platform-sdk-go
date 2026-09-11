@@ -99,6 +99,10 @@ Class | Method | HTTP request | Description
 *ChannelsAPI* | [**PatchChannelsByIdAccessCode**](docs/ChannelsAPI.md#patchchannelsbyidaccesscode) | **Patch** /v2/channels/{id}/access-code | Update Channel Access Code
 *ChannelsAPI* | [**UpdateChannelsById**](docs/ChannelsAPI.md#updatechannelsbyid) | **Put** /v2/channels/{id} | Update Channel
 *ChannelsAPI* | [**UpdateChannelsByIdTeamSetsByTeamSetId**](docs/ChannelsAPI.md#updatechannelsbyidteamsetsbyteamsetid) | **Put** /v2/channels/{id}/team-sets/{teamSetId} | Replace a channel team set&#39;s lineup
+*CheckInAPI* | [**CreateContestsByIdCheckIns**](docs/CheckInAPI.md#createcontestsbyidcheckins) | **Post** /v2/contests/{id}/check-ins | Check in with a roommate&#39;s key
+*CheckInAPI* | [**GetContestsByIdAssignments**](docs/CheckInAPI.md#getcontestsbyidassignments) | **Get** /v2/contests/{id}/assignments | Get the caller&#39;s check-in assignment status
+*CheckInAPI* | [**GetContestsByIdRooms**](docs/CheckInAPI.md#getcontestsbyidrooms) | **Get** /v2/contests/{id}/rooms | List every room in a check-in contest
+*CheckInAPI* | [**GetContestsByIdRoomsByRoomNumber**](docs/CheckInAPI.md#getcontestsbyidroomsbyroomnumber) | **Get** /v2/contests/{id}/rooms/{roomNumber} | Get one room in a check-in contest
 *ContestPuzzlesAPI* | [**PuzzleWebV2ContestPuzzleControllerGetPuzzle**](docs/ContestPuzzlesAPI.md#puzzlewebv2contestpuzzlecontrollergetpuzzle) | **Get** /v2/contest-puzzles/{contest_id} | Get contest source
 *ContestPuzzlesAPI* | [**PuzzleWebV2ContestPuzzleControllerRankings**](docs/ContestPuzzlesAPI.md#puzzlewebv2contestpuzzlecontrollerrankings) | **Get** /v2/contest-puzzles/{contest_id}/rankings | Get contest rankings
 *ContestPuzzlesAPI* | [**PuzzleWebV2ContestPuzzleControllerStatus**](docs/ContestPuzzlesAPI.md#puzzlewebv2contestpuzzlecontrollerstatus) | **Get** /v2/contest-puzzles/{contest_id}/status | Get contest status
@@ -162,12 +166,12 @@ Class | Method | HTTP request | Description
 *IdentitiesAPI* | [**DeleteIdentitiesById**](docs/IdentitiesAPI.md#deleteidentitiesbyid) | **Delete** /v2/identities/{id} | Soft-delete a platform identity, scoped to the calling tenant
 *IdentitiesAPI* | [**GetIdentitiesById**](docs/IdentitiesAPI.md#getidentitiesbyid) | **Get** /v2/identities/{id} | Get a platform identity by ID, scoped to the calling tenant
 *IdentitiesAPI* | [**UpdateIdentitiesById**](docs/IdentitiesAPI.md#updateidentitiesbyid) | **Put** /v2/identities/{id} | Replace a platform identity&#39;s profile, scoped to the calling tenant
-*LeaderboardAPI* | [**GetChannelsByIdStandings**](docs/LeaderboardAPI.md#getchannelsbyidstandings) | **Get** /v2/channels/{id}/standings | Get a channel&#39;s season standings (ranked by cumulative score)
+*LeaderboardAPI* | [**GetChannelsByIdStandings**](docs/LeaderboardAPI.md#getchannelsbyidstandings) | **Get** /v2/channels/{id}/standings | Get a channel&#39;s season standings (ranked by cumulative participation points)
 *MessagesAPI* | [**CreateMessages**](docs/MessagesAPI.md#createmessages) | **Post** /v2/messages | Create a message
 *MessagesAPI* | [**GetMessages**](docs/MessagesAPI.md#getmessages) | **Get** /v2/messages | List messages for the caller
 *MessagesAPI* | [**GetMessagesById**](docs/MessagesAPI.md#getmessagesbyid) | **Get** /v2/messages/{id} | Get a message by ID
 *MessagesAPI* | [**UpdateMessagesById**](docs/MessagesAPI.md#updatemessagesbyid) | **Put** /v2/messages/{id} | Update a message&#39;s status
-*ParticipationAPI* | [**CreateContestsByIdEnrollment**](docs/ParticipationAPI.md#createcontestsbyidenrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a Contest
+*ParticipationAPI* | [**CreateContestsByIdEnrollment**](docs/ParticipationAPI.md#createcontestsbyidenrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a contest&#39;s pre-enrollment pool
 *ParticipationAPI* | [**CreateContestsByIdParticipate**](docs/ParticipationAPI.md#createcontestsbyidparticipate) | **Post** /v2/contests/{id}/participate | Create Participation
 *ParticipationAPI* | [**CreateParticipationByIdStart**](docs/ParticipationAPI.md#createparticipationbyidstart) | **Post** /v2/participation/{id}/start | Log the start of a participation
 *ParticipationAPI* | [**DeleteContestsByIdEnrollment**](docs/ParticipationAPI.md#deletecontestsbyidenrollment) | **Delete** /v2/contests/{id}/enrollment | Withdraw the caller&#39;s enrollment from a contest
@@ -270,6 +274,17 @@ Class | Method | HTTP request | Description
  - [ApiError](docs/ApiError.md)
  - [ApiErrorError](docs/ApiErrorError.md)
  - [CategoriesResponse](docs/CategoriesResponse.md)
+ - [CheckinAssignmentResponse](docs/CheckinAssignmentResponse.md)
+ - [CheckinAssignmentResponseResponse](docs/CheckinAssignmentResponseResponse.md)
+ - [CheckinCheckInRequest](docs/CheckinCheckInRequest.md)
+ - [CheckinCheckInResponse](docs/CheckinCheckInResponse.md)
+ - [CheckinCheckInResponseResponse](docs/CheckinCheckInResponseResponse.md)
+ - [CheckinRoomListPagination](docs/CheckinRoomListPagination.md)
+ - [CheckinRoomListResponse](docs/CheckinRoomListResponse.md)
+ - [CheckinRoomListResponseResponse](docs/CheckinRoomListResponseResponse.md)
+ - [CheckinRoomMemberResponse](docs/CheckinRoomMemberResponse.md)
+ - [CheckinRoomResponse](docs/CheckinRoomResponse.md)
+ - [CheckinRoomResponseResponse](docs/CheckinRoomResponseResponse.md)
  - [ClonePredictionSlipRequest](docs/ClonePredictionSlipRequest.md)
  - [ClonePuzzleSheetRequest](docs/ClonePuzzleSheetRequest.md)
  - [ContestPuzzleResponse](docs/ContestPuzzleResponse.md)
@@ -312,6 +327,8 @@ Class | Method | HTTP request | Description
  - [DomainContestResponse](docs/DomainContestResponse.md)
  - [DomainContestType](docs/DomainContestType.md)
  - [DomainCountry](docs/DomainCountry.md)
+ - [DomainEnrollment](docs/DomainEnrollment.md)
+ - [DomainEnrollmentResponse](docs/DomainEnrollmentResponse.md)
  - [DomainEntry](docs/DomainEntry.md)
  - [DomainEntryListResponse](docs/DomainEntryListResponse.md)
  - [DomainEntryResponse](docs/DomainEntryResponse.md)
