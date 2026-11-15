@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the IdentityhttpUpdatePlatformIdentityRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IdentityhttpUpdatePlatformIdentityRequest{}
+// checks if the UpdatePlatformIdentityRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdatePlatformIdentityRequest{}
 
-// IdentityhttpUpdatePlatformIdentityRequest struct for IdentityhttpUpdatePlatformIdentityRequest
-type IdentityhttpUpdatePlatformIdentityRequest struct {
+// UpdatePlatformIdentityRequest struct for UpdatePlatformIdentityRequest
+type UpdatePlatformIdentityRequest struct {
 	Company *string `json:"company,omitempty"`
 	// CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value preserves the current value on the row (mirrors the image-URL preservation pattern below). Added in slice 22.6 / uman#107.
 	CountryCode *string `json:"country_code,omitempty"`
@@ -32,28 +32,28 @@ type IdentityhttpUpdatePlatformIdentityRequest struct {
 	ProfilePic *string `json:"profile_pic,omitempty"`
 }
 
-type _IdentityhttpUpdatePlatformIdentityRequest IdentityhttpUpdatePlatformIdentityRequest
+type _UpdatePlatformIdentityRequest UpdatePlatformIdentityRequest
 
-// NewIdentityhttpUpdatePlatformIdentityRequest instantiates a new IdentityhttpUpdatePlatformIdentityRequest object
+// NewUpdatePlatformIdentityRequest instantiates a new UpdatePlatformIdentityRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentityhttpUpdatePlatformIdentityRequest(displayName string) *IdentityhttpUpdatePlatformIdentityRequest {
-	this := IdentityhttpUpdatePlatformIdentityRequest{}
+func NewUpdatePlatformIdentityRequest(displayName string) *UpdatePlatformIdentityRequest {
+	this := UpdatePlatformIdentityRequest{}
 	this.DisplayName = displayName
 	return &this
 }
 
-// NewIdentityhttpUpdatePlatformIdentityRequestWithDefaults instantiates a new IdentityhttpUpdatePlatformIdentityRequest object
+// NewUpdatePlatformIdentityRequestWithDefaults instantiates a new UpdatePlatformIdentityRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIdentityhttpUpdatePlatformIdentityRequestWithDefaults() *IdentityhttpUpdatePlatformIdentityRequest {
-	this := IdentityhttpUpdatePlatformIdentityRequest{}
+func NewUpdatePlatformIdentityRequestWithDefaults() *UpdatePlatformIdentityRequest {
+	this := UpdatePlatformIdentityRequest{}
 	return &this
 }
 
 // GetCompany returns the Company field value if set, zero value otherwise.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCompany() string {
+func (o *UpdatePlatformIdentityRequest) GetCompany() string {
 	if o == nil || IsNil(o.Company) {
 		var ret string
 		return ret
@@ -63,7 +63,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCompany() string {
 
 // GetCompanyOk returns a tuple with the Company field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCompanyOk() (*string, bool) {
+func (o *UpdatePlatformIdentityRequest) GetCompanyOk() (*string, bool) {
 	if o == nil || IsNil(o.Company) {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCompanyOk() (*string, boo
 }
 
 // HasCompany returns a boolean if a field has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) HasCompany() bool {
+func (o *UpdatePlatformIdentityRequest) HasCompany() bool {
 	if o != nil && !IsNil(o.Company) {
 		return true
 	}
@@ -80,12 +80,12 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) HasCompany() bool {
 }
 
 // SetCompany gets a reference to the given string and assigns it to the Company field.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) SetCompany(v string) {
+func (o *UpdatePlatformIdentityRequest) SetCompany(v string) {
 	o.Company = &v
 }
 
 // GetCountryCode returns the CountryCode field value if set, zero value otherwise.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCountryCode() string {
+func (o *UpdatePlatformIdentityRequest) GetCountryCode() string {
 	if o == nil || IsNil(o.CountryCode) {
 		var ret string
 		return ret
@@ -95,7 +95,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCountryCode() string {
 
 // GetCountryCodeOk returns a tuple with the CountryCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCountryCodeOk() (*string, bool) {
+func (o *UpdatePlatformIdentityRequest) GetCountryCodeOk() (*string, bool) {
 	if o == nil || IsNil(o.CountryCode) {
 		return nil, false
 	}
@@ -103,7 +103,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetCountryCodeOk() (*string,
 }
 
 // HasCountryCode returns a boolean if a field has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) HasCountryCode() bool {
+func (o *UpdatePlatformIdentityRequest) HasCountryCode() bool {
 	if o != nil && !IsNil(o.CountryCode) {
 		return true
 	}
@@ -112,12 +112,12 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) HasCountryCode() bool {
 }
 
 // SetCountryCode gets a reference to the given string and assigns it to the CountryCode field.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) SetCountryCode(v string) {
+func (o *UpdatePlatformIdentityRequest) SetCountryCode(v string) {
 	o.CountryCode = &v
 }
 
 // GetDisplayName returns the DisplayName field value
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetDisplayName() string {
+func (o *UpdatePlatformIdentityRequest) GetDisplayName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -128,7 +128,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetDisplayName() string {
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetDisplayNameOk() (*string, bool) {
+func (o *UpdatePlatformIdentityRequest) GetDisplayNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,12 +136,12 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetDisplayNameOk() (*string,
 }
 
 // SetDisplayName sets field value
-func (o *IdentityhttpUpdatePlatformIdentityRequest) SetDisplayName(v string) {
+func (o *UpdatePlatformIdentityRequest) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetFirstName() string {
+func (o *UpdatePlatformIdentityRequest) GetFirstName() string {
 	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
@@ -151,7 +151,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetFirstName() string {
 
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetFirstNameOk() (*string, bool) {
+func (o *UpdatePlatformIdentityRequest) GetFirstNameOk() (*string, bool) {
 	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
@@ -159,7 +159,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetFirstNameOk() (*string, b
 }
 
 // HasFirstName returns a boolean if a field has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) HasFirstName() bool {
+func (o *UpdatePlatformIdentityRequest) HasFirstName() bool {
 	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
@@ -168,12 +168,12 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) HasFirstName() bool {
 }
 
 // SetFirstName gets a reference to the given string and assigns it to the FirstName field.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) SetFirstName(v string) {
+func (o *UpdatePlatformIdentityRequest) SetFirstName(v string) {
 	o.FirstName = &v
 }
 
 // GetHeaderImageUrl returns the HeaderImageUrl field value if set, zero value otherwise.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetHeaderImageUrl() string {
+func (o *UpdatePlatformIdentityRequest) GetHeaderImageUrl() string {
 	if o == nil || IsNil(o.HeaderImageUrl) {
 		var ret string
 		return ret
@@ -183,7 +183,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetHeaderImageUrl() string {
 
 // GetHeaderImageUrlOk returns a tuple with the HeaderImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetHeaderImageUrlOk() (*string, bool) {
+func (o *UpdatePlatformIdentityRequest) GetHeaderImageUrlOk() (*string, bool) {
 	if o == nil || IsNil(o.HeaderImageUrl) {
 		return nil, false
 	}
@@ -191,7 +191,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetHeaderImageUrlOk() (*stri
 }
 
 // HasHeaderImageUrl returns a boolean if a field has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) HasHeaderImageUrl() bool {
+func (o *UpdatePlatformIdentityRequest) HasHeaderImageUrl() bool {
 	if o != nil && !IsNil(o.HeaderImageUrl) {
 		return true
 	}
@@ -200,12 +200,12 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) HasHeaderImageUrl() bool {
 }
 
 // SetHeaderImageUrl gets a reference to the given string and assigns it to the HeaderImageUrl field.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) SetHeaderImageUrl(v string) {
+func (o *UpdatePlatformIdentityRequest) SetHeaderImageUrl(v string) {
 	o.HeaderImageUrl = &v
 }
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetLastName() string {
+func (o *UpdatePlatformIdentityRequest) GetLastName() string {
 	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
@@ -215,7 +215,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetLastName() string {
 
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetLastNameOk() (*string, bool) {
+func (o *UpdatePlatformIdentityRequest) GetLastNameOk() (*string, bool) {
 	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
@@ -223,7 +223,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetLastNameOk() (*string, bo
 }
 
 // HasLastName returns a boolean if a field has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) HasLastName() bool {
+func (o *UpdatePlatformIdentityRequest) HasLastName() bool {
 	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
@@ -232,12 +232,12 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) HasLastName() bool {
 }
 
 // SetLastName gets a reference to the given string and assigns it to the LastName field.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) SetLastName(v string) {
+func (o *UpdatePlatformIdentityRequest) SetLastName(v string) {
 	o.LastName = &v
 }
 
 // GetProfilePic returns the ProfilePic field value if set, zero value otherwise.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetProfilePic() string {
+func (o *UpdatePlatformIdentityRequest) GetProfilePic() string {
 	if o == nil || IsNil(o.ProfilePic) {
 		var ret string
 		return ret
@@ -247,7 +247,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetProfilePic() string {
 
 // GetProfilePicOk returns a tuple with the ProfilePic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) GetProfilePicOk() (*string, bool) {
+func (o *UpdatePlatformIdentityRequest) GetProfilePicOk() (*string, bool) {
 	if o == nil || IsNil(o.ProfilePic) {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) GetProfilePicOk() (*string, 
 }
 
 // HasProfilePic returns a boolean if a field has been set.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) HasProfilePic() bool {
+func (o *UpdatePlatformIdentityRequest) HasProfilePic() bool {
 	if o != nil && !IsNil(o.ProfilePic) {
 		return true
 	}
@@ -264,11 +264,11 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) HasProfilePic() bool {
 }
 
 // SetProfilePic gets a reference to the given string and assigns it to the ProfilePic field.
-func (o *IdentityhttpUpdatePlatformIdentityRequest) SetProfilePic(v string) {
+func (o *UpdatePlatformIdentityRequest) SetProfilePic(v string) {
 	o.ProfilePic = &v
 }
 
-func (o IdentityhttpUpdatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
+func (o UpdatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -276,7 +276,7 @@ func (o IdentityhttpUpdatePlatformIdentityRequest) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
-func (o IdentityhttpUpdatePlatformIdentityRequest) ToMap() (map[string]interface{}, error) {
+func (o UpdatePlatformIdentityRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Company) {
 		toSerialize["company"] = o.Company
@@ -300,7 +300,7 @@ func (o IdentityhttpUpdatePlatformIdentityRequest) ToMap() (map[string]interface
 	return toSerialize, nil
 }
 
-func (o *IdentityhttpUpdatePlatformIdentityRequest) UnmarshalJSON(data []byte) (err error) {
+func (o *UpdatePlatformIdentityRequest) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -322,53 +322,53 @@ func (o *IdentityhttpUpdatePlatformIdentityRequest) UnmarshalJSON(data []byte) (
 		}
 	}
 
-	varIdentityhttpUpdatePlatformIdentityRequest := _IdentityhttpUpdatePlatformIdentityRequest{}
+	varUpdatePlatformIdentityRequest := _UpdatePlatformIdentityRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIdentityhttpUpdatePlatformIdentityRequest)
+	err = decoder.Decode(&varUpdatePlatformIdentityRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = IdentityhttpUpdatePlatformIdentityRequest(varIdentityhttpUpdatePlatformIdentityRequest)
+	*o = UpdatePlatformIdentityRequest(varUpdatePlatformIdentityRequest)
 
 	return err
 }
 
-type NullableIdentityhttpUpdatePlatformIdentityRequest struct {
-	value *IdentityhttpUpdatePlatformIdentityRequest
+type NullableUpdatePlatformIdentityRequest struct {
+	value *UpdatePlatformIdentityRequest
 	isSet bool
 }
 
-func (v NullableIdentityhttpUpdatePlatformIdentityRequest) Get() *IdentityhttpUpdatePlatformIdentityRequest {
+func (v NullableUpdatePlatformIdentityRequest) Get() *UpdatePlatformIdentityRequest {
 	return v.value
 }
 
-func (v *NullableIdentityhttpUpdatePlatformIdentityRequest) Set(val *IdentityhttpUpdatePlatformIdentityRequest) {
+func (v *NullableUpdatePlatformIdentityRequest) Set(val *UpdatePlatformIdentityRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIdentityhttpUpdatePlatformIdentityRequest) IsSet() bool {
+func (v NullableUpdatePlatformIdentityRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIdentityhttpUpdatePlatformIdentityRequest) Unset() {
+func (v *NullableUpdatePlatformIdentityRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIdentityhttpUpdatePlatformIdentityRequest(val *IdentityhttpUpdatePlatformIdentityRequest) *NullableIdentityhttpUpdatePlatformIdentityRequest {
-	return &NullableIdentityhttpUpdatePlatformIdentityRequest{value: val, isSet: true}
+func NewNullableUpdatePlatformIdentityRequest(val *UpdatePlatformIdentityRequest) *NullableUpdatePlatformIdentityRequest {
+	return &NullableUpdatePlatformIdentityRequest{value: val, isSet: true}
 }
 
-func (v NullableIdentityhttpUpdatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
+func (v NullableUpdatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIdentityhttpUpdatePlatformIdentityRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdatePlatformIdentityRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

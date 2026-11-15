@@ -69,6 +69,7 @@ docs/ContestsAPI.md
 docs/ContestsRegionRequest.md
 docs/CreateAdhocCommunitySheetRequest.md
 docs/CreateAdhocUserSheetRequest.md
+docs/CreatePlatformIdentityRequest.md
 docs/CreatePredictionSlipRequest.md
 docs/CreatePredictionSlipRequestEventsInner.md
 docs/CreatePredictionSlipRequestEventsInnerItemsInner.md
@@ -286,8 +287,6 @@ docs/IdentitiesCountry.md
 docs/IdentitiesPlatformIdentity.md
 docs/IdentitiesPlatformIdentityListResponse.md
 docs/IdentitiesPlatformIdentityResponse.md
-docs/IdentityhttpCreatePlatformIdentityRequest.md
-docs/IdentityhttpUpdatePlatformIdentityRequest.md
 docs/LeaderboardAPI.md
 docs/LinkclashView.md
 docs/LinkrushView.md
@@ -399,6 +398,7 @@ docs/TournamenthttpCreateContestPayload.md
 docs/TournamentsAPI.md
 docs/UpdateContestsByIdHighlight200Response.md
 docs/UpdateContestsByIdHighlight200ResponseData.md
+docs/UpdatePlatformIdentityRequest.md
 docs/UpdatePredictionSlipRequest.md
 docs/UpdatePuzzleRequest.md
 docs/UpdateUserEventRequest.md
@@ -462,6 +462,7 @@ model_contesthttp_update_contest_request.go
 model_contests_region_request.go
 model_create_adhoc_community_sheet_request.go
 model_create_adhoc_user_sheet_request.go
+model_create_platform_identity_request.go
 model_create_prediction_slip_request.go
 model_create_prediction_slip_request_events_inner.go
 model_create_prediction_slip_request_events_inner_items_inner.go
@@ -670,8 +671,6 @@ model_identities_country.go
 model_identities_platform_identity.go
 model_identities_platform_identity_list_response.go
 model_identities_platform_identity_response.go
-model_identityhttp_create_platform_identity_request.go
-model_identityhttp_update_platform_identity_request.go
 model_linkclash_view.go
 model_linkrush_view.go
 model_message_response.go
@@ -766,6 +765,7 @@ model_topic_configuration_response_data_difficulty_settings_inner.go
 model_tournamenthttp_create_contest_payload.go
 model_update_contests_by_id_highlight_200_response.go
 model_update_contests_by_id_highlight_200_response_data.go
+model_update_platform_identity_request.go
 model_update_prediction_slip_request.go
 model_update_puzzle_request.go
 model_update_user_event_request.go

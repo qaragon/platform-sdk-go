@@ -5492,7 +5492,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/identityhttp.createPlatformIdentityRequest"
+              $ref: "#/components/schemas/CreatePlatformIdentityRequest"
         description: Platform identity payload
         required: true
         x-originalParamName: identity
@@ -5670,7 +5670,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/identityhttp.updatePlatformIdentityRequest"
+              $ref: "#/components/schemas/UpdatePlatformIdentityRequest"
         description: Profile fields
         required: true
         x-originalParamName: profile
@@ -12343,6 +12343,49 @@ components:
       - no_of_questions
       - puzzle_sheet_id
       title: CreateAdhocUserSheetRequest
+      type: object
+    CreatePlatformIdentityRequest:
+      example:
+        company: company
+        country_code: country_code
+        display_name: display_name
+        first_name: first_name
+        header_image_url: header_image_url
+        last_name: last_name
+        metadata:
+          key: metadata
+        profile_pic: profile_pic
+      properties:
+        company:
+          maxLength: 255
+          type: string
+        country_code:
+          description: |-
+            CountryCode is an optional ISO 3166-1 alpha-2 region the tenant
+            supplies to scope geo-eligibility on the fan's contests and
+            spaces. Empty is permitted — geo queries tolerate it by
+            returning the wider unscoped result. Added in slice 22.6 /
+            uman#107 (Member vestige cleanup).
+          type: string
+        display_name:
+          maxLength: 255
+          type: string
+        first_name:
+          maxLength: 255
+          type: string
+        header_image_url:
+          maxLength: 255
+          type: string
+        last_name:
+          maxLength: 255
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        profile_pic:
+          maxLength: 255
+          type: string
       type: object
     CreatePredictionSlipRequest:
       example:
@@ -23869,6 +23912,43 @@ components:
           $ref: "#/components/schemas/TopicConfigurationResponse_data"
       title: TopicConfigurationResponse
       type: object
+    UpdatePlatformIdentityRequest:
+      example:
+        company: company
+        country_code: country_code
+        display_name: display_name
+        first_name: first_name
+        header_image_url: header_image_url
+        last_name: last_name
+        profile_pic: profile_pic
+      properties:
+        company:
+          maxLength: 255
+          type: string
+        country_code:
+          description: |-
+            CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value
+            preserves the current value on the row (mirrors the image-URL
+            preservation pattern below). Added in slice 22.6 / uman#107.
+          type: string
+        display_name:
+          maxLength: 255
+          type: string
+        first_name:
+          maxLength: 255
+          type: string
+        header_image_url:
+          maxLength: 255
+          type: string
+        last_name:
+          maxLength: 255
+          type: string
+        profile_pic:
+          maxLength: 255
+          type: string
+      required:
+      - display_name
+      type: object
     UpdatePredictionSlipRequest:
       example:
         events:
@@ -26579,68 +26659,6 @@ components:
           $ref: "#/components/schemas/identities.PlatformIdentity"
       required:
       - data
-      type: object
-    identityhttp.createPlatformIdentityRequest:
-      properties:
-        company:
-          maxLength: 255
-          type: string
-        country_code:
-          description: |-
-            CountryCode is an optional ISO 3166-1 alpha-2 region the tenant
-            supplies to scope geo-eligibility on the fan's contests and
-            spaces. Empty is permitted — geo queries tolerate it by
-            returning the wider unscoped result. Added in slice 22.6 /
-            uman#107 (Member vestige cleanup).
-          type: string
-        display_name:
-          maxLength: 255
-          type: string
-        first_name:
-          maxLength: 255
-          type: string
-        header_image_url:
-          maxLength: 255
-          type: string
-        last_name:
-          maxLength: 255
-          type: string
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-        profile_pic:
-          maxLength: 255
-          type: string
-      type: object
-    identityhttp.updatePlatformIdentityRequest:
-      properties:
-        company:
-          maxLength: 255
-          type: string
-        country_code:
-          description: |-
-            CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value
-            preserves the current value on the row (mirrors the image-URL
-            preservation pattern below). Added in slice 22.6 / uman#107.
-          type: string
-        display_name:
-          maxLength: 255
-          type: string
-        first_name:
-          maxLength: 255
-          type: string
-        header_image_url:
-          maxLength: 255
-          type: string
-        last_name:
-          maxLength: 255
-          type: string
-        profile_pic:
-          maxLength: 255
-          type: string
-      required:
-      - display_name
       type: object
     linkclash.View:
       properties:

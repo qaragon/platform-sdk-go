@@ -27,14 +27,14 @@ type IdentitiesAPIService service
 type ApiCreateIdentitiesRequest struct {
 	ctx context.Context
 	ApiService *IdentitiesAPIService
-	identityhttpCreatePlatformIdentityRequest *IdentityhttpCreatePlatformIdentityRequest
+	createPlatformIdentityRequest *CreatePlatformIdentityRequest
 	idempotencyKey *string
 	xActingAs *string
 }
 
 // Platform identity payload
-func (r ApiCreateIdentitiesRequest) IdentityhttpCreatePlatformIdentityRequest(identityhttpCreatePlatformIdentityRequest IdentityhttpCreatePlatformIdentityRequest) ApiCreateIdentitiesRequest {
-	r.identityhttpCreatePlatformIdentityRequest = &identityhttpCreatePlatformIdentityRequest
+func (r ApiCreateIdentitiesRequest) CreatePlatformIdentityRequest(createPlatformIdentityRequest CreatePlatformIdentityRequest) ApiCreateIdentitiesRequest {
+	r.createPlatformIdentityRequest = &createPlatformIdentityRequest
 	return r
 }
 
@@ -95,8 +95,8 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.identityhttpCreatePlatformIdentityRequest == nil {
-		return localVarReturnValue, nil, reportError("identityhttpCreatePlatformIdentityRequest is required and must be specified")
+	if r.createPlatformIdentityRequest == nil {
+		return localVarReturnValue, nil, reportError("createPlatformIdentityRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -123,7 +123,7 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.identityhttpCreatePlatformIdentityRequest
+	localVarPostBody = r.createPlatformIdentityRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -503,13 +503,13 @@ type ApiUpdateIdentitiesByIdRequest struct {
 	ctx context.Context
 	ApiService *IdentitiesAPIService
 	id string
-	identityhttpUpdatePlatformIdentityRequest *IdentityhttpUpdatePlatformIdentityRequest
+	updatePlatformIdentityRequest *UpdatePlatformIdentityRequest
 	xActingAs *string
 }
 
 // Profile fields
-func (r ApiUpdateIdentitiesByIdRequest) IdentityhttpUpdatePlatformIdentityRequest(identityhttpUpdatePlatformIdentityRequest IdentityhttpUpdatePlatformIdentityRequest) ApiUpdateIdentitiesByIdRequest {
-	r.identityhttpUpdatePlatformIdentityRequest = &identityhttpUpdatePlatformIdentityRequest
+func (r ApiUpdateIdentitiesByIdRequest) UpdatePlatformIdentityRequest(updatePlatformIdentityRequest UpdatePlatformIdentityRequest) ApiUpdateIdentitiesByIdRequest {
+	r.updatePlatformIdentityRequest = &updatePlatformIdentityRequest
 	return r
 }
 
@@ -564,8 +564,8 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.identityhttpUpdatePlatformIdentityRequest == nil {
-		return localVarReturnValue, nil, reportError("identityhttpUpdatePlatformIdentityRequest is required and must be specified")
+	if r.updatePlatformIdentityRequest == nil {
+		return localVarReturnValue, nil, reportError("updatePlatformIdentityRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -589,7 +589,7 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.identityhttpUpdatePlatformIdentityRequest
+	localVarPostBody = r.updatePlatformIdentityRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

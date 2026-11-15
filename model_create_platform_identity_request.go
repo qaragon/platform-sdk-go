@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the IdentityhttpCreatePlatformIdentityRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IdentityhttpCreatePlatformIdentityRequest{}
+// checks if the CreatePlatformIdentityRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreatePlatformIdentityRequest{}
 
-// IdentityhttpCreatePlatformIdentityRequest struct for IdentityhttpCreatePlatformIdentityRequest
-type IdentityhttpCreatePlatformIdentityRequest struct {
+// CreatePlatformIdentityRequest struct for CreatePlatformIdentityRequest
+type CreatePlatformIdentityRequest struct {
 	Company *string `json:"company,omitempty"`
 	// CountryCode is an optional ISO 3166-1 alpha-2 region the tenant supplies to scope geo-eligibility on the fan's contests and spaces. Empty is permitted — geo queries tolerate it by returning the wider unscoped result. Added in slice 22.6 / uman#107 (Member vestige cleanup).
 	CountryCode *string `json:"country_code,omitempty"`
@@ -31,25 +31,25 @@ type IdentityhttpCreatePlatformIdentityRequest struct {
 	ProfilePic *string `json:"profile_pic,omitempty"`
 }
 
-// NewIdentityhttpCreatePlatformIdentityRequest instantiates a new IdentityhttpCreatePlatformIdentityRequest object
+// NewCreatePlatformIdentityRequest instantiates a new CreatePlatformIdentityRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentityhttpCreatePlatformIdentityRequest() *IdentityhttpCreatePlatformIdentityRequest {
-	this := IdentityhttpCreatePlatformIdentityRequest{}
+func NewCreatePlatformIdentityRequest() *CreatePlatformIdentityRequest {
+	this := CreatePlatformIdentityRequest{}
 	return &this
 }
 
-// NewIdentityhttpCreatePlatformIdentityRequestWithDefaults instantiates a new IdentityhttpCreatePlatformIdentityRequest object
+// NewCreatePlatformIdentityRequestWithDefaults instantiates a new CreatePlatformIdentityRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIdentityhttpCreatePlatformIdentityRequestWithDefaults() *IdentityhttpCreatePlatformIdentityRequest {
-	this := IdentityhttpCreatePlatformIdentityRequest{}
+func NewCreatePlatformIdentityRequestWithDefaults() *CreatePlatformIdentityRequest {
+	this := CreatePlatformIdentityRequest{}
 	return &this
 }
 
 // GetCompany returns the Company field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetCompany() string {
+func (o *CreatePlatformIdentityRequest) GetCompany() string {
 	if o == nil || IsNil(o.Company) {
 		var ret string
 		return ret
@@ -59,7 +59,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetCompany() string {
 
 // GetCompanyOk returns a tuple with the Company field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetCompanyOk() (*string, bool) {
+func (o *CreatePlatformIdentityRequest) GetCompanyOk() (*string, bool) {
 	if o == nil || IsNil(o.Company) {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetCompanyOk() (*string, boo
 }
 
 // HasCompany returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasCompany() bool {
+func (o *CreatePlatformIdentityRequest) HasCompany() bool {
 	if o != nil && !IsNil(o.Company) {
 		return true
 	}
@@ -76,12 +76,12 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasCompany() bool {
 }
 
 // SetCompany gets a reference to the given string and assigns it to the Company field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetCompany(v string) {
+func (o *CreatePlatformIdentityRequest) SetCompany(v string) {
 	o.Company = &v
 }
 
 // GetCountryCode returns the CountryCode field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetCountryCode() string {
+func (o *CreatePlatformIdentityRequest) GetCountryCode() string {
 	if o == nil || IsNil(o.CountryCode) {
 		var ret string
 		return ret
@@ -91,7 +91,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetCountryCode() string {
 
 // GetCountryCodeOk returns a tuple with the CountryCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetCountryCodeOk() (*string, bool) {
+func (o *CreatePlatformIdentityRequest) GetCountryCodeOk() (*string, bool) {
 	if o == nil || IsNil(o.CountryCode) {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetCountryCodeOk() (*string,
 }
 
 // HasCountryCode returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasCountryCode() bool {
+func (o *CreatePlatformIdentityRequest) HasCountryCode() bool {
 	if o != nil && !IsNil(o.CountryCode) {
 		return true
 	}
@@ -108,12 +108,12 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasCountryCode() bool {
 }
 
 // SetCountryCode gets a reference to the given string and assigns it to the CountryCode field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetCountryCode(v string) {
+func (o *CreatePlatformIdentityRequest) SetCountryCode(v string) {
 	o.CountryCode = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetDisplayName() string {
+func (o *CreatePlatformIdentityRequest) GetDisplayName() string {
 	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
@@ -123,7 +123,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetDisplayName() string {
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetDisplayNameOk() (*string, bool) {
+func (o *CreatePlatformIdentityRequest) GetDisplayNameOk() (*string, bool) {
 	if o == nil || IsNil(o.DisplayName) {
 		return nil, false
 	}
@@ -131,7 +131,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetDisplayNameOk() (*string,
 }
 
 // HasDisplayName returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasDisplayName() bool {
+func (o *CreatePlatformIdentityRequest) HasDisplayName() bool {
 	if o != nil && !IsNil(o.DisplayName) {
 		return true
 	}
@@ -140,12 +140,12 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasDisplayName() bool {
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetDisplayName(v string) {
+func (o *CreatePlatformIdentityRequest) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetFirstName() string {
+func (o *CreatePlatformIdentityRequest) GetFirstName() string {
 	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
@@ -155,7 +155,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetFirstName() string {
 
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetFirstNameOk() (*string, bool) {
+func (o *CreatePlatformIdentityRequest) GetFirstNameOk() (*string, bool) {
 	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
@@ -163,7 +163,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetFirstNameOk() (*string, b
 }
 
 // HasFirstName returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasFirstName() bool {
+func (o *CreatePlatformIdentityRequest) HasFirstName() bool {
 	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
@@ -172,12 +172,12 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasFirstName() bool {
 }
 
 // SetFirstName gets a reference to the given string and assigns it to the FirstName field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetFirstName(v string) {
+func (o *CreatePlatformIdentityRequest) SetFirstName(v string) {
 	o.FirstName = &v
 }
 
 // GetHeaderImageUrl returns the HeaderImageUrl field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetHeaderImageUrl() string {
+func (o *CreatePlatformIdentityRequest) GetHeaderImageUrl() string {
 	if o == nil || IsNil(o.HeaderImageUrl) {
 		var ret string
 		return ret
@@ -187,7 +187,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetHeaderImageUrl() string {
 
 // GetHeaderImageUrlOk returns a tuple with the HeaderImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetHeaderImageUrlOk() (*string, bool) {
+func (o *CreatePlatformIdentityRequest) GetHeaderImageUrlOk() (*string, bool) {
 	if o == nil || IsNil(o.HeaderImageUrl) {
 		return nil, false
 	}
@@ -195,7 +195,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetHeaderImageUrlOk() (*stri
 }
 
 // HasHeaderImageUrl returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasHeaderImageUrl() bool {
+func (o *CreatePlatformIdentityRequest) HasHeaderImageUrl() bool {
 	if o != nil && !IsNil(o.HeaderImageUrl) {
 		return true
 	}
@@ -204,12 +204,12 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasHeaderImageUrl() bool {
 }
 
 // SetHeaderImageUrl gets a reference to the given string and assigns it to the HeaderImageUrl field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetHeaderImageUrl(v string) {
+func (o *CreatePlatformIdentityRequest) SetHeaderImageUrl(v string) {
 	o.HeaderImageUrl = &v
 }
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetLastName() string {
+func (o *CreatePlatformIdentityRequest) GetLastName() string {
 	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
@@ -219,7 +219,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetLastName() string {
 
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetLastNameOk() (*string, bool) {
+func (o *CreatePlatformIdentityRequest) GetLastNameOk() (*string, bool) {
 	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
@@ -227,7 +227,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetLastNameOk() (*string, bo
 }
 
 // HasLastName returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasLastName() bool {
+func (o *CreatePlatformIdentityRequest) HasLastName() bool {
 	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
@@ -236,12 +236,12 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasLastName() bool {
 }
 
 // SetLastName gets a reference to the given string and assigns it to the LastName field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetLastName(v string) {
+func (o *CreatePlatformIdentityRequest) SetLastName(v string) {
 	o.LastName = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetMetadata() map[string]string {
+func (o *CreatePlatformIdentityRequest) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]string
 		return ret
@@ -251,7 +251,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetMetadata() map[string]str
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetMetadataOk() (*map[string]string, bool) {
+func (o *CreatePlatformIdentityRequest) GetMetadataOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
@@ -259,7 +259,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetMetadataOk() (*map[string
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasMetadata() bool {
+func (o *CreatePlatformIdentityRequest) HasMetadata() bool {
 	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
@@ -268,12 +268,12 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetMetadata(v map[string]string) {
+func (o *CreatePlatformIdentityRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
 // GetProfilePic returns the ProfilePic field value if set, zero value otherwise.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetProfilePic() string {
+func (o *CreatePlatformIdentityRequest) GetProfilePic() string {
 	if o == nil || IsNil(o.ProfilePic) {
 		var ret string
 		return ret
@@ -283,7 +283,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetProfilePic() string {
 
 // GetProfilePicOk returns a tuple with the ProfilePic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) GetProfilePicOk() (*string, bool) {
+func (o *CreatePlatformIdentityRequest) GetProfilePicOk() (*string, bool) {
 	if o == nil || IsNil(o.ProfilePic) {
 		return nil, false
 	}
@@ -291,7 +291,7 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) GetProfilePicOk() (*string, 
 }
 
 // HasProfilePic returns a boolean if a field has been set.
-func (o *IdentityhttpCreatePlatformIdentityRequest) HasProfilePic() bool {
+func (o *CreatePlatformIdentityRequest) HasProfilePic() bool {
 	if o != nil && !IsNil(o.ProfilePic) {
 		return true
 	}
@@ -300,11 +300,11 @@ func (o *IdentityhttpCreatePlatformIdentityRequest) HasProfilePic() bool {
 }
 
 // SetProfilePic gets a reference to the given string and assigns it to the ProfilePic field.
-func (o *IdentityhttpCreatePlatformIdentityRequest) SetProfilePic(v string) {
+func (o *CreatePlatformIdentityRequest) SetProfilePic(v string) {
 	o.ProfilePic = &v
 }
 
-func (o IdentityhttpCreatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
+func (o CreatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -312,7 +312,7 @@ func (o IdentityhttpCreatePlatformIdentityRequest) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
-func (o IdentityhttpCreatePlatformIdentityRequest) ToMap() (map[string]interface{}, error) {
+func (o CreatePlatformIdentityRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Company) {
 		toSerialize["company"] = o.Company
@@ -341,38 +341,38 @@ func (o IdentityhttpCreatePlatformIdentityRequest) ToMap() (map[string]interface
 	return toSerialize, nil
 }
 
-type NullableIdentityhttpCreatePlatformIdentityRequest struct {
-	value *IdentityhttpCreatePlatformIdentityRequest
+type NullableCreatePlatformIdentityRequest struct {
+	value *CreatePlatformIdentityRequest
 	isSet bool
 }
 
-func (v NullableIdentityhttpCreatePlatformIdentityRequest) Get() *IdentityhttpCreatePlatformIdentityRequest {
+func (v NullableCreatePlatformIdentityRequest) Get() *CreatePlatformIdentityRequest {
 	return v.value
 }
 
-func (v *NullableIdentityhttpCreatePlatformIdentityRequest) Set(val *IdentityhttpCreatePlatformIdentityRequest) {
+func (v *NullableCreatePlatformIdentityRequest) Set(val *CreatePlatformIdentityRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIdentityhttpCreatePlatformIdentityRequest) IsSet() bool {
+func (v NullableCreatePlatformIdentityRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIdentityhttpCreatePlatformIdentityRequest) Unset() {
+func (v *NullableCreatePlatformIdentityRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIdentityhttpCreatePlatformIdentityRequest(val *IdentityhttpCreatePlatformIdentityRequest) *NullableIdentityhttpCreatePlatformIdentityRequest {
-	return &NullableIdentityhttpCreatePlatformIdentityRequest{value: val, isSet: true}
+func NewNullableCreatePlatformIdentityRequest(val *CreatePlatformIdentityRequest) *NullableCreatePlatformIdentityRequest {
+	return &NullableCreatePlatformIdentityRequest{value: val, isSet: true}
 }
 
-func (v NullableIdentityhttpCreatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
+func (v NullableCreatePlatformIdentityRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIdentityhttpCreatePlatformIdentityRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableCreatePlatformIdentityRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
