@@ -125,7 +125,7 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +136,7 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,173 +147,7 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateContestsByIdParticipateRequest struct {
-	ctx context.Context
-	ApiService *ParticipationAPIService
-	id string
-	idempotencyKey *string
-	xActingAs *string
-}
-
-// Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055).
-func (r ApiCreateContestsByIdParticipateRequest) IdempotencyKey(idempotencyKey string) ApiCreateContestsByIdParticipateRequest {
-	r.idempotencyKey = &idempotencyKey
-	return r
-}
-
-// Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiCreateContestsByIdParticipateRequest) XActingAs(xActingAs string) ApiCreateContestsByIdParticipateRequest {
-	r.xActingAs = &xActingAs
-	return r
-}
-
-func (r ApiCreateContestsByIdParticipateRequest) Execute() (*DomainParticipationResponse, *http.Response, error) {
-	return r.ApiService.CreateContestsByIdParticipateExecute(r)
-}
-
-/*
-CreateContestsByIdParticipate Create Participation
-
-Create Participation. The request body is resolved by contest type (prediction vs MC/majority) in the sub-handlers.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Contest ID
- @return ApiCreateContestsByIdParticipateRequest
-*/
-func (a *ParticipationAPIService) CreateContestsByIdParticipate(ctx context.Context, id string) ApiCreateContestsByIdParticipateRequest {
-	return ApiCreateContestsByIdParticipateRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return DomainParticipationResponse
-func (a *ParticipationAPIService) CreateContestsByIdParticipateExecute(r ApiCreateContestsByIdParticipateRequest) (*DomainParticipationResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DomainParticipationResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ParticipationAPIService.CreateContestsByIdParticipate")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v2/contests/{id}/participate"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.idempotencyKey != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
-	}
-	if r.xActingAs != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -350,7 +184,7 @@ func (r ApiCreateParticipationByIdStartRequest) XActingAs(xActingAs string) ApiC
 	return r
 }
 
-func (r ApiCreateParticipationByIdStartRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
+func (r ApiCreateParticipationByIdStartRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
 	return r.ApiService.CreateParticipationByIdStartExecute(r)
 }
 
@@ -370,13 +204,13 @@ func (a *ParticipationAPIService) CreateParticipationByIdStart(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *ParticipationAPIService) CreateParticipationByIdStartExecute(r ApiCreateParticipationByIdStartRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *ParticipationAPIService) CreateParticipationByIdStartExecute(r ApiCreateParticipationByIdStartRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ParticipationAPIService.CreateParticipationByIdStart")
@@ -434,7 +268,7 @@ func (a *ParticipationAPIService) CreateParticipationByIdStartExecute(r ApiCreat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +279,7 @@ func (a *ParticipationAPIService) CreateParticipationByIdStartExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -567,7 +401,7 @@ func (a *ParticipationAPIService) DeleteContestsByIdEnrollmentExecute(r ApiDelet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -578,7 +412,7 @@ func (a *ParticipationAPIService) DeleteContestsByIdEnrollmentExecute(r ApiDelet
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -692,7 +526,7 @@ func (a *ParticipationAPIService) GetContestsByIdGroupedScoreboardExecute(r ApiG
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -703,7 +537,7 @@ func (a *ParticipationAPIService) GetContestsByIdGroupedScoreboardExecute(r ApiG
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -826,142 +660,7 @@ func (a *ParticipationAPIService) GetContestsByIdLiveRankingExecute(r ApiGetCont
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetContestsByIdScoreboardRequest struct {
-	ctx context.Context
-	ApiService *ParticipationAPIService
-	id string
-	xActingAs *string
-}
-
-// Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiGetContestsByIdScoreboardRequest) XActingAs(xActingAs string) ApiGetContestsByIdScoreboardRequest {
-	r.xActingAs = &xActingAs
-	return r
-}
-
-func (r ApiGetContestsByIdScoreboardRequest) Execute() (*DomainScoreBoardResponse, *http.Response, error) {
-	return r.ApiService.GetContestsByIdScoreboardExecute(r)
-}
-
-/*
-GetContestsByIdScoreboard Get a contest scoreboard
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Contest ID
- @return ApiGetContestsByIdScoreboardRequest
-
-Deprecated
-*/
-func (a *ParticipationAPIService) GetContestsByIdScoreboard(ctx context.Context, id string) ApiGetContestsByIdScoreboardRequest {
-	return ApiGetContestsByIdScoreboardRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return DomainScoreBoardResponse
-// Deprecated
-func (a *ParticipationAPIService) GetContestsByIdScoreboardExecute(r ApiGetContestsByIdScoreboardRequest) (*DomainScoreBoardResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DomainScoreBoardResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ParticipationAPIService.GetContestsByIdScoreboard")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v2/contests/{id}/scoreboard"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xActingAs != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1118,7 +817,7 @@ func (a *ParticipationAPIService) GetIdentitiesByPiidParticipationExecute(r ApiG
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1129,7 +828,7 @@ func (a *ParticipationAPIService) GetIdentitiesByPiidParticipationExecute(r ApiG
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1140,7 +839,7 @@ func (a *ParticipationAPIService) GetIdentitiesByPiidParticipationExecute(r ApiG
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1199,7 +898,7 @@ func (r ApiGetIdentitiesByPiidScheduleRequest) Execute() (*DomainContestListResp
 GetIdentitiesByPiidSchedule Get a platform identity's contest schedule (upcoming, eligibility-sourced, cursor-paginated)
 
 The contests the member can still act on (ADR 0042): created/started contests the
-member is eligible for (region + public-or-approved-subscribed channel) and has not
+member can discover (in-region, public or approved Space) and has not
 already participated in (no participation row in a status other than enrolled).
 Auto-enrolled-but-not-yet-acted contests still appear. Past/ended history lives at
 GET /identities/{piid}/participation. Ordered by contest start time (start_at desc);
@@ -1288,7 +987,7 @@ func (a *ParticipationAPIService) GetIdentitiesByPiidScheduleExecute(r ApiGetIde
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1299,7 +998,7 @@ func (a *ParticipationAPIService) GetIdentitiesByPiidScheduleExecute(r ApiGetIde
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1422,7 +1121,7 @@ func (a *ParticipationAPIService) GetParticipationByIdExecute(r ApiGetParticipat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1433,7 +1132,7 @@ func (a *ParticipationAPIService) GetParticipationByIdExecute(r ApiGetParticipat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1556,7 +1255,7 @@ func (a *ParticipationAPIService) GetParticipationContestByIdExecute(r ApiGetPar
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1567,7 +1266,7 @@ func (a *ParticipationAPIService) GetParticipationContestByIdExecute(r ApiGetPar
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1595,13 +1294,13 @@ type ApiPatchParticipationByParticipationIdGroupRequest struct {
 	ctx context.Context
 	ApiService *ParticipationAPIService
 	participationId string
-	requestSelectGroupRequest *RequestSelectGroupRequest
+	submissionhttpSelectGroupRequest *SubmissionhttpSelectGroupRequest
 	xActingAs *string
 }
 
 // Select Group Request
-func (r ApiPatchParticipationByParticipationIdGroupRequest) RequestSelectGroupRequest(requestSelectGroupRequest RequestSelectGroupRequest) ApiPatchParticipationByParticipationIdGroupRequest {
-	r.requestSelectGroupRequest = &requestSelectGroupRequest
+func (r ApiPatchParticipationByParticipationIdGroupRequest) SubmissionhttpSelectGroupRequest(submissionhttpSelectGroupRequest SubmissionhttpSelectGroupRequest) ApiPatchParticipationByParticipationIdGroupRequest {
+	r.submissionhttpSelectGroupRequest = &submissionhttpSelectGroupRequest
 	return r
 }
 
@@ -1653,8 +1352,8 @@ func (a *ParticipationAPIService) PatchParticipationByParticipationIdGroupExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestSelectGroupRequest == nil {
-		return localVarReturnValue, nil, reportError("requestSelectGroupRequest is required and must be specified")
+	if r.submissionhttpSelectGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("submissionhttpSelectGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1678,7 +1377,7 @@ func (a *ParticipationAPIService) PatchParticipationByParticipationIdGroupExecut
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.requestSelectGroupRequest
+	localVarPostBody = r.submissionhttpSelectGroupRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1702,7 +1401,7 @@ func (a *ParticipationAPIService) PatchParticipationByParticipationIdGroupExecut
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1713,7 +1412,7 @@ func (a *ParticipationAPIService) PatchParticipationByParticipationIdGroupExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1724,7 +1423,7 @@ func (a *ParticipationAPIService) PatchParticipationByParticipationIdGroupExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1735,7 +1434,7 @@ func (a *ParticipationAPIService) PatchParticipationByParticipationIdGroupExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

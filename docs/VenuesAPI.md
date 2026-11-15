@@ -5,15 +5,15 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateVenues**](VenuesAPI.md#CreateVenues) | **Post** /v2/venues | Create a venue under the calling tenant
-[**CreateVenuesByVenueIdChannels**](VenuesAPI.md#CreateVenuesByVenueIdChannels) | **Post** /v2/venues/{venueId}/channels | Create a channel under one of the tenant&#39;s venues
+[**CreateVenuesByVenueIdSpaces**](VenuesAPI.md#CreateVenuesByVenueIdSpaces) | **Post** /v2/venues/{venueId}/spaces | Create a space under one of the tenant&#39;s venues
 [**GetVenues**](VenuesAPI.md#GetVenues) | **Get** /v2/venues | List venues owned by the calling tenant
-[**GetVenuesByVenueIdChannels**](VenuesAPI.md#GetVenuesByVenueIdChannels) | **Get** /v2/venues/{venueId}/channels | List channels under one of the tenant&#39;s venues
+[**GetVenuesByVenueIdSpaces**](VenuesAPI.md#GetVenuesByVenueIdSpaces) | **Get** /v2/venues/{venueId}/spaces | List spaces under one of the tenant&#39;s venues
 
 
 
 ## CreateVenues
 
-> HandlerStatusResponseResponse CreateVenues(ctx).HandlerCreatePlatformVenueRequest(handlerCreatePlatformVenueRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateVenues(ctx).VenuehttpCreatePlatformVenueRequest(venuehttpCreatePlatformVenueRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 
 Create a venue under the calling tenant
 
@@ -30,18 +30,18 @@ import (
 )
 
 func main() {
-	handlerCreatePlatformVenueRequest := *openapiclient.NewHandlerCreatePlatformVenueRequest("Name_example", "Type_example") // HandlerCreatePlatformVenueRequest | Venue payload
+	venuehttpCreatePlatformVenueRequest := *openapiclient.NewVenuehttpCreatePlatformVenueRequest("Name_example", "Type_example") // VenuehttpCreatePlatformVenueRequest | Venue payload
 	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VenuesAPI.CreateVenues(context.Background()).HandlerCreatePlatformVenueRequest(handlerCreatePlatformVenueRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.VenuesAPI.CreateVenues(context.Background()).VenuehttpCreatePlatformVenueRequest(venuehttpCreatePlatformVenueRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VenuesAPI.CreateVenues``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateVenues`: HandlerStatusResponseResponse
+	// response from `CreateVenues`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `VenuesAPI.CreateVenues`: %v\n", resp)
 }
 ```
@@ -57,13 +57,13 @@ Other parameters are passed through a pointer to a apiCreateVenuesRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **handlerCreatePlatformVenueRequest** | [**HandlerCreatePlatformVenueRequest**](HandlerCreatePlatformVenueRequest.md) | Venue payload | 
+ **venuehttpCreatePlatformVenueRequest** | [**VenuehttpCreatePlatformVenueRequest**](VenuehttpCreatePlatformVenueRequest.md) | Venue payload | 
  **idempotencyKey** | **string** | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -79,11 +79,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateVenuesByVenueIdChannels
+## CreateVenuesByVenueIdSpaces
 
-> HandlerStatusResponseResponse CreateVenuesByVenueIdChannels(ctx, venueId).HandlerCreatePlatformChannelRequest(handlerCreatePlatformChannelRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateVenuesByVenueIdSpaces(ctx, venueId).SpacehttpCreatePlatformSpaceRequest(spacehttpCreatePlatformSpaceRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 
-Create a channel under one of the tenant's venues
+Create a space under one of the tenant's venues
 
 ### Example
 
@@ -99,19 +99,19 @@ import (
 
 func main() {
 	venueId := "venueId_example" // string | Venue ID
-	handlerCreatePlatformChannelRequest := *openapiclient.NewHandlerCreatePlatformChannelRequest("AccessType_example", "Name_example", int32(123)) // HandlerCreatePlatformChannelRequest | Channel payload
+	spacehttpCreatePlatformSpaceRequest := *openapiclient.NewSpacehttpCreatePlatformSpaceRequest("AccessType_example", "Name_example", int32(123)) // SpacehttpCreatePlatformSpaceRequest | Space payload
 	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VenuesAPI.CreateVenuesByVenueIdChannels(context.Background(), venueId).HandlerCreatePlatformChannelRequest(handlerCreatePlatformChannelRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.VenuesAPI.CreateVenuesByVenueIdSpaces(context.Background(), venueId).SpacehttpCreatePlatformSpaceRequest(spacehttpCreatePlatformSpaceRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VenuesAPI.CreateVenuesByVenueIdChannels``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `VenuesAPI.CreateVenuesByVenueIdSpaces``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateVenuesByVenueIdChannels`: HandlerStatusResponseResponse
-	fmt.Fprintf(os.Stdout, "Response from `VenuesAPI.CreateVenuesByVenueIdChannels`: %v\n", resp)
+	// response from `CreateVenuesByVenueIdSpaces`: HttpxStatusResponseResponse
+	fmt.Fprintf(os.Stdout, "Response from `VenuesAPI.CreateVenuesByVenueIdSpaces`: %v\n", resp)
 }
 ```
 
@@ -125,19 +125,19 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateVenuesByVenueIdChannelsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateVenuesByVenueIdSpacesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **handlerCreatePlatformChannelRequest** | [**HandlerCreatePlatformChannelRequest**](HandlerCreatePlatformChannelRequest.md) | Channel payload | 
+ **spacehttpCreatePlatformSpaceRequest** | [**SpacehttpCreatePlatformSpaceRequest**](SpacehttpCreatePlatformSpaceRequest.md) | Space payload | 
  **idempotencyKey** | **string** | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## GetVenues
 
-> DomainVenueListResponse GetVenues(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> VenuesVenueListResponse GetVenues(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List venues owned by the calling tenant
 
@@ -183,7 +183,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VenuesAPI.GetVenues``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetVenues`: DomainVenueListResponse
+	// response from `GetVenues`: VenuesVenueListResponse
 	fmt.Fprintf(os.Stdout, "Response from `VenuesAPI.GetVenues`: %v\n", resp)
 }
 ```
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainVenueListResponse**](DomainVenueListResponse.md)
+[**VenuesVenueListResponse**](VenuesVenueListResponse.md)
 
 ### Authorization
 
@@ -221,11 +221,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetVenuesByVenueIdChannels
+## GetVenuesByVenueIdSpaces
 
-> DomainChannelListResponse GetVenuesByVenueIdChannels(ctx, venueId).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> SpacesSpaceListResponse GetVenuesByVenueIdSpaces(ctx, venueId).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
-List channels under one of the tenant's venues
+List spaces under one of the tenant's venues
 
 ### Example
 
@@ -247,13 +247,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VenuesAPI.GetVenuesByVenueIdChannels(context.Background(), venueId).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.VenuesAPI.GetVenuesByVenueIdSpaces(context.Background(), venueId).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VenuesAPI.GetVenuesByVenueIdChannels``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `VenuesAPI.GetVenuesByVenueIdSpaces``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetVenuesByVenueIdChannels`: DomainChannelListResponse
-	fmt.Fprintf(os.Stdout, "Response from `VenuesAPI.GetVenuesByVenueIdChannels`: %v\n", resp)
+	// response from `GetVenuesByVenueIdSpaces`: SpacesSpaceListResponse
+	fmt.Fprintf(os.Stdout, "Response from `VenuesAPI.GetVenuesByVenueIdSpaces`: %v\n", resp)
 }
 ```
 
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetVenuesByVenueIdChannelsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetVenuesByVenueIdSpacesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainChannelListResponse**](DomainChannelListResponse.md)
+[**SpacesSpaceListResponse**](SpacesSpaceListResponse.md)
 
 ### Authorization
 

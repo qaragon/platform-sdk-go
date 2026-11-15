@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **InsertedAt** | Pointer to **time.Time** |  | [optional] 
 **Items** | Pointer to [**[]EventItem**](EventItem.md) |  | [optional] 
+**Metadata** | Pointer to [**EventPresentation**](EventPresentation.md) |  | [optional] 
 **Name** | **string** |  | 
 **OwnerId** | Pointer to **NullableString** |  | [optional] 
 **Provider** | **string** |  | 
@@ -290,6 +291,31 @@ SetItems sets Items field to given value.
 `func (o *Event) HasItems() bool`
 
 HasItems returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *Event) GetMetadata() EventPresentation`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *Event) GetMetadataOk() (*EventPresentation, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *Event) SetMetadata(v EventPresentation)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *Event) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 

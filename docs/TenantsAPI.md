@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateTenants
 
-> DomainTenantResponse CreateTenants(ctx).HandlerCreatePlatformRequest(handlerCreatePlatformRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+> TenantsTenantResponse CreateTenants(ctx).TenanthttpCreatePlatformRequest(tenanthttpCreatePlatformRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 
 Apply to become a tenant (vetted-signup)
 
@@ -34,18 +34,18 @@ import (
 )
 
 func main() {
-	handlerCreatePlatformRequest := *openapiclient.NewHandlerCreatePlatformRequest("Name_example") // HandlerCreatePlatformRequest | Tenant application payload
+	tenanthttpCreatePlatformRequest := *openapiclient.NewTenanthttpCreatePlatformRequest("Name_example") // TenanthttpCreatePlatformRequest | Tenant application payload
 	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TenantsAPI.CreateTenants(context.Background()).HandlerCreatePlatformRequest(handlerCreatePlatformRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.TenantsAPI.CreateTenants(context.Background()).TenanthttpCreatePlatformRequest(tenanthttpCreatePlatformRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TenantsAPI.CreateTenants``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateTenants`: DomainTenantResponse
+	// response from `CreateTenants`: TenantsTenantResponse
 	fmt.Fprintf(os.Stdout, "Response from `TenantsAPI.CreateTenants`: %v\n", resp)
 }
 ```
@@ -61,13 +61,13 @@ Other parameters are passed through a pointer to a apiCreateTenantsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **handlerCreatePlatformRequest** | [**HandlerCreatePlatformRequest**](HandlerCreatePlatformRequest.md) | Tenant application payload | 
+ **tenanthttpCreatePlatformRequest** | [**TenanthttpCreatePlatformRequest**](TenanthttpCreatePlatformRequest.md) | Tenant application payload | 
  **idempotencyKey** | **string** | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**DomainTenantResponse**](DomainTenantResponse.md)
+[**TenantsTenantResponse**](TenantsTenantResponse.md)
 
 ### Authorization
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## CreateTenantsByIdApiKeys
 
-> DomainTenantApiKeyResponse CreateTenantsByIdApiKeys(ctx, id).HandlerCreateApiKeyRequest(handlerCreateApiKeyRequest).XActingAs(xActingAs).Execute()
+> TenantsTenantApiKeyResponse CreateTenantsByIdApiKeys(ctx, id).TenanthttpCreateApiKeyRequest(tenanthttpCreateApiKeyRequest).XActingAs(xActingAs).Execute()
 
 Mint an API key for an approved tenant
 
@@ -105,17 +105,17 @@ import (
 
 func main() {
 	id := "id_example" // string | Tenant ID
-	handlerCreateApiKeyRequest := *openapiclient.NewHandlerCreateApiKeyRequest("Env_example") // HandlerCreateApiKeyRequest | API key request (env + name)
+	tenanthttpCreateApiKeyRequest := *openapiclient.NewTenanthttpCreateApiKeyRequest("Env_example") // TenanthttpCreateApiKeyRequest | API key request (env + name)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TenantsAPI.CreateTenantsByIdApiKeys(context.Background(), id).HandlerCreateApiKeyRequest(handlerCreateApiKeyRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.TenantsAPI.CreateTenantsByIdApiKeys(context.Background(), id).TenanthttpCreateApiKeyRequest(tenanthttpCreateApiKeyRequest).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TenantsAPI.CreateTenantsByIdApiKeys``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateTenantsByIdApiKeys`: DomainTenantApiKeyResponse
+	// response from `CreateTenantsByIdApiKeys`: TenantsTenantApiKeyResponse
 	fmt.Fprintf(os.Stdout, "Response from `TenantsAPI.CreateTenantsByIdApiKeys`: %v\n", resp)
 }
 ```
@@ -136,12 +136,12 @@ Other parameters are passed through a pointer to a apiCreateTenantsByIdApiKeysRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **handlerCreateApiKeyRequest** | [**HandlerCreateApiKeyRequest**](HandlerCreateApiKeyRequest.md) | API key request (env + name) | 
+ **tenanthttpCreateApiKeyRequest** | [**TenanthttpCreateApiKeyRequest**](TenanthttpCreateApiKeyRequest.md) | API key request (env + name) | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**DomainTenantApiKeyResponse**](DomainTenantApiKeyResponse.md)
+[**TenantsTenantApiKeyResponse**](TenantsTenantApiKeyResponse.md)
 
 ### Authorization
 

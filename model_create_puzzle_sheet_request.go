@@ -23,6 +23,7 @@ var _ MappedNullable = &CreatePuzzleSheetRequest{}
 // CreatePuzzleSheetRequest struct for CreatePuzzleSheetRequest
 type CreatePuzzleSheetRequest struct {
 	Description NullableString `json:"description,omitempty"`
+	Format *string `json:"format,omitempty"`
 	Name string `json:"name"`
 	Puzzles []PuzzleBody `json:"puzzles,omitempty"`
 	Tags []string `json:"tags,omitempty"`
@@ -37,6 +38,8 @@ type _CreatePuzzleSheetRequest CreatePuzzleSheetRequest
 // will change when the set of required properties is changed
 func NewCreatePuzzleSheetRequest(name string, visibility string) *CreatePuzzleSheetRequest {
 	this := CreatePuzzleSheetRequest{}
+	var format string = "quiz"
+	this.Format = &format
 	this.Name = name
 	this.Visibility = visibility
 	return &this
@@ -47,6 +50,8 @@ func NewCreatePuzzleSheetRequest(name string, visibility string) *CreatePuzzleSh
 // but it doesn't guarantee that properties required by API are set
 func NewCreatePuzzleSheetRequestWithDefaults() *CreatePuzzleSheetRequest {
 	this := CreatePuzzleSheetRequest{}
+	var format string = "quiz"
+	this.Format = &format
 	return &this
 }
 
@@ -90,6 +95,38 @@ func (o *CreatePuzzleSheetRequest) SetDescriptionNil() {
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
 func (o *CreatePuzzleSheetRequest) UnsetDescription() {
 	o.Description.Unset()
+}
+
+// GetFormat returns the Format field value if set, zero value otherwise.
+func (o *CreatePuzzleSheetRequest) GetFormat() string {
+	if o == nil || IsNil(o.Format) {
+		var ret string
+		return ret
+	}
+	return *o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreatePuzzleSheetRequest) GetFormatOk() (*string, bool) {
+	if o == nil || IsNil(o.Format) {
+		return nil, false
+	}
+	return o.Format, true
+}
+
+// HasFormat returns a boolean if a field has been set.
+func (o *CreatePuzzleSheetRequest) HasFormat() bool {
+	if o != nil && !IsNil(o.Format) {
+		return true
+	}
+
+	return false
+}
+
+// SetFormat gets a reference to the given string and assigns it to the Format field.
+func (o *CreatePuzzleSheetRequest) SetFormat(v string) {
+	o.Format = &v
 }
 
 // GetName returns the Name field value
@@ -216,6 +253,9 @@ func (o CreatePuzzleSheetRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
+	}
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
 	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Puzzles) {

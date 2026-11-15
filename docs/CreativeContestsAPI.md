@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateContestsByIdBallots**](CreativeContestsAPI.md#CreateContestsByIdBallots) | **Post** /v2/contests/{id}/ballots | Serve a community-judging matchup
-[**CreateContestsByIdEntries**](CreativeContestsAPI.md#CreateContestsByIdEntries) | **Post** /v2/contests/{id}/entries | Submit entry for creative contest
 [**CreateContestsByIdEntriesByEntryIdScore**](CreativeContestsAPI.md#CreateContestsByIdEntriesByEntryIdScore) | **Post** /v2/contests/{id}/entries/{entryId}/score | Score an entry
 [**CreateContestsByIdForceProceed**](CreativeContestsAPI.md#CreateContestsByIdForceProceed) | **Post** /v2/contests/{id}/force-proceed | Force proceed from paused state
 [**CreateContestsByIdJudgments**](CreativeContestsAPI.md#CreateContestsByIdJudgments) | **Post** /v2/contests/{id}/judgments | Submit a community-judging pairwise choice
@@ -97,82 +96,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateContestsByIdEntries
-
-> DomainEntryResponse CreateContestsByIdEntries(ctx, id).RequestSubmitEntryRequest(requestSubmitEntryRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
-
-Submit entry for creative contest
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Contest ID
-	requestSubmitEntryRequest := *openapiclient.NewRequestSubmitEntryRequest("MediaType_example", "MediaUrl_example") // RequestSubmitEntryRequest | Entry submission
-	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). (optional)
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CreativeContestsAPI.CreateContestsByIdEntries(context.Background(), id).RequestSubmitEntryRequest(requestSubmitEntryRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CreativeContestsAPI.CreateContestsByIdEntries``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateContestsByIdEntries`: DomainEntryResponse
-	fmt.Fprintf(os.Stdout, "Response from `CreativeContestsAPI.CreateContestsByIdEntries`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Contest ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateContestsByIdEntriesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **requestSubmitEntryRequest** | [**RequestSubmitEntryRequest**](RequestSubmitEntryRequest.md) | Entry submission | 
- **idempotencyKey** | **string** | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). | 
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**DomainEntryResponse**](DomainEntryResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## CreateContestsByIdEntriesByEntryIdScore
 
 > DomainJurorScoreResponse CreateContestsByIdEntriesByEntryIdScore(ctx, id, entryId).RequestScoreEntryRequest(requestScoreEntryRequest).XActingAs(xActingAs).Execute()
@@ -252,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByIdForceProceed
 
-> HandlerStatusResponseResponse CreateContestsByIdForceProceed(ctx, id).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByIdForceProceed(ctx, id).XActingAs(xActingAs).Execute()
 
 Force proceed from paused state
 
@@ -281,7 +204,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreativeContestsAPI.CreateContestsByIdForceProceed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByIdForceProceed`: HandlerStatusResponseResponse
+	// response from `CreateContestsByIdForceProceed`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `CreativeContestsAPI.CreateContestsByIdForceProceed`: %v\n", resp)
 }
 ```
@@ -306,7 +229,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -400,7 +323,7 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByIdJurorsInvite
 
-> HandlerStatusResponseResponse CreateContestsByIdJurorsInvite(ctx, id).RequestInviteJurorsRequest(requestInviteJurorsRequest).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByIdJurorsInvite(ctx, id).RequestInviteJurorsRequest(requestInviteJurorsRequest).XActingAs(xActingAs).Execute()
 
 Invite jurors to judge a contest
 
@@ -430,7 +353,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreativeContestsAPI.CreateContestsByIdJurorsInvite``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByIdJurorsInvite`: HandlerStatusResponseResponse
+	// response from `CreateContestsByIdJurorsInvite`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `CreativeContestsAPI.CreateContestsByIdJurorsInvite`: %v\n", resp)
 }
 ```
@@ -456,7 +379,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -546,7 +469,7 @@ Name | Type | Description  | Notes
 
 ## CreateJurorsInvitationsByInvitationIdDecline
 
-> HandlerStatusResponseResponse CreateJurorsInvitationsByInvitationIdDecline(ctx, invitationId).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateJurorsInvitationsByInvitationIdDecline(ctx, invitationId).XActingAs(xActingAs).Execute()
 
 Decline a juror invitation
 
@@ -575,7 +498,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreativeContestsAPI.CreateJurorsInvitationsByInvitationIdDecline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateJurorsInvitationsByInvitationIdDecline`: HandlerStatusResponseResponse
+	// response from `CreateJurorsInvitationsByInvitationIdDecline`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `CreativeContestsAPI.CreateJurorsInvitationsByInvitationIdDecline`: %v\n", resp)
 }
 ```
@@ -600,7 +523,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -686,7 +609,7 @@ Name | Type | Description  | Notes
 
 ## DeleteContestsByIdEntries
 
-> HandlerStatusResponseResponse DeleteContestsByIdEntries(ctx, id).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse DeleteContestsByIdEntries(ctx, id).XActingAs(xActingAs).Execute()
 
 Withdraw entry from creative contest
 
@@ -715,7 +638,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreativeContestsAPI.DeleteContestsByIdEntries``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteContestsByIdEntries`: HandlerStatusResponseResponse
+	// response from `DeleteContestsByIdEntries`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `CreativeContestsAPI.DeleteContestsByIdEntries`: %v\n", resp)
 }
 ```
@@ -740,7 +663,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 

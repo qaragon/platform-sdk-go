@@ -5,12 +5,10 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateContestsByIdEnrollment**](ParticipationAPI.md#CreateContestsByIdEnrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a contest&#39;s pre-enrollment pool
-[**CreateContestsByIdParticipate**](ParticipationAPI.md#CreateContestsByIdParticipate) | **Post** /v2/contests/{id}/participate | Create Participation
 [**CreateParticipationByIdStart**](ParticipationAPI.md#CreateParticipationByIdStart) | **Post** /v2/participation/{id}/start | Log the start of a participation
 [**DeleteContestsByIdEnrollment**](ParticipationAPI.md#DeleteContestsByIdEnrollment) | **Delete** /v2/contests/{id}/enrollment | Withdraw the caller&#39;s enrollment from a contest
 [**GetContestsByIdGroupedScoreboard**](ParticipationAPI.md#GetContestsByIdGroupedScoreboard) | **Get** /v2/contests/{id}/grouped-scoreboard | Get ScoreBoard
 [**GetContestsByIdLiveRanking**](ParticipationAPI.md#GetContestsByIdLiveRanking) | **Get** /v2/contests/{id}/live-ranking | Get live ranking snapshot
-[**GetContestsByIdScoreboard**](ParticipationAPI.md#GetContestsByIdScoreboard) | **Get** /v2/contests/{id}/scoreboard | Get a contest scoreboard
 [**GetIdentitiesByPiidParticipation**](ParticipationAPI.md#GetIdentitiesByPiidParticipation) | **Get** /v2/identities/{piid}/participation | Get all participation for a platform identity (cursor-paginated)
 [**GetIdentitiesByPiidSchedule**](ParticipationAPI.md#GetIdentitiesByPiidSchedule) | **Get** /v2/identities/{piid}/schedule | Get a platform identity&#39;s contest schedule (upcoming, eligibility-sourced, cursor-paginated)
 [**GetParticipationById**](ParticipationAPI.md#GetParticipationById) | **Get** /v2/participation/{id} | Get participation by id
@@ -91,83 +89,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateContestsByIdParticipate
-
-> DomainParticipationResponse CreateContestsByIdParticipate(ctx, id).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
-
-Create Participation
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Contest ID
-	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). (optional)
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ParticipationAPI.CreateContestsByIdParticipate(context.Background(), id).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ParticipationAPI.CreateContestsByIdParticipate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateContestsByIdParticipate`: DomainParticipationResponse
-	fmt.Fprintf(os.Stdout, "Response from `ParticipationAPI.CreateContestsByIdParticipate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Contest ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateContestsByIdParticipateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **idempotencyKey** | **string** | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). | 
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**DomainParticipationResponse**](DomainParticipationResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## CreateParticipationByIdStart
 
-> HandlerStatusResponseResponse CreateParticipationByIdStart(ctx, id).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateParticipationByIdStart(ctx, id).XActingAs(xActingAs).Execute()
 
 Log the start of a participation
 
@@ -194,7 +118,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ParticipationAPI.CreateParticipationByIdStart``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateParticipationByIdStart`: HandlerStatusResponseResponse
+	// response from `CreateParticipationByIdStart`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `ParticipationAPI.CreateParticipationByIdStart`: %v\n", resp)
 }
 ```
@@ -219,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -434,76 +358,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DomainGroupedScoreBoardResponse**](DomainGroupedScoreBoardResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetContestsByIdScoreboard
-
-> DomainScoreBoardResponse GetContestsByIdScoreboard(ctx, id).XActingAs(xActingAs).Execute()
-
-Get a contest scoreboard
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Contest ID
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ParticipationAPI.GetContestsByIdScoreboard(context.Background(), id).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ParticipationAPI.GetContestsByIdScoreboard``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetContestsByIdScoreboard`: DomainScoreBoardResponse
-	fmt.Fprintf(os.Stdout, "Response from `ParticipationAPI.GetContestsByIdScoreboard`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Contest ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetContestsByIdScoreboardRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**DomainScoreBoardResponse**](DomainScoreBoardResponse.md)
 
 ### Authorization
 
@@ -819,7 +673,7 @@ Name | Type | Description  | Notes
 
 ## PatchParticipationByParticipationIdGroup
 
-> DomainSelectGroupResponseResponse PatchParticipationByParticipationIdGroup(ctx, participationId).RequestSelectGroupRequest(requestSelectGroupRequest).XActingAs(xActingAs).Execute()
+> DomainSelectGroupResponseResponse PatchParticipationByParticipationIdGroup(ctx, participationId).SubmissionhttpSelectGroupRequest(submissionhttpSelectGroupRequest).XActingAs(xActingAs).Execute()
 
 Select group for open grouping contest
 
@@ -839,12 +693,12 @@ import (
 
 func main() {
 	participationId := "participationId_example" // string | Participation ID
-	requestSelectGroupRequest := *openapiclient.NewRequestSelectGroupRequest("Group_example") // RequestSelectGroupRequest | Select Group Request
+	submissionhttpSelectGroupRequest := *openapiclient.NewSubmissionhttpSelectGroupRequest("Group_example") // SubmissionhttpSelectGroupRequest | Select Group Request
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ParticipationAPI.PatchParticipationByParticipationIdGroup(context.Background(), participationId).RequestSelectGroupRequest(requestSelectGroupRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ParticipationAPI.PatchParticipationByParticipationIdGroup(context.Background(), participationId).SubmissionhttpSelectGroupRequest(submissionhttpSelectGroupRequest).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ParticipationAPI.PatchParticipationByParticipationIdGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -870,7 +724,7 @@ Other parameters are passed through a pointer to a apiPatchParticipationByPartic
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestSelectGroupRequest** | [**RequestSelectGroupRequest**](RequestSelectGroupRequest.md) | Select Group Request | 
+ **submissionhttpSelectGroupRequest** | [**SubmissionhttpSelectGroupRequest**](SubmissionhttpSelectGroupRequest.md) | Select Group Request | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type

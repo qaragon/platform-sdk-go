@@ -136,7 +136,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdBallotsExecute(r ApiCreat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,7 +147,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdBallotsExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -158,7 +158,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdBallotsExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdBallotsExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdBallotsExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -191,7 +191,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdBallotsExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -202,185 +202,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdBallotsExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateContestsByIdEntriesRequest struct {
-	ctx context.Context
-	ApiService *CreativeContestsAPIService
-	id string
-	requestSubmitEntryRequest *RequestSubmitEntryRequest
-	idempotencyKey *string
-	xActingAs *string
-}
-
-// Entry submission
-func (r ApiCreateContestsByIdEntriesRequest) RequestSubmitEntryRequest(requestSubmitEntryRequest RequestSubmitEntryRequest) ApiCreateContestsByIdEntriesRequest {
-	r.requestSubmitEntryRequest = &requestSubmitEntryRequest
-	return r
-}
-
-// Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055).
-func (r ApiCreateContestsByIdEntriesRequest) IdempotencyKey(idempotencyKey string) ApiCreateContestsByIdEntriesRequest {
-	r.idempotencyKey = &idempotencyKey
-	return r
-}
-
-// Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiCreateContestsByIdEntriesRequest) XActingAs(xActingAs string) ApiCreateContestsByIdEntriesRequest {
-	r.xActingAs = &xActingAs
-	return r
-}
-
-func (r ApiCreateContestsByIdEntriesRequest) Execute() (*DomainEntryResponse, *http.Response, error) {
-	return r.ApiService.CreateContestsByIdEntriesExecute(r)
-}
-
-/*
-CreateContestsByIdEntries Submit entry for creative contest
-
-Submit a media entry (image or video) for a creative contest
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Contest ID
- @return ApiCreateContestsByIdEntriesRequest
-*/
-func (a *CreativeContestsAPIService) CreateContestsByIdEntries(ctx context.Context, id string) ApiCreateContestsByIdEntriesRequest {
-	return ApiCreateContestsByIdEntriesRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return DomainEntryResponse
-func (a *CreativeContestsAPIService) CreateContestsByIdEntriesExecute(r ApiCreateContestsByIdEntriesRequest) (*DomainEntryResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DomainEntryResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CreativeContestsAPIService.CreateContestsByIdEntries")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v2/contests/{id}/entries"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.requestSubmitEntryRequest == nil {
-		return localVarReturnValue, nil, reportError("requestSubmitEntryRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.idempotencyKey != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
-	}
-	if r.xActingAs != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.requestSubmitEntryRequest
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -519,7 +341,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdEntriesByEntryIdScoreExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -530,7 +352,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdEntriesByEntryIdScoreExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -567,7 +389,7 @@ func (r ApiCreateContestsByIdForceProceedRequest) XActingAs(xActingAs string) Ap
 	return r
 }
 
-func (r ApiCreateContestsByIdForceProceedRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
+func (r ApiCreateContestsByIdForceProceedRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
 	return r.ApiService.CreateContestsByIdForceProceedExecute(r)
 }
 
@@ -589,13 +411,13 @@ func (a *CreativeContestsAPIService) CreateContestsByIdForceProceed(ctx context.
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *CreativeContestsAPIService) CreateContestsByIdForceProceedExecute(r ApiCreateContestsByIdForceProceedRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *CreativeContestsAPIService) CreateContestsByIdForceProceedExecute(r ApiCreateContestsByIdForceProceedRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CreativeContestsAPIService.CreateContestsByIdForceProceed")
@@ -653,7 +475,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdForceProceedExecute(r Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -664,7 +486,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdForceProceedExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -812,7 +634,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJudgmentsExecute(r ApiCre
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -823,7 +645,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJudgmentsExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -834,7 +656,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJudgmentsExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -845,7 +667,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJudgmentsExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -856,7 +678,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJudgmentsExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -867,7 +689,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJudgmentsExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -878,7 +700,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJudgmentsExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -922,7 +744,7 @@ func (r ApiCreateContestsByIdJurorsInviteRequest) XActingAs(xActingAs string) Ap
 	return r
 }
 
-func (r ApiCreateContestsByIdJurorsInviteRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
+func (r ApiCreateContestsByIdJurorsInviteRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
 	return r.ApiService.CreateContestsByIdJurorsInviteExecute(r)
 }
 
@@ -944,13 +766,13 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJurorsInvite(ctx context.
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *CreativeContestsAPIService) CreateContestsByIdJurorsInviteExecute(r ApiCreateContestsByIdJurorsInviteRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *CreativeContestsAPIService) CreateContestsByIdJurorsInviteExecute(r ApiCreateContestsByIdJurorsInviteRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CreativeContestsAPIService.CreateContestsByIdJurorsInvite")
@@ -1013,7 +835,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJurorsInviteExecute(r Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1024,7 +846,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJurorsInviteExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1035,7 +857,7 @@ func (a *CreativeContestsAPIService) CreateContestsByIdJurorsInviteExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1158,7 +980,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdAccept
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1169,7 +991,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdAccept
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1180,7 +1002,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdAccept
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1191,7 +1013,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdAccept
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1228,7 +1050,7 @@ func (r ApiCreateJurorsInvitationsByInvitationIdDeclineRequest) XActingAs(xActin
 	return r
 }
 
-func (r ApiCreateJurorsInvitationsByInvitationIdDeclineRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
+func (r ApiCreateJurorsInvitationsByInvitationIdDeclineRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
 	return r.ApiService.CreateJurorsInvitationsByInvitationIdDeclineExecute(r)
 }
 
@@ -1250,13 +1072,13 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdDeclin
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdDeclineExecute(r ApiCreateJurorsInvitationsByInvitationIdDeclineRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdDeclineExecute(r ApiCreateJurorsInvitationsByInvitationIdDeclineRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CreativeContestsAPIService.CreateJurorsInvitationsByInvitationIdDecline")
@@ -1314,7 +1136,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdDeclin
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1325,7 +1147,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdDeclin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1336,7 +1158,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdDeclin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1347,7 +1169,7 @@ func (a *CreativeContestsAPIService) CreateJurorsInvitationsByInvitationIdDeclin
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1478,7 +1300,7 @@ func (a *CreativeContestsAPIService) CreateJurorsOptInExecute(r ApiCreateJurorsO
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1489,7 +1311,7 @@ func (a *CreativeContestsAPIService) CreateJurorsOptInExecute(r ApiCreateJurorsO
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1526,7 +1348,7 @@ func (r ApiDeleteContestsByIdEntriesRequest) XActingAs(xActingAs string) ApiDele
 	return r
 }
 
-func (r ApiDeleteContestsByIdEntriesRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
+func (r ApiDeleteContestsByIdEntriesRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
 	return r.ApiService.DeleteContestsByIdEntriesExecute(r)
 }
 
@@ -1548,13 +1370,13 @@ func (a *CreativeContestsAPIService) DeleteContestsByIdEntries(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *CreativeContestsAPIService) DeleteContestsByIdEntriesExecute(r ApiDeleteContestsByIdEntriesRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *CreativeContestsAPIService) DeleteContestsByIdEntriesExecute(r ApiDeleteContestsByIdEntriesRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CreativeContestsAPIService.DeleteContestsByIdEntries")
@@ -1612,7 +1434,7 @@ func (a *CreativeContestsAPIService) DeleteContestsByIdEntriesExecute(r ApiDelet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1623,7 +1445,7 @@ func (a *CreativeContestsAPIService) DeleteContestsByIdEntriesExecute(r ApiDelet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1634,7 +1456,7 @@ func (a *CreativeContestsAPIService) DeleteContestsByIdEntriesExecute(r ApiDelet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1777,7 +1599,7 @@ func (a *CreativeContestsAPIService) GetContestsByIdEntriesExecute(r ApiGetConte
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1788,7 +1610,7 @@ func (a *CreativeContestsAPIService) GetContestsByIdEntriesExecute(r ApiGetConte
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1934,7 +1756,7 @@ func (a *CreativeContestsAPIService) GetContestsByIdJurorsExecute(r ApiGetContes
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1945,7 +1767,7 @@ func (a *CreativeContestsAPIService) GetContestsByIdJurorsExecute(r ApiGetContes
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2088,7 +1910,7 @@ func (a *CreativeContestsAPIService) GetContestsByIdJurorsInvitationsExecute(r A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2099,7 +1921,7 @@ func (a *CreativeContestsAPIService) GetContestsByIdJurorsInvitationsExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2110,7 +1932,7 @@ func (a *CreativeContestsAPIService) GetContestsByIdJurorsInvitationsExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2249,7 +2071,7 @@ func (a *CreativeContestsAPIService) GetJurorsAssignmentsExecute(r ApiGetJurorsA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2260,7 +2082,7 @@ func (a *CreativeContestsAPIService) GetJurorsAssignmentsExecute(r ApiGetJurorsA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2402,7 +2224,7 @@ func (a *CreativeContestsAPIService) GetJurorsInvitationsExecute(r ApiGetJurorsI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2541,7 +2363,7 @@ func (a *CreativeContestsAPIService) UpdateContestsByIdEntriesByEntryIdScoreExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2552,7 +2374,7 @@ func (a *CreativeContestsAPIService) UpdateContestsByIdEntriesByEntryIdScoreExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -5,11 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BoardId** | Pointer to **string** |  | [optional] 
+**BoardTitle** | Pointer to **string** |  | [optional] 
 **ContestId** | Pointer to **string** |  | [optional] 
+**ContestTitle** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **InvitedAt** | Pointer to **string** |  | [optional] 
+**InvitedBy** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **InvitedById** | Pointer to **string** |  | [optional] 
-**Member** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Member** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **RespondedAt** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 
@@ -57,6 +60,31 @@ SetBoardId sets BoardId field to given value.
 
 HasBoardId returns a boolean if a field has been set.
 
+### GetBoardTitle
+
+`func (o *DomainBuddyBoardInvite) GetBoardTitle() string`
+
+GetBoardTitle returns the BoardTitle field if non-nil, zero value otherwise.
+
+### GetBoardTitleOk
+
+`func (o *DomainBuddyBoardInvite) GetBoardTitleOk() (*string, bool)`
+
+GetBoardTitleOk returns a tuple with the BoardTitle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBoardTitle
+
+`func (o *DomainBuddyBoardInvite) SetBoardTitle(v string)`
+
+SetBoardTitle sets BoardTitle field to given value.
+
+### HasBoardTitle
+
+`func (o *DomainBuddyBoardInvite) HasBoardTitle() bool`
+
+HasBoardTitle returns a boolean if a field has been set.
+
 ### GetContestId
 
 `func (o *DomainBuddyBoardInvite) GetContestId() string`
@@ -81,6 +109,31 @@ SetContestId sets ContestId field to given value.
 `func (o *DomainBuddyBoardInvite) HasContestId() bool`
 
 HasContestId returns a boolean if a field has been set.
+
+### GetContestTitle
+
+`func (o *DomainBuddyBoardInvite) GetContestTitle() string`
+
+GetContestTitle returns the ContestTitle field if non-nil, zero value otherwise.
+
+### GetContestTitleOk
+
+`func (o *DomainBuddyBoardInvite) GetContestTitleOk() (*string, bool)`
+
+GetContestTitleOk returns a tuple with the ContestTitle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContestTitle
+
+`func (o *DomainBuddyBoardInvite) SetContestTitle(v string)`
+
+SetContestTitle sets ContestTitle field to given value.
+
+### HasContestTitle
+
+`func (o *DomainBuddyBoardInvite) HasContestTitle() bool`
+
+HasContestTitle returns a boolean if a field has been set.
 
 ### GetId
 
@@ -132,6 +185,31 @@ SetInvitedAt sets InvitedAt field to given value.
 
 HasInvitedAt returns a boolean if a field has been set.
 
+### GetInvitedBy
+
+`func (o *DomainBuddyBoardInvite) GetInvitedBy() IdentitiesPlatformIdentity`
+
+GetInvitedBy returns the InvitedBy field if non-nil, zero value otherwise.
+
+### GetInvitedByOk
+
+`func (o *DomainBuddyBoardInvite) GetInvitedByOk() (*IdentitiesPlatformIdentity, bool)`
+
+GetInvitedByOk returns a tuple with the InvitedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvitedBy
+
+`func (o *DomainBuddyBoardInvite) SetInvitedBy(v IdentitiesPlatformIdentity)`
+
+SetInvitedBy sets InvitedBy field to given value.
+
+### HasInvitedBy
+
+`func (o *DomainBuddyBoardInvite) HasInvitedBy() bool`
+
+HasInvitedBy returns a boolean if a field has been set.
+
 ### GetInvitedById
 
 `func (o *DomainBuddyBoardInvite) GetInvitedById() string`
@@ -159,20 +237,20 @@ HasInvitedById returns a boolean if a field has been set.
 
 ### GetMember
 
-`func (o *DomainBuddyBoardInvite) GetMember() DomainPlatformIdentity`
+`func (o *DomainBuddyBoardInvite) GetMember() IdentitiesPlatformIdentity`
 
 GetMember returns the Member field if non-nil, zero value otherwise.
 
 ### GetMemberOk
 
-`func (o *DomainBuddyBoardInvite) GetMemberOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainBuddyBoardInvite) GetMemberOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetMemberOk returns a tuple with the Member field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMember
 
-`func (o *DomainBuddyBoardInvite) SetMember(v DomainPlatformIdentity)`
+`func (o *DomainBuddyBoardInvite) SetMember(v IdentitiesPlatformIdentity)`
 
 SetMember sets Member field to given value.
 

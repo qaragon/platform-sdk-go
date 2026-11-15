@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateIdentities
 
-> DomainPlatformIdentityResponse CreateIdentities(ctx).HandlerCreatePlatformIdentityRequest(handlerCreatePlatformIdentityRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+> IdentitiesPlatformIdentityResponse CreateIdentities(ctx).IdentityhttpCreatePlatformIdentityRequest(identityhttpCreatePlatformIdentityRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 
 Register a platform identity (platform mints the id)
 
@@ -32,18 +32,18 @@ import (
 )
 
 func main() {
-	handlerCreatePlatformIdentityRequest := *openapiclient.NewHandlerCreatePlatformIdentityRequest() // HandlerCreatePlatformIdentityRequest | Platform identity payload
+	identityhttpCreatePlatformIdentityRequest := *openapiclient.NewIdentityhttpCreatePlatformIdentityRequest() // IdentityhttpCreatePlatformIdentityRequest | Platform identity payload
 	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422. (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentitiesAPI.CreateIdentities(context.Background()).HandlerCreatePlatformIdentityRequest(handlerCreatePlatformIdentityRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.IdentitiesAPI.CreateIdentities(context.Background()).IdentityhttpCreatePlatformIdentityRequest(identityhttpCreatePlatformIdentityRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IdentitiesAPI.CreateIdentities``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateIdentities`: DomainPlatformIdentityResponse
+	// response from `CreateIdentities`: IdentitiesPlatformIdentityResponse
 	fmt.Fprintf(os.Stdout, "Response from `IdentitiesAPI.CreateIdentities`: %v\n", resp)
 }
 ```
@@ -59,13 +59,13 @@ Other parameters are passed through a pointer to a apiCreateIdentitiesRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **handlerCreatePlatformIdentityRequest** | [**HandlerCreatePlatformIdentityRequest**](HandlerCreatePlatformIdentityRequest.md) | Platform identity payload | 
+ **identityhttpCreatePlatformIdentityRequest** | [**IdentityhttpCreatePlatformIdentityRequest**](IdentityhttpCreatePlatformIdentityRequest.md) | Platform identity payload | 
  **idempotencyKey** | **string** | Retry key (~24h). Same key + same body replays the original response; a different body returns 422. | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**DomainPlatformIdentityResponse**](DomainPlatformIdentityResponse.md)
+[**IdentitiesPlatformIdentityResponse**](IdentitiesPlatformIdentityResponse.md)
 
 ### Authorization
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## GetIdentitiesById
 
-> DomainPlatformIdentityResponse GetIdentitiesById(ctx, id).XActingAs(xActingAs).Execute()
+> IdentitiesPlatformIdentityResponse GetIdentitiesById(ctx, id).XActingAs(xActingAs).Execute()
 
 Get a platform identity by ID, scoped to the calling tenant
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `IdentitiesAPI.GetIdentitiesById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetIdentitiesById`: DomainPlatformIdentityResponse
+	// response from `GetIdentitiesById`: IdentitiesPlatformIdentityResponse
 	fmt.Fprintf(os.Stdout, "Response from `IdentitiesAPI.GetIdentitiesById`: %v\n", resp)
 }
 ```
@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainPlatformIdentityResponse**](DomainPlatformIdentityResponse.md)
+[**IdentitiesPlatformIdentityResponse**](IdentitiesPlatformIdentityResponse.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## UpdateIdentitiesById
 
-> DomainPlatformIdentityResponse UpdateIdentitiesById(ctx, id).HandlerUpdatePlatformIdentityRequest(handlerUpdatePlatformIdentityRequest).XActingAs(xActingAs).Execute()
+> IdentitiesPlatformIdentityResponse UpdateIdentitiesById(ctx, id).IdentityhttpUpdatePlatformIdentityRequest(identityhttpUpdatePlatformIdentityRequest).XActingAs(xActingAs).Execute()
 
 Replace a platform identity's profile, scoped to the calling tenant
 
@@ -245,17 +245,17 @@ import (
 
 func main() {
 	id := "id_example" // string | Platform Identity ID
-	handlerUpdatePlatformIdentityRequest := *openapiclient.NewHandlerUpdatePlatformIdentityRequest("DisplayName_example") // HandlerUpdatePlatformIdentityRequest | Profile fields
+	identityhttpUpdatePlatformIdentityRequest := *openapiclient.NewIdentityhttpUpdatePlatformIdentityRequest("DisplayName_example") // IdentityhttpUpdatePlatformIdentityRequest | Profile fields
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentitiesAPI.UpdateIdentitiesById(context.Background(), id).HandlerUpdatePlatformIdentityRequest(handlerUpdatePlatformIdentityRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.IdentitiesAPI.UpdateIdentitiesById(context.Background(), id).IdentityhttpUpdatePlatformIdentityRequest(identityhttpUpdatePlatformIdentityRequest).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IdentitiesAPI.UpdateIdentitiesById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateIdentitiesById`: DomainPlatformIdentityResponse
+	// response from `UpdateIdentitiesById`: IdentitiesPlatformIdentityResponse
 	fmt.Fprintf(os.Stdout, "Response from `IdentitiesAPI.UpdateIdentitiesById`: %v\n", resp)
 }
 ```
@@ -276,12 +276,12 @@ Other parameters are passed through a pointer to a apiUpdateIdentitiesByIdReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **handlerUpdatePlatformIdentityRequest** | [**HandlerUpdatePlatformIdentityRequest**](HandlerUpdatePlatformIdentityRequest.md) | Profile fields | 
+ **identityhttpUpdatePlatformIdentityRequest** | [**IdentityhttpUpdatePlatformIdentityRequest**](IdentityhttpUpdatePlatformIdentityRequest.md) | Profile fields | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**DomainPlatformIdentityResponse**](DomainPlatformIdentityResponse.md)
+[**IdentitiesPlatformIdentityResponse**](IdentitiesPlatformIdentityResponse.md)
 
 ### Authorization
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AvgSolutionTime** | Pointer to **float32** | Average solution time in seconds (nullable, with decimal precision) | [optional] 
 **ContestsPlayed** | Pointer to **int32** | Count of contests | [optional] 
 **Current** | Pointer to **int32** |  | [optional] 
-**Member** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Member** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **Period** | Pointer to [**DomainPeriod**](DomainPeriod.md) | Period type and date range | [optional] 
 **Points** | Pointer to **float32** | Participation points with 3 decimal precision (MCQ/zone metric) | [optional] 
 **Previous** | Pointer to **int32** |  | [optional] 
@@ -109,20 +109,20 @@ HasCurrent returns a boolean if a field has been set.
 
 ### GetMember
 
-`func (o *DomainLeaderboardRank) GetMember() DomainPlatformIdentity`
+`func (o *DomainLeaderboardRank) GetMember() IdentitiesPlatformIdentity`
 
 GetMember returns the Member field if non-nil, zero value otherwise.
 
 ### GetMemberOk
 
-`func (o *DomainLeaderboardRank) GetMemberOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainLeaderboardRank) GetMemberOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetMemberOk returns a tuple with the Member field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMember
 
-`func (o *DomainLeaderboardRank) SetMember(v DomainPlatformIdentity)`
+`func (o *DomainLeaderboardRank) SetMember(v IdentitiesPlatformIdentity)`
 
 SetMember sets Member field to given value.
 

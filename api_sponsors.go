@@ -131,7 +131,7 @@ func (a *SponsorsAPIService) CreateSponsorsExecute(r ApiCreateSponsorsRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +142,7 @@ func (a *SponsorsAPIService) CreateSponsorsExecute(r ApiCreateSponsorsRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -281,7 +281,7 @@ func (a *SponsorsAPIService) GetSponsorsExecute(r ApiGetSponsorsRequest) (*Domai
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -292,7 +292,7 @@ func (a *SponsorsAPIService) GetSponsorsExecute(r ApiGetSponsorsRequest) (*Domai
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -415,7 +415,7 @@ func (a *SponsorsAPIService) GetSponsorsByIdExecute(r ApiGetSponsorsByIdRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -426,7 +426,7 @@ func (a *SponsorsAPIService) GetSponsorsByIdExecute(r ApiGetSponsorsByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -569,7 +569,7 @@ func (a *SponsorsAPIService) GetSponsorsByIdSponsorshipsExecute(r ApiGetSponsors
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -580,7 +580,7 @@ func (a *SponsorsAPIService) GetSponsorsByIdSponsorshipsExecute(r ApiGetSponsors
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -591,7 +591,7 @@ func (a *SponsorsAPIService) GetSponsorsByIdSponsorshipsExecute(r ApiGetSponsors
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

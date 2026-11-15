@@ -23,8 +23,8 @@ type DomainMessage struct {
 	Body *string `json:"body,omitempty"`
 	CreatedAt *string `json:"createdAt,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Recipients *DomainPlatformIdentity `json:"recipients,omitempty"`
-	Sender *DomainPlatformIdentity `json:"sender,omitempty"`
+	Recipients *IdentitiesPlatformIdentity `json:"recipients,omitempty"`
+	Sender *IdentitiesPlatformIdentity `json:"sender,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Subject *string `json:"subject,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -144,9 +144,9 @@ func (o *DomainMessage) SetId(v string) {
 }
 
 // GetRecipients returns the Recipients field value if set, zero value otherwise.
-func (o *DomainMessage) GetRecipients() DomainPlatformIdentity {
+func (o *DomainMessage) GetRecipients() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Recipients) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Recipients
@@ -154,7 +154,7 @@ func (o *DomainMessage) GetRecipients() DomainPlatformIdentity {
 
 // GetRecipientsOk returns a tuple with the Recipients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainMessage) GetRecipientsOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainMessage) GetRecipientsOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Recipients) {
 		return nil, false
 	}
@@ -170,15 +170,15 @@ func (o *DomainMessage) HasRecipients() bool {
 	return false
 }
 
-// SetRecipients gets a reference to the given DomainPlatformIdentity and assigns it to the Recipients field.
-func (o *DomainMessage) SetRecipients(v DomainPlatformIdentity) {
+// SetRecipients gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Recipients field.
+func (o *DomainMessage) SetRecipients(v IdentitiesPlatformIdentity) {
 	o.Recipients = &v
 }
 
 // GetSender returns the Sender field value if set, zero value otherwise.
-func (o *DomainMessage) GetSender() DomainPlatformIdentity {
+func (o *DomainMessage) GetSender() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Sender) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Sender
@@ -186,7 +186,7 @@ func (o *DomainMessage) GetSender() DomainPlatformIdentity {
 
 // GetSenderOk returns a tuple with the Sender field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainMessage) GetSenderOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainMessage) GetSenderOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Sender) {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *DomainMessage) HasSender() bool {
 	return false
 }
 
-// SetSender gets a reference to the given DomainPlatformIdentity and assigns it to the Sender field.
-func (o *DomainMessage) SetSender(v DomainPlatformIdentity) {
+// SetSender gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Sender field.
+func (o *DomainMessage) SetSender(v IdentitiesPlatformIdentity) {
 	o.Sender = &v
 }
 

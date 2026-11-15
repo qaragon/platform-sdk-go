@@ -34,34 +34,6 @@ func Test_platform_TournamentsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test TournamentsAPIService GetChannelsByIdTournamentConfiguration", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TournamentsAPI.GetChannelsByIdTournamentConfiguration(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TournamentsAPIService GetChannelsByIdTournaments", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TournamentsAPI.GetChannelsByIdTournaments(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test TournamentsAPIService GetIdentitiesByPiidTournaments", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -69,6 +41,34 @@ func Test_platform_TournamentsAPIService(t *testing.T) {
 		var piid string
 
 		resp, httpRes, err := apiClient.TournamentsAPI.GetIdentitiesByPiidTournaments(context.Background(), piid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TournamentsAPIService GetSpacesByIdTournamentConfiguration", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TournamentsAPI.GetSpacesByIdTournamentConfiguration(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TournamentsAPIService GetSpacesByIdTournaments", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TournamentsAPI.GetSpacesByIdTournaments(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

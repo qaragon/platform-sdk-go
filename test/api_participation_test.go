@@ -36,20 +36,6 @@ func Test_platform_ParticipationAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ParticipationAPIService CreateContestsByIdParticipate", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ParticipationAPI.CreateContestsByIdParticipate(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ParticipationAPIService CreateParticipationByIdStart", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -98,20 +84,6 @@ func Test_platform_ParticipationAPIService(t *testing.T) {
 		var id string
 
 		resp, httpRes, err := apiClient.ParticipationAPI.GetContestsByIdLiveRanking(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ParticipationAPIService GetContestsByIdScoreboard", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ParticipationAPI.GetContestsByIdScoreboard(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

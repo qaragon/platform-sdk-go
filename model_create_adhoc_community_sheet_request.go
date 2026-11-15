@@ -23,6 +23,7 @@ var _ MappedNullable = &CreateAdhocCommunitySheetRequest{}
 // CreateAdhocCommunitySheetRequest struct for CreateAdhocCommunitySheetRequest
 type CreateAdhocCommunitySheetRequest struct {
 	Difficulty string `json:"difficulty"`
+	Format *string `json:"format,omitempty"`
 	NoOfQuestions int32 `json:"no_of_questions"`
 	Topic string `json:"topic"`
 }
@@ -36,6 +37,8 @@ type _CreateAdhocCommunitySheetRequest CreateAdhocCommunitySheetRequest
 func NewCreateAdhocCommunitySheetRequest(difficulty string, noOfQuestions int32, topic string) *CreateAdhocCommunitySheetRequest {
 	this := CreateAdhocCommunitySheetRequest{}
 	this.Difficulty = difficulty
+	var format string = "quiz"
+	this.Format = &format
 	this.NoOfQuestions = noOfQuestions
 	this.Topic = topic
 	return &this
@@ -46,6 +49,8 @@ func NewCreateAdhocCommunitySheetRequest(difficulty string, noOfQuestions int32,
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAdhocCommunitySheetRequestWithDefaults() *CreateAdhocCommunitySheetRequest {
 	this := CreateAdhocCommunitySheetRequest{}
+	var format string = "quiz"
+	this.Format = &format
 	return &this
 }
 
@@ -71,6 +76,38 @@ func (o *CreateAdhocCommunitySheetRequest) GetDifficultyOk() (*string, bool) {
 // SetDifficulty sets field value
 func (o *CreateAdhocCommunitySheetRequest) SetDifficulty(v string) {
 	o.Difficulty = v
+}
+
+// GetFormat returns the Format field value if set, zero value otherwise.
+func (o *CreateAdhocCommunitySheetRequest) GetFormat() string {
+	if o == nil || IsNil(o.Format) {
+		var ret string
+		return ret
+	}
+	return *o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAdhocCommunitySheetRequest) GetFormatOk() (*string, bool) {
+	if o == nil || IsNil(o.Format) {
+		return nil, false
+	}
+	return o.Format, true
+}
+
+// HasFormat returns a boolean if a field has been set.
+func (o *CreateAdhocCommunitySheetRequest) HasFormat() bool {
+	if o != nil && !IsNil(o.Format) {
+		return true
+	}
+
+	return false
+}
+
+// SetFormat gets a reference to the given string and assigns it to the Format field.
+func (o *CreateAdhocCommunitySheetRequest) SetFormat(v string) {
+	o.Format = &v
 }
 
 // GetNoOfQuestions returns the NoOfQuestions field value
@@ -132,6 +169,9 @@ func (o CreateAdhocCommunitySheetRequest) MarshalJSON() ([]byte, error) {
 func (o CreateAdhocCommunitySheetRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["difficulty"] = o.Difficulty
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
+	}
 	toSerialize["no_of_questions"] = o.NoOfQuestions
 	toSerialize["topic"] = o.Topic
 	return toSerialize, nil

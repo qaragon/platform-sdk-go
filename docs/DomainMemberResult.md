@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContestId** | Pointer to **string** |  | [optional] 
 **Group** | Pointer to **string** |  | [optional] 
-**Member** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Member** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **Result** | Pointer to [**DomainParticipationResult**](DomainParticipationResult.md) |  | [optional] 
-**Team** | Pointer to [**DomainTeam**](DomainTeam.md) |  | [optional] 
+**Team** | Pointer to [**TeamsTeam**](TeamsTeam.md) |  | [optional] 
 
 ## Methods
 
@@ -81,20 +81,20 @@ HasGroup returns a boolean if a field has been set.
 
 ### GetMember
 
-`func (o *DomainMemberResult) GetMember() DomainPlatformIdentity`
+`func (o *DomainMemberResult) GetMember() IdentitiesPlatformIdentity`
 
 GetMember returns the Member field if non-nil, zero value otherwise.
 
 ### GetMemberOk
 
-`func (o *DomainMemberResult) GetMemberOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainMemberResult) GetMemberOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetMemberOk returns a tuple with the Member field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMember
 
-`func (o *DomainMemberResult) SetMember(v DomainPlatformIdentity)`
+`func (o *DomainMemberResult) SetMember(v IdentitiesPlatformIdentity)`
 
 SetMember sets Member field to given value.
 
@@ -131,20 +131,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetTeam
 
-`func (o *DomainMemberResult) GetTeam() DomainTeam`
+`func (o *DomainMemberResult) GetTeam() TeamsTeam`
 
 GetTeam returns the Team field if non-nil, zero value otherwise.
 
 ### GetTeamOk
 
-`func (o *DomainMemberResult) GetTeamOk() (*DomainTeam, bool)`
+`func (o *DomainMemberResult) GetTeamOk() (*TeamsTeam, bool)`
 
 GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTeam
 
-`func (o *DomainMemberResult) SetTeam(v DomainTeam)`
+`func (o *DomainMemberResult) SetTeam(v TeamsTeam)`
 
 SetTeam sets Team field to given value.
 

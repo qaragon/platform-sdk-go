@@ -4,11 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Media** | Pointer to [**NullablePuzzleBodyMedia**](PuzzleBodyMedia.md) |  | [optional] 
 **Number** | Pointer to **NullableInt32** |  | [optional] 
-**Options** | Pointer to **[]string** |  | [optional] 
+**Options** | Pointer to **map[string]string** |  | [optional] 
 **Points** | Pointer to **NullableInt32** |  | [optional] 
 **PuzzleType** | Pointer to **string** |  | [optional] 
-**Question** | Pointer to **string** |  | [optional] 
+**Question** | Pointer to **NullableString** | Required for Quiz; optional for Moment, whose media supplies the question. | [optional] 
 **Solution** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -30,6 +31,41 @@ NewPuzzleBodyWithDefaults instantiates a new PuzzleBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetMedia
+
+`func (o *PuzzleBody) GetMedia() PuzzleBodyMedia`
+
+GetMedia returns the Media field if non-nil, zero value otherwise.
+
+### GetMediaOk
+
+`func (o *PuzzleBody) GetMediaOk() (*PuzzleBodyMedia, bool)`
+
+GetMediaOk returns a tuple with the Media field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMedia
+
+`func (o *PuzzleBody) SetMedia(v PuzzleBodyMedia)`
+
+SetMedia sets Media field to given value.
+
+### HasMedia
+
+`func (o *PuzzleBody) HasMedia() bool`
+
+HasMedia returns a boolean if a field has been set.
+
+### SetMediaNil
+
+`func (o *PuzzleBody) SetMediaNil(b bool)`
+
+ SetMediaNil sets the value for Media to be an explicit nil
+
+### UnsetMedia
+`func (o *PuzzleBody) UnsetMedia()`
+
+UnsetMedia ensures that no value is present for Media, not even an explicit nil
 ### GetNumber
 
 `func (o *PuzzleBody) GetNumber() int32`
@@ -67,20 +103,20 @@ HasNumber returns a boolean if a field has been set.
 UnsetNumber ensures that no value is present for Number, not even an explicit nil
 ### GetOptions
 
-`func (o *PuzzleBody) GetOptions() []string`
+`func (o *PuzzleBody) GetOptions() map[string]string`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *PuzzleBody) GetOptionsOk() (*[]string, bool)`
+`func (o *PuzzleBody) GetOptionsOk() (*map[string]string, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *PuzzleBody) SetOptions(v []string)`
+`func (o *PuzzleBody) SetOptions(v map[string]string)`
 
 SetOptions sets Options field to given value.
 
@@ -175,6 +211,16 @@ SetQuestion sets Question field to given value.
 
 HasQuestion returns a boolean if a field has been set.
 
+### SetQuestionNil
+
+`func (o *PuzzleBody) SetQuestionNil(b bool)`
+
+ SetQuestionNil sets the value for Question to be an explicit nil
+
+### UnsetQuestion
+`func (o *PuzzleBody) UnsetQuestion()`
+
+UnsetQuestion ensures that no value is present for Question, not even an explicit nil
 ### GetSolution
 
 `func (o *PuzzleBody) GetSolution() string`

@@ -20,14 +20,15 @@ var _ MappedNullable = &DomainTournament{}
 
 // DomainTournament struct for DomainTournament
 type DomainTournament struct {
-	Channel *DomainChannel `json:"channel,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
-	Creator *DomainPlatformIdentity `json:"creator,omitempty"`
+	Creator *IdentitiesPlatformIdentity `json:"creator,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
 	// RevealGroupsLastNRounds is how many trailing rounds get their groups pre-assigned from the advancers (revealed ahead of play). See ADR 0045.
 	RevealGroupsLastNRounds *int32 `json:"reveal_groups_last_n_rounds,omitempty"`
 	Rounds []DomainTournamentRound `json:"rounds,omitempty"`
+	Space *SpacesSpace `json:"space,omitempty"`
+	SpaceId *string `json:"space_id,omitempty"`
 	State *string `json:"state,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
@@ -47,38 +48,6 @@ func NewDomainTournament() *DomainTournament {
 func NewDomainTournamentWithDefaults() *DomainTournament {
 	this := DomainTournament{}
 	return &this
-}
-
-// GetChannel returns the Channel field value if set, zero value otherwise.
-func (o *DomainTournament) GetChannel() DomainChannel {
-	if o == nil || IsNil(o.Channel) {
-		var ret DomainChannel
-		return ret
-	}
-	return *o.Channel
-}
-
-// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainTournament) GetChannelOk() (*DomainChannel, bool) {
-	if o == nil || IsNil(o.Channel) {
-		return nil, false
-	}
-	return o.Channel, true
-}
-
-// HasChannel returns a boolean if a field has been set.
-func (o *DomainTournament) HasChannel() bool {
-	if o != nil && !IsNil(o.Channel) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannel gets a reference to the given DomainChannel and assigns it to the Channel field.
-func (o *DomainTournament) SetChannel(v DomainChannel) {
-	o.Channel = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -114,9 +83,9 @@ func (o *DomainTournament) SetCreatedAt(v string) {
 }
 
 // GetCreator returns the Creator field value if set, zero value otherwise.
-func (o *DomainTournament) GetCreator() DomainPlatformIdentity {
+func (o *DomainTournament) GetCreator() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Creator) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Creator
@@ -124,7 +93,7 @@ func (o *DomainTournament) GetCreator() DomainPlatformIdentity {
 
 // GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainTournament) GetCreatorOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainTournament) GetCreatorOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Creator) {
 		return nil, false
 	}
@@ -140,8 +109,8 @@ func (o *DomainTournament) HasCreator() bool {
 	return false
 }
 
-// SetCreator gets a reference to the given DomainPlatformIdentity and assigns it to the Creator field.
-func (o *DomainTournament) SetCreator(v DomainPlatformIdentity) {
+// SetCreator gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Creator field.
+func (o *DomainTournament) SetCreator(v IdentitiesPlatformIdentity) {
 	o.Creator = &v
 }
 
@@ -273,6 +242,70 @@ func (o *DomainTournament) SetRounds(v []DomainTournamentRound) {
 	o.Rounds = v
 }
 
+// GetSpace returns the Space field value if set, zero value otherwise.
+func (o *DomainTournament) GetSpace() SpacesSpace {
+	if o == nil || IsNil(o.Space) {
+		var ret SpacesSpace
+		return ret
+	}
+	return *o.Space
+}
+
+// GetSpaceOk returns a tuple with the Space field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainTournament) GetSpaceOk() (*SpacesSpace, bool) {
+	if o == nil || IsNil(o.Space) {
+		return nil, false
+	}
+	return o.Space, true
+}
+
+// HasSpace returns a boolean if a field has been set.
+func (o *DomainTournament) HasSpace() bool {
+	if o != nil && !IsNil(o.Space) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpace gets a reference to the given SpacesSpace and assigns it to the Space field.
+func (o *DomainTournament) SetSpace(v SpacesSpace) {
+	o.Space = &v
+}
+
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *DomainTournament) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
+		return ret
+	}
+	return *o.SpaceId
+}
+
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainTournament) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
+		return nil, false
+	}
+	return o.SpaceId, true
+}
+
+// HasSpaceId returns a boolean if a field has been set.
+func (o *DomainTournament) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *DomainTournament) SetSpaceId(v string) {
+	o.SpaceId = &v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *DomainTournament) GetState() string {
 	if o == nil || IsNil(o.State) {
@@ -347,9 +380,6 @@ func (o DomainTournament) MarshalJSON() ([]byte, error) {
 
 func (o DomainTournament) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Channel) {
-		toSerialize["channel"] = o.Channel
-	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -367,6 +397,12 @@ func (o DomainTournament) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Rounds) {
 		toSerialize["rounds"] = o.Rounds
+	}
+	if !IsNil(o.Space) {
+		toSerialize["space"] = o.Space
+	}
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State

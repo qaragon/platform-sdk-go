@@ -23,18 +23,20 @@ type DomainContestType string
 const (
 	ContestTypeMC DomainContestType = "mc"
 	ContestTypePrediction DomainContestType = "prediction"
-	ContestTypeMajority DomainContestType = "majority"
 	ContestTypeEntryBased DomainContestType = "creative"
 	ContestTypeCheckIn DomainContestType = "checkin"
+	ContestTypeVote DomainContestType = "vote"
+	ContestTypeGuess DomainContestType = "guess"
 )
 
 // All allowed values of DomainContestType enum
 var AllowedDomainContestTypeEnumValues = []DomainContestType{
 	"mc",
 	"prediction",
-	"majority",
 	"creative",
 	"checkin",
+	"vote",
+	"guess",
 }
 
 func (v *DomainContestType) UnmarshalJSON(src []byte) error {

@@ -682,9 +682,15 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerDeleteExecute(r
 type ApiPuzzleWebV2PuzzleSheetControllerIndexRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
+	format *string
 	cursor *string
 	limit *int32
 	xActingAs *string
+}
+
+func (r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) Format(format string) ApiPuzzleWebV2PuzzleSheetControllerIndexRequest {
+	r.format = &format
+	return r
 }
 
 func (r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) Cursor(cursor string) ApiPuzzleWebV2PuzzleSheetControllerIndexRequest {
@@ -743,6 +749,9 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerIndexExecute(r 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.format != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
+	}
 	if r.cursor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
 	}

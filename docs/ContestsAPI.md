@@ -9,15 +9,13 @@ Method | HTTP request | Description
 [**CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept**](ContestsAPI.md#CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept) | **Post** /v2/contests/{contestId}/buddy-boards/{boardId}/invites/accept | Accept a pending buddy board invite (invitee only)
 [**CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline**](ContestsAPI.md#CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline) | **Post** /v2/contests/{contestId}/buddy-boards/{boardId}/invites/decline | Decline a pending buddy board invite (invitee only)
 [**CreateContestsByContestIdBuddyBoardsByBoardIdMembers**](ContestsAPI.md#CreateContestsByContestIdBuddyBoardsByBoardIdMembers) | **Post** /v2/contests/{contestId}/buddy-boards/{boardId}/members | Invite members to a buddy board (owner only)
-[**CreateContestsByIdHostings**](ContestsAPI.md#CreateContestsByIdHostings) | **Post** /v2/contests/{id}/hostings | Invite another venue/channel to host a contest
+[**CreateContestsByIdHostings**](ContestsAPI.md#CreateContestsByIdHostings) | **Post** /v2/contests/{id}/hostings | Invite another venue/space to host a contest
 [**CreateContestsByIdHostingsByHostingIdAccept**](ContestsAPI.md#CreateContestsByIdHostingsByHostingIdAccept) | **Post** /v2/contests/{id}/hostings/{hostingId}/accept | Accept a contest hosting invitation
 [**CreateContestsByIdHostingsByHostingIdDecline**](ContestsAPI.md#CreateContestsByIdHostingsByHostingIdDecline) | **Post** /v2/contests/{id}/hostings/{hostingId}/decline | Decline a contest hosting invitation
-[**CreateContestsByIdParticipations**](ContestsAPI.md#CreateContestsByIdParticipations) | **Post** /v2/contests/{id}/participations | Submit a participation on behalf of a tenant-side fan
 [**CreateTournamentsByIdContest**](ContestsAPI.md#CreateTournamentsByIdContest) | **Post** /v2/tournaments/{id}/contest | Create a contest for the next pending round in a tournament
 [**DeleteContestsById**](ContestsAPI.md#DeleteContestsById) | **Delete** /v2/contests/{id} | Delete Contest
 [**GetAdminHostingInvitations**](ContestsAPI.md#GetAdminHostingInvitations) | **Get** /v2/admin/hosting-invitations | List pending hosting invitations for the calling tenant&#39;s venues
 [**GetBuddyBoards**](ContestsAPI.md#GetBuddyBoards) | **Get** /v2/buddy-boards | List the caller&#39;s buddy boards (cursor-paginated)
-[**GetChannelsByIdContests**](ContestsAPI.md#GetChannelsByIdContests) | **Get** /v2/channels/{id}/contests | Get channel contests (cursor-paginated)
 [**GetContests**](ContestsAPI.md#GetContests) | **Get** /v2/contests | List the caller&#39;s contests (cursor-paginated)
 [**GetContestsByContestIdBuddyBoardsByBoardId**](ContestsAPI.md#GetContestsByContestIdBuddyBoardsByBoardId) | **Get** /v2/contests/{contestId}/buddy-boards/{boardId} | Get buddy board view (metadata + scores filtered to board members)
 [**GetContestsByContestIdBuddyBoardsByBoardIdMembers**](ContestsAPI.md#GetContestsByContestIdBuddyBoardsByBoardIdMembers) | **Get** /v2/contests/{contestId}/buddy-boards/{boardId}/members | List buddy board members (public or authed)
@@ -34,6 +32,7 @@ Method | HTTP request | Description
 [**GetIdentitiesByPiidBuddyBoardInvites**](ContestsAPI.md#GetIdentitiesByPiidBuddyBoardInvites) | **Get** /v2/identities/{piid}/buddy-board-invites | List buddy board invites for a platform identity
 [**GetIdentitiesByPiidBuddyBoards**](ContestsAPI.md#GetIdentitiesByPiidBuddyBoards) | **Get** /v2/identities/{piid}/buddy-boards | List buddy boards owned by a platform identity (cursor-paginated)
 [**GetIdentitiesByPiidContests**](ContestsAPI.md#GetIdentitiesByPiidContests) | **Get** /v2/identities/{piid}/contests | List contests for a platform identity (cursor-paginated)
+[**GetSpacesByIdContests**](ContestsAPI.md#GetSpacesByIdContests) | **Get** /v2/spaces/{id}/contests | Get space contests (cursor-paginated)
 [**PatchContestsById**](ContestsAPI.md#PatchContestsById) | **Patch** /v2/contests/{id} | Update a contest
 [**UpdateContestsByIdHeaderImage**](ContestsAPI.md#UpdateContestsByIdHeaderImage) | **Put** /v2/contests/{id}/header-image | Update a contest&#39;s header image
 
@@ -41,7 +40,7 @@ Method | HTTP request | Description
 
 ## CreateContests
 
-> DomainContestResponse CreateContests(ctx).RequestCreateContestRequest(requestCreateContestRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+> DomainContestResponse CreateContests(ctx).ContesthttpCreateContestPayload(contesthttpCreateContestPayload).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 
 Create a contest
 
@@ -58,13 +57,13 @@ import (
 )
 
 func main() {
-	requestCreateContestRequest := *openapiclient.NewRequestCreateContestRequest("ChannelId_example", *openapiclient.NewDomainReward("RewardType_example", "Value_example"), "SourceType_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // RequestCreateContestRequest | Contest payload
+	contesthttpCreateContestPayload := *openapiclient.NewContesthttpCreateContestPayload(*openapiclient.NewDomainReward("RewardType_example", "Value_example"), "SourceType_example", "SpaceId_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // ContesthttpCreateContestPayload | Contest payload
 	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.CreateContests(context.Background()).RequestCreateContestRequest(requestCreateContestRequest).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestsAPI.CreateContests(context.Background()).ContesthttpCreateContestPayload(contesthttpCreateContestPayload).IdempotencyKey(idempotencyKey).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContests``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -85,7 +84,7 @@ Other parameters are passed through a pointer to a apiCreateContestsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestCreateContestRequest** | [**RequestCreateContestRequest**](RequestCreateContestRequest.md) | Contest payload | 
+ **contesthttpCreateContestPayload** | [**ContesthttpCreateContestPayload**](ContesthttpCreateContestPayload.md) | Contest payload | 
  **idempotencyKey** | **string** | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
@@ -181,7 +180,7 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept
 
-> HandlerStatusResponseResponse CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept(ctx, contestId, boardId).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept(ctx, contestId, boardId).XActingAs(xActingAs).Execute()
 
 Accept a pending buddy board invite (invitee only)
 
@@ -211,7 +210,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept`: HandlerStatusResponseResponse
+	// response from `CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept`: %v\n", resp)
 }
 ```
@@ -238,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -256,7 +255,7 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline
 
-> HandlerStatusResponseResponse CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline(ctx, contestId, boardId).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline(ctx, contestId, boardId).XActingAs(xActingAs).Execute()
 
 Decline a pending buddy board invite (invitee only)
 
@@ -284,7 +283,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline`: HandlerStatusResponseResponse
+	// response from `CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.CreateContestsByContestIdBuddyBoardsByBoardIdInvitesDecline`: %v\n", resp)
 }
 ```
@@ -311,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -329,7 +328,7 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByContestIdBuddyBoardsByBoardIdMembers
 
-> HandlerStatusResponseResponse CreateContestsByContestIdBuddyBoardsByBoardIdMembers(ctx, contestId, boardId).RequestAddBuddyBoardMembersRequest(requestAddBuddyBoardMembersRequest).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByContestIdBuddyBoardsByBoardIdMembers(ctx, contestId, boardId).RequestAddBuddyBoardMembersRequest(requestAddBuddyBoardMembersRequest).XActingAs(xActingAs).Execute()
 
 Invite members to a buddy board (owner only)
 
@@ -360,7 +359,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContestsByContestIdBuddyBoardsByBoardIdMembers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByContestIdBuddyBoardsByBoardIdMembers`: HandlerStatusResponseResponse
+	// response from `CreateContestsByContestIdBuddyBoardsByBoardIdMembers`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.CreateContestsByContestIdBuddyBoardsByBoardIdMembers`: %v\n", resp)
 }
 ```
@@ -388,7 +387,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -406,9 +405,9 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByIdHostings
 
-> HandlerStatusResponseResponse CreateContestsByIdHostings(ctx, id).HandlerCreatePlatformContestHostingRequest(handlerCreatePlatformContestHostingRequest).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByIdHostings(ctx, id).ContesthttpCreatePlatformContestHostingRequest(contesthttpCreatePlatformContestHostingRequest).XActingAs(xActingAs).Execute()
 
-Invite another venue/channel to host a contest
+Invite another venue/space to host a contest
 
 
 
@@ -426,17 +425,17 @@ import (
 
 func main() {
 	id := "id_example" // string | Contest ID
-	handlerCreatePlatformContestHostingRequest := *openapiclient.NewHandlerCreatePlatformContestHostingRequest("ChannelId_example") // HandlerCreatePlatformContestHostingRequest | Hosting payload
+	contesthttpCreatePlatformContestHostingRequest := *openapiclient.NewContesthttpCreatePlatformContestHostingRequest("SpaceId_example") // ContesthttpCreatePlatformContestHostingRequest | Hosting payload
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.CreateContestsByIdHostings(context.Background(), id).HandlerCreatePlatformContestHostingRequest(handlerCreatePlatformContestHostingRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestsAPI.CreateContestsByIdHostings(context.Background(), id).ContesthttpCreatePlatformContestHostingRequest(contesthttpCreatePlatformContestHostingRequest).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContestsByIdHostings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByIdHostings`: HandlerStatusResponseResponse
+	// response from `CreateContestsByIdHostings`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.CreateContestsByIdHostings`: %v\n", resp)
 }
 ```
@@ -457,12 +456,12 @@ Other parameters are passed through a pointer to a apiCreateContestsByIdHostings
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **handlerCreatePlatformContestHostingRequest** | [**HandlerCreatePlatformContestHostingRequest**](HandlerCreatePlatformContestHostingRequest.md) | Hosting payload | 
+ **contesthttpCreatePlatformContestHostingRequest** | [**ContesthttpCreatePlatformContestHostingRequest**](ContesthttpCreatePlatformContestHostingRequest.md) | Hosting payload | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -480,7 +479,7 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByIdHostingsByHostingIdAccept
 
-> HandlerStatusResponseResponse CreateContestsByIdHostingsByHostingIdAccept(ctx, id, hostingId).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByIdHostingsByHostingIdAccept(ctx, id, hostingId).XActingAs(xActingAs).Execute()
 
 Accept a contest hosting invitation
 
@@ -510,7 +509,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContestsByIdHostingsByHostingIdAccept``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByIdHostingsByHostingIdAccept`: HandlerStatusResponseResponse
+	// response from `CreateContestsByIdHostingsByHostingIdAccept`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.CreateContestsByIdHostingsByHostingIdAccept`: %v\n", resp)
 }
 ```
@@ -537,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -555,7 +554,7 @@ Name | Type | Description  | Notes
 
 ## CreateContestsByIdHostingsByHostingIdDecline
 
-> HandlerStatusResponseResponse CreateContestsByIdHostingsByHostingIdDecline(ctx, id, hostingId).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse CreateContestsByIdHostingsByHostingIdDecline(ctx, id, hostingId).XActingAs(xActingAs).Execute()
 
 Decline a contest hosting invitation
 
@@ -585,7 +584,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContestsByIdHostingsByHostingIdDecline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContestsByIdHostingsByHostingIdDecline`: HandlerStatusResponseResponse
+	// response from `CreateContestsByIdHostingsByHostingIdDecline`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.CreateContestsByIdHostingsByHostingIdDecline`: %v\n", resp)
 }
 ```
@@ -612,7 +611,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 
@@ -628,83 +627,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateContestsByIdParticipations
-
-> HandlerStatusResponseResponse CreateContestsByIdParticipations(ctx, id).HandlerCreatePlatformParticipationRequest(handlerCreatePlatformParticipationRequest).XActingAs(xActingAs).Execute()
-
-Submit a participation on behalf of a tenant-side fan
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Contest ID
-	handlerCreatePlatformParticipationRequest := *openapiclient.NewHandlerCreatePlatformParticipationRequest("ChannelId_example", "DisplayName_example", "PlatformIdentityId_example") // HandlerCreatePlatformParticipationRequest | Participation payload
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.CreateContestsByIdParticipations(context.Background(), id).HandlerCreatePlatformParticipationRequest(handlerCreatePlatformParticipationRequest).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateContestsByIdParticipations``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateContestsByIdParticipations`: HandlerStatusResponseResponse
-	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.CreateContestsByIdParticipations`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Contest ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateContestsByIdParticipationsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **handlerCreatePlatformParticipationRequest** | [**HandlerCreatePlatformParticipationRequest**](HandlerCreatePlatformParticipationRequest.md) | Participation payload | 
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## CreateTournamentsByIdContest
 
-> DomainContestResponse CreateTournamentsByIdContest(ctx, id).RequestCreateContestRequest(requestCreateContestRequest).XActingAs(xActingAs).Execute()
+> DomainContestResponse CreateTournamentsByIdContest(ctx, id).TournamenthttpCreateContestPayload(tournamenthttpCreateContestPayload).XActingAs(xActingAs).Execute()
 
 Create a contest for the next pending round in a tournament
 
@@ -722,12 +647,12 @@ import (
 
 func main() {
 	id := "id_example" // string | Tournament ID
-	requestCreateContestRequest := *openapiclient.NewRequestCreateContestRequest("ChannelId_example", *openapiclient.NewDomainReward("RewardType_example", "Value_example"), "SourceType_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // RequestCreateContestRequest | Contest payload
+	tournamenthttpCreateContestPayload := *openapiclient.NewTournamenthttpCreateContestPayload(*openapiclient.NewDomainReward("RewardType_example", "Value_example"), "SourceType_example", "SpaceId_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // TournamenthttpCreateContestPayload | Contest payload
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.CreateTournamentsByIdContest(context.Background(), id).RequestCreateContestRequest(requestCreateContestRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestsAPI.CreateTournamentsByIdContest(context.Background(), id).TournamenthttpCreateContestPayload(tournamenthttpCreateContestPayload).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.CreateTournamentsByIdContest``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -753,7 +678,7 @@ Other parameters are passed through a pointer to a apiCreateTournamentsByIdConte
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestCreateContestRequest** | [**RequestCreateContestRequest**](RequestCreateContestRequest.md) | Contest payload | 
+ **tournamenthttpCreateContestPayload** | [**TournamenthttpCreateContestPayload**](TournamenthttpCreateContestPayload.md) | Contest payload | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
@@ -776,7 +701,7 @@ Name | Type | Description  | Notes
 
 ## DeleteContestsById
 
-> CreateChannelsByIdReport200Response DeleteContestsById(ctx, id).XActingAs(xActingAs).Execute()
+> DeleteContestsById200Response DeleteContestsById(ctx, id).XActingAs(xActingAs).Execute()
 
 Delete Contest
 
@@ -805,7 +730,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.DeleteContestsById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteContestsById`: CreateChannelsByIdReport200Response
+	// response from `DeleteContestsById`: DeleteContestsById200Response
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.DeleteContestsById`: %v\n", resp)
 }
 ```
@@ -830,7 +755,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateChannelsByIdReport200Response**](CreateChannelsByIdReport200Response.md)
+[**DeleteContestsById200Response**](DeleteContestsById200Response.md)
 
 ### Authorization
 
@@ -967,80 +892,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DomainBuddyBoardListResponse**](DomainBuddyBoardListResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetChannelsByIdContests
-
-> DomainContestListResponse GetChannelsByIdContests(ctx, id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
-
-Get channel contests (cursor-paginated)
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Channel ID
-	cursor := "cursor_example" // string | Opaque pagination cursor (optional)
-	limit := int32(56) // int32 | Page size (default 20) (optional)
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.GetChannelsByIdContests(context.Background(), id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.GetChannelsByIdContests``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetChannelsByIdContests`: DomainContestListResponse
-	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.GetChannelsByIdContests`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Channel ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetChannelsByIdContestsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **cursor** | **string** | Opaque pagination cursor | 
- **limit** | **int32** | Page size (default 20) | 
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**DomainContestListResponse**](DomainContestListResponse.md)
 
 ### Authorization
 
@@ -1201,7 +1052,7 @@ Name | Type | Description  | Notes
 
 ## GetContestsByContestIdBuddyBoardsByBoardIdMembers
 
-> DomainPlatformIdentityListResponse GetContestsByContestIdBuddyBoardsByBoardIdMembers(ctx, contestId, boardId).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> IdentitiesPlatformIdentityListResponse GetContestsByContestIdBuddyBoardsByBoardIdMembers(ctx, contestId, boardId).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List buddy board members (public or authed)
 
@@ -1233,7 +1084,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.GetContestsByContestIdBuddyBoardsByBoardIdMembers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetContestsByContestIdBuddyBoardsByBoardIdMembers`: DomainPlatformIdentityListResponse
+	// response from `GetContestsByContestIdBuddyBoardsByBoardIdMembers`: IdentitiesPlatformIdentityListResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.GetContestsByContestIdBuddyBoardsByBoardIdMembers`: %v\n", resp)
 }
 ```
@@ -1262,7 +1113,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainPlatformIdentityListResponse**](DomainPlatformIdentityListResponse.md)
+[**IdentitiesPlatformIdentityListResponse**](IdentitiesPlatformIdentityListResponse.md)
 
 ### Authorization
 
@@ -1574,6 +1425,8 @@ Name | Type | Description  | Notes
 > DomainParticipationListResponse GetContestsByIdParticipation(ctx, id).Cursor(cursor).Limit(limit).Winners(winners).Status(status).XActingAs(xActingAs).Execute()
 
 Get contest participation result (cursor-paginated)
+
+
 
 ### Example
 
@@ -2243,9 +2096,83 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetSpacesByIdContests
+
+> DomainContestListResponse GetSpacesByIdContests(ctx, id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+
+Get space contests (cursor-paginated)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/fanscontest/platform-sdk-go"
+)
+
+func main() {
+	id := "id_example" // string | Space ID
+	cursor := "cursor_example" // string | Opaque pagination cursor (optional)
+	limit := int32(56) // int32 | Page size (default 20) (optional)
+	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContestsAPI.GetSpacesByIdContests(context.Background(), id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.GetSpacesByIdContests``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSpacesByIdContests`: DomainContestListResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContestsAPI.GetSpacesByIdContests`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Space ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSpacesByIdContestsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **cursor** | **string** | Opaque pagination cursor | 
+ **limit** | **int32** | Page size (default 20) | 
+ **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
+
+### Return type
+
+[**DomainContestListResponse**](DomainContestListResponse.md)
+
+### Authorization
+
+[TenantApiKey](../README.md#TenantApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PatchContestsById
 
-> DomainContestResponse PatchContestsById(ctx, id).RequestUpdateContestRequest(requestUpdateContestRequest).XActingAs(xActingAs).Execute()
+> DomainContestResponse PatchContestsById(ctx, id).ContesthttpUpdateContestRequest(contesthttpUpdateContestRequest).XActingAs(xActingAs).Execute()
 
 Update a contest
 
@@ -2263,12 +2190,12 @@ import (
 
 func main() {
 	id := "id_example" // string | Contest ID
-	requestUpdateContestRequest := *openapiclient.NewRequestUpdateContestRequest("Description_example", int32(123), *openapiclient.NewDomainReward("RewardType_example", "Value_example"), *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example", int32(123)) // RequestUpdateContestRequest | Contest payload
+	contesthttpUpdateContestRequest := *openapiclient.NewContesthttpUpdateContestRequest("Description_example", int32(123), *openapiclient.NewDomainReward("RewardType_example", "Value_example"), *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example", int32(123)) // ContesthttpUpdateContestRequest | Contest payload
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.PatchContestsById(context.Background(), id).RequestUpdateContestRequest(requestUpdateContestRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestsAPI.PatchContestsById(context.Background(), id).ContesthttpUpdateContestRequest(contesthttpUpdateContestRequest).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.PatchContestsById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2294,7 +2221,7 @@ Other parameters are passed through a pointer to a apiPatchContestsByIdRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestUpdateContestRequest** | [**RequestUpdateContestRequest**](RequestUpdateContestRequest.md) | Contest payload | 
+ **contesthttpUpdateContestRequest** | [**ContesthttpUpdateContestRequest**](ContesthttpUpdateContestRequest.md) | Contest payload | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
@@ -2317,7 +2244,7 @@ Name | Type | Description  | Notes
 
 ## UpdateContestsByIdHeaderImage
 
-> DomainContestResponse UpdateContestsByIdHeaderImage(ctx, id).RequestUpdateContestHeaderImage(requestUpdateContestHeaderImage).XActingAs(xActingAs).Execute()
+> DomainContestResponse UpdateContestsByIdHeaderImage(ctx, id).ContesthttpUpdateContestHeaderImage(contesthttpUpdateContestHeaderImage).XActingAs(xActingAs).Execute()
 
 Update a contest's header image
 
@@ -2335,12 +2262,12 @@ import (
 
 func main() {
 	id := "id_example" // string | Contest ID
-	requestUpdateContestHeaderImage := *openapiclient.NewRequestUpdateContestHeaderImage("HeaderImageUrl_example") // RequestUpdateContestHeaderImage | Header image payload
+	contesthttpUpdateContestHeaderImage := *openapiclient.NewContesthttpUpdateContestHeaderImage("HeaderImageUrl_example") // ContesthttpUpdateContestHeaderImage | Header image payload
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.UpdateContestsByIdHeaderImage(context.Background(), id).RequestUpdateContestHeaderImage(requestUpdateContestHeaderImage).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestsAPI.UpdateContestsByIdHeaderImage(context.Background(), id).ContesthttpUpdateContestHeaderImage(contesthttpUpdateContestHeaderImage).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.UpdateContestsByIdHeaderImage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2366,7 +2293,7 @@ Other parameters are passed through a pointer to a apiUpdateContestsByIdHeaderIm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestUpdateContestHeaderImage** | [**RequestUpdateContestHeaderImage**](RequestUpdateContestHeaderImage.md) | Header image payload | 
+ **contesthttpUpdateContestHeaderImage** | [**ContesthttpUpdateContestHeaderImage**](ContesthttpUpdateContestHeaderImage.md) | Header image payload | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type

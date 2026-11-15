@@ -20,10 +20,10 @@ var _ MappedNullable = &DomainStatsOverview{}
 
 // DomainStatsOverview struct for DomainStatsOverview
 type DomainStatsOverview struct {
-	Channels *int32 `json:"channels,omitempty"`
 	Contests *int32 `json:"contests,omitempty"`
 	Enrollments *int32 `json:"enrollments,omitempty"`
-	Subscriptions *int32 `json:"subscriptions,omitempty"`
+	Memberships *int32 `json:"memberships,omitempty"`
+	Spaces *int32 `json:"spaces,omitempty"`
 	TopContestParticipants []DomainParticipationCount `json:"top_contest_participants,omitempty"`
 	TopRankedParticipants []DomainParticipationCount `json:"top_ranked_participants,omitempty"`
 }
@@ -43,38 +43,6 @@ func NewDomainStatsOverview() *DomainStatsOverview {
 func NewDomainStatsOverviewWithDefaults() *DomainStatsOverview {
 	this := DomainStatsOverview{}
 	return &this
-}
-
-// GetChannels returns the Channels field value if set, zero value otherwise.
-func (o *DomainStatsOverview) GetChannels() int32 {
-	if o == nil || IsNil(o.Channels) {
-		var ret int32
-		return ret
-	}
-	return *o.Channels
-}
-
-// GetChannelsOk returns a tuple with the Channels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainStatsOverview) GetChannelsOk() (*int32, bool) {
-	if o == nil || IsNil(o.Channels) {
-		return nil, false
-	}
-	return o.Channels, true
-}
-
-// HasChannels returns a boolean if a field has been set.
-func (o *DomainStatsOverview) HasChannels() bool {
-	if o != nil && !IsNil(o.Channels) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannels gets a reference to the given int32 and assigns it to the Channels field.
-func (o *DomainStatsOverview) SetChannels(v int32) {
-	o.Channels = &v
 }
 
 // GetContests returns the Contests field value if set, zero value otherwise.
@@ -141,36 +109,68 @@ func (o *DomainStatsOverview) SetEnrollments(v int32) {
 	o.Enrollments = &v
 }
 
-// GetSubscriptions returns the Subscriptions field value if set, zero value otherwise.
-func (o *DomainStatsOverview) GetSubscriptions() int32 {
-	if o == nil || IsNil(o.Subscriptions) {
+// GetMemberships returns the Memberships field value if set, zero value otherwise.
+func (o *DomainStatsOverview) GetMemberships() int32 {
+	if o == nil || IsNil(o.Memberships) {
 		var ret int32
 		return ret
 	}
-	return *o.Subscriptions
+	return *o.Memberships
 }
 
-// GetSubscriptionsOk returns a tuple with the Subscriptions field value if set, nil otherwise
+// GetMembershipsOk returns a tuple with the Memberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainStatsOverview) GetSubscriptionsOk() (*int32, bool) {
-	if o == nil || IsNil(o.Subscriptions) {
+func (o *DomainStatsOverview) GetMembershipsOk() (*int32, bool) {
+	if o == nil || IsNil(o.Memberships) {
 		return nil, false
 	}
-	return o.Subscriptions, true
+	return o.Memberships, true
 }
 
-// HasSubscriptions returns a boolean if a field has been set.
-func (o *DomainStatsOverview) HasSubscriptions() bool {
-	if o != nil && !IsNil(o.Subscriptions) {
+// HasMemberships returns a boolean if a field has been set.
+func (o *DomainStatsOverview) HasMemberships() bool {
+	if o != nil && !IsNil(o.Memberships) {
 		return true
 	}
 
 	return false
 }
 
-// SetSubscriptions gets a reference to the given int32 and assigns it to the Subscriptions field.
-func (o *DomainStatsOverview) SetSubscriptions(v int32) {
-	o.Subscriptions = &v
+// SetMemberships gets a reference to the given int32 and assigns it to the Memberships field.
+func (o *DomainStatsOverview) SetMemberships(v int32) {
+	o.Memberships = &v
+}
+
+// GetSpaces returns the Spaces field value if set, zero value otherwise.
+func (o *DomainStatsOverview) GetSpaces() int32 {
+	if o == nil || IsNil(o.Spaces) {
+		var ret int32
+		return ret
+	}
+	return *o.Spaces
+}
+
+// GetSpacesOk returns a tuple with the Spaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainStatsOverview) GetSpacesOk() (*int32, bool) {
+	if o == nil || IsNil(o.Spaces) {
+		return nil, false
+	}
+	return o.Spaces, true
+}
+
+// HasSpaces returns a boolean if a field has been set.
+func (o *DomainStatsOverview) HasSpaces() bool {
+	if o != nil && !IsNil(o.Spaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaces gets a reference to the given int32 and assigns it to the Spaces field.
+func (o *DomainStatsOverview) SetSpaces(v int32) {
+	o.Spaces = &v
 }
 
 // GetTopContestParticipants returns the TopContestParticipants field value if set, zero value otherwise.
@@ -247,17 +247,17 @@ func (o DomainStatsOverview) MarshalJSON() ([]byte, error) {
 
 func (o DomainStatsOverview) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Channels) {
-		toSerialize["channels"] = o.Channels
-	}
 	if !IsNil(o.Contests) {
 		toSerialize["contests"] = o.Contests
 	}
 	if !IsNil(o.Enrollments) {
 		toSerialize["enrollments"] = o.Enrollments
 	}
-	if !IsNil(o.Subscriptions) {
-		toSerialize["subscriptions"] = o.Subscriptions
+	if !IsNil(o.Memberships) {
+		toSerialize["memberships"] = o.Memberships
+	}
+	if !IsNil(o.Spaces) {
+		toSerialize["spaces"] = o.Spaces
 	}
 	if !IsNil(o.TopContestParticipants) {
 		toSerialize["top_contest_participants"] = o.TopContestParticipants

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BoardType** | Pointer to **string** |  | [optional] 
-**Channel** | Pointer to [**DomainChannel**](DomainChannel.md) |  | [optional] 
+**Space** | Pointer to [**SpacesSpace**](SpacesSpace.md) |  | [optional] 
 
 ## Methods
 
@@ -51,30 +51,30 @@ SetBoardType sets BoardType field to given value.
 
 HasBoardType returns a boolean if a field has been set.
 
-### GetChannel
+### GetSpace
 
-`func (o *DomainBoardContext) GetChannel() DomainChannel`
+`func (o *DomainBoardContext) GetSpace() SpacesSpace`
 
-GetChannel returns the Channel field if non-nil, zero value otherwise.
+GetSpace returns the Space field if non-nil, zero value otherwise.
 
-### GetChannelOk
+### GetSpaceOk
 
-`func (o *DomainBoardContext) GetChannelOk() (*DomainChannel, bool)`
+`func (o *DomainBoardContext) GetSpaceOk() (*SpacesSpace, bool)`
 
-GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
+GetSpaceOk returns a tuple with the Space field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetChannel
+### SetSpace
 
-`func (o *DomainBoardContext) SetChannel(v DomainChannel)`
+`func (o *DomainBoardContext) SetSpace(v SpacesSpace)`
 
-SetChannel sets Channel field to given value.
+SetSpace sets Space field to given value.
 
-### HasChannel
+### HasSpace
 
-`func (o *DomainBoardContext) HasChannel() bool`
+`func (o *DomainBoardContext) HasSpace() bool`
 
-HasChannel returns a boolean if a field has been set.
+HasSpace returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

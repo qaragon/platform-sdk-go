@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CanCreateTournament** | Pointer to **bool** |  | [optional] 
-**ChannelId** | Pointer to **string** |  | [optional] 
 **MaxRoundsPossible** | Pointer to **int32** |  | [optional] 
+**MemberCount** | Pointer to **int32** |  | [optional] 
 **MinParticipantsPerGroup** | Pointer to **int32** |  | [optional] 
 **MinRoundsRequired** | Pointer to **int32** |  | [optional] 
-**SubscriberCount** | Pointer to **int32** |  | [optional] 
+**SpaceId** | Pointer to **string** |  | [optional] 
 **Templates** | Pointer to [**[]DomainTournamentTemplate**](DomainTournamentTemplate.md) |  | [optional] 
 
 ## Methods
@@ -56,31 +56,6 @@ SetCanCreateTournament sets CanCreateTournament field to given value.
 
 HasCanCreateTournament returns a boolean if a field has been set.
 
-### GetChannelId
-
-`func (o *DomainTournamentConfiguration) GetChannelId() string`
-
-GetChannelId returns the ChannelId field if non-nil, zero value otherwise.
-
-### GetChannelIdOk
-
-`func (o *DomainTournamentConfiguration) GetChannelIdOk() (*string, bool)`
-
-GetChannelIdOk returns a tuple with the ChannelId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChannelId
-
-`func (o *DomainTournamentConfiguration) SetChannelId(v string)`
-
-SetChannelId sets ChannelId field to given value.
-
-### HasChannelId
-
-`func (o *DomainTournamentConfiguration) HasChannelId() bool`
-
-HasChannelId returns a boolean if a field has been set.
-
 ### GetMaxRoundsPossible
 
 `func (o *DomainTournamentConfiguration) GetMaxRoundsPossible() int32`
@@ -105,6 +80,31 @@ SetMaxRoundsPossible sets MaxRoundsPossible field to given value.
 `func (o *DomainTournamentConfiguration) HasMaxRoundsPossible() bool`
 
 HasMaxRoundsPossible returns a boolean if a field has been set.
+
+### GetMemberCount
+
+`func (o *DomainTournamentConfiguration) GetMemberCount() int32`
+
+GetMemberCount returns the MemberCount field if non-nil, zero value otherwise.
+
+### GetMemberCountOk
+
+`func (o *DomainTournamentConfiguration) GetMemberCountOk() (*int32, bool)`
+
+GetMemberCountOk returns a tuple with the MemberCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMemberCount
+
+`func (o *DomainTournamentConfiguration) SetMemberCount(v int32)`
+
+SetMemberCount sets MemberCount field to given value.
+
+### HasMemberCount
+
+`func (o *DomainTournamentConfiguration) HasMemberCount() bool`
+
+HasMemberCount returns a boolean if a field has been set.
 
 ### GetMinParticipantsPerGroup
 
@@ -156,30 +156,30 @@ SetMinRoundsRequired sets MinRoundsRequired field to given value.
 
 HasMinRoundsRequired returns a boolean if a field has been set.
 
-### GetSubscriberCount
+### GetSpaceId
 
-`func (o *DomainTournamentConfiguration) GetSubscriberCount() int32`
+`func (o *DomainTournamentConfiguration) GetSpaceId() string`
 
-GetSubscriberCount returns the SubscriberCount field if non-nil, zero value otherwise.
+GetSpaceId returns the SpaceId field if non-nil, zero value otherwise.
 
-### GetSubscriberCountOk
+### GetSpaceIdOk
 
-`func (o *DomainTournamentConfiguration) GetSubscriberCountOk() (*int32, bool)`
+`func (o *DomainTournamentConfiguration) GetSpaceIdOk() (*string, bool)`
 
-GetSubscriberCountOk returns a tuple with the SubscriberCount field if it's non-nil, zero value otherwise
+GetSpaceIdOk returns a tuple with the SpaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubscriberCount
+### SetSpaceId
 
-`func (o *DomainTournamentConfiguration) SetSubscriberCount(v int32)`
+`func (o *DomainTournamentConfiguration) SetSpaceId(v string)`
 
-SetSubscriberCount sets SubscriberCount field to given value.
+SetSpaceId sets SpaceId field to given value.
 
-### HasSubscriberCount
+### HasSpaceId
 
-`func (o *DomainTournamentConfiguration) HasSubscriberCount() bool`
+`func (o *DomainTournamentConfiguration) HasSpaceId() bool`
 
-HasSubscriberCount returns a boolean if a field has been set.
+HasSpaceId returns a boolean if a field has been set.
 
 ### GetTemplates
 

@@ -6,10 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CanParticipate** | Pointer to **bool** |  | [optional] 
 **CanParticipateReasons** | Pointer to **[]string** |  | [optional] 
-**Enrolled** | Pointer to **bool** | deprecated: always true when struct is present | [optional] 
 **ParticipationId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** | \&quot;participated\&quot; | \&quot;timed_out\&quot; | [optional] 
-**Team** | Pointer to [**DomainTeam**](DomainTeam.md) |  | [optional] 
+**Team** | Pointer to [**TeamsTeam**](TeamsTeam.md) |  | [optional] 
 
 ## Methods
 
@@ -80,31 +79,6 @@ SetCanParticipateReasons sets CanParticipateReasons field to given value.
 
 HasCanParticipateReasons returns a boolean if a field has been set.
 
-### GetEnrolled
-
-`func (o *DomainMemberParticipationSummary) GetEnrolled() bool`
-
-GetEnrolled returns the Enrolled field if non-nil, zero value otherwise.
-
-### GetEnrolledOk
-
-`func (o *DomainMemberParticipationSummary) GetEnrolledOk() (*bool, bool)`
-
-GetEnrolledOk returns a tuple with the Enrolled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnrolled
-
-`func (o *DomainMemberParticipationSummary) SetEnrolled(v bool)`
-
-SetEnrolled sets Enrolled field to given value.
-
-### HasEnrolled
-
-`func (o *DomainMemberParticipationSummary) HasEnrolled() bool`
-
-HasEnrolled returns a boolean if a field has been set.
-
 ### GetParticipationId
 
 `func (o *DomainMemberParticipationSummary) GetParticipationId() string`
@@ -157,20 +131,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetTeam
 
-`func (o *DomainMemberParticipationSummary) GetTeam() DomainTeam`
+`func (o *DomainMemberParticipationSummary) GetTeam() TeamsTeam`
 
 GetTeam returns the Team field if non-nil, zero value otherwise.
 
 ### GetTeamOk
 
-`func (o *DomainMemberParticipationSummary) GetTeamOk() (*DomainTeam, bool)`
+`func (o *DomainMemberParticipationSummary) GetTeamOk() (*TeamsTeam, bool)`
 
 GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTeam
 
-`func (o *DomainMemberParticipationSummary) SetTeam(v DomainTeam)`
+`func (o *DomainMemberParticipationSummary) SetTeam(v TeamsTeam)`
 
 SetTeam sets Team field to given value.
 

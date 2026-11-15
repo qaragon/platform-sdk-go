@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channel** | Pointer to [**DomainChannel**](DomainChannel.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
-**Creator** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Creator** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **RevealGroupsLastNRounds** | Pointer to **int32** | RevealGroupsLastNRounds is how many trailing rounds get their groups pre-assigned from the advancers (revealed ahead of play). See ADR 0045. | [optional] 
 **Rounds** | Pointer to [**[]DomainTournamentRound**](DomainTournamentRound.md) |  | [optional] 
+**Space** | Pointer to [**SpacesSpace**](SpacesSpace.md) |  | [optional] 
+**SpaceId** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 
@@ -32,31 +33,6 @@ will change when the set of required properties is changed
 NewDomainTournamentWithDefaults instantiates a new DomainTournament object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetChannel
-
-`func (o *DomainTournament) GetChannel() DomainChannel`
-
-GetChannel returns the Channel field if non-nil, zero value otherwise.
-
-### GetChannelOk
-
-`func (o *DomainTournament) GetChannelOk() (*DomainChannel, bool)`
-
-GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChannel
-
-`func (o *DomainTournament) SetChannel(v DomainChannel)`
-
-SetChannel sets Channel field to given value.
-
-### HasChannel
-
-`func (o *DomainTournament) HasChannel() bool`
-
-HasChannel returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -85,20 +61,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCreator
 
-`func (o *DomainTournament) GetCreator() DomainPlatformIdentity`
+`func (o *DomainTournament) GetCreator() IdentitiesPlatformIdentity`
 
 GetCreator returns the Creator field if non-nil, zero value otherwise.
 
 ### GetCreatorOk
 
-`func (o *DomainTournament) GetCreatorOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainTournament) GetCreatorOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetCreatorOk returns a tuple with the Creator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreator
 
-`func (o *DomainTournament) SetCreator(v DomainPlatformIdentity)`
+`func (o *DomainTournament) SetCreator(v IdentitiesPlatformIdentity)`
 
 SetCreator sets Creator field to given value.
 
@@ -207,6 +183,56 @@ SetRounds sets Rounds field to given value.
 `func (o *DomainTournament) HasRounds() bool`
 
 HasRounds returns a boolean if a field has been set.
+
+### GetSpace
+
+`func (o *DomainTournament) GetSpace() SpacesSpace`
+
+GetSpace returns the Space field if non-nil, zero value otherwise.
+
+### GetSpaceOk
+
+`func (o *DomainTournament) GetSpaceOk() (*SpacesSpace, bool)`
+
+GetSpaceOk returns a tuple with the Space field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpace
+
+`func (o *DomainTournament) SetSpace(v SpacesSpace)`
+
+SetSpace sets Space field to given value.
+
+### HasSpace
+
+`func (o *DomainTournament) HasSpace() bool`
+
+HasSpace returns a boolean if a field has been set.
+
+### GetSpaceId
+
+`func (o *DomainTournament) GetSpaceId() string`
+
+GetSpaceId returns the SpaceId field if non-nil, zero value otherwise.
+
+### GetSpaceIdOk
+
+`func (o *DomainTournament) GetSpaceIdOk() (*string, bool)`
+
+GetSpaceIdOk returns a tuple with the SpaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpaceId
+
+`func (o *DomainTournament) SetSpaceId(v string)`
+
+SetSpaceId sets SpaceId field to given value.
+
+### HasSpaceId
+
+`func (o *DomainTournament) HasSpaceId() bool`
+
+HasSpaceId returns a boolean if a field has been set.
 
 ### GetState
 

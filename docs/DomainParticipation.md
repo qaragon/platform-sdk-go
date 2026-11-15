@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ChannelId** | Pointer to **string** |  | [optional] 
 **Contest** | Pointer to [**DomainContest**](DomainContest.md) |  | [optional] 
 **ContestGroupName** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LastModifiedAt** | Pointer to **string** |  | [optional] 
-**Participant** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Participant** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **PlatformIdentityId** | Pointer to **string** |  | [optional] 
 **Result** | Pointer to [**DomainParticipationResult**](DomainParticipationResult.md) |  | [optional] 
-**Solutions** | Pointer to **[]int32** | Unified field - can be []Solution or []Prediction | [optional] 
+**Solutions** | Pointer to [**DomainParticipationSolutions**](DomainParticipationSolutions.md) |  | [optional] 
+**SpaceId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **SubmissionNumber** | Pointer to **int32** |  | [optional] 
-**Team** | Pointer to [**DomainTeam**](DomainTeam.md) |  | [optional] 
+**Team** | Pointer to [**TeamsTeam**](TeamsTeam.md) |  | [optional] 
 **Time** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -37,31 +37,6 @@ will change when the set of required properties is changed
 NewDomainParticipationWithDefaults instantiates a new DomainParticipation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetChannelId
-
-`func (o *DomainParticipation) GetChannelId() string`
-
-GetChannelId returns the ChannelId field if non-nil, zero value otherwise.
-
-### GetChannelIdOk
-
-`func (o *DomainParticipation) GetChannelIdOk() (*string, bool)`
-
-GetChannelIdOk returns a tuple with the ChannelId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChannelId
-
-`func (o *DomainParticipation) SetChannelId(v string)`
-
-SetChannelId sets ChannelId field to given value.
-
-### HasChannelId
-
-`func (o *DomainParticipation) HasChannelId() bool`
-
-HasChannelId returns a boolean if a field has been set.
 
 ### GetContest
 
@@ -190,20 +165,20 @@ HasLastModifiedAt returns a boolean if a field has been set.
 
 ### GetParticipant
 
-`func (o *DomainParticipation) GetParticipant() DomainPlatformIdentity`
+`func (o *DomainParticipation) GetParticipant() IdentitiesPlatformIdentity`
 
 GetParticipant returns the Participant field if non-nil, zero value otherwise.
 
 ### GetParticipantOk
 
-`func (o *DomainParticipation) GetParticipantOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainParticipation) GetParticipantOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetParticipantOk returns a tuple with the Participant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParticipant
 
-`func (o *DomainParticipation) SetParticipant(v DomainPlatformIdentity)`
+`func (o *DomainParticipation) SetParticipant(v IdentitiesPlatformIdentity)`
 
 SetParticipant sets Participant field to given value.
 
@@ -265,20 +240,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetSolutions
 
-`func (o *DomainParticipation) GetSolutions() []int32`
+`func (o *DomainParticipation) GetSolutions() DomainParticipationSolutions`
 
 GetSolutions returns the Solutions field if non-nil, zero value otherwise.
 
 ### GetSolutionsOk
 
-`func (o *DomainParticipation) GetSolutionsOk() (*[]int32, bool)`
+`func (o *DomainParticipation) GetSolutionsOk() (*DomainParticipationSolutions, bool)`
 
 GetSolutionsOk returns a tuple with the Solutions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSolutions
 
-`func (o *DomainParticipation) SetSolutions(v []int32)`
+`func (o *DomainParticipation) SetSolutions(v DomainParticipationSolutions)`
 
 SetSolutions sets Solutions field to given value.
 
@@ -287,6 +262,31 @@ SetSolutions sets Solutions field to given value.
 `func (o *DomainParticipation) HasSolutions() bool`
 
 HasSolutions returns a boolean if a field has been set.
+
+### GetSpaceId
+
+`func (o *DomainParticipation) GetSpaceId() string`
+
+GetSpaceId returns the SpaceId field if non-nil, zero value otherwise.
+
+### GetSpaceIdOk
+
+`func (o *DomainParticipation) GetSpaceIdOk() (*string, bool)`
+
+GetSpaceIdOk returns a tuple with the SpaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpaceId
+
+`func (o *DomainParticipation) SetSpaceId(v string)`
+
+SetSpaceId sets SpaceId field to given value.
+
+### HasSpaceId
+
+`func (o *DomainParticipation) HasSpaceId() bool`
+
+HasSpaceId returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -340,20 +340,20 @@ HasSubmissionNumber returns a boolean if a field has been set.
 
 ### GetTeam
 
-`func (o *DomainParticipation) GetTeam() DomainTeam`
+`func (o *DomainParticipation) GetTeam() TeamsTeam`
 
 GetTeam returns the Team field if non-nil, zero value otherwise.
 
 ### GetTeamOk
 
-`func (o *DomainParticipation) GetTeamOk() (*DomainTeam, bool)`
+`func (o *DomainParticipation) GetTeamOk() (*TeamsTeam, bool)`
 
 GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTeam
 
-`func (o *DomainParticipation) SetTeam(v DomainTeam)`
+`func (o *DomainParticipation) SetTeam(v TeamsTeam)`
 
 SetTeam sets Team field to given value.
 

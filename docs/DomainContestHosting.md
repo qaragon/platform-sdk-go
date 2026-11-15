@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CanParticipate** | Pointer to **bool** |  | [optional] 
 **CanView** | Pointer to **bool** |  | [optional] 
-**ChannelId** | Pointer to **string** |  | [optional] 
 **ContestId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** | keyset pagination sort key (uman#132) | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IdentityPolicy** | Pointer to **string** |  | [optional] 
 **InvitedByTenantId** | Pointer to **string** |  | [optional] 
 **RespondedAt** | Pointer to **string** |  | [optional] 
+**SpaceId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **VenueId** | Pointer to **string** |  | [optional] 
 
@@ -84,31 +84,6 @@ SetCanView sets CanView field to given value.
 `func (o *DomainContestHosting) HasCanView() bool`
 
 HasCanView returns a boolean if a field has been set.
-
-### GetChannelId
-
-`func (o *DomainContestHosting) GetChannelId() string`
-
-GetChannelId returns the ChannelId field if non-nil, zero value otherwise.
-
-### GetChannelIdOk
-
-`func (o *DomainContestHosting) GetChannelIdOk() (*string, bool)`
-
-GetChannelIdOk returns a tuple with the ChannelId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChannelId
-
-`func (o *DomainContestHosting) SetChannelId(v string)`
-
-SetChannelId sets ChannelId field to given value.
-
-### HasChannelId
-
-`func (o *DomainContestHosting) HasChannelId() bool`
-
-HasChannelId returns a boolean if a field has been set.
 
 ### GetContestId
 
@@ -259,6 +234,31 @@ SetRespondedAt sets RespondedAt field to given value.
 `func (o *DomainContestHosting) HasRespondedAt() bool`
 
 HasRespondedAt returns a boolean if a field has been set.
+
+### GetSpaceId
+
+`func (o *DomainContestHosting) GetSpaceId() string`
+
+GetSpaceId returns the SpaceId field if non-nil, zero value otherwise.
+
+### GetSpaceIdOk
+
+`func (o *DomainContestHosting) GetSpaceIdOk() (*string, bool)`
+
+GetSpaceIdOk returns a tuple with the SpaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpaceId
+
+`func (o *DomainContestHosting) SetSpaceId(v string)`
+
+SetSpaceId sets SpaceId field to given value.
+
+### HasSpaceId
+
+`func (o *DomainContestHosting) HasSpaceId() bool`
+
+HasSpaceId returns a boolean if a field has been set.
 
 ### GetStatus
 

@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Context** | Pointer to [**DomainBoardContext**](DomainBoardContext.md) |  | [optional] 
-**LeaderboardVisibility** | Pointer to **string** | LeaderboardVisibility echoes the channel&#39;s setting (\&quot;visible\&quot;/\&quot;hidden\&quot;). When \&quot;hidden\&quot; the board is withheld from non-owners (empty Rankings/MemberRank); the owner still gets the full board so their client can show a banner. | [optional] 
+**LeaderboardVisibility** | Pointer to **string** | LeaderboardVisibility echoes the space&#39;s setting (\&quot;visible\&quot;/\&quot;hidden\&quot;). When \&quot;hidden\&quot; the board is withheld from non-owners (empty Rankings/MemberRank); the owner still gets the full board so their client can show a banner. | [optional] 
 **MemberRank** | Pointer to [**DomainLeaderboardRank**](DomainLeaderboardRank.md) |  | [optional] 
-**Owner** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Owner** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **Period** | Pointer to [**DomainPeriod**](DomainPeriod.md) |  | [optional] 
 **Rankings** | Pointer to [**[]DomainLeaderboardRank**](DomainLeaderboardRank.md) |  | [optional] 
 
@@ -107,20 +107,20 @@ HasMemberRank returns a boolean if a field has been set.
 
 ### GetOwner
 
-`func (o *DomainLeaderboard) GetOwner() DomainPlatformIdentity`
+`func (o *DomainLeaderboard) GetOwner() IdentitiesPlatformIdentity`
 
 GetOwner returns the Owner field if non-nil, zero value otherwise.
 
 ### GetOwnerOk
 
-`func (o *DomainLeaderboard) GetOwnerOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainLeaderboard) GetOwnerOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwner
 
-`func (o *DomainLeaderboard) SetOwner(v DomainPlatformIdentity)`
+`func (o *DomainLeaderboard) SetOwner(v IdentitiesPlatformIdentity)`
 
 SetOwner sets Owner field to given value.
 

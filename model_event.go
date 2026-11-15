@@ -31,6 +31,7 @@ type Event struct {
 	Id string `json:"id"`
 	InsertedAt *time.Time `json:"inserted_at,omitempty"`
 	Items []EventItem `json:"items,omitempty"`
+	Metadata *EventPresentation `json:"metadata,omitempty"`
 	Name string `json:"name"`
 	OwnerId NullableString `json:"owner_id,omitempty"`
 	Provider string `json:"provider"`
@@ -366,6 +367,38 @@ func (o *Event) HasItems() bool {
 // SetItems gets a reference to the given []EventItem and assigns it to the Items field.
 func (o *Event) SetItems(v []EventItem) {
 	o.Items = v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *Event) GetMetadata() EventPresentation {
+	if o == nil || IsNil(o.Metadata) {
+		var ret EventPresentation
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetMetadataOk() (*EventPresentation, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *Event) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given EventPresentation and assigns it to the Metadata field.
+func (o *Event) SetMetadata(v EventPresentation) {
+	o.Metadata = &v
 }
 
 // GetName returns the Name field value
@@ -922,6 +955,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	toSerialize["name"] = o.Name
 	if o.OwnerId.IsSet() {

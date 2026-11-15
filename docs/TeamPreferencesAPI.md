@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## UpdateTeamPreferenceByTeamSetId
 
-> HandlerStatusResponseResponse UpdateTeamPreferenceByTeamSetId(ctx, teamSetId).RequestUpsertTeamPreferenceRequest(requestUpsertTeamPreferenceRequest).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse UpdateTeamPreferenceByTeamSetId(ctx, teamSetId).TeamhttpUpsertTeamPreferenceRequest(teamhttpUpsertTeamPreferenceRequest).XActingAs(xActingAs).Execute()
 
 Set the caller's default team for a logical team set
 
@@ -28,17 +28,17 @@ import (
 
 func main() {
 	teamSetId := "teamSetId_example" // string | Team Set ID
-	requestUpsertTeamPreferenceRequest := *openapiclient.NewRequestUpsertTeamPreferenceRequest() // RequestUpsertTeamPreferenceRequest | Preference payload
+	teamhttpUpsertTeamPreferenceRequest := *openapiclient.NewTeamhttpUpsertTeamPreferenceRequest() // TeamhttpUpsertTeamPreferenceRequest | Preference payload
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TeamPreferencesAPI.UpdateTeamPreferenceByTeamSetId(context.Background(), teamSetId).RequestUpsertTeamPreferenceRequest(requestUpsertTeamPreferenceRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.TeamPreferencesAPI.UpdateTeamPreferenceByTeamSetId(context.Background(), teamSetId).TeamhttpUpsertTeamPreferenceRequest(teamhttpUpsertTeamPreferenceRequest).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamPreferencesAPI.UpdateTeamPreferenceByTeamSetId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateTeamPreferenceByTeamSetId`: HandlerStatusResponseResponse
+	// response from `UpdateTeamPreferenceByTeamSetId`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `TeamPreferencesAPI.UpdateTeamPreferenceByTeamSetId`: %v\n", resp)
 }
 ```
@@ -59,12 +59,12 @@ Other parameters are passed through a pointer to a apiUpdateTeamPreferenceByTeam
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestUpsertTeamPreferenceRequest** | [**RequestUpsertTeamPreferenceRequest**](RequestUpsertTeamPreferenceRequest.md) | Preference payload | 
+ **teamhttpUpsertTeamPreferenceRequest** | [**TeamhttpUpsertTeamPreferenceRequest**](TeamhttpUpsertTeamPreferenceRequest.md) | Preference payload | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 

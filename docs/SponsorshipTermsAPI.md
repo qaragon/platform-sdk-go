@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSponsorshipTermsById
 
-> HandlerStatusResponseResponse DeleteSponsorshipTermsById(ctx, id).XActingAs(xActingAs).Execute()
+> HttpxStatusResponseResponse DeleteSponsorshipTermsById(ctx, id).XActingAs(xActingAs).Execute()
 
 Deactivate Sponsorship Term (v2)
 
@@ -112,7 +112,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SponsorshipTermsAPI.DeleteSponsorshipTermsById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteSponsorshipTermsById`: HandlerStatusResponseResponse
+	// response from `DeleteSponsorshipTermsById`: HttpxStatusResponseResponse
 	fmt.Fprintf(os.Stdout, "Response from `SponsorshipTermsAPI.DeleteSponsorshipTermsById`: %v\n", resp)
 }
 ```
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStatusResponseResponse**](HandlerStatusResponseResponse.md)
+[**HttpxStatusResponseResponse**](HttpxStatusResponseResponse.md)
 
 ### Authorization
 

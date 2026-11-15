@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## PuzzleWebV2PuzzleControllerGetTopicConfiguration
 
-> TopicConfigurationResponse PuzzleWebV2PuzzleControllerGetTopicConfiguration(ctx).Topic(topic).XActingAs(xActingAs).Execute()
+> TopicConfigurationResponse PuzzleWebV2PuzzleControllerGetTopicConfiguration(ctx).Topic(topic).Format(format).XActingAs(xActingAs).Execute()
 
 Get topic configuration
 
@@ -172,11 +172,12 @@ import (
 
 func main() {
 	topic := "topic_example" // string | 
+	format := "format_example" // string |  (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerGetTopicConfiguration(context.Background()).Topic(topic).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerGetTopicConfiguration(context.Background()).Topic(topic).Format(format).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerGetTopicConfiguration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,6 +199,7 @@ Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControlle
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **topic** | **string** |  | 
+ **format** | **string** |  | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
@@ -220,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## PuzzleWebV2PuzzleControllerGetUniqueCategories
 
-> CategoriesResponse PuzzleWebV2PuzzleControllerGetUniqueCategories(ctx).XActingAs(xActingAs).Execute()
+> CategoriesResponse PuzzleWebV2PuzzleControllerGetUniqueCategories(ctx).Format(format).XActingAs(xActingAs).Execute()
 
 List unique categories
 
@@ -239,11 +241,12 @@ import (
 )
 
 func main() {
+	format := "format_example" // string |  (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerGetUniqueCategories(context.Background()).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerGetUniqueCategories(context.Background()).Format(format).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerGetUniqueCategories``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -264,6 +267,7 @@ Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControlle
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **format** | **string** |  | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
@@ -286,7 +290,7 @@ Name | Type | Description  | Notes
 
 ## PuzzleWebV2PuzzleControllerIndex
 
-> PuzzlesListResponse PuzzleWebV2PuzzleControllerIndex(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PuzzlesListResponse PuzzleWebV2PuzzleControllerIndex(ctx).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List puzzles
 
@@ -305,13 +309,14 @@ import (
 )
 
 func main() {
+	format := "format_example" // string |  (optional)
 	cursor := "cursor_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerIndex(context.Background()).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerIndex(context.Background()).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerIndex``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -332,6 +337,7 @@ Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControlle
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **format** | **string** |  | 
  **cursor** | **string** |  | 
  **limit** | **int32** |  | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
@@ -422,7 +428,7 @@ Name | Type | Description  | Notes
 
 ## PuzzleWebV2PuzzleControllerSearchPuzzleBank
 
-> PuzzlesListResponse PuzzleWebV2PuzzleControllerSearchPuzzleBank(ctx).Topic(topic).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PuzzlesListResponse PuzzleWebV2PuzzleControllerSearchPuzzleBank(ctx).Topic(topic).Format(format).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 Search puzzle bank
 
@@ -442,6 +448,7 @@ import (
 
 func main() {
 	topic := "topic_example" // string | 
+	format := "format_example" // string |  (optional)
 	difficulty := "difficulty_example" // string |  (optional)
 	cursor := "cursor_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
@@ -449,7 +456,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerSearchPuzzleBank(context.Background()).Topic(topic).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerSearchPuzzleBank(context.Background()).Topic(topic).Format(format).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerSearchPuzzleBank``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -471,6 +478,7 @@ Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControlle
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **topic** | **string** |  | 
+ **format** | **string** |  | 
  **difficulty** | **string** |  | 
  **cursor** | **string** |  | 
  **limit** | **int32** |  | 

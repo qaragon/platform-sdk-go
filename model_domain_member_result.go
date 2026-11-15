@@ -22,9 +22,9 @@ var _ MappedNullable = &DomainMemberResult{}
 type DomainMemberResult struct {
 	ContestId *string `json:"contest_id,omitempty"`
 	Group *string `json:"group,omitempty"`
-	Member *DomainPlatformIdentity `json:"member,omitempty"`
+	Member *IdentitiesPlatformIdentity `json:"member,omitempty"`
 	Result *DomainParticipationResult `json:"result,omitempty"`
-	Team *DomainTeam `json:"team,omitempty"`
+	Team *TeamsTeam `json:"team,omitempty"`
 }
 
 // NewDomainMemberResult instantiates a new DomainMemberResult object
@@ -109,9 +109,9 @@ func (o *DomainMemberResult) SetGroup(v string) {
 }
 
 // GetMember returns the Member field value if set, zero value otherwise.
-func (o *DomainMemberResult) GetMember() DomainPlatformIdentity {
+func (o *DomainMemberResult) GetMember() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Member) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Member
@@ -119,7 +119,7 @@ func (o *DomainMemberResult) GetMember() DomainPlatformIdentity {
 
 // GetMemberOk returns a tuple with the Member field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainMemberResult) GetMemberOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainMemberResult) GetMemberOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Member) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *DomainMemberResult) HasMember() bool {
 	return false
 }
 
-// SetMember gets a reference to the given DomainPlatformIdentity and assigns it to the Member field.
-func (o *DomainMemberResult) SetMember(v DomainPlatformIdentity) {
+// SetMember gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Member field.
+func (o *DomainMemberResult) SetMember(v IdentitiesPlatformIdentity) {
 	o.Member = &v
 }
 
@@ -173,9 +173,9 @@ func (o *DomainMemberResult) SetResult(v DomainParticipationResult) {
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise.
-func (o *DomainMemberResult) GetTeam() DomainTeam {
+func (o *DomainMemberResult) GetTeam() TeamsTeam {
 	if o == nil || IsNil(o.Team) {
-		var ret DomainTeam
+		var ret TeamsTeam
 		return ret
 	}
 	return *o.Team
@@ -183,7 +183,7 @@ func (o *DomainMemberResult) GetTeam() DomainTeam {
 
 // GetTeamOk returns a tuple with the Team field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainMemberResult) GetTeamOk() (*DomainTeam, bool) {
+func (o *DomainMemberResult) GetTeamOk() (*TeamsTeam, bool) {
 	if o == nil || IsNil(o.Team) {
 		return nil, false
 	}
@@ -199,8 +199,8 @@ func (o *DomainMemberResult) HasTeam() bool {
 	return false
 }
 
-// SetTeam gets a reference to the given DomainTeam and assigns it to the Team field.
-func (o *DomainMemberResult) SetTeam(v DomainTeam) {
+// SetTeam gets a reference to the given TeamsTeam and assigns it to the Team field.
+func (o *DomainMemberResult) SetTeam(v TeamsTeam) {
 	o.Team = &v
 }
 

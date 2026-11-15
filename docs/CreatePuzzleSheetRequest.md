@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **NullableString** |  | [optional] 
+**Format** | Pointer to **string** |  | [optional] [default to "quiz"]
 **Name** | **string** |  | 
 **Puzzles** | Pointer to [**[]PuzzleBody**](PuzzleBody.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
@@ -64,6 +65,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *CreatePuzzleSheetRequest) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetFormat
+
+`func (o *CreatePuzzleSheetRequest) GetFormat() string`
+
+GetFormat returns the Format field if non-nil, zero value otherwise.
+
+### GetFormatOk
+
+`func (o *CreatePuzzleSheetRequest) GetFormatOk() (*string, bool)`
+
+GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormat
+
+`func (o *CreatePuzzleSheetRequest) SetFormat(v string)`
+
+SetFormat sets Format field to given value.
+
+### HasFormat
+
+`func (o *CreatePuzzleSheetRequest) HasFormat() bool`
+
+HasFormat returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *CreatePuzzleSheetRequest) GetName() string`

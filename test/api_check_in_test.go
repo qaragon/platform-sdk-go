@@ -22,20 +22,6 @@ func Test_platform_CheckInAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test CheckInAPIService CreateContestsByIdCheckIns", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.CheckInAPI.CreateContestsByIdCheckIns(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test CheckInAPIService GetContestsByIdAssignments", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

@@ -22,13 +22,13 @@ func Test_platform_LeaderboardAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test LeaderboardAPIService GetChannelsByIdStandings", func(t *testing.T) {
+	t.Run("Test LeaderboardAPIService GetSpacesByIdStandings", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.LeaderboardAPI.GetChannelsByIdStandings(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.LeaderboardAPI.GetSpacesByIdStandings(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

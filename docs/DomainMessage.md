@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Body** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Recipients** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
-**Sender** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Recipients** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
+**Sender** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Subject** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
@@ -109,20 +109,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetRecipients
 
-`func (o *DomainMessage) GetRecipients() DomainPlatformIdentity`
+`func (o *DomainMessage) GetRecipients() IdentitiesPlatformIdentity`
 
 GetRecipients returns the Recipients field if non-nil, zero value otherwise.
 
 ### GetRecipientsOk
 
-`func (o *DomainMessage) GetRecipientsOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainMessage) GetRecipientsOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetRecipientsOk returns a tuple with the Recipients field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRecipients
 
-`func (o *DomainMessage) SetRecipients(v DomainPlatformIdentity)`
+`func (o *DomainMessage) SetRecipients(v IdentitiesPlatformIdentity)`
 
 SetRecipients sets Recipients field to given value.
 
@@ -134,20 +134,20 @@ HasRecipients returns a boolean if a field has been set.
 
 ### GetSender
 
-`func (o *DomainMessage) GetSender() DomainPlatformIdentity`
+`func (o *DomainMessage) GetSender() IdentitiesPlatformIdentity`
 
 GetSender returns the Sender field if non-nil, zero value otherwise.
 
 ### GetSenderOk
 
-`func (o *DomainMessage) GetSenderOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainMessage) GetSenderOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetSenderOk returns a tuple with the Sender field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSender
 
-`func (o *DomainMessage) SetSender(v DomainPlatformIdentity)`
+`func (o *DomainMessage) SetSender(v IdentitiesPlatformIdentity)`
 
 SetSender sets Sender field to given value.
 

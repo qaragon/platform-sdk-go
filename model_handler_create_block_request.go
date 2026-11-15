@@ -22,8 +22,8 @@ var _ MappedNullable = &HandlerCreateBlockRequest{}
 
 // HandlerCreateBlockRequest struct for HandlerCreateBlockRequest
 type HandlerCreateBlockRequest struct {
-	ChannelId *string `json:"channel_id,omitempty"`
 	PlatformIdentityId string `json:"platform_identity_id"`
+	SpaceId *string `json:"space_id,omitempty"`
 }
 
 type _HandlerCreateBlockRequest HandlerCreateBlockRequest
@@ -44,38 +44,6 @@ func NewHandlerCreateBlockRequest(platformIdentityId string) *HandlerCreateBlock
 func NewHandlerCreateBlockRequestWithDefaults() *HandlerCreateBlockRequest {
 	this := HandlerCreateBlockRequest{}
 	return &this
-}
-
-// GetChannelId returns the ChannelId field value if set, zero value otherwise.
-func (o *HandlerCreateBlockRequest) GetChannelId() string {
-	if o == nil || IsNil(o.ChannelId) {
-		var ret string
-		return ret
-	}
-	return *o.ChannelId
-}
-
-// GetChannelIdOk returns a tuple with the ChannelId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HandlerCreateBlockRequest) GetChannelIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ChannelId) {
-		return nil, false
-	}
-	return o.ChannelId, true
-}
-
-// HasChannelId returns a boolean if a field has been set.
-func (o *HandlerCreateBlockRequest) HasChannelId() bool {
-	if o != nil && !IsNil(o.ChannelId) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannelId gets a reference to the given string and assigns it to the ChannelId field.
-func (o *HandlerCreateBlockRequest) SetChannelId(v string) {
-	o.ChannelId = &v
 }
 
 // GetPlatformIdentityId returns the PlatformIdentityId field value
@@ -102,6 +70,38 @@ func (o *HandlerCreateBlockRequest) SetPlatformIdentityId(v string) {
 	o.PlatformIdentityId = v
 }
 
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *HandlerCreateBlockRequest) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
+		return ret
+	}
+	return *o.SpaceId
+}
+
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HandlerCreateBlockRequest) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
+		return nil, false
+	}
+	return o.SpaceId, true
+}
+
+// HasSpaceId returns a boolean if a field has been set.
+func (o *HandlerCreateBlockRequest) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *HandlerCreateBlockRequest) SetSpaceId(v string) {
+	o.SpaceId = &v
+}
+
 func (o HandlerCreateBlockRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -112,10 +112,10 @@ func (o HandlerCreateBlockRequest) MarshalJSON() ([]byte, error) {
 
 func (o HandlerCreateBlockRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ChannelId) {
-		toSerialize["channel_id"] = o.ChannelId
-	}
 	toSerialize["platform_identity_id"] = o.PlatformIdentityId
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
+	}
 	return toSerialize, nil
 }
 

@@ -31,7 +31,7 @@ type ApiCreateBlocksRequest struct {
 	xActingAs *string
 }
 
-// Block payload; optional channel_id scopes the block to a channel
+// Block payload; optional space_id scopes the block to a space
 func (r ApiCreateBlocksRequest) HandlerCreateBlockRequest(handlerCreateBlockRequest HandlerCreateBlockRequest) ApiCreateBlocksRequest {
 	r.handlerCreateBlockRequest = &handlerCreateBlockRequest
 	return r
@@ -52,9 +52,9 @@ CreateBlocks Create Block
 
 Idempotent block create. A repeat POST for the same
 (blocker, blocked) pair returns 200 with the existing row
-regardless of channel scope; side effects (unsubscribe +
+regardless of space scope; side effects (unsubscribe +
 open-enrollment withdrawal) fire only on the first-time
-insert. To widen a channel-scoped block to global, DELETE
+insert. To widen a space-scoped block to global, DELETE
 first and re-POST. See uman#94 / ADR 0023 + ADR 0025.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -136,7 +136,7 @@ func (a *BlocksAPIService) CreateBlocksExecute(r ApiCreateBlocksRequest) (*Domai
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,7 +147,7 @@ func (a *BlocksAPIService) CreateBlocksExecute(r ApiCreateBlocksRequest) (*Domai
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -158,7 +158,7 @@ func (a *BlocksAPIService) CreateBlocksExecute(r ApiCreateBlocksRequest) (*Domai
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -281,7 +281,7 @@ func (a *BlocksAPIService) DeleteBlocksByIdExecute(r ApiDeleteBlocksByIdRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -292,7 +292,7 @@ func (a *BlocksAPIService) DeleteBlocksByIdExecute(r ApiDeleteBlocksByIdRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -431,7 +431,7 @@ func (a *BlocksAPIService) GetBlocksExecute(r ApiGetBlocksRequest) (*DomainBlock
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -442,7 +442,7 @@ func (a *BlocksAPIService) GetBlocksExecute(r ApiGetBlocksRequest) (*DomainBlock
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

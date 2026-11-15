@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Count** | Pointer to **float32** | Can be integer count or float sum of participation points | [optional] 
-**Profile** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Profile** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasCount returns a boolean if a field has been set.
 
 ### GetProfile
 
-`func (o *DomainParticipationCount) GetProfile() DomainPlatformIdentity`
+`func (o *DomainParticipationCount) GetProfile() IdentitiesPlatformIdentity`
 
 GetProfile returns the Profile field if non-nil, zero value otherwise.
 
 ### GetProfileOk
 
-`func (o *DomainParticipationCount) GetProfileOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainParticipationCount) GetProfileOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfile
 
-`func (o *DomainParticipationCount) SetProfile(v DomainPlatformIdentity)`
+`func (o *DomainParticipationCount) SetProfile(v IdentitiesPlatformIdentity)`
 
 SetProfile sets Profile field to given value.
 

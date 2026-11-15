@@ -20,6 +20,7 @@ var _ MappedNullable = &DomainParticipationRules{}
 
 // DomainParticipationRules struct for DomainParticipationRules
 type DomainParticipationRules struct {
+	AllowedRegions []DomainAllowedRegion `json:"allowed_regions,omitempty"`
 	ContestId *string `json:"contest_id,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -47,6 +48,38 @@ func NewDomainParticipationRules() *DomainParticipationRules {
 func NewDomainParticipationRulesWithDefaults() *DomainParticipationRules {
 	this := DomainParticipationRules{}
 	return &this
+}
+
+// GetAllowedRegions returns the AllowedRegions field value if set, zero value otherwise.
+func (o *DomainParticipationRules) GetAllowedRegions() []DomainAllowedRegion {
+	if o == nil || IsNil(o.AllowedRegions) {
+		var ret []DomainAllowedRegion
+		return ret
+	}
+	return o.AllowedRegions
+}
+
+// GetAllowedRegionsOk returns a tuple with the AllowedRegions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainParticipationRules) GetAllowedRegionsOk() ([]DomainAllowedRegion, bool) {
+	if o == nil || IsNil(o.AllowedRegions) {
+		return nil, false
+	}
+	return o.AllowedRegions, true
+}
+
+// HasAllowedRegions returns a boolean if a field has been set.
+func (o *DomainParticipationRules) HasAllowedRegions() bool {
+	if o != nil && !IsNil(o.AllowedRegions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedRegions gets a reference to the given []DomainAllowedRegion and assigns it to the AllowedRegions field.
+func (o *DomainParticipationRules) SetAllowedRegions(v []DomainAllowedRegion) {
+	o.AllowedRegions = v
 }
 
 // GetContestId returns the ContestId field value if set, zero value otherwise.
@@ -379,6 +412,9 @@ func (o DomainParticipationRules) MarshalJSON() ([]byte, error) {
 
 func (o DomainParticipationRules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowedRegions) {
+		toSerialize["allowed_regions"] = o.AllowedRegions
+	}
 	if !IsNil(o.ContestId) {
 		toSerialize["contest_id"] = o.ContestId
 	}

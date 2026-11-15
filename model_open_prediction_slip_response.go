@@ -20,7 +20,7 @@ var _ MappedNullable = &OpenPredictionSlipResponse{}
 
 // OpenPredictionSlipResponse GET /prediction-slips/open returns the user's currently-open slip or {data: null} when none exists.
 type OpenPredictionSlipResponse struct {
-	Data NullablePredictionSlip `json:"data,omitempty"`
+	Data NullableOpenPredictionSlipResponseData `json:"data,omitempty"`
 }
 
 // NewOpenPredictionSlipResponse instantiates a new OpenPredictionSlipResponse object
@@ -41,9 +41,9 @@ func NewOpenPredictionSlipResponseWithDefaults() *OpenPredictionSlipResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OpenPredictionSlipResponse) GetData() PredictionSlip {
+func (o *OpenPredictionSlipResponse) GetData() OpenPredictionSlipResponseData {
 	if o == nil || IsNil(o.Data.Get()) {
-		var ret PredictionSlip
+		var ret OpenPredictionSlipResponseData
 		return ret
 	}
 	return *o.Data.Get()
@@ -52,7 +52,7 @@ func (o *OpenPredictionSlipResponse) GetData() PredictionSlip {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OpenPredictionSlipResponse) GetDataOk() (*PredictionSlip, bool) {
+func (o *OpenPredictionSlipResponse) GetDataOk() (*OpenPredictionSlipResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *OpenPredictionSlipResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given NullablePredictionSlip and assigns it to the Data field.
-func (o *OpenPredictionSlipResponse) SetData(v PredictionSlip) {
+// SetData gets a reference to the given NullableOpenPredictionSlipResponseData and assigns it to the Data field.
+func (o *OpenPredictionSlipResponse) SetData(v OpenPredictionSlipResponseData) {
 	o.Data.Set(&v)
 }
 // SetDataNil sets the value for Data to be an explicit nil

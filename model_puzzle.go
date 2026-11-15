@@ -26,6 +26,7 @@ type Puzzle struct {
 	Category []string `json:"category,omitempty"`
 	Difficulty NullableString `json:"difficulty,omitempty"`
 	ExtRefId NullableString `json:"ext_ref_id,omitempty"`
+	Format *string `json:"format,omitempty"`
 	Id string `json:"id"`
 	InsertedAt *time.Time `json:"inserted_at,omitempty"`
 	OwnerId string `json:"owner_id"`
@@ -174,6 +175,38 @@ func (o *Puzzle) SetExtRefIdNil() {
 // UnsetExtRefId ensures that no value is present for ExtRefId, not even an explicit nil
 func (o *Puzzle) UnsetExtRefId() {
 	o.ExtRefId.Unset()
+}
+
+// GetFormat returns the Format field value if set, zero value otherwise.
+func (o *Puzzle) GetFormat() string {
+	if o == nil || IsNil(o.Format) {
+		var ret string
+		return ret
+	}
+	return *o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Puzzle) GetFormatOk() (*string, bool) {
+	if o == nil || IsNil(o.Format) {
+		return nil, false
+	}
+	return o.Format, true
+}
+
+// HasFormat returns a boolean if a field has been set.
+func (o *Puzzle) HasFormat() bool {
+	if o != nil && !IsNil(o.Format) {
+		return true
+	}
+
+	return false
+}
+
+// SetFormat gets a reference to the given string and assigns it to the Format field.
+func (o *Puzzle) SetFormat(v string) {
+	o.Format = &v
 }
 
 // GetId returns the Id field value
@@ -410,6 +443,9 @@ func (o Puzzle) ToMap() (map[string]interface{}, error) {
 	}
 	if o.ExtRefId.IsSet() {
 		toSerialize["ext_ref_id"] = o.ExtRefId.Get()
+	}
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
 	}
 	toSerialize["id"] = o.Id
 	if !IsNil(o.InsertedAt) {

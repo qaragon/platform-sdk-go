@@ -54,8 +54,6 @@ type APIClient struct {
 
 	BlocksAPI *BlocksAPIService
 
-	ChannelsAPI *ChannelsAPIService
-
 	CheckInAPI *CheckInAPIService
 
 	ContestPuzzlesAPI *ContestPuzzlesAPIService
@@ -64,13 +62,25 @@ type APIClient struct {
 
 	CreativeContestsAPI *CreativeContestsAPIService
 
+	DefaultAPI *DefaultAPIService
+
 	EventsAPI *EventsAPIService
 
 	FeedsAPI *FeedsAPIService
 
+	GameContentAdministrationAPI *GameContentAdministrationAPIService
+
+	GamesAPI *GamesAPIService
+
+	GuessAPI *GuessAPIService
+
+	HighlightsAPI *HighlightsAPIService
+
 	IdentitiesAPI *IdentitiesAPIService
 
 	LeaderboardAPI *LeaderboardAPIService
+
+	MembershipsAPI *MembershipsAPIService
 
 	MessagesAPI *MessagesAPIService
 
@@ -82,6 +92,8 @@ type APIClient struct {
 
 	PuzzlesAPI *PuzzlesAPIService
 
+	SpacesAPI *SpacesAPIService
+
 	SponsorsAPI *SponsorsAPIService
 
 	SponsorshipPackagesAPI *SponsorshipPackagesAPIService
@@ -92,7 +104,7 @@ type APIClient struct {
 
 	StansAPI *StansAPIService
 
-	SubscriptionsAPI *SubscriptionsAPIService
+	SubmissionsAPI *SubmissionsAPIService
 
 	TeamPreferencesAPI *TeamPreferencesAPIService
 
@@ -103,6 +115,8 @@ type APIClient struct {
 	UserEventsAPI *UserEventsAPIService
 
 	VenuesAPI *VenuesAPIService
+
+	VoteAPI *VoteAPIService
 }
 
 type service struct {
@@ -123,31 +137,38 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.AnalyticsAPI = (*AnalyticsAPIService)(&c.common)
 	c.BlocksAPI = (*BlocksAPIService)(&c.common)
-	c.ChannelsAPI = (*ChannelsAPIService)(&c.common)
 	c.CheckInAPI = (*CheckInAPIService)(&c.common)
 	c.ContestPuzzlesAPI = (*ContestPuzzlesAPIService)(&c.common)
 	c.ContestsAPI = (*ContestsAPIService)(&c.common)
 	c.CreativeContestsAPI = (*CreativeContestsAPIService)(&c.common)
+	c.DefaultAPI = (*DefaultAPIService)(&c.common)
 	c.EventsAPI = (*EventsAPIService)(&c.common)
 	c.FeedsAPI = (*FeedsAPIService)(&c.common)
+	c.GameContentAdministrationAPI = (*GameContentAdministrationAPIService)(&c.common)
+	c.GamesAPI = (*GamesAPIService)(&c.common)
+	c.GuessAPI = (*GuessAPIService)(&c.common)
+	c.HighlightsAPI = (*HighlightsAPIService)(&c.common)
 	c.IdentitiesAPI = (*IdentitiesAPIService)(&c.common)
 	c.LeaderboardAPI = (*LeaderboardAPIService)(&c.common)
+	c.MembershipsAPI = (*MembershipsAPIService)(&c.common)
 	c.MessagesAPI = (*MessagesAPIService)(&c.common)
 	c.ParticipationAPI = (*ParticipationAPIService)(&c.common)
 	c.PredictionSlipsAPI = (*PredictionSlipsAPIService)(&c.common)
 	c.PuzzleSheetsAPI = (*PuzzleSheetsAPIService)(&c.common)
 	c.PuzzlesAPI = (*PuzzlesAPIService)(&c.common)
+	c.SpacesAPI = (*SpacesAPIService)(&c.common)
 	c.SponsorsAPI = (*SponsorsAPIService)(&c.common)
 	c.SponsorshipPackagesAPI = (*SponsorshipPackagesAPIService)(&c.common)
 	c.SponsorshipTermsAPI = (*SponsorshipTermsAPIService)(&c.common)
 	c.SponsorshipsAPI = (*SponsorshipsAPIService)(&c.common)
 	c.StansAPI = (*StansAPIService)(&c.common)
-	c.SubscriptionsAPI = (*SubscriptionsAPIService)(&c.common)
+	c.SubmissionsAPI = (*SubmissionsAPIService)(&c.common)
 	c.TeamPreferencesAPI = (*TeamPreferencesAPIService)(&c.common)
 	c.TenantsAPI = (*TenantsAPIService)(&c.common)
 	c.TournamentsAPI = (*TournamentsAPIService)(&c.common)
 	c.UserEventsAPI = (*UserEventsAPIService)(&c.common)
 	c.VenuesAPI = (*VenuesAPIService)(&c.common)
+	c.VoteAPI = (*VoteAPIService)(&c.common)
 
 	return c
 }
@@ -518,6 +539,15 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 		*s = string(b)
 		return nil
 	}
+	if r, ok := v.(*io.Reader); ok {
+		*r = bytes.NewReader(b)
+		return nil
+	}
+	// Must stay before the JSON branch: json.Unmarshal would base64-decode into *[]byte.
+	if p, ok := v.(*[]byte); ok {
+		*p = b
+		return nil
+	}
 	if f, ok := v.(*os.File); ok {
 		f, err = os.CreateTemp("", "HttpClientFile")
 		if err != nil {
@@ -571,10 +601,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	if err != nil {
 		return err
 	}
-	err = file.Close()
-	if err != nil {
-		return err
-	}
+	defer file.Close()
 
 	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
 	if err != nil {

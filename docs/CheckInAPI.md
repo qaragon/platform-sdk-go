@@ -4,85 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateContestsByIdCheckIns**](CheckInAPI.md#CreateContestsByIdCheckIns) | **Post** /v2/contests/{id}/check-ins | Check in with a roommate&#39;s key
 [**GetContestsByIdAssignments**](CheckInAPI.md#GetContestsByIdAssignments) | **Get** /v2/contests/{id}/assignments | Get the caller&#39;s check-in assignment status
 [**GetContestsByIdRooms**](CheckInAPI.md#GetContestsByIdRooms) | **Get** /v2/contests/{id}/rooms | List every room in a check-in contest
 [**GetContestsByIdRoomsByRoomNumber**](CheckInAPI.md#GetContestsByIdRoomsByRoomNumber) | **Get** /v2/contests/{id}/rooms/{roomNumber} | Get one room in a check-in contest
 
-
-
-## CreateContestsByIdCheckIns
-
-> CheckinCheckInResponseResponse CreateContestsByIdCheckIns(ctx, id).CheckinCheckInRequest(checkinCheckInRequest).XActingAs(xActingAs).Execute()
-
-Check in with a roommate's key
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Contest ID
-	checkinCheckInRequest := *openapiclient.NewCheckinCheckInRequest() // CheckinCheckInRequest | Roommate's key
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CheckInAPI.CreateContestsByIdCheckIns(context.Background(), id).CheckinCheckInRequest(checkinCheckInRequest).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CheckInAPI.CreateContestsByIdCheckIns``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateContestsByIdCheckIns`: CheckinCheckInResponseResponse
-	fmt.Fprintf(os.Stdout, "Response from `CheckInAPI.CreateContestsByIdCheckIns`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Contest ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateContestsByIdCheckInsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **checkinCheckInRequest** | [**CheckinCheckInRequest**](CheckinCheckInRequest.md) | Roommate&#39;s key | 
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**CheckinCheckInResponseResponse**](CheckinCheckInResponseResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## GetContestsByIdAssignments

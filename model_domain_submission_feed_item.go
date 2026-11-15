@@ -22,7 +22,7 @@ var _ MappedNullable = &DomainSubmissionFeedItem{}
 type DomainSubmissionFeedItem struct {
 	ContestId *string `json:"contest_id,omitempty"`
 	Group *string `json:"group,omitempty"`
-	Member *DomainPlatformIdentity `json:"member,omitempty"`
+	Member *IdentitiesPlatformIdentity `json:"member,omitempty"`
 	SubmissionNumber *int32 `json:"submission_number,omitempty"`
 	SubmittedAt *string `json:"submitted_at,omitempty"`
 }
@@ -109,9 +109,9 @@ func (o *DomainSubmissionFeedItem) SetGroup(v string) {
 }
 
 // GetMember returns the Member field value if set, zero value otherwise.
-func (o *DomainSubmissionFeedItem) GetMember() DomainPlatformIdentity {
+func (o *DomainSubmissionFeedItem) GetMember() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Member) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Member
@@ -119,7 +119,7 @@ func (o *DomainSubmissionFeedItem) GetMember() DomainPlatformIdentity {
 
 // GetMemberOk returns a tuple with the Member field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainSubmissionFeedItem) GetMemberOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainSubmissionFeedItem) GetMemberOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Member) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *DomainSubmissionFeedItem) HasMember() bool {
 	return false
 }
 
-// SetMember gets a reference to the given DomainPlatformIdentity and assigns it to the Member field.
-func (o *DomainSubmissionFeedItem) SetMember(v DomainPlatformIdentity) {
+// SetMember gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Member field.
+func (o *DomainSubmissionFeedItem) SetMember(v IdentitiesPlatformIdentity) {
 	o.Member = &v
 }
 

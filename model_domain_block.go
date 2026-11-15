@@ -20,11 +20,12 @@ var _ MappedNullable = &DomainBlock{}
 
 // DomainBlock struct for DomainBlock
 type DomainBlock struct {
-	Blocked *DomainPlatformIdentity `json:"blocked,omitempty"`
-	Blocker *DomainPlatformIdentity `json:"blocker,omitempty"`
-	Channel *DomainChannel `json:"channel,omitempty"`
+	Blocked *IdentitiesPlatformIdentity `json:"blocked,omitempty"`
+	Blocker *IdentitiesPlatformIdentity `json:"blocker,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
+	Space *SpacesSpace `json:"space,omitempty"`
+	SpaceId *string `json:"space_id,omitempty"`
 }
 
 // NewDomainBlock instantiates a new DomainBlock object
@@ -45,9 +46,9 @@ func NewDomainBlockWithDefaults() *DomainBlock {
 }
 
 // GetBlocked returns the Blocked field value if set, zero value otherwise.
-func (o *DomainBlock) GetBlocked() DomainPlatformIdentity {
+func (o *DomainBlock) GetBlocked() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Blocked) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Blocked
@@ -55,7 +56,7 @@ func (o *DomainBlock) GetBlocked() DomainPlatformIdentity {
 
 // GetBlockedOk returns a tuple with the Blocked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainBlock) GetBlockedOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainBlock) GetBlockedOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Blocked) {
 		return nil, false
 	}
@@ -71,15 +72,15 @@ func (o *DomainBlock) HasBlocked() bool {
 	return false
 }
 
-// SetBlocked gets a reference to the given DomainPlatformIdentity and assigns it to the Blocked field.
-func (o *DomainBlock) SetBlocked(v DomainPlatformIdentity) {
+// SetBlocked gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Blocked field.
+func (o *DomainBlock) SetBlocked(v IdentitiesPlatformIdentity) {
 	o.Blocked = &v
 }
 
 // GetBlocker returns the Blocker field value if set, zero value otherwise.
-func (o *DomainBlock) GetBlocker() DomainPlatformIdentity {
+func (o *DomainBlock) GetBlocker() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Blocker) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Blocker
@@ -87,7 +88,7 @@ func (o *DomainBlock) GetBlocker() DomainPlatformIdentity {
 
 // GetBlockerOk returns a tuple with the Blocker field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainBlock) GetBlockerOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainBlock) GetBlockerOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Blocker) {
 		return nil, false
 	}
@@ -103,41 +104,9 @@ func (o *DomainBlock) HasBlocker() bool {
 	return false
 }
 
-// SetBlocker gets a reference to the given DomainPlatformIdentity and assigns it to the Blocker field.
-func (o *DomainBlock) SetBlocker(v DomainPlatformIdentity) {
+// SetBlocker gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Blocker field.
+func (o *DomainBlock) SetBlocker(v IdentitiesPlatformIdentity) {
 	o.Blocker = &v
-}
-
-// GetChannel returns the Channel field value if set, zero value otherwise.
-func (o *DomainBlock) GetChannel() DomainChannel {
-	if o == nil || IsNil(o.Channel) {
-		var ret DomainChannel
-		return ret
-	}
-	return *o.Channel
-}
-
-// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainBlock) GetChannelOk() (*DomainChannel, bool) {
-	if o == nil || IsNil(o.Channel) {
-		return nil, false
-	}
-	return o.Channel, true
-}
-
-// HasChannel returns a boolean if a field has been set.
-func (o *DomainBlock) HasChannel() bool {
-	if o != nil && !IsNil(o.Channel) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannel gets a reference to the given DomainChannel and assigns it to the Channel field.
-func (o *DomainBlock) SetChannel(v DomainChannel) {
-	o.Channel = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -204,6 +173,70 @@ func (o *DomainBlock) SetId(v string) {
 	o.Id = &v
 }
 
+// GetSpace returns the Space field value if set, zero value otherwise.
+func (o *DomainBlock) GetSpace() SpacesSpace {
+	if o == nil || IsNil(o.Space) {
+		var ret SpacesSpace
+		return ret
+	}
+	return *o.Space
+}
+
+// GetSpaceOk returns a tuple with the Space field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainBlock) GetSpaceOk() (*SpacesSpace, bool) {
+	if o == nil || IsNil(o.Space) {
+		return nil, false
+	}
+	return o.Space, true
+}
+
+// HasSpace returns a boolean if a field has been set.
+func (o *DomainBlock) HasSpace() bool {
+	if o != nil && !IsNil(o.Space) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpace gets a reference to the given SpacesSpace and assigns it to the Space field.
+func (o *DomainBlock) SetSpace(v SpacesSpace) {
+	o.Space = &v
+}
+
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *DomainBlock) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
+		return ret
+	}
+	return *o.SpaceId
+}
+
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainBlock) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
+		return nil, false
+	}
+	return o.SpaceId, true
+}
+
+// HasSpaceId returns a boolean if a field has been set.
+func (o *DomainBlock) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *DomainBlock) SetSpaceId(v string) {
+	o.SpaceId = &v
+}
+
 func (o DomainBlock) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -220,14 +253,17 @@ func (o DomainBlock) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Blocker) {
 		toSerialize["blocker"] = o.Blocker
 	}
-	if !IsNil(o.Channel) {
-		toSerialize["channel"] = o.Channel
-	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Space) {
+		toSerialize["space"] = o.Space
+	}
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
 	}
 	return toSerialize, nil
 }

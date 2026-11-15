@@ -22,12 +22,10 @@ var _ MappedNullable = &DomainMemberParticipationSummary{}
 type DomainMemberParticipationSummary struct {
 	CanParticipate *bool `json:"can_participate,omitempty"`
 	CanParticipateReasons []string `json:"can_participate_reasons,omitempty"`
-	// deprecated: always true when struct is present
-	Enrolled *bool `json:"enrolled,omitempty"`
 	ParticipationId *string `json:"participation_id,omitempty"`
 	// \"participated\" | \"timed_out\"
 	Status *string `json:"status,omitempty"`
-	Team *DomainTeam `json:"team,omitempty"`
+	Team *TeamsTeam `json:"team,omitempty"`
 }
 
 // NewDomainMemberParticipationSummary instantiates a new DomainMemberParticipationSummary object
@@ -111,38 +109,6 @@ func (o *DomainMemberParticipationSummary) SetCanParticipateReasons(v []string) 
 	o.CanParticipateReasons = v
 }
 
-// GetEnrolled returns the Enrolled field value if set, zero value otherwise.
-func (o *DomainMemberParticipationSummary) GetEnrolled() bool {
-	if o == nil || IsNil(o.Enrolled) {
-		var ret bool
-		return ret
-	}
-	return *o.Enrolled
-}
-
-// GetEnrolledOk returns a tuple with the Enrolled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainMemberParticipationSummary) GetEnrolledOk() (*bool, bool) {
-	if o == nil || IsNil(o.Enrolled) {
-		return nil, false
-	}
-	return o.Enrolled, true
-}
-
-// HasEnrolled returns a boolean if a field has been set.
-func (o *DomainMemberParticipationSummary) HasEnrolled() bool {
-	if o != nil && !IsNil(o.Enrolled) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnrolled gets a reference to the given bool and assigns it to the Enrolled field.
-func (o *DomainMemberParticipationSummary) SetEnrolled(v bool) {
-	o.Enrolled = &v
-}
-
 // GetParticipationId returns the ParticipationId field value if set, zero value otherwise.
 func (o *DomainMemberParticipationSummary) GetParticipationId() string {
 	if o == nil || IsNil(o.ParticipationId) {
@@ -208,9 +174,9 @@ func (o *DomainMemberParticipationSummary) SetStatus(v string) {
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise.
-func (o *DomainMemberParticipationSummary) GetTeam() DomainTeam {
+func (o *DomainMemberParticipationSummary) GetTeam() TeamsTeam {
 	if o == nil || IsNil(o.Team) {
-		var ret DomainTeam
+		var ret TeamsTeam
 		return ret
 	}
 	return *o.Team
@@ -218,7 +184,7 @@ func (o *DomainMemberParticipationSummary) GetTeam() DomainTeam {
 
 // GetTeamOk returns a tuple with the Team field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainMemberParticipationSummary) GetTeamOk() (*DomainTeam, bool) {
+func (o *DomainMemberParticipationSummary) GetTeamOk() (*TeamsTeam, bool) {
 	if o == nil || IsNil(o.Team) {
 		return nil, false
 	}
@@ -234,8 +200,8 @@ func (o *DomainMemberParticipationSummary) HasTeam() bool {
 	return false
 }
 
-// SetTeam gets a reference to the given DomainTeam and assigns it to the Team field.
-func (o *DomainMemberParticipationSummary) SetTeam(v DomainTeam) {
+// SetTeam gets a reference to the given TeamsTeam and assigns it to the Team field.
+func (o *DomainMemberParticipationSummary) SetTeam(v TeamsTeam) {
 	o.Team = &v
 }
 
@@ -254,9 +220,6 @@ func (o DomainMemberParticipationSummary) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.CanParticipateReasons) {
 		toSerialize["can_participate_reasons"] = o.CanParticipateReasons
-	}
-	if !IsNil(o.Enrolled) {
-		toSerialize["enrolled"] = o.Enrolled
 	}
 	if !IsNil(o.ParticipationId) {
 		toSerialize["participation_id"] = o.ParticipationId

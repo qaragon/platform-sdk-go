@@ -21,11 +21,11 @@ var _ MappedNullable = &DomainTournamentConfiguration{}
 // DomainTournamentConfiguration struct for DomainTournamentConfiguration
 type DomainTournamentConfiguration struct {
 	CanCreateTournament *bool `json:"can_create_tournament,omitempty"`
-	ChannelId *string `json:"channel_id,omitempty"`
 	MaxRoundsPossible *int32 `json:"max_rounds_possible,omitempty"`
+	MemberCount *int32 `json:"member_count,omitempty"`
 	MinParticipantsPerGroup *int32 `json:"min_participants_per_group,omitempty"`
 	MinRoundsRequired *int32 `json:"min_rounds_required,omitempty"`
-	SubscriberCount *int32 `json:"subscriber_count,omitempty"`
+	SpaceId *string `json:"space_id,omitempty"`
 	Templates []DomainTournamentTemplate `json:"templates,omitempty"`
 }
 
@@ -78,38 +78,6 @@ func (o *DomainTournamentConfiguration) SetCanCreateTournament(v bool) {
 	o.CanCreateTournament = &v
 }
 
-// GetChannelId returns the ChannelId field value if set, zero value otherwise.
-func (o *DomainTournamentConfiguration) GetChannelId() string {
-	if o == nil || IsNil(o.ChannelId) {
-		var ret string
-		return ret
-	}
-	return *o.ChannelId
-}
-
-// GetChannelIdOk returns a tuple with the ChannelId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainTournamentConfiguration) GetChannelIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ChannelId) {
-		return nil, false
-	}
-	return o.ChannelId, true
-}
-
-// HasChannelId returns a boolean if a field has been set.
-func (o *DomainTournamentConfiguration) HasChannelId() bool {
-	if o != nil && !IsNil(o.ChannelId) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannelId gets a reference to the given string and assigns it to the ChannelId field.
-func (o *DomainTournamentConfiguration) SetChannelId(v string) {
-	o.ChannelId = &v
-}
-
 // GetMaxRoundsPossible returns the MaxRoundsPossible field value if set, zero value otherwise.
 func (o *DomainTournamentConfiguration) GetMaxRoundsPossible() int32 {
 	if o == nil || IsNil(o.MaxRoundsPossible) {
@@ -140,6 +108,38 @@ func (o *DomainTournamentConfiguration) HasMaxRoundsPossible() bool {
 // SetMaxRoundsPossible gets a reference to the given int32 and assigns it to the MaxRoundsPossible field.
 func (o *DomainTournamentConfiguration) SetMaxRoundsPossible(v int32) {
 	o.MaxRoundsPossible = &v
+}
+
+// GetMemberCount returns the MemberCount field value if set, zero value otherwise.
+func (o *DomainTournamentConfiguration) GetMemberCount() int32 {
+	if o == nil || IsNil(o.MemberCount) {
+		var ret int32
+		return ret
+	}
+	return *o.MemberCount
+}
+
+// GetMemberCountOk returns a tuple with the MemberCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainTournamentConfiguration) GetMemberCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.MemberCount) {
+		return nil, false
+	}
+	return o.MemberCount, true
+}
+
+// HasMemberCount returns a boolean if a field has been set.
+func (o *DomainTournamentConfiguration) HasMemberCount() bool {
+	if o != nil && !IsNil(o.MemberCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemberCount gets a reference to the given int32 and assigns it to the MemberCount field.
+func (o *DomainTournamentConfiguration) SetMemberCount(v int32) {
+	o.MemberCount = &v
 }
 
 // GetMinParticipantsPerGroup returns the MinParticipantsPerGroup field value if set, zero value otherwise.
@@ -206,36 +206,36 @@ func (o *DomainTournamentConfiguration) SetMinRoundsRequired(v int32) {
 	o.MinRoundsRequired = &v
 }
 
-// GetSubscriberCount returns the SubscriberCount field value if set, zero value otherwise.
-func (o *DomainTournamentConfiguration) GetSubscriberCount() int32 {
-	if o == nil || IsNil(o.SubscriberCount) {
-		var ret int32
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *DomainTournamentConfiguration) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
 		return ret
 	}
-	return *o.SubscriberCount
+	return *o.SpaceId
 }
 
-// GetSubscriberCountOk returns a tuple with the SubscriberCount field value if set, nil otherwise
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainTournamentConfiguration) GetSubscriberCountOk() (*int32, bool) {
-	if o == nil || IsNil(o.SubscriberCount) {
+func (o *DomainTournamentConfiguration) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
 		return nil, false
 	}
-	return o.SubscriberCount, true
+	return o.SpaceId, true
 }
 
-// HasSubscriberCount returns a boolean if a field has been set.
-func (o *DomainTournamentConfiguration) HasSubscriberCount() bool {
-	if o != nil && !IsNil(o.SubscriberCount) {
+// HasSpaceId returns a boolean if a field has been set.
+func (o *DomainTournamentConfiguration) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetSubscriberCount gets a reference to the given int32 and assigns it to the SubscriberCount field.
-func (o *DomainTournamentConfiguration) SetSubscriberCount(v int32) {
-	o.SubscriberCount = &v
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *DomainTournamentConfiguration) SetSpaceId(v string) {
+	o.SpaceId = &v
 }
 
 // GetTemplates returns the Templates field value if set, zero value otherwise.
@@ -283,11 +283,11 @@ func (o DomainTournamentConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CanCreateTournament) {
 		toSerialize["can_create_tournament"] = o.CanCreateTournament
 	}
-	if !IsNil(o.ChannelId) {
-		toSerialize["channel_id"] = o.ChannelId
-	}
 	if !IsNil(o.MaxRoundsPossible) {
 		toSerialize["max_rounds_possible"] = o.MaxRoundsPossible
+	}
+	if !IsNil(o.MemberCount) {
+		toSerialize["member_count"] = o.MemberCount
 	}
 	if !IsNil(o.MinParticipantsPerGroup) {
 		toSerialize["min_participants_per_group"] = o.MinParticipantsPerGroup
@@ -295,8 +295,8 @@ func (o DomainTournamentConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MinRoundsRequired) {
 		toSerialize["min_rounds_required"] = o.MinRoundsRequired
 	}
-	if !IsNil(o.SubscriberCount) {
-		toSerialize["subscriber_count"] = o.SubscriberCount
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
 	}
 	if !IsNil(o.Templates) {
 		toSerialize["templates"] = o.Templates

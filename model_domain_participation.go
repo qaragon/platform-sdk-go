@@ -20,20 +20,19 @@ var _ MappedNullable = &DomainParticipation{}
 
 // DomainParticipation struct for DomainParticipation
 type DomainParticipation struct {
-	ChannelId *string `json:"channel_id,omitempty"`
 	Contest *DomainContest `json:"contest,omitempty"`
 	ContestGroupName *string `json:"contest_group_name,omitempty"`
 	CreatedAt *string `json:"createdAt,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LastModifiedAt *string `json:"lastModifiedAt,omitempty"`
-	Participant *DomainPlatformIdentity `json:"participant,omitempty"`
+	Participant *IdentitiesPlatformIdentity `json:"participant,omitempty"`
 	PlatformIdentityId *string `json:"platform_identity_id,omitempty"`
 	Result *DomainParticipationResult `json:"result,omitempty"`
-	// Unified field - can be []Solution or []Prediction
-	Solutions []int32 `json:"solutions,omitempty"`
+	Solutions *DomainParticipationSolutions `json:"solutions,omitempty"`
+	SpaceId *string `json:"space_id,omitempty"`
 	Status *string `json:"status,omitempty"`
 	SubmissionNumber *int32 `json:"submission_number,omitempty"`
-	Team *DomainTeam `json:"team,omitempty"`
+	Team *TeamsTeam `json:"team,omitempty"`
 	Time *string `json:"time,omitempty"`
 }
 
@@ -52,38 +51,6 @@ func NewDomainParticipation() *DomainParticipation {
 func NewDomainParticipationWithDefaults() *DomainParticipation {
 	this := DomainParticipation{}
 	return &this
-}
-
-// GetChannelId returns the ChannelId field value if set, zero value otherwise.
-func (o *DomainParticipation) GetChannelId() string {
-	if o == nil || IsNil(o.ChannelId) {
-		var ret string
-		return ret
-	}
-	return *o.ChannelId
-}
-
-// GetChannelIdOk returns a tuple with the ChannelId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainParticipation) GetChannelIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ChannelId) {
-		return nil, false
-	}
-	return o.ChannelId, true
-}
-
-// HasChannelId returns a boolean if a field has been set.
-func (o *DomainParticipation) HasChannelId() bool {
-	if o != nil && !IsNil(o.ChannelId) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannelId gets a reference to the given string and assigns it to the ChannelId field.
-func (o *DomainParticipation) SetChannelId(v string) {
-	o.ChannelId = &v
 }
 
 // GetContest returns the Contest field value if set, zero value otherwise.
@@ -247,9 +214,9 @@ func (o *DomainParticipation) SetLastModifiedAt(v string) {
 }
 
 // GetParticipant returns the Participant field value if set, zero value otherwise.
-func (o *DomainParticipation) GetParticipant() DomainPlatformIdentity {
+func (o *DomainParticipation) GetParticipant() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Participant) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Participant
@@ -257,7 +224,7 @@ func (o *DomainParticipation) GetParticipant() DomainPlatformIdentity {
 
 // GetParticipantOk returns a tuple with the Participant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainParticipation) GetParticipantOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainParticipation) GetParticipantOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Participant) {
 		return nil, false
 	}
@@ -273,8 +240,8 @@ func (o *DomainParticipation) HasParticipant() bool {
 	return false
 }
 
-// SetParticipant gets a reference to the given DomainPlatformIdentity and assigns it to the Participant field.
-func (o *DomainParticipation) SetParticipant(v DomainPlatformIdentity) {
+// SetParticipant gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Participant field.
+func (o *DomainParticipation) SetParticipant(v IdentitiesPlatformIdentity) {
 	o.Participant = &v
 }
 
@@ -343,17 +310,17 @@ func (o *DomainParticipation) SetResult(v DomainParticipationResult) {
 }
 
 // GetSolutions returns the Solutions field value if set, zero value otherwise.
-func (o *DomainParticipation) GetSolutions() []int32 {
+func (o *DomainParticipation) GetSolutions() DomainParticipationSolutions {
 	if o == nil || IsNil(o.Solutions) {
-		var ret []int32
+		var ret DomainParticipationSolutions
 		return ret
 	}
-	return o.Solutions
+	return *o.Solutions
 }
 
 // GetSolutionsOk returns a tuple with the Solutions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainParticipation) GetSolutionsOk() ([]int32, bool) {
+func (o *DomainParticipation) GetSolutionsOk() (*DomainParticipationSolutions, bool) {
 	if o == nil || IsNil(o.Solutions) {
 		return nil, false
 	}
@@ -369,9 +336,41 @@ func (o *DomainParticipation) HasSolutions() bool {
 	return false
 }
 
-// SetSolutions gets a reference to the given []int32 and assigns it to the Solutions field.
-func (o *DomainParticipation) SetSolutions(v []int32) {
-	o.Solutions = v
+// SetSolutions gets a reference to the given DomainParticipationSolutions and assigns it to the Solutions field.
+func (o *DomainParticipation) SetSolutions(v DomainParticipationSolutions) {
+	o.Solutions = &v
+}
+
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *DomainParticipation) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
+		return ret
+	}
+	return *o.SpaceId
+}
+
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainParticipation) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
+		return nil, false
+	}
+	return o.SpaceId, true
+}
+
+// HasSpaceId returns a boolean if a field has been set.
+func (o *DomainParticipation) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *DomainParticipation) SetSpaceId(v string) {
+	o.SpaceId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -439,9 +438,9 @@ func (o *DomainParticipation) SetSubmissionNumber(v int32) {
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise.
-func (o *DomainParticipation) GetTeam() DomainTeam {
+func (o *DomainParticipation) GetTeam() TeamsTeam {
 	if o == nil || IsNil(o.Team) {
-		var ret DomainTeam
+		var ret TeamsTeam
 		return ret
 	}
 	return *o.Team
@@ -449,7 +448,7 @@ func (o *DomainParticipation) GetTeam() DomainTeam {
 
 // GetTeamOk returns a tuple with the Team field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainParticipation) GetTeamOk() (*DomainTeam, bool) {
+func (o *DomainParticipation) GetTeamOk() (*TeamsTeam, bool) {
 	if o == nil || IsNil(o.Team) {
 		return nil, false
 	}
@@ -465,8 +464,8 @@ func (o *DomainParticipation) HasTeam() bool {
 	return false
 }
 
-// SetTeam gets a reference to the given DomainTeam and assigns it to the Team field.
-func (o *DomainParticipation) SetTeam(v DomainTeam) {
+// SetTeam gets a reference to the given TeamsTeam and assigns it to the Team field.
+func (o *DomainParticipation) SetTeam(v TeamsTeam) {
 	o.Team = &v
 }
 
@@ -512,9 +511,6 @@ func (o DomainParticipation) MarshalJSON() ([]byte, error) {
 
 func (o DomainParticipation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ChannelId) {
-		toSerialize["channel_id"] = o.ChannelId
-	}
 	if !IsNil(o.Contest) {
 		toSerialize["contest"] = o.Contest
 	}
@@ -541,6 +537,9 @@ func (o DomainParticipation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Solutions) {
 		toSerialize["solutions"] = o.Solutions
+	}
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

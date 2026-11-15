@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContestId** | Pointer to **string** |  | [optional] 
 **Group** | Pointer to **string** |  | [optional] 
-**Member** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Member** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **SubmissionNumber** | Pointer to **int32** |  | [optional] 
 **SubmittedAt** | Pointer to **string** |  | [optional] 
 
@@ -81,20 +81,20 @@ HasGroup returns a boolean if a field has been set.
 
 ### GetMember
 
-`func (o *DomainSubmissionFeedItem) GetMember() DomainPlatformIdentity`
+`func (o *DomainSubmissionFeedItem) GetMember() IdentitiesPlatformIdentity`
 
 GetMember returns the Member field if non-nil, zero value otherwise.
 
 ### GetMemberOk
 
-`func (o *DomainSubmissionFeedItem) GetMemberOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainSubmissionFeedItem) GetMemberOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetMemberOk returns a tuple with the Member field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMember
 
-`func (o *DomainSubmissionFeedItem) SetMember(v DomainPlatformIdentity)`
+`func (o *DomainSubmissionFeedItem) SetMember(v IdentitiesPlatformIdentity)`
 
 SetMember sets Member field to given value.
 

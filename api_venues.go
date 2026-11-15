@@ -27,14 +27,14 @@ type VenuesAPIService service
 type ApiCreateVenuesRequest struct {
 	ctx context.Context
 	ApiService *VenuesAPIService
-	handlerCreatePlatformVenueRequest *HandlerCreatePlatformVenueRequest
+	venuehttpCreatePlatformVenueRequest *VenuehttpCreatePlatformVenueRequest
 	idempotencyKey *string
 	xActingAs *string
 }
 
 // Venue payload
-func (r ApiCreateVenuesRequest) HandlerCreatePlatformVenueRequest(handlerCreatePlatformVenueRequest HandlerCreatePlatformVenueRequest) ApiCreateVenuesRequest {
-	r.handlerCreatePlatformVenueRequest = &handlerCreatePlatformVenueRequest
+func (r ApiCreateVenuesRequest) VenuehttpCreatePlatformVenueRequest(venuehttpCreatePlatformVenueRequest VenuehttpCreatePlatformVenueRequest) ApiCreateVenuesRequest {
+	r.venuehttpCreatePlatformVenueRequest = &venuehttpCreatePlatformVenueRequest
 	return r
 }
 
@@ -50,7 +50,7 @@ func (r ApiCreateVenuesRequest) XActingAs(xActingAs string) ApiCreateVenuesReque
 	return r
 }
 
-func (r ApiCreateVenuesRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
+func (r ApiCreateVenuesRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
 	return r.ApiService.CreateVenuesExecute(r)
 }
 
@@ -68,13 +68,13 @@ func (a *VenuesAPIService) CreateVenues(ctx context.Context) ApiCreateVenuesRequ
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VenuesAPIService.CreateVenues")
@@ -87,8 +87,8 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.handlerCreatePlatformVenueRequest == nil {
-		return localVarReturnValue, nil, reportError("handlerCreatePlatformVenueRequest is required and must be specified")
+	if r.venuehttpCreatePlatformVenueRequest == nil {
+		return localVarReturnValue, nil, reportError("venuehttpCreatePlatformVenueRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -115,7 +115,7 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.handlerCreatePlatformVenueRequest
+	localVarPostBody = r.venuehttpCreatePlatformVenueRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -139,7 +139,7 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -150,7 +150,7 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -161,7 +161,7 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -172,7 +172,7 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -183,7 +183,7 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -207,46 +207,46 @@ func (a *VenuesAPIService) CreateVenuesExecute(r ApiCreateVenuesRequest) (*Handl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateVenuesByVenueIdChannelsRequest struct {
+type ApiCreateVenuesByVenueIdSpacesRequest struct {
 	ctx context.Context
 	ApiService *VenuesAPIService
 	venueId string
-	handlerCreatePlatformChannelRequest *HandlerCreatePlatformChannelRequest
+	spacehttpCreatePlatformSpaceRequest *SpacehttpCreatePlatformSpaceRequest
 	idempotencyKey *string
 	xActingAs *string
 }
 
-// Channel payload
-func (r ApiCreateVenuesByVenueIdChannelsRequest) HandlerCreatePlatformChannelRequest(handlerCreatePlatformChannelRequest HandlerCreatePlatformChannelRequest) ApiCreateVenuesByVenueIdChannelsRequest {
-	r.handlerCreatePlatformChannelRequest = &handlerCreatePlatformChannelRequest
+// Space payload
+func (r ApiCreateVenuesByVenueIdSpacesRequest) SpacehttpCreatePlatformSpaceRequest(spacehttpCreatePlatformSpaceRequest SpacehttpCreatePlatformSpaceRequest) ApiCreateVenuesByVenueIdSpacesRequest {
+	r.spacehttpCreatePlatformSpaceRequest = &spacehttpCreatePlatformSpaceRequest
 	return r
 }
 
 // Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055).
-func (r ApiCreateVenuesByVenueIdChannelsRequest) IdempotencyKey(idempotencyKey string) ApiCreateVenuesByVenueIdChannelsRequest {
+func (r ApiCreateVenuesByVenueIdSpacesRequest) IdempotencyKey(idempotencyKey string) ApiCreateVenuesByVenueIdSpacesRequest {
 	r.idempotencyKey = &idempotencyKey
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiCreateVenuesByVenueIdChannelsRequest) XActingAs(xActingAs string) ApiCreateVenuesByVenueIdChannelsRequest {
+func (r ApiCreateVenuesByVenueIdSpacesRequest) XActingAs(xActingAs string) ApiCreateVenuesByVenueIdSpacesRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiCreateVenuesByVenueIdChannelsRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
-	return r.ApiService.CreateVenuesByVenueIdChannelsExecute(r)
+func (r ApiCreateVenuesByVenueIdSpacesRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
+	return r.ApiService.CreateVenuesByVenueIdSpacesExecute(r)
 }
 
 /*
-CreateVenuesByVenueIdChannels Create a channel under one of the tenant's venues
+CreateVenuesByVenueIdSpaces Create a space under one of the tenant's venues
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param venueId Venue ID
- @return ApiCreateVenuesByVenueIdChannelsRequest
+ @return ApiCreateVenuesByVenueIdSpacesRequest
 */
-func (a *VenuesAPIService) CreateVenuesByVenueIdChannels(ctx context.Context, venueId string) ApiCreateVenuesByVenueIdChannelsRequest {
-	return ApiCreateVenuesByVenueIdChannelsRequest{
+func (a *VenuesAPIService) CreateVenuesByVenueIdSpaces(ctx context.Context, venueId string) ApiCreateVenuesByVenueIdSpacesRequest {
+	return ApiCreateVenuesByVenueIdSpacesRequest{
 		ApiService: a,
 		ctx: ctx,
 		venueId: venueId,
@@ -254,28 +254,28 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannels(ctx context.Context, ve
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenuesByVenueIdChannelsRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *VenuesAPIService) CreateVenuesByVenueIdSpacesExecute(r ApiCreateVenuesByVenueIdSpacesRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VenuesAPIService.CreateVenuesByVenueIdChannels")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VenuesAPIService.CreateVenuesByVenueIdSpaces")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/venues/{venueId}/channels"
+	localVarPath := localBasePath + "/v2/venues/{venueId}/spaces"
 	localVarPath = strings.Replace(localVarPath, "{"+"venueId"+"}", url.PathEscape(parameterValueToString(r.venueId, "venueId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.handlerCreatePlatformChannelRequest == nil {
-		return localVarReturnValue, nil, reportError("handlerCreatePlatformChannelRequest is required and must be specified")
+	if r.spacehttpCreatePlatformSpaceRequest == nil {
+		return localVarReturnValue, nil, reportError("spacehttpCreatePlatformSpaceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -302,7 +302,7 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenue
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.handlerCreatePlatformChannelRequest
+	localVarPostBody = r.spacehttpCreatePlatformSpaceRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -326,7 +326,7 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenue
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -337,7 +337,7 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenue
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +348,7 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenue
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenue
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +370,7 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenue
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +381,7 @@ func (a *VenuesAPIService) CreateVenuesByVenueIdChannelsExecute(r ApiCreateVenue
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -431,7 +431,7 @@ func (r ApiGetVenuesRequest) XActingAs(xActingAs string) ApiGetVenuesRequest {
 	return r
 }
 
-func (r ApiGetVenuesRequest) Execute() (*DomainVenueListResponse, *http.Response, error) {
+func (r ApiGetVenuesRequest) Execute() (*VenuesVenueListResponse, *http.Response, error) {
 	return r.ApiService.GetVenuesExecute(r)
 }
 
@@ -449,13 +449,13 @@ func (a *VenuesAPIService) GetVenues(ctx context.Context) ApiGetVenuesRequest {
 }
 
 // Execute executes the request
-//  @return DomainVenueListResponse
-func (a *VenuesAPIService) GetVenuesExecute(r ApiGetVenuesRequest) (*DomainVenueListResponse, *http.Response, error) {
+//  @return VenuesVenueListResponse
+func (a *VenuesAPIService) GetVenuesExecute(r ApiGetVenuesRequest) (*VenuesVenueListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainVenueListResponse
+		localVarReturnValue  *VenuesVenueListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VenuesAPIService.GetVenues")
@@ -518,7 +518,7 @@ func (a *VenuesAPIService) GetVenuesExecute(r ApiGetVenuesRequest) (*DomainVenue
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -529,7 +529,7 @@ func (a *VenuesAPIService) GetVenuesExecute(r ApiGetVenuesRequest) (*DomainVenue
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -553,7 +553,7 @@ func (a *VenuesAPIService) GetVenuesExecute(r ApiGetVenuesRequest) (*DomainVenue
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetVenuesByVenueIdChannelsRequest struct {
+type ApiGetVenuesByVenueIdSpacesRequest struct {
 	ctx context.Context
 	ApiService *VenuesAPIService
 	venueId string
@@ -563,36 +563,36 @@ type ApiGetVenuesByVenueIdChannelsRequest struct {
 }
 
 // Opaque pagination cursor
-func (r ApiGetVenuesByVenueIdChannelsRequest) Cursor(cursor string) ApiGetVenuesByVenueIdChannelsRequest {
+func (r ApiGetVenuesByVenueIdSpacesRequest) Cursor(cursor string) ApiGetVenuesByVenueIdSpacesRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Page size (default 50, max 200)
-func (r ApiGetVenuesByVenueIdChannelsRequest) Limit(limit int32) ApiGetVenuesByVenueIdChannelsRequest {
+func (r ApiGetVenuesByVenueIdSpacesRequest) Limit(limit int32) ApiGetVenuesByVenueIdSpacesRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiGetVenuesByVenueIdChannelsRequest) XActingAs(xActingAs string) ApiGetVenuesByVenueIdChannelsRequest {
+func (r ApiGetVenuesByVenueIdSpacesRequest) XActingAs(xActingAs string) ApiGetVenuesByVenueIdSpacesRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiGetVenuesByVenueIdChannelsRequest) Execute() (*DomainChannelListResponse, *http.Response, error) {
-	return r.ApiService.GetVenuesByVenueIdChannelsExecute(r)
+func (r ApiGetVenuesByVenueIdSpacesRequest) Execute() (*SpacesSpaceListResponse, *http.Response, error) {
+	return r.ApiService.GetVenuesByVenueIdSpacesExecute(r)
 }
 
 /*
-GetVenuesByVenueIdChannels List channels under one of the tenant's venues
+GetVenuesByVenueIdSpaces List spaces under one of the tenant's venues
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param venueId Venue ID
- @return ApiGetVenuesByVenueIdChannelsRequest
+ @return ApiGetVenuesByVenueIdSpacesRequest
 */
-func (a *VenuesAPIService) GetVenuesByVenueIdChannels(ctx context.Context, venueId string) ApiGetVenuesByVenueIdChannelsRequest {
-	return ApiGetVenuesByVenueIdChannelsRequest{
+func (a *VenuesAPIService) GetVenuesByVenueIdSpaces(ctx context.Context, venueId string) ApiGetVenuesByVenueIdSpacesRequest {
+	return ApiGetVenuesByVenueIdSpacesRequest{
 		ApiService: a,
 		ctx: ctx,
 		venueId: venueId,
@@ -600,21 +600,21 @@ func (a *VenuesAPIService) GetVenuesByVenueIdChannels(ctx context.Context, venue
 }
 
 // Execute executes the request
-//  @return DomainChannelListResponse
-func (a *VenuesAPIService) GetVenuesByVenueIdChannelsExecute(r ApiGetVenuesByVenueIdChannelsRequest) (*DomainChannelListResponse, *http.Response, error) {
+//  @return SpacesSpaceListResponse
+func (a *VenuesAPIService) GetVenuesByVenueIdSpacesExecute(r ApiGetVenuesByVenueIdSpacesRequest) (*SpacesSpaceListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainChannelListResponse
+		localVarReturnValue  *SpacesSpaceListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VenuesAPIService.GetVenuesByVenueIdChannels")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VenuesAPIService.GetVenuesByVenueIdSpaces")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/venues/{venueId}/channels"
+	localVarPath := localBasePath + "/v2/venues/{venueId}/spaces"
 	localVarPath = strings.Replace(localVarPath, "{"+"venueId"+"}", url.PathEscape(parameterValueToString(r.venueId, "venueId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -670,7 +670,7 @@ func (a *VenuesAPIService) GetVenuesByVenueIdChannelsExecute(r ApiGetVenuesByVen
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -681,7 +681,7 @@ func (a *VenuesAPIService) GetVenuesByVenueIdChannelsExecute(r ApiGetVenuesByVen
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -692,7 +692,7 @@ func (a *VenuesAPIService) GetVenuesByVenueIdChannelsExecute(r ApiGetVenuesByVen
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

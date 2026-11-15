@@ -25,7 +25,7 @@ type DomainLeaderboardRank struct {
 	// Count of contests
 	ContestsPlayed *int32 `json:"contests_played,omitempty"`
 	Current *int32 `json:"current,omitempty"`
-	Member *DomainPlatformIdentity `json:"member,omitempty"`
+	Member *IdentitiesPlatformIdentity `json:"member,omitempty"`
 	// Period type and date range
 	Period *DomainPeriod `json:"period,omitempty"`
 	// Participation points with 3 decimal precision (MCQ/zone metric)
@@ -149,9 +149,9 @@ func (o *DomainLeaderboardRank) SetCurrent(v int32) {
 }
 
 // GetMember returns the Member field value if set, zero value otherwise.
-func (o *DomainLeaderboardRank) GetMember() DomainPlatformIdentity {
+func (o *DomainLeaderboardRank) GetMember() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Member) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Member
@@ -159,7 +159,7 @@ func (o *DomainLeaderboardRank) GetMember() DomainPlatformIdentity {
 
 // GetMemberOk returns a tuple with the Member field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainLeaderboardRank) GetMemberOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainLeaderboardRank) GetMemberOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Member) {
 		return nil, false
 	}
@@ -175,8 +175,8 @@ func (o *DomainLeaderboardRank) HasMember() bool {
 	return false
 }
 
-// SetMember gets a reference to the given DomainPlatformIdentity and assigns it to the Member field.
-func (o *DomainLeaderboardRank) SetMember(v DomainPlatformIdentity) {
+// SetMember gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Member field.
+func (o *DomainLeaderboardRank) SetMember(v IdentitiesPlatformIdentity) {
 	o.Member = &v
 }
 

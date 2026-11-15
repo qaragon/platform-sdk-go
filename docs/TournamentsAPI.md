@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateTournaments**](TournamentsAPI.md#CreateTournaments) | **Post** /v2/tournaments | Create tournament
-[**GetChannelsByIdTournamentConfiguration**](TournamentsAPI.md#GetChannelsByIdTournamentConfiguration) | **Get** /v2/channels/{id}/tournament-configuration | Get tournament configuration templates
-[**GetChannelsByIdTournaments**](TournamentsAPI.md#GetChannelsByIdTournaments) | **Get** /v2/channels/{id}/tournaments | List channel tournaments (cursor-paginated)
 [**GetIdentitiesByPiidTournaments**](TournamentsAPI.md#GetIdentitiesByPiidTournaments) | **Get** /v2/identities/{piid}/tournaments | List tournaments owned by a platform identity (cursor-paginated)
+[**GetSpacesByIdTournamentConfiguration**](TournamentsAPI.md#GetSpacesByIdTournamentConfiguration) | **Get** /v2/spaces/{id}/tournament-configuration | Get tournament configuration templates
+[**GetSpacesByIdTournaments**](TournamentsAPI.md#GetSpacesByIdTournaments) | **Get** /v2/spaces/{id}/tournaments | List space tournaments (cursor-paginated)
 [**GetTournaments**](TournamentsAPI.md#GetTournaments) | **Get** /v2/tournaments | List the caller&#39;s tournaments (cursor-paginated)
 [**GetTournamentsById**](TournamentsAPI.md#GetTournamentsById) | **Get** /v2/tournaments/{id} | Get tournament
 
@@ -79,152 +79,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetChannelsByIdTournamentConfiguration
-
-> DomainTournamentConfigurationResponse GetChannelsByIdTournamentConfiguration(ctx, id).XActingAs(xActingAs).Execute()
-
-Get tournament configuration templates
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Channel ID
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TournamentsAPI.GetChannelsByIdTournamentConfiguration(context.Background(), id).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsAPI.GetChannelsByIdTournamentConfiguration``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetChannelsByIdTournamentConfiguration`: DomainTournamentConfigurationResponse
-	fmt.Fprintf(os.Stdout, "Response from `TournamentsAPI.GetChannelsByIdTournamentConfiguration`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Channel ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetChannelsByIdTournamentConfigurationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**DomainTournamentConfigurationResponse**](DomainTournamentConfigurationResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetChannelsByIdTournaments
-
-> DomainTournamentListResponse GetChannelsByIdTournaments(ctx, id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
-
-List channel tournaments (cursor-paginated)
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
-)
-
-func main() {
-	id := "id_example" // string | Channel ID
-	cursor := "cursor_example" // string | Opaque pagination cursor (optional)
-	limit := int32(56) // int32 | Page size (optional)
-	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TournamentsAPI.GetChannelsByIdTournaments(context.Background(), id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsAPI.GetChannelsByIdTournaments``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetChannelsByIdTournaments`: DomainTournamentListResponse
-	fmt.Fprintf(os.Stdout, "Response from `TournamentsAPI.GetChannelsByIdTournaments`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Channel ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetChannelsByIdTournamentsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **cursor** | **string** | Opaque pagination cursor | 
- **limit** | **int32** | Page size | 
- **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
-
-### Return type
-
-[**DomainTournamentListResponse**](DomainTournamentListResponse.md)
-
-### Authorization
-
-[TenantApiKey](../README.md#TenantApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetIdentitiesByPiidTournaments
 
 > DomainTournamentListResponse GetIdentitiesByPiidTournaments(ctx, piid).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
@@ -272,6 +126,152 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetIdentitiesByPiidTournamentsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **cursor** | **string** | Opaque pagination cursor | 
+ **limit** | **int32** | Page size | 
+ **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
+
+### Return type
+
+[**DomainTournamentListResponse**](DomainTournamentListResponse.md)
+
+### Authorization
+
+[TenantApiKey](../README.md#TenantApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSpacesByIdTournamentConfiguration
+
+> DomainTournamentConfigurationResponse GetSpacesByIdTournamentConfiguration(ctx, id).XActingAs(xActingAs).Execute()
+
+Get tournament configuration templates
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/fanscontest/platform-sdk-go"
+)
+
+func main() {
+	id := "id_example" // string | Space ID
+	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TournamentsAPI.GetSpacesByIdTournamentConfiguration(context.Background(), id).XActingAs(xActingAs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsAPI.GetSpacesByIdTournamentConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSpacesByIdTournamentConfiguration`: DomainTournamentConfigurationResponse
+	fmt.Fprintf(os.Stdout, "Response from `TournamentsAPI.GetSpacesByIdTournamentConfiguration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Space ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSpacesByIdTournamentConfigurationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
+
+### Return type
+
+[**DomainTournamentConfigurationResponse**](DomainTournamentConfigurationResponse.md)
+
+### Authorization
+
+[TenantApiKey](../README.md#TenantApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSpacesByIdTournaments
+
+> DomainTournamentListResponse GetSpacesByIdTournaments(ctx, id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+
+List space tournaments (cursor-paginated)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/fanscontest/platform-sdk-go"
+)
+
+func main() {
+	id := "id_example" // string | Space ID
+	cursor := "cursor_example" // string | Opaque pagination cursor (optional)
+	limit := int32(56) // int32 | Page size (optional)
+	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TournamentsAPI.GetSpacesByIdTournaments(context.Background(), id).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TournamentsAPI.GetSpacesByIdTournaments``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSpacesByIdTournaments`: DomainTournamentListResponse
+	fmt.Fprintf(os.Stdout, "Response from `TournamentsAPI.GetSpacesByIdTournaments`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Space ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSpacesByIdTournamentsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

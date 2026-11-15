@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Contest** | Pointer to **string** |  | [optional] 
-**Groups** | Pointer to [**map[string][]DomainPlatformIdentity**](array.md) |  | [optional] 
+**Groups** | Pointer to [**map[string][]IdentitiesPlatformIdentity**](array.md) |  | [optional] 
 **MemberGroup** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasContest returns a boolean if a field has been set.
 
 ### GetGroups
 
-`func (o *DomainContestGroups) GetGroups() map[string][]DomainPlatformIdentity`
+`func (o *DomainContestGroups) GetGroups() map[string][]IdentitiesPlatformIdentity`
 
 GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### GetGroupsOk
 
-`func (o *DomainContestGroups) GetGroupsOk() (*map[string][]DomainPlatformIdentity, bool)`
+`func (o *DomainContestGroups) GetGroupsOk() (*map[string][]IdentitiesPlatformIdentity, bool)`
 
 GetGroupsOk returns a tuple with the Groups field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroups
 
-`func (o *DomainContestGroups) SetGroups(v map[string][]DomainPlatformIdentity)`
+`func (o *DomainContestGroups) SetGroups(v map[string][]IdentitiesPlatformIdentity)`
 
 SetGroups sets Groups field to given value.
 

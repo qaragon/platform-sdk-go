@@ -24,6 +24,7 @@ var _ MappedNullable = &PuzzleSheet{}
 // PuzzleSheet A curated or adhoc set of puzzles.
 type PuzzleSheet struct {
 	Description NullableString `json:"description,omitempty"`
+	Format *string `json:"format,omitempty"`
 	Id string `json:"id"`
 	InsertedAt *time.Time `json:"inserted_at,omitempty"`
 	IsAdhocSheet NullableBool `json:"is_adhoc_sheet,omitempty"`
@@ -100,6 +101,38 @@ func (o *PuzzleSheet) SetDescriptionNil() {
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
 func (o *PuzzleSheet) UnsetDescription() {
 	o.Description.Unset()
+}
+
+// GetFormat returns the Format field value if set, zero value otherwise.
+func (o *PuzzleSheet) GetFormat() string {
+	if o == nil || IsNil(o.Format) {
+		var ret string
+		return ret
+	}
+	return *o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PuzzleSheet) GetFormatOk() (*string, bool) {
+	if o == nil || IsNil(o.Format) {
+		return nil, false
+	}
+	return o.Format, true
+}
+
+// HasFormat returns a boolean if a field has been set.
+func (o *PuzzleSheet) HasFormat() bool {
+	if o != nil && !IsNil(o.Format) {
+		return true
+	}
+
+	return false
+}
+
+// SetFormat gets a reference to the given string and assigns it to the Format field.
+func (o *PuzzleSheet) SetFormat(v string) {
+	o.Format = &v
 }
 
 // GetId returns the Id field value
@@ -422,6 +455,9 @@ func (o PuzzleSheet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
+	}
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
 	}
 	toSerialize["id"] = o.Id
 	if !IsNil(o.InsertedAt) {

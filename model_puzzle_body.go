@@ -20,11 +20,13 @@ var _ MappedNullable = &PuzzleBody{}
 
 // PuzzleBody Embedded puzzle body (mcq + future puzzle types).
 type PuzzleBody struct {
+	Media NullablePuzzleBodyMedia `json:"media,omitempty"`
 	Number NullableInt32 `json:"number,omitempty"`
-	Options []string `json:"options,omitempty"`
+	Options *map[string]string `json:"options,omitempty"`
 	Points NullableInt32 `json:"points,omitempty"`
 	PuzzleType *string `json:"puzzle_type,omitempty"`
-	Question *string `json:"question,omitempty"`
+	// Required for Quiz; optional for Moment, whose media supplies the question.
+	Question NullableString `json:"question,omitempty"`
 	Solution *string `json:"solution,omitempty"`
 }
 
@@ -43,6 +45,48 @@ func NewPuzzleBody() *PuzzleBody {
 func NewPuzzleBodyWithDefaults() *PuzzleBody {
 	this := PuzzleBody{}
 	return &this
+}
+
+// GetMedia returns the Media field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PuzzleBody) GetMedia() PuzzleBodyMedia {
+	if o == nil || IsNil(o.Media.Get()) {
+		var ret PuzzleBodyMedia
+		return ret
+	}
+	return *o.Media.Get()
+}
+
+// GetMediaOk returns a tuple with the Media field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PuzzleBody) GetMediaOk() (*PuzzleBodyMedia, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Media.Get(), o.Media.IsSet()
+}
+
+// HasMedia returns a boolean if a field has been set.
+func (o *PuzzleBody) HasMedia() bool {
+	if o != nil && o.Media.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMedia gets a reference to the given NullablePuzzleBodyMedia and assigns it to the Media field.
+func (o *PuzzleBody) SetMedia(v PuzzleBodyMedia) {
+	o.Media.Set(&v)
+}
+// SetMediaNil sets the value for Media to be an explicit nil
+func (o *PuzzleBody) SetMediaNil() {
+	o.Media.Set(nil)
+}
+
+// UnsetMedia ensures that no value is present for Media, not even an explicit nil
+func (o *PuzzleBody) UnsetMedia() {
+	o.Media.Unset()
 }
 
 // GetNumber returns the Number field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -88,17 +132,17 @@ func (o *PuzzleBody) UnsetNumber() {
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *PuzzleBody) GetOptions() []string {
+func (o *PuzzleBody) GetOptions() map[string]string {
 	if o == nil || IsNil(o.Options) {
-		var ret []string
+		var ret map[string]string
 		return ret
 	}
-	return o.Options
+	return *o.Options
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PuzzleBody) GetOptionsOk() ([]string, bool) {
+func (o *PuzzleBody) GetOptionsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
@@ -114,9 +158,9 @@ func (o *PuzzleBody) HasOptions() bool {
 	return false
 }
 
-// SetOptions gets a reference to the given []string and assigns it to the Options field.
-func (o *PuzzleBody) SetOptions(v []string) {
-	o.Options = v
+// SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
+func (o *PuzzleBody) SetOptions(v map[string]string) {
+	o.Options = &v
 }
 
 // GetPoints returns the Points field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -193,36 +237,46 @@ func (o *PuzzleBody) SetPuzzleType(v string) {
 	o.PuzzleType = &v
 }
 
-// GetQuestion returns the Question field value if set, zero value otherwise.
+// GetQuestion returns the Question field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PuzzleBody) GetQuestion() string {
-	if o == nil || IsNil(o.Question) {
+	if o == nil || IsNil(o.Question.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Question
+	return *o.Question.Get()
 }
 
 // GetQuestionOk returns a tuple with the Question field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PuzzleBody) GetQuestionOk() (*string, bool) {
-	if o == nil || IsNil(o.Question) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Question, true
+	return o.Question.Get(), o.Question.IsSet()
 }
 
 // HasQuestion returns a boolean if a field has been set.
 func (o *PuzzleBody) HasQuestion() bool {
-	if o != nil && !IsNil(o.Question) {
+	if o != nil && o.Question.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetQuestion gets a reference to the given string and assigns it to the Question field.
+// SetQuestion gets a reference to the given NullableString and assigns it to the Question field.
 func (o *PuzzleBody) SetQuestion(v string) {
-	o.Question = &v
+	o.Question.Set(&v)
+}
+// SetQuestionNil sets the value for Question to be an explicit nil
+func (o *PuzzleBody) SetQuestionNil() {
+	o.Question.Set(nil)
+}
+
+// UnsetQuestion ensures that no value is present for Question, not even an explicit nil
+func (o *PuzzleBody) UnsetQuestion() {
+	o.Question.Unset()
 }
 
 // GetSolution returns the Solution field value if set, zero value otherwise.
@@ -267,6 +321,9 @@ func (o PuzzleBody) MarshalJSON() ([]byte, error) {
 
 func (o PuzzleBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Media.IsSet() {
+		toSerialize["media"] = o.Media.Get()
+	}
 	if o.Number.IsSet() {
 		toSerialize["number"] = o.Number.Get()
 	}
@@ -279,8 +336,8 @@ func (o PuzzleBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PuzzleType) {
 		toSerialize["puzzle_type"] = o.PuzzleType
 	}
-	if !IsNil(o.Question) {
-		toSerialize["question"] = o.Question
+	if o.Question.IsSet() {
+		toSerialize["question"] = o.Question.Get()
 	}
 	if !IsNil(o.Solution) {
 		toSerialize["solution"] = o.Solution

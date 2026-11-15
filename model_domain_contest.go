@@ -20,16 +20,11 @@ var _ MappedNullable = &DomainContest{}
 
 // DomainContest struct for DomainContest
 type DomainContest struct {
-	Channel *DomainChannel `json:"channel,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Difficulty *string `json:"difficulty,omitempty"`
 	// EnrollmentTiming, when non-nil, is the pre-enrollment window (ADR 0058): a member must enroll within [StartAt, EndAt] to participate. nil means the contest does not require enrollment.
 	EnrollmentTiming *DomainTiming `json:"enrollment_timing,omitempty"`
-	// Present only for entry-based (creative) contests — juror sizing + judging config (uman#221)
-	EntryBasedConfig *EntryBasedContestConfig `json:"entry_based_config,omitempty"`
-	// @deprecated
-	FairPlayGrouping *bool `json:"fair_play_grouping,omitempty"`
 	// 'system' or 'open'
 	GroupingType *string `json:"grouping_type,omitempty"`
 	HeaderImageUrl *string `json:"header_image_url,omitempty"`
@@ -37,24 +32,19 @@ type DomainContest struct {
 	MemberParticipation *DomainMemberParticipationSummary `json:"member_participation,omitempty"`
 	NoOfGroups *int32 `json:"no_of_groups,omitempty"`
 	NoOfPuzzles *int32 `json:"no_of_puzzles,omitempty"`
-	// @deprecated
-	NoOfWinners *int32 `json:"no_of_winners,omitempty"`
 	ParticipationRules *DomainParticipationRules `json:"participation_rules,omitempty"`
-	// v1; prefer source_id
-	PuzzleSheetId *string `json:"puzzle_sheet_id,omitempty"`
-	// v1; prefer source_type
-	QuestionType *DomainContestType `json:"question_type,omitempty"`
 	Reward *DomainReward `json:"reward,omitempty"`
-	Sender *DomainPlatformIdentity `json:"sender,omitempty"`
-	// v2; same as puzzle_sheet_id
+	Sender *IdentitiesPlatformIdentity `json:"sender,omitempty"`
 	SourceId *string `json:"source_id,omitempty"`
-	// v2; same as question_type
 	SourceType *DomainContestType `json:"source_type,omitempty"`
+	SourceVariant *string `json:"source_variant,omitempty"`
+	Space *SpacesSpace `json:"space,omitempty"`
+	SpaceId *string `json:"space_id,omitempty"`
 	// Only present if contest has accepted sponsorship
 	Sponsor *DomainSponsorInfo `json:"sponsor,omitempty"`
 	State *string `json:"state,omitempty"`
 	SubmissionZoneConfiguration *DomainSubmissionZoneConfiguration `json:"submission_zone_configuration,omitempty"`
-	TeamSet *DomainTeamSet `json:"team_set,omitempty"`
+	TeamSet *TeamsTeamSet `json:"team_set,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	TimePenaltyConfiguration []DomainTimePenaltyConfiguration `json:"time_penalty_configuration,omitempty"`
 	Timing *DomainTiming `json:"timing,omitempty"`
@@ -77,38 +67,6 @@ func NewDomainContest() *DomainContest {
 func NewDomainContestWithDefaults() *DomainContest {
 	this := DomainContest{}
 	return &this
-}
-
-// GetChannel returns the Channel field value if set, zero value otherwise.
-func (o *DomainContest) GetChannel() DomainChannel {
-	if o == nil || IsNil(o.Channel) {
-		var ret DomainChannel
-		return ret
-	}
-	return *o.Channel
-}
-
-// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetChannelOk() (*DomainChannel, bool) {
-	if o == nil || IsNil(o.Channel) {
-		return nil, false
-	}
-	return o.Channel, true
-}
-
-// HasChannel returns a boolean if a field has been set.
-func (o *DomainContest) HasChannel() bool {
-	if o != nil && !IsNil(o.Channel) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannel gets a reference to the given DomainChannel and assigns it to the Channel field.
-func (o *DomainContest) SetChannel(v DomainChannel) {
-	o.Channel = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -237,70 +195,6 @@ func (o *DomainContest) HasEnrollmentTiming() bool {
 // SetEnrollmentTiming gets a reference to the given DomainTiming and assigns it to the EnrollmentTiming field.
 func (o *DomainContest) SetEnrollmentTiming(v DomainTiming) {
 	o.EnrollmentTiming = &v
-}
-
-// GetEntryBasedConfig returns the EntryBasedConfig field value if set, zero value otherwise.
-func (o *DomainContest) GetEntryBasedConfig() EntryBasedContestConfig {
-	if o == nil || IsNil(o.EntryBasedConfig) {
-		var ret EntryBasedContestConfig
-		return ret
-	}
-	return *o.EntryBasedConfig
-}
-
-// GetEntryBasedConfigOk returns a tuple with the EntryBasedConfig field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetEntryBasedConfigOk() (*EntryBasedContestConfig, bool) {
-	if o == nil || IsNil(o.EntryBasedConfig) {
-		return nil, false
-	}
-	return o.EntryBasedConfig, true
-}
-
-// HasEntryBasedConfig returns a boolean if a field has been set.
-func (o *DomainContest) HasEntryBasedConfig() bool {
-	if o != nil && !IsNil(o.EntryBasedConfig) {
-		return true
-	}
-
-	return false
-}
-
-// SetEntryBasedConfig gets a reference to the given EntryBasedContestConfig and assigns it to the EntryBasedConfig field.
-func (o *DomainContest) SetEntryBasedConfig(v EntryBasedContestConfig) {
-	o.EntryBasedConfig = &v
-}
-
-// GetFairPlayGrouping returns the FairPlayGrouping field value if set, zero value otherwise.
-func (o *DomainContest) GetFairPlayGrouping() bool {
-	if o == nil || IsNil(o.FairPlayGrouping) {
-		var ret bool
-		return ret
-	}
-	return *o.FairPlayGrouping
-}
-
-// GetFairPlayGroupingOk returns a tuple with the FairPlayGrouping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetFairPlayGroupingOk() (*bool, bool) {
-	if o == nil || IsNil(o.FairPlayGrouping) {
-		return nil, false
-	}
-	return o.FairPlayGrouping, true
-}
-
-// HasFairPlayGrouping returns a boolean if a field has been set.
-func (o *DomainContest) HasFairPlayGrouping() bool {
-	if o != nil && !IsNil(o.FairPlayGrouping) {
-		return true
-	}
-
-	return false
-}
-
-// SetFairPlayGrouping gets a reference to the given bool and assigns it to the FairPlayGrouping field.
-func (o *DomainContest) SetFairPlayGrouping(v bool) {
-	o.FairPlayGrouping = &v
 }
 
 // GetGroupingType returns the GroupingType field value if set, zero value otherwise.
@@ -495,38 +389,6 @@ func (o *DomainContest) SetNoOfPuzzles(v int32) {
 	o.NoOfPuzzles = &v
 }
 
-// GetNoOfWinners returns the NoOfWinners field value if set, zero value otherwise.
-func (o *DomainContest) GetNoOfWinners() int32 {
-	if o == nil || IsNil(o.NoOfWinners) {
-		var ret int32
-		return ret
-	}
-	return *o.NoOfWinners
-}
-
-// GetNoOfWinnersOk returns a tuple with the NoOfWinners field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetNoOfWinnersOk() (*int32, bool) {
-	if o == nil || IsNil(o.NoOfWinners) {
-		return nil, false
-	}
-	return o.NoOfWinners, true
-}
-
-// HasNoOfWinners returns a boolean if a field has been set.
-func (o *DomainContest) HasNoOfWinners() bool {
-	if o != nil && !IsNil(o.NoOfWinners) {
-		return true
-	}
-
-	return false
-}
-
-// SetNoOfWinners gets a reference to the given int32 and assigns it to the NoOfWinners field.
-func (o *DomainContest) SetNoOfWinners(v int32) {
-	o.NoOfWinners = &v
-}
-
 // GetParticipationRules returns the ParticipationRules field value if set, zero value otherwise.
 func (o *DomainContest) GetParticipationRules() DomainParticipationRules {
 	if o == nil || IsNil(o.ParticipationRules) {
@@ -557,70 +419,6 @@ func (o *DomainContest) HasParticipationRules() bool {
 // SetParticipationRules gets a reference to the given DomainParticipationRules and assigns it to the ParticipationRules field.
 func (o *DomainContest) SetParticipationRules(v DomainParticipationRules) {
 	o.ParticipationRules = &v
-}
-
-// GetPuzzleSheetId returns the PuzzleSheetId field value if set, zero value otherwise.
-func (o *DomainContest) GetPuzzleSheetId() string {
-	if o == nil || IsNil(o.PuzzleSheetId) {
-		var ret string
-		return ret
-	}
-	return *o.PuzzleSheetId
-}
-
-// GetPuzzleSheetIdOk returns a tuple with the PuzzleSheetId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetPuzzleSheetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PuzzleSheetId) {
-		return nil, false
-	}
-	return o.PuzzleSheetId, true
-}
-
-// HasPuzzleSheetId returns a boolean if a field has been set.
-func (o *DomainContest) HasPuzzleSheetId() bool {
-	if o != nil && !IsNil(o.PuzzleSheetId) {
-		return true
-	}
-
-	return false
-}
-
-// SetPuzzleSheetId gets a reference to the given string and assigns it to the PuzzleSheetId field.
-func (o *DomainContest) SetPuzzleSheetId(v string) {
-	o.PuzzleSheetId = &v
-}
-
-// GetQuestionType returns the QuestionType field value if set, zero value otherwise.
-func (o *DomainContest) GetQuestionType() DomainContestType {
-	if o == nil || IsNil(o.QuestionType) {
-		var ret DomainContestType
-		return ret
-	}
-	return *o.QuestionType
-}
-
-// GetQuestionTypeOk returns a tuple with the QuestionType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetQuestionTypeOk() (*DomainContestType, bool) {
-	if o == nil || IsNil(o.QuestionType) {
-		return nil, false
-	}
-	return o.QuestionType, true
-}
-
-// HasQuestionType returns a boolean if a field has been set.
-func (o *DomainContest) HasQuestionType() bool {
-	if o != nil && !IsNil(o.QuestionType) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuestionType gets a reference to the given DomainContestType and assigns it to the QuestionType field.
-func (o *DomainContest) SetQuestionType(v DomainContestType) {
-	o.QuestionType = &v
 }
 
 // GetReward returns the Reward field value if set, zero value otherwise.
@@ -656,9 +454,9 @@ func (o *DomainContest) SetReward(v DomainReward) {
 }
 
 // GetSender returns the Sender field value if set, zero value otherwise.
-func (o *DomainContest) GetSender() DomainPlatformIdentity {
+func (o *DomainContest) GetSender() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Sender) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Sender
@@ -666,7 +464,7 @@ func (o *DomainContest) GetSender() DomainPlatformIdentity {
 
 // GetSenderOk returns a tuple with the Sender field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainContest) GetSenderOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainContest) GetSenderOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Sender) {
 		return nil, false
 	}
@@ -682,8 +480,8 @@ func (o *DomainContest) HasSender() bool {
 	return false
 }
 
-// SetSender gets a reference to the given DomainPlatformIdentity and assigns it to the Sender field.
-func (o *DomainContest) SetSender(v DomainPlatformIdentity) {
+// SetSender gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Sender field.
+func (o *DomainContest) SetSender(v IdentitiesPlatformIdentity) {
 	o.Sender = &v
 }
 
@@ -749,6 +547,102 @@ func (o *DomainContest) HasSourceType() bool {
 // SetSourceType gets a reference to the given DomainContestType and assigns it to the SourceType field.
 func (o *DomainContest) SetSourceType(v DomainContestType) {
 	o.SourceType = &v
+}
+
+// GetSourceVariant returns the SourceVariant field value if set, zero value otherwise.
+func (o *DomainContest) GetSourceVariant() string {
+	if o == nil || IsNil(o.SourceVariant) {
+		var ret string
+		return ret
+	}
+	return *o.SourceVariant
+}
+
+// GetSourceVariantOk returns a tuple with the SourceVariant field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainContest) GetSourceVariantOk() (*string, bool) {
+	if o == nil || IsNil(o.SourceVariant) {
+		return nil, false
+	}
+	return o.SourceVariant, true
+}
+
+// HasSourceVariant returns a boolean if a field has been set.
+func (o *DomainContest) HasSourceVariant() bool {
+	if o != nil && !IsNil(o.SourceVariant) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceVariant gets a reference to the given string and assigns it to the SourceVariant field.
+func (o *DomainContest) SetSourceVariant(v string) {
+	o.SourceVariant = &v
+}
+
+// GetSpace returns the Space field value if set, zero value otherwise.
+func (o *DomainContest) GetSpace() SpacesSpace {
+	if o == nil || IsNil(o.Space) {
+		var ret SpacesSpace
+		return ret
+	}
+	return *o.Space
+}
+
+// GetSpaceOk returns a tuple with the Space field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainContest) GetSpaceOk() (*SpacesSpace, bool) {
+	if o == nil || IsNil(o.Space) {
+		return nil, false
+	}
+	return o.Space, true
+}
+
+// HasSpace returns a boolean if a field has been set.
+func (o *DomainContest) HasSpace() bool {
+	if o != nil && !IsNil(o.Space) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpace gets a reference to the given SpacesSpace and assigns it to the Space field.
+func (o *DomainContest) SetSpace(v SpacesSpace) {
+	o.Space = &v
+}
+
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *DomainContest) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
+		return ret
+	}
+	return *o.SpaceId
+}
+
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainContest) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
+		return nil, false
+	}
+	return o.SpaceId, true
+}
+
+// HasSpaceId returns a boolean if a field has been set.
+func (o *DomainContest) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *DomainContest) SetSpaceId(v string) {
+	o.SpaceId = &v
 }
 
 // GetSponsor returns the Sponsor field value if set, zero value otherwise.
@@ -848,9 +742,9 @@ func (o *DomainContest) SetSubmissionZoneConfiguration(v DomainSubmissionZoneCon
 }
 
 // GetTeamSet returns the TeamSet field value if set, zero value otherwise.
-func (o *DomainContest) GetTeamSet() DomainTeamSet {
+func (o *DomainContest) GetTeamSet() TeamsTeamSet {
 	if o == nil || IsNil(o.TeamSet) {
-		var ret DomainTeamSet
+		var ret TeamsTeamSet
 		return ret
 	}
 	return *o.TeamSet
@@ -858,7 +752,7 @@ func (o *DomainContest) GetTeamSet() DomainTeamSet {
 
 // GetTeamSetOk returns a tuple with the TeamSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainContest) GetTeamSetOk() (*DomainTeamSet, bool) {
+func (o *DomainContest) GetTeamSetOk() (*TeamsTeamSet, bool) {
 	if o == nil || IsNil(o.TeamSet) {
 		return nil, false
 	}
@@ -874,8 +768,8 @@ func (o *DomainContest) HasTeamSet() bool {
 	return false
 }
 
-// SetTeamSet gets a reference to the given DomainTeamSet and assigns it to the TeamSet field.
-func (o *DomainContest) SetTeamSet(v DomainTeamSet) {
+// SetTeamSet gets a reference to the given TeamsTeamSet and assigns it to the TeamSet field.
+func (o *DomainContest) SetTeamSet(v TeamsTeamSet) {
 	o.TeamSet = &v
 }
 
@@ -1049,9 +943,6 @@ func (o DomainContest) MarshalJSON() ([]byte, error) {
 
 func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Channel) {
-		toSerialize["channel"] = o.Channel
-	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -1063,12 +954,6 @@ func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EnrollmentTiming) {
 		toSerialize["enrollment_timing"] = o.EnrollmentTiming
-	}
-	if !IsNil(o.EntryBasedConfig) {
-		toSerialize["entry_based_config"] = o.EntryBasedConfig
-	}
-	if !IsNil(o.FairPlayGrouping) {
-		toSerialize["fair_play_grouping"] = o.FairPlayGrouping
 	}
 	if !IsNil(o.GroupingType) {
 		toSerialize["grouping_type"] = o.GroupingType
@@ -1088,17 +973,8 @@ func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NoOfPuzzles) {
 		toSerialize["no_of_puzzles"] = o.NoOfPuzzles
 	}
-	if !IsNil(o.NoOfWinners) {
-		toSerialize["no_of_winners"] = o.NoOfWinners
-	}
 	if !IsNil(o.ParticipationRules) {
 		toSerialize["participation_rules"] = o.ParticipationRules
-	}
-	if !IsNil(o.PuzzleSheetId) {
-		toSerialize["puzzle_sheet_id"] = o.PuzzleSheetId
-	}
-	if !IsNil(o.QuestionType) {
-		toSerialize["question_type"] = o.QuestionType
 	}
 	if !IsNil(o.Reward) {
 		toSerialize["reward"] = o.Reward
@@ -1111,6 +987,15 @@ func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SourceType) {
 		toSerialize["source_type"] = o.SourceType
+	}
+	if !IsNil(o.SourceVariant) {
+		toSerialize["source_variant"] = o.SourceVariant
+	}
+	if !IsNil(o.Space) {
+		toSerialize["space"] = o.Space
+	}
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
 	}
 	if !IsNil(o.Sponsor) {
 		toSerialize["sponsor"] = o.Sponsor

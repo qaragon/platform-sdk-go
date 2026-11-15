@@ -21,7 +21,7 @@ var _ MappedNullable = &DomainBoardContext{}
 // DomainBoardContext struct for DomainBoardContext
 type DomainBoardContext struct {
 	BoardType *string `json:"board_type,omitempty"`
-	Channel *DomainChannel `json:"channel,omitempty"`
+	Space *SpacesSpace `json:"space,omitempty"`
 }
 
 // NewDomainBoardContext instantiates a new DomainBoardContext object
@@ -73,36 +73,36 @@ func (o *DomainBoardContext) SetBoardType(v string) {
 	o.BoardType = &v
 }
 
-// GetChannel returns the Channel field value if set, zero value otherwise.
-func (o *DomainBoardContext) GetChannel() DomainChannel {
-	if o == nil || IsNil(o.Channel) {
-		var ret DomainChannel
+// GetSpace returns the Space field value if set, zero value otherwise.
+func (o *DomainBoardContext) GetSpace() SpacesSpace {
+	if o == nil || IsNil(o.Space) {
+		var ret SpacesSpace
 		return ret
 	}
-	return *o.Channel
+	return *o.Space
 }
 
-// GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
+// GetSpaceOk returns a tuple with the Space field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainBoardContext) GetChannelOk() (*DomainChannel, bool) {
-	if o == nil || IsNil(o.Channel) {
+func (o *DomainBoardContext) GetSpaceOk() (*SpacesSpace, bool) {
+	if o == nil || IsNil(o.Space) {
 		return nil, false
 	}
-	return o.Channel, true
+	return o.Space, true
 }
 
-// HasChannel returns a boolean if a field has been set.
-func (o *DomainBoardContext) HasChannel() bool {
-	if o != nil && !IsNil(o.Channel) {
+// HasSpace returns a boolean if a field has been set.
+func (o *DomainBoardContext) HasSpace() bool {
+	if o != nil && !IsNil(o.Space) {
 		return true
 	}
 
 	return false
 }
 
-// SetChannel gets a reference to the given DomainChannel and assigns it to the Channel field.
-func (o *DomainBoardContext) SetChannel(v DomainChannel) {
-	o.Channel = &v
+// SetSpace gets a reference to the given SpacesSpace and assigns it to the Space field.
+func (o *DomainBoardContext) SetSpace(v SpacesSpace) {
+	o.Space = &v
 }
 
 func (o DomainBoardContext) MarshalJSON() ([]byte, error) {
@@ -118,8 +118,8 @@ func (o DomainBoardContext) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BoardType) {
 		toSerialize["board_type"] = o.BoardType
 	}
-	if !IsNil(o.Channel) {
-		toSerialize["channel"] = o.Channel
+	if !IsNil(o.Space) {
+		toSerialize["space"] = o.Space
 	}
 	return toSerialize, nil
 }

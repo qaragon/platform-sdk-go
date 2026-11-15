@@ -20,10 +20,10 @@ var _ MappedNullable = &DomainStan{}
 
 // DomainStan struct for DomainStan
 type DomainStan struct {
-	Celeb *DomainPlatformIdentity `json:"celeb,omitempty"`
+	Celeb *IdentitiesPlatformIdentity `json:"celeb,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Member *DomainPlatformIdentity `json:"member,omitempty"`
+	Member *IdentitiesPlatformIdentity `json:"member,omitempty"`
 }
 
 // NewDomainStan instantiates a new DomainStan object
@@ -44,9 +44,9 @@ func NewDomainStanWithDefaults() *DomainStan {
 }
 
 // GetCeleb returns the Celeb field value if set, zero value otherwise.
-func (o *DomainStan) GetCeleb() DomainPlatformIdentity {
+func (o *DomainStan) GetCeleb() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Celeb) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Celeb
@@ -54,7 +54,7 @@ func (o *DomainStan) GetCeleb() DomainPlatformIdentity {
 
 // GetCelebOk returns a tuple with the Celeb field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainStan) GetCelebOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainStan) GetCelebOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Celeb) {
 		return nil, false
 	}
@@ -70,8 +70,8 @@ func (o *DomainStan) HasCeleb() bool {
 	return false
 }
 
-// SetCeleb gets a reference to the given DomainPlatformIdentity and assigns it to the Celeb field.
-func (o *DomainStan) SetCeleb(v DomainPlatformIdentity) {
+// SetCeleb gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Celeb field.
+func (o *DomainStan) SetCeleb(v IdentitiesPlatformIdentity) {
 	o.Celeb = &v
 }
 
@@ -140,9 +140,9 @@ func (o *DomainStan) SetId(v string) {
 }
 
 // GetMember returns the Member field value if set, zero value otherwise.
-func (o *DomainStan) GetMember() DomainPlatformIdentity {
+func (o *DomainStan) GetMember() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Member) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Member
@@ -150,7 +150,7 @@ func (o *DomainStan) GetMember() DomainPlatformIdentity {
 
 // GetMemberOk returns a tuple with the Member field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainStan) GetMemberOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainStan) GetMemberOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Member) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *DomainStan) HasMember() bool {
 	return false
 }
 
-// SetMember gets a reference to the given DomainPlatformIdentity and assigns it to the Member field.
-func (o *DomainStan) SetMember(v DomainPlatformIdentity) {
+// SetMember gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Member field.
+func (o *DomainStan) SetMember(v IdentitiesPlatformIdentity) {
 	o.Member = &v
 }
 

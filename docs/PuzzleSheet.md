@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **NullableString** |  | [optional] 
+**Format** | Pointer to **string** |  | [optional] 
 **Id** | **string** |  | 
 **InsertedAt** | Pointer to **time.Time** |  | [optional] 
 **IsAdhocSheet** | Pointer to **NullableBool** |  | [optional] 
@@ -70,6 +71,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *PuzzleSheet) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetFormat
+
+`func (o *PuzzleSheet) GetFormat() string`
+
+GetFormat returns the Format field if non-nil, zero value otherwise.
+
+### GetFormatOk
+
+`func (o *PuzzleSheet) GetFormatOk() (*string, bool)`
+
+GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormat
+
+`func (o *PuzzleSheet) SetFormat(v string)`
+
+SetFormat sets Format field to given value.
+
+### HasFormat
+
+`func (o *PuzzleSheet) HasFormat() bool`
+
+HasFormat returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *PuzzleSheet) GetId() string`

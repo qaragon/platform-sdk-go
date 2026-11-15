@@ -21,7 +21,7 @@ var _ MappedNullable = &DomainContestGroups{}
 // DomainContestGroups struct for DomainContestGroups
 type DomainContestGroups struct {
 	Contest *string `json:"contest,omitempty"`
-	Groups *map[string][]DomainPlatformIdentity `json:"groups,omitempty"`
+	Groups *map[string][]IdentitiesPlatformIdentity `json:"groups,omitempty"`
 	MemberGroup *string `json:"member_group,omitempty"`
 }
 
@@ -75,9 +75,9 @@ func (o *DomainContestGroups) SetContest(v string) {
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *DomainContestGroups) GetGroups() map[string][]DomainPlatformIdentity {
+func (o *DomainContestGroups) GetGroups() map[string][]IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Groups) {
-		var ret map[string][]DomainPlatformIdentity
+		var ret map[string][]IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Groups
@@ -85,7 +85,7 @@ func (o *DomainContestGroups) GetGroups() map[string][]DomainPlatformIdentity {
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainContestGroups) GetGroupsOk() (*map[string][]DomainPlatformIdentity, bool) {
+func (o *DomainContestGroups) GetGroupsOk() (*map[string][]IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Groups) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *DomainContestGroups) HasGroups() bool {
 	return false
 }
 
-// SetGroups gets a reference to the given map[string][]DomainPlatformIdentity and assigns it to the Groups field.
-func (o *DomainContestGroups) SetGroups(v map[string][]DomainPlatformIdentity) {
+// SetGroups gets a reference to the given map[string][]IdentitiesPlatformIdentity and assigns it to the Groups field.
+func (o *DomainContestGroups) SetGroups(v map[string][]IdentitiesPlatformIdentity) {
 	o.Groups = &v
 }
 

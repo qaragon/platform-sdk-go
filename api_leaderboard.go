@@ -24,7 +24,7 @@ import (
 // LeaderboardAPIService LeaderboardAPI service
 type LeaderboardAPIService service
 
-type ApiGetChannelsByIdStandingsRequest struct {
+type ApiGetSpacesByIdStandingsRequest struct {
 	ctx context.Context
 	ApiService *LeaderboardAPIService
 	id string
@@ -34,44 +34,44 @@ type ApiGetChannelsByIdStandingsRequest struct {
 }
 
 // Standings window: week | month | all_time (default all_time)
-func (r ApiGetChannelsByIdStandingsRequest) Window(window string) ApiGetChannelsByIdStandingsRequest {
+func (r ApiGetSpacesByIdStandingsRequest) Window(window string) ApiGetSpacesByIdStandingsRequest {
 	r.window = &window
 	return r
 }
 
 // member (truncated view) | owner (full board, default)
-func (r ApiGetChannelsByIdStandingsRequest) Actor(actor string) ApiGetChannelsByIdStandingsRequest {
+func (r ApiGetSpacesByIdStandingsRequest) Actor(actor string) ApiGetSpacesByIdStandingsRequest {
 	r.actor = &actor
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiGetChannelsByIdStandingsRequest) XActingAs(xActingAs string) ApiGetChannelsByIdStandingsRequest {
+func (r ApiGetSpacesByIdStandingsRequest) XActingAs(xActingAs string) ApiGetSpacesByIdStandingsRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiGetChannelsByIdStandingsRequest) Execute() (*DomainLeaderboardResponse, *http.Response, error) {
-	return r.ApiService.GetChannelsByIdStandingsExecute(r)
+func (r ApiGetSpacesByIdStandingsRequest) Execute() (*DomainLeaderboardResponse, *http.Response, error) {
+	return r.ApiService.GetSpacesByIdStandingsExecute(r)
 }
 
 /*
-GetChannelsByIdStandings Get a channel's season standings (ranked by cumulative participation points)
+GetSpacesByIdStandings Get a space's season standings (ranked by cumulative participation points)
 
-Season standings for a channel, ranked by cumulative participation
+Season standings for a space, ranked by cumulative participation
 points — the same metric grading accumulates into the board and the
 client surfaces per member. The window selects a single period bucket:
 "week" (the current week) or "all_time" (lifetime). Read acting-as the
-channel owner. The response echoes leaderboard_visibility; when it is
+space owner. The response echoes leaderboard_visibility; when it is
 "hidden" the rankings/member_rank are withheld from everyone but the
 owner.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Channel ID
- @return ApiGetChannelsByIdStandingsRequest
+ @param id Space ID
+ @return ApiGetSpacesByIdStandingsRequest
 */
-func (a *LeaderboardAPIService) GetChannelsByIdStandings(ctx context.Context, id string) ApiGetChannelsByIdStandingsRequest {
-	return ApiGetChannelsByIdStandingsRequest{
+func (a *LeaderboardAPIService) GetSpacesByIdStandings(ctx context.Context, id string) ApiGetSpacesByIdStandingsRequest {
+	return ApiGetSpacesByIdStandingsRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -80,7 +80,7 @@ func (a *LeaderboardAPIService) GetChannelsByIdStandings(ctx context.Context, id
 
 // Execute executes the request
 //  @return DomainLeaderboardResponse
-func (a *LeaderboardAPIService) GetChannelsByIdStandingsExecute(r ApiGetChannelsByIdStandingsRequest) (*DomainLeaderboardResponse, *http.Response, error) {
+func (a *LeaderboardAPIService) GetSpacesByIdStandingsExecute(r ApiGetSpacesByIdStandingsRequest) (*DomainLeaderboardResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -88,12 +88,12 @@ func (a *LeaderboardAPIService) GetChannelsByIdStandingsExecute(r ApiGetChannels
 		localVarReturnValue  *DomainLeaderboardResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LeaderboardAPIService.GetChannelsByIdStandings")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LeaderboardAPIService.GetSpacesByIdStandings")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/channels/{id}/standings"
+	localVarPath := localBasePath + "/v2/spaces/{id}/standings"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -149,7 +149,7 @@ func (a *LeaderboardAPIService) GetChannelsByIdStandingsExecute(r ApiGetChannels
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

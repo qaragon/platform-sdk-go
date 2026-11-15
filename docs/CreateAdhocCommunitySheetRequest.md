@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Difficulty** | **string** |  | 
+**Format** | Pointer to **string** |  | [optional] [default to "quiz"]
 **NoOfQuestions** | **int32** |  | 
 **Topic** | **string** |  | 
 
@@ -46,6 +47,31 @@ and a boolean to check if the value has been set.
 
 SetDifficulty sets Difficulty field to given value.
 
+
+### GetFormat
+
+`func (o *CreateAdhocCommunitySheetRequest) GetFormat() string`
+
+GetFormat returns the Format field if non-nil, zero value otherwise.
+
+### GetFormatOk
+
+`func (o *CreateAdhocCommunitySheetRequest) GetFormatOk() (*string, bool)`
+
+GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormat
+
+`func (o *CreateAdhocCommunitySheetRequest) SetFormat(v string)`
+
+SetFormat sets Format field to given value.
+
+### HasFormat
+
+`func (o *CreateAdhocCommunitySheetRequest) HasFormat() bool`
+
+HasFormat returns a boolean if a field has been set.
 
 ### GetNoOfQuestions
 

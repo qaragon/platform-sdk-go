@@ -27,14 +27,14 @@ type TenantsAPIService service
 type ApiCreateTenantsRequest struct {
 	ctx context.Context
 	ApiService *TenantsAPIService
-	handlerCreatePlatformRequest *HandlerCreatePlatformRequest
+	tenanthttpCreatePlatformRequest *TenanthttpCreatePlatformRequest
 	idempotencyKey *string
 	xActingAs *string
 }
 
 // Tenant application payload
-func (r ApiCreateTenantsRequest) HandlerCreatePlatformRequest(handlerCreatePlatformRequest HandlerCreatePlatformRequest) ApiCreateTenantsRequest {
-	r.handlerCreatePlatformRequest = &handlerCreatePlatformRequest
+func (r ApiCreateTenantsRequest) TenanthttpCreatePlatformRequest(tenanthttpCreatePlatformRequest TenanthttpCreatePlatformRequest) ApiCreateTenantsRequest {
+	r.tenanthttpCreatePlatformRequest = &tenanthttpCreatePlatformRequest
 	return r
 }
 
@@ -50,7 +50,7 @@ func (r ApiCreateTenantsRequest) XActingAs(xActingAs string) ApiCreateTenantsReq
 	return r
 }
 
-func (r ApiCreateTenantsRequest) Execute() (*DomainTenantResponse, *http.Response, error) {
+func (r ApiCreateTenantsRequest) Execute() (*TenantsTenantResponse, *http.Response, error) {
 	return r.ApiService.CreateTenantsExecute(r)
 }
 
@@ -73,13 +73,13 @@ func (a *TenantsAPIService) CreateTenants(ctx context.Context) ApiCreateTenantsR
 }
 
 // Execute executes the request
-//  @return DomainTenantResponse
-func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*DomainTenantResponse, *http.Response, error) {
+//  @return TenantsTenantResponse
+func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*TenantsTenantResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainTenantResponse
+		localVarReturnValue  *TenantsTenantResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsAPIService.CreateTenants")
@@ -92,8 +92,8 @@ func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*Do
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.handlerCreatePlatformRequest == nil {
-		return localVarReturnValue, nil, reportError("handlerCreatePlatformRequest is required and must be specified")
+	if r.tenanthttpCreatePlatformRequest == nil {
+		return localVarReturnValue, nil, reportError("tenanthttpCreatePlatformRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -120,7 +120,7 @@ func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*Do
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.handlerCreatePlatformRequest
+	localVarPostBody = r.tenanthttpCreatePlatformRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -144,7 +144,7 @@ func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*Do
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*Do
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +166,7 @@ func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*Do
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -177,7 +177,7 @@ func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*Do
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -188,7 +188,7 @@ func (a *TenantsAPIService) CreateTenantsExecute(r ApiCreateTenantsRequest) (*Do
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -216,13 +216,13 @@ type ApiCreateTenantsByIdApiKeysRequest struct {
 	ctx context.Context
 	ApiService *TenantsAPIService
 	id string
-	handlerCreateApiKeyRequest *HandlerCreateApiKeyRequest
+	tenanthttpCreateApiKeyRequest *TenanthttpCreateApiKeyRequest
 	xActingAs *string
 }
 
 // API key request (env + name)
-func (r ApiCreateTenantsByIdApiKeysRequest) HandlerCreateApiKeyRequest(handlerCreateApiKeyRequest HandlerCreateApiKeyRequest) ApiCreateTenantsByIdApiKeysRequest {
-	r.handlerCreateApiKeyRequest = &handlerCreateApiKeyRequest
+func (r ApiCreateTenantsByIdApiKeysRequest) TenanthttpCreateApiKeyRequest(tenanthttpCreateApiKeyRequest TenanthttpCreateApiKeyRequest) ApiCreateTenantsByIdApiKeysRequest {
+	r.tenanthttpCreateApiKeyRequest = &tenanthttpCreateApiKeyRequest
 	return r
 }
 
@@ -232,7 +232,7 @@ func (r ApiCreateTenantsByIdApiKeysRequest) XActingAs(xActingAs string) ApiCreat
 	return r
 }
 
-func (r ApiCreateTenantsByIdApiKeysRequest) Execute() (*DomainTenantApiKeyResponse, *http.Response, error) {
+func (r ApiCreateTenantsByIdApiKeysRequest) Execute() (*TenantsTenantApiKeyResponse, *http.Response, error) {
 	return r.ApiService.CreateTenantsByIdApiKeysExecute(r)
 }
 
@@ -257,13 +257,13 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeys(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return DomainTenantApiKeyResponse
-func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsByIdApiKeysRequest) (*DomainTenantApiKeyResponse, *http.Response, error) {
+//  @return TenantsTenantApiKeyResponse
+func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsByIdApiKeysRequest) (*TenantsTenantApiKeyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainTenantApiKeyResponse
+		localVarReturnValue  *TenantsTenantApiKeyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsAPIService.CreateTenantsByIdApiKeys")
@@ -277,8 +277,8 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.handlerCreateApiKeyRequest == nil {
-		return localVarReturnValue, nil, reportError("handlerCreateApiKeyRequest is required and must be specified")
+	if r.tenanthttpCreateApiKeyRequest == nil {
+		return localVarReturnValue, nil, reportError("tenanthttpCreateApiKeyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -302,7 +302,7 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.handlerCreateApiKeyRequest
+	localVarPostBody = r.tenanthttpCreateApiKeyRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -326,7 +326,7 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -337,7 +337,7 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +348,7 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +370,7 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +381,7 @@ func (a *TenantsAPIService) CreateTenantsByIdApiKeysExecute(r ApiCreateTenantsBy
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -518,7 +518,7 @@ func (a *TenantsAPIService) CreateTenantsByIdWebhookSubscriptionsExecute(r ApiCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -529,7 +529,7 @@ func (a *TenantsAPIService) CreateTenantsByIdWebhookSubscriptionsExecute(r ApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -540,7 +540,7 @@ func (a *TenantsAPIService) CreateTenantsByIdWebhookSubscriptionsExecute(r ApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -551,7 +551,7 @@ func (a *TenantsAPIService) CreateTenantsByIdWebhookSubscriptionsExecute(r ApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -562,7 +562,7 @@ func (a *TenantsAPIService) CreateTenantsByIdWebhookSubscriptionsExecute(r ApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -573,7 +573,7 @@ func (a *TenantsAPIService) CreateTenantsByIdWebhookSubscriptionsExecute(r ApiCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -699,7 +699,7 @@ func (a *TenantsAPIService) DeleteTenantsByIdWebhookSubscriptionsBySubscriptionI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -710,7 +710,7 @@ func (a *TenantsAPIService) DeleteTenantsByIdWebhookSubscriptionsBySubscriptionI
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -721,7 +721,7 @@ func (a *TenantsAPIService) DeleteTenantsByIdWebhookSubscriptionsBySubscriptionI
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -732,7 +732,7 @@ func (a *TenantsAPIService) DeleteTenantsByIdWebhookSubscriptionsBySubscriptionI
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -867,7 +867,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsExecute(r ApiGetTe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -878,7 +878,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsExecute(r ApiGetTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -889,7 +889,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsExecute(r ApiGetTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -900,7 +900,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsExecute(r ApiGetTe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1032,7 +1032,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsBySubscriptionIdSi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1043,7 +1043,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsBySubscriptionIdSi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1054,7 +1054,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsBySubscriptionIdSi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1065,7 +1065,7 @@ func (a *TenantsAPIService) GetTenantsByIdWebhookSubscriptionsBySubscriptionIdSi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -21,10 +21,10 @@ var _ MappedNullable = &DomainLeaderboard{}
 // DomainLeaderboard struct for DomainLeaderboard
 type DomainLeaderboard struct {
 	Context *DomainBoardContext `json:"context,omitempty"`
-	// LeaderboardVisibility echoes the channel's setting (\"visible\"/\"hidden\"). When \"hidden\" the board is withheld from non-owners (empty Rankings/MemberRank); the owner still gets the full board so their client can show a banner.
+	// LeaderboardVisibility echoes the space's setting (\"visible\"/\"hidden\"). When \"hidden\" the board is withheld from non-owners (empty Rankings/MemberRank); the owner still gets the full board so their client can show a banner.
 	LeaderboardVisibility *string `json:"leaderboard_visibility,omitempty"`
 	MemberRank *DomainLeaderboardRank `json:"member_rank,omitempty"`
-	Owner *DomainPlatformIdentity `json:"owner,omitempty"`
+	Owner *IdentitiesPlatformIdentity `json:"owner,omitempty"`
 	Period *DomainPeriod `json:"period,omitempty"`
 	Rankings []DomainLeaderboardRank `json:"rankings,omitempty"`
 }
@@ -143,9 +143,9 @@ func (o *DomainLeaderboard) SetMemberRank(v DomainLeaderboardRank) {
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
-func (o *DomainLeaderboard) GetOwner() DomainPlatformIdentity {
+func (o *DomainLeaderboard) GetOwner() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Owner) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Owner
@@ -153,7 +153,7 @@ func (o *DomainLeaderboard) GetOwner() DomainPlatformIdentity {
 
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainLeaderboard) GetOwnerOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainLeaderboard) GetOwnerOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Owner) {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *DomainLeaderboard) HasOwner() bool {
 	return false
 }
 
-// SetOwner gets a reference to the given DomainPlatformIdentity and assigns it to the Owner field.
-func (o *DomainLeaderboard) SetOwner(v DomainPlatformIdentity) {
+// SetOwner gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Owner field.
+func (o *DomainLeaderboard) SetOwner(v IdentitiesPlatformIdentity) {
 	o.Owner = &v
 }
 

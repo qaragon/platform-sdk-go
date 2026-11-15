@@ -27,14 +27,14 @@ type IdentitiesAPIService service
 type ApiCreateIdentitiesRequest struct {
 	ctx context.Context
 	ApiService *IdentitiesAPIService
-	handlerCreatePlatformIdentityRequest *HandlerCreatePlatformIdentityRequest
+	identityhttpCreatePlatformIdentityRequest *IdentityhttpCreatePlatformIdentityRequest
 	idempotencyKey *string
 	xActingAs *string
 }
 
 // Platform identity payload
-func (r ApiCreateIdentitiesRequest) HandlerCreatePlatformIdentityRequest(handlerCreatePlatformIdentityRequest HandlerCreatePlatformIdentityRequest) ApiCreateIdentitiesRequest {
-	r.handlerCreatePlatformIdentityRequest = &handlerCreatePlatformIdentityRequest
+func (r ApiCreateIdentitiesRequest) IdentityhttpCreatePlatformIdentityRequest(identityhttpCreatePlatformIdentityRequest IdentityhttpCreatePlatformIdentityRequest) ApiCreateIdentitiesRequest {
+	r.identityhttpCreatePlatformIdentityRequest = &identityhttpCreatePlatformIdentityRequest
 	return r
 }
 
@@ -50,7 +50,7 @@ func (r ApiCreateIdentitiesRequest) XActingAs(xActingAs string) ApiCreateIdentit
 	return r
 }
 
-func (r ApiCreateIdentitiesRequest) Execute() (*DomainPlatformIdentityResponse, *http.Response, error) {
+func (r ApiCreateIdentitiesRequest) Execute() (*IdentitiesPlatformIdentityResponse, *http.Response, error) {
 	return r.ApiService.CreateIdentitiesExecute(r)
 }
 
@@ -76,13 +76,13 @@ func (a *IdentitiesAPIService) CreateIdentities(ctx context.Context) ApiCreateId
 }
 
 // Execute executes the request
-//  @return DomainPlatformIdentityResponse
-func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequest) (*DomainPlatformIdentityResponse, *http.Response, error) {
+//  @return IdentitiesPlatformIdentityResponse
+func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequest) (*IdentitiesPlatformIdentityResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainPlatformIdentityResponse
+		localVarReturnValue  *IdentitiesPlatformIdentityResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesAPIService.CreateIdentities")
@@ -95,8 +95,8 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.handlerCreatePlatformIdentityRequest == nil {
-		return localVarReturnValue, nil, reportError("handlerCreatePlatformIdentityRequest is required and must be specified")
+	if r.identityhttpCreatePlatformIdentityRequest == nil {
+		return localVarReturnValue, nil, reportError("identityhttpCreatePlatformIdentityRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -123,7 +123,7 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.handlerCreatePlatformIdentityRequest
+	localVarPostBody = r.identityhttpCreatePlatformIdentityRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -147,7 +147,7 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -158,7 +158,7 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -191,7 +191,7 @@ func (a *IdentitiesAPIService) CreateIdentitiesExecute(r ApiCreateIdentitiesRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -316,7 +316,7 @@ func (a *IdentitiesAPIService) DeleteIdentitiesByIdExecute(r ApiDeleteIdentities
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -327,7 +327,7 @@ func (a *IdentitiesAPIService) DeleteIdentitiesByIdExecute(r ApiDeleteIdentities
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -338,7 +338,7 @@ func (a *IdentitiesAPIService) DeleteIdentitiesByIdExecute(r ApiDeleteIdentities
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +366,7 @@ func (r ApiGetIdentitiesByIdRequest) XActingAs(xActingAs string) ApiGetIdentitie
 	return r
 }
 
-func (r ApiGetIdentitiesByIdRequest) Execute() (*DomainPlatformIdentityResponse, *http.Response, error) {
+func (r ApiGetIdentitiesByIdRequest) Execute() (*IdentitiesPlatformIdentityResponse, *http.Response, error) {
 	return r.ApiService.GetIdentitiesByIdExecute(r)
 }
 
@@ -389,13 +389,13 @@ func (a *IdentitiesAPIService) GetIdentitiesById(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return DomainPlatformIdentityResponse
-func (a *IdentitiesAPIService) GetIdentitiesByIdExecute(r ApiGetIdentitiesByIdRequest) (*DomainPlatformIdentityResponse, *http.Response, error) {
+//  @return IdentitiesPlatformIdentityResponse
+func (a *IdentitiesAPIService) GetIdentitiesByIdExecute(r ApiGetIdentitiesByIdRequest) (*IdentitiesPlatformIdentityResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainPlatformIdentityResponse
+		localVarReturnValue  *IdentitiesPlatformIdentityResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesAPIService.GetIdentitiesById")
@@ -453,7 +453,7 @@ func (a *IdentitiesAPIService) GetIdentitiesByIdExecute(r ApiGetIdentitiesByIdRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -464,7 +464,7 @@ func (a *IdentitiesAPIService) GetIdentitiesByIdExecute(r ApiGetIdentitiesByIdRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -475,7 +475,7 @@ func (a *IdentitiesAPIService) GetIdentitiesByIdExecute(r ApiGetIdentitiesByIdRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -503,13 +503,13 @@ type ApiUpdateIdentitiesByIdRequest struct {
 	ctx context.Context
 	ApiService *IdentitiesAPIService
 	id string
-	handlerUpdatePlatformIdentityRequest *HandlerUpdatePlatformIdentityRequest
+	identityhttpUpdatePlatformIdentityRequest *IdentityhttpUpdatePlatformIdentityRequest
 	xActingAs *string
 }
 
 // Profile fields
-func (r ApiUpdateIdentitiesByIdRequest) HandlerUpdatePlatformIdentityRequest(handlerUpdatePlatformIdentityRequest HandlerUpdatePlatformIdentityRequest) ApiUpdateIdentitiesByIdRequest {
-	r.handlerUpdatePlatformIdentityRequest = &handlerUpdatePlatformIdentityRequest
+func (r ApiUpdateIdentitiesByIdRequest) IdentityhttpUpdatePlatformIdentityRequest(identityhttpUpdatePlatformIdentityRequest IdentityhttpUpdatePlatformIdentityRequest) ApiUpdateIdentitiesByIdRequest {
+	r.identityhttpUpdatePlatformIdentityRequest = &identityhttpUpdatePlatformIdentityRequest
 	return r
 }
 
@@ -519,7 +519,7 @@ func (r ApiUpdateIdentitiesByIdRequest) XActingAs(xActingAs string) ApiUpdateIde
 	return r
 }
 
-func (r ApiUpdateIdentitiesByIdRequest) Execute() (*DomainPlatformIdentityResponse, *http.Response, error) {
+func (r ApiUpdateIdentitiesByIdRequest) Execute() (*IdentitiesPlatformIdentityResponse, *http.Response, error) {
 	return r.ApiService.UpdateIdentitiesByIdExecute(r)
 }
 
@@ -544,13 +544,13 @@ func (a *IdentitiesAPIService) UpdateIdentitiesById(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return DomainPlatformIdentityResponse
-func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentitiesByIdRequest) (*DomainPlatformIdentityResponse, *http.Response, error) {
+//  @return IdentitiesPlatformIdentityResponse
+func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentitiesByIdRequest) (*IdentitiesPlatformIdentityResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainPlatformIdentityResponse
+		localVarReturnValue  *IdentitiesPlatformIdentityResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesAPIService.UpdateIdentitiesById")
@@ -564,8 +564,8 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.handlerUpdatePlatformIdentityRequest == nil {
-		return localVarReturnValue, nil, reportError("handlerUpdatePlatformIdentityRequest is required and must be specified")
+	if r.identityhttpUpdatePlatformIdentityRequest == nil {
+		return localVarReturnValue, nil, reportError("identityhttpUpdatePlatformIdentityRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -589,7 +589,7 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.handlerUpdatePlatformIdentityRequest
+	localVarPostBody = r.identityhttpUpdatePlatformIdentityRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -613,7 +613,7 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -624,7 +624,7 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -635,7 +635,7 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -646,7 +646,7 @@ func (a *IdentitiesAPIService) UpdateIdentitiesByIdExecute(r ApiUpdateIdentities
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

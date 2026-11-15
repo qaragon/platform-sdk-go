@@ -28,13 +28,13 @@ type ApiUpdateTeamPreferenceByTeamSetIdRequest struct {
 	ctx context.Context
 	ApiService *TeamPreferencesAPIService
 	teamSetId string
-	requestUpsertTeamPreferenceRequest *RequestUpsertTeamPreferenceRequest
+	teamhttpUpsertTeamPreferenceRequest *TeamhttpUpsertTeamPreferenceRequest
 	xActingAs *string
 }
 
 // Preference payload
-func (r ApiUpdateTeamPreferenceByTeamSetIdRequest) RequestUpsertTeamPreferenceRequest(requestUpsertTeamPreferenceRequest RequestUpsertTeamPreferenceRequest) ApiUpdateTeamPreferenceByTeamSetIdRequest {
-	r.requestUpsertTeamPreferenceRequest = &requestUpsertTeamPreferenceRequest
+func (r ApiUpdateTeamPreferenceByTeamSetIdRequest) TeamhttpUpsertTeamPreferenceRequest(teamhttpUpsertTeamPreferenceRequest TeamhttpUpsertTeamPreferenceRequest) ApiUpdateTeamPreferenceByTeamSetIdRequest {
+	r.teamhttpUpsertTeamPreferenceRequest = &teamhttpUpsertTeamPreferenceRequest
 	return r
 }
 
@@ -44,7 +44,7 @@ func (r ApiUpdateTeamPreferenceByTeamSetIdRequest) XActingAs(xActingAs string) A
 	return r
 }
 
-func (r ApiUpdateTeamPreferenceByTeamSetIdRequest) Execute() (*HandlerStatusResponseResponse, *http.Response, error) {
+func (r ApiUpdateTeamPreferenceByTeamSetIdRequest) Execute() (*HttpxStatusResponseResponse, *http.Response, error) {
 	return r.ApiService.UpdateTeamPreferenceByTeamSetIdExecute(r)
 }
 
@@ -64,13 +64,13 @@ func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetId(ctx context.
 }
 
 // Execute executes the request
-//  @return HandlerStatusResponseResponse
-func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetIdExecute(r ApiUpdateTeamPreferenceByTeamSetIdRequest) (*HandlerStatusResponseResponse, *http.Response, error) {
+//  @return HttpxStatusResponseResponse
+func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetIdExecute(r ApiUpdateTeamPreferenceByTeamSetIdRequest) (*HttpxStatusResponseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStatusResponseResponse
+		localVarReturnValue  *HttpxStatusResponseResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TeamPreferencesAPIService.UpdateTeamPreferenceByTeamSetId")
@@ -84,8 +84,8 @@ func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetIdExecute(r Api
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestUpsertTeamPreferenceRequest == nil {
-		return localVarReturnValue, nil, reportError("requestUpsertTeamPreferenceRequest is required and must be specified")
+	if r.teamhttpUpsertTeamPreferenceRequest == nil {
+		return localVarReturnValue, nil, reportError("teamhttpUpsertTeamPreferenceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -109,7 +109,7 @@ func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetIdExecute(r Api
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.requestUpsertTeamPreferenceRequest
+	localVarPostBody = r.teamhttpUpsertTeamPreferenceRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -133,7 +133,7 @@ func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetIdExecute(r Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +144,7 @@ func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetIdExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *TeamPreferencesAPIService) UpdateTeamPreferenceByTeamSetIdExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorResponse
+			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

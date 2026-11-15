@@ -22,7 +22,6 @@ var _ MappedNullable = &DomainContestHosting{}
 type DomainContestHosting struct {
 	CanParticipate *bool `json:"can_participate,omitempty"`
 	CanView *bool `json:"can_view,omitempty"`
-	ChannelId *string `json:"channel_id,omitempty"`
 	ContestId *string `json:"contest_id,omitempty"`
 	// keyset pagination sort key (uman#132)
 	CreatedAt *string `json:"created_at,omitempty"`
@@ -30,6 +29,7 @@ type DomainContestHosting struct {
 	IdentityPolicy *string `json:"identity_policy,omitempty"`
 	InvitedByTenantId *string `json:"invited_by_tenant_id,omitempty"`
 	RespondedAt *string `json:"responded_at,omitempty"`
+	SpaceId *string `json:"space_id,omitempty"`
 	Status *string `json:"status,omitempty"`
 	VenueId *string `json:"venue_id,omitempty"`
 }
@@ -113,38 +113,6 @@ func (o *DomainContestHosting) HasCanView() bool {
 // SetCanView gets a reference to the given bool and assigns it to the CanView field.
 func (o *DomainContestHosting) SetCanView(v bool) {
 	o.CanView = &v
-}
-
-// GetChannelId returns the ChannelId field value if set, zero value otherwise.
-func (o *DomainContestHosting) GetChannelId() string {
-	if o == nil || IsNil(o.ChannelId) {
-		var ret string
-		return ret
-	}
-	return *o.ChannelId
-}
-
-// GetChannelIdOk returns a tuple with the ChannelId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContestHosting) GetChannelIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ChannelId) {
-		return nil, false
-	}
-	return o.ChannelId, true
-}
-
-// HasChannelId returns a boolean if a field has been set.
-func (o *DomainContestHosting) HasChannelId() bool {
-	if o != nil && !IsNil(o.ChannelId) {
-		return true
-	}
-
-	return false
-}
-
-// SetChannelId gets a reference to the given string and assigns it to the ChannelId field.
-func (o *DomainContestHosting) SetChannelId(v string) {
-	o.ChannelId = &v
 }
 
 // GetContestId returns the ContestId field value if set, zero value otherwise.
@@ -339,6 +307,38 @@ func (o *DomainContestHosting) SetRespondedAt(v string) {
 	o.RespondedAt = &v
 }
 
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *DomainContestHosting) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
+		return ret
+	}
+	return *o.SpaceId
+}
+
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainContestHosting) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
+		return nil, false
+	}
+	return o.SpaceId, true
+}
+
+// HasSpaceId returns a boolean if a field has been set.
+func (o *DomainContestHosting) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *DomainContestHosting) SetSpaceId(v string) {
+	o.SpaceId = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DomainContestHosting) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
@@ -419,9 +419,6 @@ func (o DomainContestHosting) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CanView) {
 		toSerialize["can_view"] = o.CanView
 	}
-	if !IsNil(o.ChannelId) {
-		toSerialize["channel_id"] = o.ChannelId
-	}
 	if !IsNil(o.ContestId) {
 		toSerialize["contest_id"] = o.ContestId
 	}
@@ -439,6 +436,9 @@ func (o DomainContestHosting) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RespondedAt) {
 		toSerialize["responded_at"] = o.RespondedAt
+	}
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

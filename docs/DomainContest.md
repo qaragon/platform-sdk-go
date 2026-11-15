@@ -4,31 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channel** | Pointer to [**DomainChannel**](DomainChannel.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Difficulty** | Pointer to **string** |  | [optional] 
 **EnrollmentTiming** | Pointer to [**DomainTiming**](DomainTiming.md) | EnrollmentTiming, when non-nil, is the pre-enrollment window (ADR 0058): a member must enroll within [StartAt, EndAt] to participate. nil means the contest does not require enrollment. | [optional] 
-**EntryBasedConfig** | Pointer to [**EntryBasedContestConfig**](EntryBasedContestConfig.md) | Present only for entry-based (creative) contests — juror sizing + judging config (uman#221) | [optional] 
-**FairPlayGrouping** | Pointer to **bool** | @deprecated | [optional] 
 **GroupingType** | Pointer to **string** | &#39;system&#39; or &#39;open&#39; | [optional] 
 **HeaderImageUrl** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **MemberParticipation** | Pointer to [**DomainMemberParticipationSummary**](DomainMemberParticipationSummary.md) |  | [optional] 
 **NoOfGroups** | Pointer to **int32** |  | [optional] 
 **NoOfPuzzles** | Pointer to **int32** |  | [optional] 
-**NoOfWinners** | Pointer to **int32** | @deprecated | [optional] 
 **ParticipationRules** | Pointer to [**DomainParticipationRules**](DomainParticipationRules.md) |  | [optional] 
-**PuzzleSheetId** | Pointer to **string** | v1; prefer source_id | [optional] 
-**QuestionType** | Pointer to [**DomainContestType**](DomainContestType.md) | v1; prefer source_type | [optional] 
 **Reward** | Pointer to [**DomainReward**](DomainReward.md) |  | [optional] 
-**Sender** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
-**SourceId** | Pointer to **string** | v2; same as puzzle_sheet_id | [optional] 
-**SourceType** | Pointer to [**DomainContestType**](DomainContestType.md) | v2; same as question_type | [optional] 
+**Sender** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
+**SourceId** | Pointer to **string** |  | [optional] 
+**SourceType** | Pointer to [**DomainContestType**](DomainContestType.md) |  | [optional] 
+**SourceVariant** | Pointer to **string** |  | [optional] 
+**Space** | Pointer to [**SpacesSpace**](SpacesSpace.md) |  | [optional] 
+**SpaceId** | Pointer to **string** |  | [optional] 
 **Sponsor** | Pointer to [**DomainSponsorInfo**](DomainSponsorInfo.md) | Only present if contest has accepted sponsorship | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **SubmissionZoneConfiguration** | Pointer to [**DomainSubmissionZoneConfiguration**](DomainSubmissionZoneConfiguration.md) |  | [optional] 
-**TeamSet** | Pointer to [**DomainTeamSet**](DomainTeamSet.md) |  | [optional] 
+**TeamSet** | Pointer to [**TeamsTeamSet**](TeamsTeamSet.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **TimePenaltyConfiguration** | Pointer to [**[]DomainTimePenaltyConfiguration**](DomainTimePenaltyConfiguration.md) |  | [optional] 
 **Timing** | Pointer to [**DomainTiming**](DomainTiming.md) |  | [optional] 
@@ -53,31 +50,6 @@ will change when the set of required properties is changed
 NewDomainContestWithDefaults instantiates a new DomainContest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetChannel
-
-`func (o *DomainContest) GetChannel() DomainChannel`
-
-GetChannel returns the Channel field if non-nil, zero value otherwise.
-
-### GetChannelOk
-
-`func (o *DomainContest) GetChannelOk() (*DomainChannel, bool)`
-
-GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChannel
-
-`func (o *DomainContest) SetChannel(v DomainChannel)`
-
-SetChannel sets Channel field to given value.
-
-### HasChannel
-
-`func (o *DomainContest) HasChannel() bool`
-
-HasChannel returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -178,56 +150,6 @@ SetEnrollmentTiming sets EnrollmentTiming field to given value.
 `func (o *DomainContest) HasEnrollmentTiming() bool`
 
 HasEnrollmentTiming returns a boolean if a field has been set.
-
-### GetEntryBasedConfig
-
-`func (o *DomainContest) GetEntryBasedConfig() EntryBasedContestConfig`
-
-GetEntryBasedConfig returns the EntryBasedConfig field if non-nil, zero value otherwise.
-
-### GetEntryBasedConfigOk
-
-`func (o *DomainContest) GetEntryBasedConfigOk() (*EntryBasedContestConfig, bool)`
-
-GetEntryBasedConfigOk returns a tuple with the EntryBasedConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEntryBasedConfig
-
-`func (o *DomainContest) SetEntryBasedConfig(v EntryBasedContestConfig)`
-
-SetEntryBasedConfig sets EntryBasedConfig field to given value.
-
-### HasEntryBasedConfig
-
-`func (o *DomainContest) HasEntryBasedConfig() bool`
-
-HasEntryBasedConfig returns a boolean if a field has been set.
-
-### GetFairPlayGrouping
-
-`func (o *DomainContest) GetFairPlayGrouping() bool`
-
-GetFairPlayGrouping returns the FairPlayGrouping field if non-nil, zero value otherwise.
-
-### GetFairPlayGroupingOk
-
-`func (o *DomainContest) GetFairPlayGroupingOk() (*bool, bool)`
-
-GetFairPlayGroupingOk returns a tuple with the FairPlayGrouping field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFairPlayGrouping
-
-`func (o *DomainContest) SetFairPlayGrouping(v bool)`
-
-SetFairPlayGrouping sets FairPlayGrouping field to given value.
-
-### HasFairPlayGrouping
-
-`func (o *DomainContest) HasFairPlayGrouping() bool`
-
-HasFairPlayGrouping returns a boolean if a field has been set.
 
 ### GetGroupingType
 
@@ -379,31 +301,6 @@ SetNoOfPuzzles sets NoOfPuzzles field to given value.
 
 HasNoOfPuzzles returns a boolean if a field has been set.
 
-### GetNoOfWinners
-
-`func (o *DomainContest) GetNoOfWinners() int32`
-
-GetNoOfWinners returns the NoOfWinners field if non-nil, zero value otherwise.
-
-### GetNoOfWinnersOk
-
-`func (o *DomainContest) GetNoOfWinnersOk() (*int32, bool)`
-
-GetNoOfWinnersOk returns a tuple with the NoOfWinners field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNoOfWinners
-
-`func (o *DomainContest) SetNoOfWinners(v int32)`
-
-SetNoOfWinners sets NoOfWinners field to given value.
-
-### HasNoOfWinners
-
-`func (o *DomainContest) HasNoOfWinners() bool`
-
-HasNoOfWinners returns a boolean if a field has been set.
-
 ### GetParticipationRules
 
 `func (o *DomainContest) GetParticipationRules() DomainParticipationRules`
@@ -428,56 +325,6 @@ SetParticipationRules sets ParticipationRules field to given value.
 `func (o *DomainContest) HasParticipationRules() bool`
 
 HasParticipationRules returns a boolean if a field has been set.
-
-### GetPuzzleSheetId
-
-`func (o *DomainContest) GetPuzzleSheetId() string`
-
-GetPuzzleSheetId returns the PuzzleSheetId field if non-nil, zero value otherwise.
-
-### GetPuzzleSheetIdOk
-
-`func (o *DomainContest) GetPuzzleSheetIdOk() (*string, bool)`
-
-GetPuzzleSheetIdOk returns a tuple with the PuzzleSheetId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPuzzleSheetId
-
-`func (o *DomainContest) SetPuzzleSheetId(v string)`
-
-SetPuzzleSheetId sets PuzzleSheetId field to given value.
-
-### HasPuzzleSheetId
-
-`func (o *DomainContest) HasPuzzleSheetId() bool`
-
-HasPuzzleSheetId returns a boolean if a field has been set.
-
-### GetQuestionType
-
-`func (o *DomainContest) GetQuestionType() DomainContestType`
-
-GetQuestionType returns the QuestionType field if non-nil, zero value otherwise.
-
-### GetQuestionTypeOk
-
-`func (o *DomainContest) GetQuestionTypeOk() (*DomainContestType, bool)`
-
-GetQuestionTypeOk returns a tuple with the QuestionType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuestionType
-
-`func (o *DomainContest) SetQuestionType(v DomainContestType)`
-
-SetQuestionType sets QuestionType field to given value.
-
-### HasQuestionType
-
-`func (o *DomainContest) HasQuestionType() bool`
-
-HasQuestionType returns a boolean if a field has been set.
 
 ### GetReward
 
@@ -506,20 +353,20 @@ HasReward returns a boolean if a field has been set.
 
 ### GetSender
 
-`func (o *DomainContest) GetSender() DomainPlatformIdentity`
+`func (o *DomainContest) GetSender() IdentitiesPlatformIdentity`
 
 GetSender returns the Sender field if non-nil, zero value otherwise.
 
 ### GetSenderOk
 
-`func (o *DomainContest) GetSenderOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainContest) GetSenderOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetSenderOk returns a tuple with the Sender field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSender
 
-`func (o *DomainContest) SetSender(v DomainPlatformIdentity)`
+`func (o *DomainContest) SetSender(v IdentitiesPlatformIdentity)`
 
 SetSender sets Sender field to given value.
 
@@ -578,6 +425,81 @@ SetSourceType sets SourceType field to given value.
 `func (o *DomainContest) HasSourceType() bool`
 
 HasSourceType returns a boolean if a field has been set.
+
+### GetSourceVariant
+
+`func (o *DomainContest) GetSourceVariant() string`
+
+GetSourceVariant returns the SourceVariant field if non-nil, zero value otherwise.
+
+### GetSourceVariantOk
+
+`func (o *DomainContest) GetSourceVariantOk() (*string, bool)`
+
+GetSourceVariantOk returns a tuple with the SourceVariant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourceVariant
+
+`func (o *DomainContest) SetSourceVariant(v string)`
+
+SetSourceVariant sets SourceVariant field to given value.
+
+### HasSourceVariant
+
+`func (o *DomainContest) HasSourceVariant() bool`
+
+HasSourceVariant returns a boolean if a field has been set.
+
+### GetSpace
+
+`func (o *DomainContest) GetSpace() SpacesSpace`
+
+GetSpace returns the Space field if non-nil, zero value otherwise.
+
+### GetSpaceOk
+
+`func (o *DomainContest) GetSpaceOk() (*SpacesSpace, bool)`
+
+GetSpaceOk returns a tuple with the Space field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpace
+
+`func (o *DomainContest) SetSpace(v SpacesSpace)`
+
+SetSpace sets Space field to given value.
+
+### HasSpace
+
+`func (o *DomainContest) HasSpace() bool`
+
+HasSpace returns a boolean if a field has been set.
+
+### GetSpaceId
+
+`func (o *DomainContest) GetSpaceId() string`
+
+GetSpaceId returns the SpaceId field if non-nil, zero value otherwise.
+
+### GetSpaceIdOk
+
+`func (o *DomainContest) GetSpaceIdOk() (*string, bool)`
+
+GetSpaceIdOk returns a tuple with the SpaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpaceId
+
+`func (o *DomainContest) SetSpaceId(v string)`
+
+SetSpaceId sets SpaceId field to given value.
+
+### HasSpaceId
+
+`func (o *DomainContest) HasSpaceId() bool`
+
+HasSpaceId returns a boolean if a field has been set.
 
 ### GetSponsor
 
@@ -656,20 +578,20 @@ HasSubmissionZoneConfiguration returns a boolean if a field has been set.
 
 ### GetTeamSet
 
-`func (o *DomainContest) GetTeamSet() DomainTeamSet`
+`func (o *DomainContest) GetTeamSet() TeamsTeamSet`
 
 GetTeamSet returns the TeamSet field if non-nil, zero value otherwise.
 
 ### GetTeamSetOk
 
-`func (o *DomainContest) GetTeamSetOk() (*DomainTeamSet, bool)`
+`func (o *DomainContest) GetTeamSetOk() (*TeamsTeamSet, bool)`
 
 GetTeamSetOk returns a tuple with the TeamSet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTeamSet
 
-`func (o *DomainContest) SetTeamSet(v DomainTeamSet)`
+`func (o *DomainContest) SetTeamSet(v TeamsTeamSet)`
 
 SetTeamSet sets TeamSet field to given value.
 

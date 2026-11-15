@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channels** | Pointer to **int32** |  | [optional] 
 **Contests** | Pointer to **int32** |  | [optional] 
 **Enrollments** | Pointer to **int32** |  | [optional] 
-**Subscriptions** | Pointer to **int32** |  | [optional] 
+**Memberships** | Pointer to **int32** |  | [optional] 
+**Spaces** | Pointer to **int32** |  | [optional] 
 **TopContestParticipants** | Pointer to [**[]DomainParticipationCount**](DomainParticipationCount.md) |  | [optional] 
 **TopRankedParticipants** | Pointer to [**[]DomainParticipationCount**](DomainParticipationCount.md) |  | [optional] 
 
@@ -29,31 +29,6 @@ will change when the set of required properties is changed
 NewDomainStatsOverviewWithDefaults instantiates a new DomainStatsOverview object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetChannels
-
-`func (o *DomainStatsOverview) GetChannels() int32`
-
-GetChannels returns the Channels field if non-nil, zero value otherwise.
-
-### GetChannelsOk
-
-`func (o *DomainStatsOverview) GetChannelsOk() (*int32, bool)`
-
-GetChannelsOk returns a tuple with the Channels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChannels
-
-`func (o *DomainStatsOverview) SetChannels(v int32)`
-
-SetChannels sets Channels field to given value.
-
-### HasChannels
-
-`func (o *DomainStatsOverview) HasChannels() bool`
-
-HasChannels returns a boolean if a field has been set.
 
 ### GetContests
 
@@ -105,30 +80,55 @@ SetEnrollments sets Enrollments field to given value.
 
 HasEnrollments returns a boolean if a field has been set.
 
-### GetSubscriptions
+### GetMemberships
 
-`func (o *DomainStatsOverview) GetSubscriptions() int32`
+`func (o *DomainStatsOverview) GetMemberships() int32`
 
-GetSubscriptions returns the Subscriptions field if non-nil, zero value otherwise.
+GetMemberships returns the Memberships field if non-nil, zero value otherwise.
 
-### GetSubscriptionsOk
+### GetMembershipsOk
 
-`func (o *DomainStatsOverview) GetSubscriptionsOk() (*int32, bool)`
+`func (o *DomainStatsOverview) GetMembershipsOk() (*int32, bool)`
 
-GetSubscriptionsOk returns a tuple with the Subscriptions field if it's non-nil, zero value otherwise
+GetMembershipsOk returns a tuple with the Memberships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubscriptions
+### SetMemberships
 
-`func (o *DomainStatsOverview) SetSubscriptions(v int32)`
+`func (o *DomainStatsOverview) SetMemberships(v int32)`
 
-SetSubscriptions sets Subscriptions field to given value.
+SetMemberships sets Memberships field to given value.
 
-### HasSubscriptions
+### HasMemberships
 
-`func (o *DomainStatsOverview) HasSubscriptions() bool`
+`func (o *DomainStatsOverview) HasMemberships() bool`
 
-HasSubscriptions returns a boolean if a field has been set.
+HasMemberships returns a boolean if a field has been set.
+
+### GetSpaces
+
+`func (o *DomainStatsOverview) GetSpaces() int32`
+
+GetSpaces returns the Spaces field if non-nil, zero value otherwise.
+
+### GetSpacesOk
+
+`func (o *DomainStatsOverview) GetSpacesOk() (*int32, bool)`
+
+GetSpacesOk returns a tuple with the Spaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpaces
+
+`func (o *DomainStatsOverview) SetSpaces(v int32)`
+
+SetSpaces sets Spaces field to given value.
+
+### HasSpaces
+
+`func (o *DomainStatsOverview) HasSpaces() bool`
+
+HasSpaces returns a boolean if a field has been set.
 
 ### GetTopContestParticipants
 

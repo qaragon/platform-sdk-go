@@ -137,20 +137,6 @@ func Test_platform_ContestsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContestsAPIService CreateContestsByIdParticipations", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ContestsAPI.CreateContestsByIdParticipations(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ContestsAPIService CreateTournamentsByIdContest", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -196,20 +182,6 @@ func Test_platform_ContestsAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ContestsAPI.GetBuddyBoards(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ContestsAPIService GetChannelsByIdContests", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ContestsAPI.GetChannelsByIdContests(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -431,6 +403,20 @@ func Test_platform_ContestsAPIService(t *testing.T) {
 		var piid string
 
 		resp, httpRes, err := apiClient.ContestsAPI.GetIdentitiesByPiidContests(context.Background(), piid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContestsAPIService GetSpacesByIdContests", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ContestsAPI.GetSpacesByIdContests(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

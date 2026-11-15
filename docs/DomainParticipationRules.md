@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AllowedRegions** | Pointer to [**[]DomainAllowedRegion**](DomainAllowedRegion.md) |  | [optional] 
 **ContestId** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
@@ -33,6 +34,31 @@ will change when the set of required properties is changed
 NewDomainParticipationRulesWithDefaults instantiates a new DomainParticipationRules object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAllowedRegions
+
+`func (o *DomainParticipationRules) GetAllowedRegions() []DomainAllowedRegion`
+
+GetAllowedRegions returns the AllowedRegions field if non-nil, zero value otherwise.
+
+### GetAllowedRegionsOk
+
+`func (o *DomainParticipationRules) GetAllowedRegionsOk() (*[]DomainAllowedRegion, bool)`
+
+GetAllowedRegionsOk returns a tuple with the AllowedRegions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowedRegions
+
+`func (o *DomainParticipationRules) SetAllowedRegions(v []DomainAllowedRegion)`
+
+SetAllowedRegions sets AllowedRegions field to given value.
+
+### HasAllowedRegions
+
+`func (o *DomainParticipationRules) HasAllowedRegions() bool`
+
+HasAllowedRegions returns a boolean if a field has been set.
 
 ### GetContestId
 

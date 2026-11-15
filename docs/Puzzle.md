@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Category** | Pointer to **[]string** |  | [optional] 
 **Difficulty** | Pointer to **NullableString** |  | [optional] 
 **ExtRefId** | Pointer to **NullableString** |  | [optional] 
+**Format** | Pointer to **string** |  | [optional] 
 **Id** | **string** |  | 
 **InsertedAt** | Pointer to **time.Time** |  | [optional] 
 **OwnerId** | **string** |  | 
@@ -130,6 +131,31 @@ HasExtRefId returns a boolean if a field has been set.
 `func (o *Puzzle) UnsetExtRefId()`
 
 UnsetExtRefId ensures that no value is present for ExtRefId, not even an explicit nil
+### GetFormat
+
+`func (o *Puzzle) GetFormat() string`
+
+GetFormat returns the Format field if non-nil, zero value otherwise.
+
+### GetFormatOk
+
+`func (o *Puzzle) GetFormatOk() (*string, bool)`
+
+GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormat
+
+`func (o *Puzzle) SetFormat(v string)`
+
+SetFormat sets Format field to given value.
+
+### HasFormat
+
+`func (o *Puzzle) HasFormat() bool`
+
+HasFormat returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *Puzzle) GetId() string`

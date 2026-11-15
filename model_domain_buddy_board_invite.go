@@ -21,11 +21,14 @@ var _ MappedNullable = &DomainBuddyBoardInvite{}
 // DomainBuddyBoardInvite struct for DomainBuddyBoardInvite
 type DomainBuddyBoardInvite struct {
 	BoardId *string `json:"board_id,omitempty"`
+	BoardTitle *string `json:"board_title,omitempty"`
 	ContestId *string `json:"contest_id,omitempty"`
+	ContestTitle *string `json:"contest_title,omitempty"`
 	Id *string `json:"id,omitempty"`
 	InvitedAt *string `json:"invited_at,omitempty"`
+	InvitedBy *IdentitiesPlatformIdentity `json:"invited_by,omitempty"`
 	InvitedById *string `json:"invited_by_id,omitempty"`
-	Member *DomainPlatformIdentity `json:"member,omitempty"`
+	Member *IdentitiesPlatformIdentity `json:"member,omitempty"`
 	RespondedAt *string `json:"responded_at,omitempty"`
 	Status *string `json:"status,omitempty"`
 }
@@ -79,6 +82,38 @@ func (o *DomainBuddyBoardInvite) SetBoardId(v string) {
 	o.BoardId = &v
 }
 
+// GetBoardTitle returns the BoardTitle field value if set, zero value otherwise.
+func (o *DomainBuddyBoardInvite) GetBoardTitle() string {
+	if o == nil || IsNil(o.BoardTitle) {
+		var ret string
+		return ret
+	}
+	return *o.BoardTitle
+}
+
+// GetBoardTitleOk returns a tuple with the BoardTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainBuddyBoardInvite) GetBoardTitleOk() (*string, bool) {
+	if o == nil || IsNil(o.BoardTitle) {
+		return nil, false
+	}
+	return o.BoardTitle, true
+}
+
+// HasBoardTitle returns a boolean if a field has been set.
+func (o *DomainBuddyBoardInvite) HasBoardTitle() bool {
+	if o != nil && !IsNil(o.BoardTitle) {
+		return true
+	}
+
+	return false
+}
+
+// SetBoardTitle gets a reference to the given string and assigns it to the BoardTitle field.
+func (o *DomainBuddyBoardInvite) SetBoardTitle(v string) {
+	o.BoardTitle = &v
+}
+
 // GetContestId returns the ContestId field value if set, zero value otherwise.
 func (o *DomainBuddyBoardInvite) GetContestId() string {
 	if o == nil || IsNil(o.ContestId) {
@@ -109,6 +144,38 @@ func (o *DomainBuddyBoardInvite) HasContestId() bool {
 // SetContestId gets a reference to the given string and assigns it to the ContestId field.
 func (o *DomainBuddyBoardInvite) SetContestId(v string) {
 	o.ContestId = &v
+}
+
+// GetContestTitle returns the ContestTitle field value if set, zero value otherwise.
+func (o *DomainBuddyBoardInvite) GetContestTitle() string {
+	if o == nil || IsNil(o.ContestTitle) {
+		var ret string
+		return ret
+	}
+	return *o.ContestTitle
+}
+
+// GetContestTitleOk returns a tuple with the ContestTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainBuddyBoardInvite) GetContestTitleOk() (*string, bool) {
+	if o == nil || IsNil(o.ContestTitle) {
+		return nil, false
+	}
+	return o.ContestTitle, true
+}
+
+// HasContestTitle returns a boolean if a field has been set.
+func (o *DomainBuddyBoardInvite) HasContestTitle() bool {
+	if o != nil && !IsNil(o.ContestTitle) {
+		return true
+	}
+
+	return false
+}
+
+// SetContestTitle gets a reference to the given string and assigns it to the ContestTitle field.
+func (o *DomainBuddyBoardInvite) SetContestTitle(v string) {
+	o.ContestTitle = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -175,6 +242,38 @@ func (o *DomainBuddyBoardInvite) SetInvitedAt(v string) {
 	o.InvitedAt = &v
 }
 
+// GetInvitedBy returns the InvitedBy field value if set, zero value otherwise.
+func (o *DomainBuddyBoardInvite) GetInvitedBy() IdentitiesPlatformIdentity {
+	if o == nil || IsNil(o.InvitedBy) {
+		var ret IdentitiesPlatformIdentity
+		return ret
+	}
+	return *o.InvitedBy
+}
+
+// GetInvitedByOk returns a tuple with the InvitedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainBuddyBoardInvite) GetInvitedByOk() (*IdentitiesPlatformIdentity, bool) {
+	if o == nil || IsNil(o.InvitedBy) {
+		return nil, false
+	}
+	return o.InvitedBy, true
+}
+
+// HasInvitedBy returns a boolean if a field has been set.
+func (o *DomainBuddyBoardInvite) HasInvitedBy() bool {
+	if o != nil && !IsNil(o.InvitedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvitedBy gets a reference to the given IdentitiesPlatformIdentity and assigns it to the InvitedBy field.
+func (o *DomainBuddyBoardInvite) SetInvitedBy(v IdentitiesPlatformIdentity) {
+	o.InvitedBy = &v
+}
+
 // GetInvitedById returns the InvitedById field value if set, zero value otherwise.
 func (o *DomainBuddyBoardInvite) GetInvitedById() string {
 	if o == nil || IsNil(o.InvitedById) {
@@ -208,9 +307,9 @@ func (o *DomainBuddyBoardInvite) SetInvitedById(v string) {
 }
 
 // GetMember returns the Member field value if set, zero value otherwise.
-func (o *DomainBuddyBoardInvite) GetMember() DomainPlatformIdentity {
+func (o *DomainBuddyBoardInvite) GetMember() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Member) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Member
@@ -218,7 +317,7 @@ func (o *DomainBuddyBoardInvite) GetMember() DomainPlatformIdentity {
 
 // GetMemberOk returns a tuple with the Member field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainBuddyBoardInvite) GetMemberOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainBuddyBoardInvite) GetMemberOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Member) {
 		return nil, false
 	}
@@ -234,8 +333,8 @@ func (o *DomainBuddyBoardInvite) HasMember() bool {
 	return false
 }
 
-// SetMember gets a reference to the given DomainPlatformIdentity and assigns it to the Member field.
-func (o *DomainBuddyBoardInvite) SetMember(v DomainPlatformIdentity) {
+// SetMember gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Member field.
+func (o *DomainBuddyBoardInvite) SetMember(v IdentitiesPlatformIdentity) {
 	o.Member = &v
 }
 
@@ -316,14 +415,23 @@ func (o DomainBuddyBoardInvite) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BoardId) {
 		toSerialize["board_id"] = o.BoardId
 	}
+	if !IsNil(o.BoardTitle) {
+		toSerialize["board_title"] = o.BoardTitle
+	}
 	if !IsNil(o.ContestId) {
 		toSerialize["contest_id"] = o.ContestId
+	}
+	if !IsNil(o.ContestTitle) {
+		toSerialize["contest_title"] = o.ContestTitle
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.InvitedAt) {
 		toSerialize["invited_at"] = o.InvitedAt
+	}
+	if !IsNil(o.InvitedBy) {
+		toSerialize["invited_by"] = o.InvitedBy
 	}
 	if !IsNil(o.InvitedById) {
 		toSerialize["invited_by_id"] = o.InvitedById

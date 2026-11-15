@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Contest** | Pointer to [**DomainContest**](DomainContest.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Member** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Member** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetMember
 
-`func (o *DomainEnrollment) GetMember() DomainPlatformIdentity`
+`func (o *DomainEnrollment) GetMember() IdentitiesPlatformIdentity`
 
 GetMember returns the Member field if non-nil, zero value otherwise.
 
 ### GetMemberOk
 
-`func (o *DomainEnrollment) GetMemberOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainEnrollment) GetMemberOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetMemberOk returns a tuple with the Member field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMember
 
-`func (o *DomainEnrollment) SetMember(v DomainPlatformIdentity)`
+`func (o *DomainEnrollment) SetMember(v IdentitiesPlatformIdentity)`
 
 SetMember sets Member field to given value.
 

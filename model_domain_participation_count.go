@@ -22,7 +22,7 @@ var _ MappedNullable = &DomainParticipationCount{}
 type DomainParticipationCount struct {
 	// Can be integer count or float sum of participation points
 	Count *float32 `json:"count,omitempty"`
-	Profile *DomainPlatformIdentity `json:"profile,omitempty"`
+	Profile *IdentitiesPlatformIdentity `json:"profile,omitempty"`
 }
 
 // NewDomainParticipationCount instantiates a new DomainParticipationCount object
@@ -75,9 +75,9 @@ func (o *DomainParticipationCount) SetCount(v float32) {
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
-func (o *DomainParticipationCount) GetProfile() DomainPlatformIdentity {
+func (o *DomainParticipationCount) GetProfile() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Profile) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Profile
@@ -85,7 +85,7 @@ func (o *DomainParticipationCount) GetProfile() DomainPlatformIdentity {
 
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainParticipationCount) GetProfileOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainParticipationCount) GetProfileOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *DomainParticipationCount) HasProfile() bool {
 	return false
 }
 
-// SetProfile gets a reference to the given DomainPlatformIdentity and assigns it to the Profile field.
-func (o *DomainParticipationCount) SetProfile(v DomainPlatformIdentity) {
+// SetProfile gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Profile field.
+func (o *DomainParticipationCount) SetProfile(v IdentitiesPlatformIdentity) {
 	o.Profile = &v
 }
 

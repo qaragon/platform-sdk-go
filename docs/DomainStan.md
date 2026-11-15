@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Celeb** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Celeb** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Member** | Pointer to [**DomainPlatformIdentity**](DomainPlatformIdentity.md) |  | [optional] 
+**Member** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
 
 ## Methods
 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCeleb
 
-`func (o *DomainStan) GetCeleb() DomainPlatformIdentity`
+`func (o *DomainStan) GetCeleb() IdentitiesPlatformIdentity`
 
 GetCeleb returns the Celeb field if non-nil, zero value otherwise.
 
 ### GetCelebOk
 
-`func (o *DomainStan) GetCelebOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainStan) GetCelebOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetCelebOk returns a tuple with the Celeb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCeleb
 
-`func (o *DomainStan) SetCeleb(v DomainPlatformIdentity)`
+`func (o *DomainStan) SetCeleb(v IdentitiesPlatformIdentity)`
 
 SetCeleb sets Celeb field to given value.
 
@@ -105,20 +105,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetMember
 
-`func (o *DomainStan) GetMember() DomainPlatformIdentity`
+`func (o *DomainStan) GetMember() IdentitiesPlatformIdentity`
 
 GetMember returns the Member field if non-nil, zero value otherwise.
 
 ### GetMemberOk
 
-`func (o *DomainStan) GetMemberOk() (*DomainPlatformIdentity, bool)`
+`func (o *DomainStan) GetMemberOk() (*IdentitiesPlatformIdentity, bool)`
 
 GetMemberOk returns a tuple with the Member field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMember
 
-`func (o *DomainStan) SetMember(v DomainPlatformIdentity)`
+`func (o *DomainStan) SetMember(v IdentitiesPlatformIdentity)`
 
 SetMember sets Member field to given value.
 

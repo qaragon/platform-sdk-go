@@ -23,7 +23,7 @@ type DomainEnrollment struct {
 	Contest *DomainContest `json:"contest,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Member *DomainPlatformIdentity `json:"member,omitempty"`
+	Member *IdentitiesPlatformIdentity `json:"member,omitempty"`
 }
 
 // NewDomainEnrollment instantiates a new DomainEnrollment object
@@ -140,9 +140,9 @@ func (o *DomainEnrollment) SetId(v string) {
 }
 
 // GetMember returns the Member field value if set, zero value otherwise.
-func (o *DomainEnrollment) GetMember() DomainPlatformIdentity {
+func (o *DomainEnrollment) GetMember() IdentitiesPlatformIdentity {
 	if o == nil || IsNil(o.Member) {
-		var ret DomainPlatformIdentity
+		var ret IdentitiesPlatformIdentity
 		return ret
 	}
 	return *o.Member
@@ -150,7 +150,7 @@ func (o *DomainEnrollment) GetMember() DomainPlatformIdentity {
 
 // GetMemberOk returns a tuple with the Member field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainEnrollment) GetMemberOk() (*DomainPlatformIdentity, bool) {
+func (o *DomainEnrollment) GetMemberOk() (*IdentitiesPlatformIdentity, bool) {
 	if o == nil || IsNil(o.Member) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *DomainEnrollment) HasMember() bool {
 	return false
 }
 
-// SetMember gets a reference to the given DomainPlatformIdentity and assigns it to the Member field.
-func (o *DomainEnrollment) SetMember(v DomainPlatformIdentity) {
+// SetMember gets a reference to the given IdentitiesPlatformIdentity and assigns it to the Member field.
+func (o *DomainEnrollment) SetMember(v IdentitiesPlatformIdentity) {
 	o.Member = &v
 }
 

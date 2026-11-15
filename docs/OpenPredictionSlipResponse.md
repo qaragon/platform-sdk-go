@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**NullablePredictionSlip**](PredictionSlip.md) |  | [optional] 
+**Data** | Pointer to [**NullableOpenPredictionSlipResponseData**](OpenPredictionSlipResponseData.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *OpenPredictionSlipResponse) GetData() PredictionSlip`
+`func (o *OpenPredictionSlipResponse) GetData() OpenPredictionSlipResponseData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *OpenPredictionSlipResponse) GetDataOk() (*PredictionSlip, bool)`
+`func (o *OpenPredictionSlipResponse) GetDataOk() (*OpenPredictionSlipResponseData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *OpenPredictionSlipResponse) SetData(v PredictionSlip)`
+`func (o *OpenPredictionSlipResponse) SetData(v OpenPredictionSlipResponseData)`
 
 SetData sets Data field to given value.
 

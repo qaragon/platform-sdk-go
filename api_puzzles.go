@@ -264,11 +264,17 @@ type ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	topic *string
+	format *string
 	xActingAs *string
 }
 
 func (r ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest) Topic(topic string) ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest {
 	r.topic = &topic
+	return r
+}
+
+func (r ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest {
+	r.format = &format
 	return r
 }
 
@@ -321,6 +327,9 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetTopicConfigurationExec
 		return localVarReturnValue, nil, reportError("topic is required and must be specified")
 	}
 
+	if r.format != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
+	}
 	parameterAddToHeaderOrQuery(localVarQueryParams, "topic", r.topic, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -392,7 +401,13 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetTopicConfigurationExec
 type ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
+	format *string
 	xActingAs *string
+}
+
+func (r ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest {
+	r.format = &format
+	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
@@ -441,6 +456,9 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetUniqueCategoriesExecut
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.format != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -511,9 +529,15 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetUniqueCategoriesExecut
 type ApiPuzzleWebV2PuzzleControllerIndexRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
+	format *string
 	cursor *string
 	limit *int32
 	xActingAs *string
+}
+
+func (r ApiPuzzleWebV2PuzzleControllerIndexRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerIndexRequest {
+	r.format = &format
+	return r
 }
 
 func (r ApiPuzzleWebV2PuzzleControllerIndexRequest) Cursor(cursor string) ApiPuzzleWebV2PuzzleControllerIndexRequest {
@@ -572,6 +596,9 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerIndexExecute(r ApiPuzzleW
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.format != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
+	}
 	if r.cursor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
 	}
@@ -769,6 +796,7 @@ type ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	topic *string
+	format *string
 	difficulty *string
 	cursor *string
 	limit *int32
@@ -777,6 +805,11 @@ type ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest struct {
 
 func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Topic(topic string) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
 	r.topic = &topic
+	return r
+}
+
+func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
+	r.format = &format
 	return r
 }
 
@@ -844,6 +877,9 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerSearchPuzzleBankExecute(r
 		return localVarReturnValue, nil, reportError("topic is required and must be specified")
 	}
 
+	if r.format != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
+	}
 	parameterAddToHeaderOrQuery(localVarQueryParams, "topic", r.topic, "form", "")
 	if r.difficulty != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "difficulty", r.difficulty, "form", "")

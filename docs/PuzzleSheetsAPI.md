@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ## PuzzleWebV2PuzzleSheetControllerIndex
 
-> PuzzleSheetsListResponse PuzzleWebV2PuzzleSheetControllerIndex(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PuzzleSheetsListResponse PuzzleWebV2PuzzleSheetControllerIndex(ctx).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List puzzle sheets
 
@@ -378,13 +378,14 @@ import (
 )
 
 func main() {
+	format := "format_example" // string |  (optional)
 	cursor := "cursor_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerIndex(context.Background()).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerIndex(context.Background()).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerIndex``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -405,6 +406,7 @@ Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetCont
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **format** | **string** |  | 
  **cursor** | **string** |  | 
  **limit** | **int32** |  | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
