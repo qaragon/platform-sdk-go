@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -23,6 +23,7 @@ type DomainGroupedScoreBoard struct {
 	Contest *DomainContest `json:"contest,omitempty"`
 	MemberParticipation *DomainParticipation `json:"member_participation,omitempty"`
 	ScoresByGroup *map[string][]DomainMemberResult `json:"scores_by_group,omitempty"`
+	TeamResults *DomainTeamResults `json:"team_results,omitempty"`
 }
 
 // NewDomainGroupedScoreBoard instantiates a new DomainGroupedScoreBoard object
@@ -138,6 +139,38 @@ func (o *DomainGroupedScoreBoard) SetScoresByGroup(v map[string][]DomainMemberRe
 	o.ScoresByGroup = &v
 }
 
+// GetTeamResults returns the TeamResults field value if set, zero value otherwise.
+func (o *DomainGroupedScoreBoard) GetTeamResults() DomainTeamResults {
+	if o == nil || IsNil(o.TeamResults) {
+		var ret DomainTeamResults
+		return ret
+	}
+	return *o.TeamResults
+}
+
+// GetTeamResultsOk returns a tuple with the TeamResults field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainGroupedScoreBoard) GetTeamResultsOk() (*DomainTeamResults, bool) {
+	if o == nil || IsNil(o.TeamResults) {
+		return nil, false
+	}
+	return o.TeamResults, true
+}
+
+// HasTeamResults returns a boolean if a field has been set.
+func (o *DomainGroupedScoreBoard) HasTeamResults() bool {
+	if o != nil && !IsNil(o.TeamResults) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeamResults gets a reference to the given DomainTeamResults and assigns it to the TeamResults field.
+func (o *DomainGroupedScoreBoard) SetTeamResults(v DomainTeamResults) {
+	o.TeamResults = &v
+}
+
 func (o DomainGroupedScoreBoard) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -156,6 +189,9 @@ func (o DomainGroupedScoreBoard) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ScoresByGroup) {
 		toSerialize["scores_by_group"] = o.ScoresByGroup
+	}
+	if !IsNil(o.TeamResults) {
+		toSerialize["team_results"] = o.TeamResults
 	}
 	return toSerialize, nil
 }

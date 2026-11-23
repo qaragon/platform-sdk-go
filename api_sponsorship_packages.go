@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -330,13 +330,13 @@ type ApiGetSponsorshipPackagesRequest struct {
 	xActingAs *string
 }
 
-// Accepted for shape uniformity; ignored (single-page endpoint; see uman#132)
+// Accepted for shape uniformity; ignored (single-page endpoint; see core#132)
 func (r ApiGetSponsorshipPackagesRequest) Cursor(cursor string) ApiGetSponsorshipPackagesRequest {
 	r.cursor = &cursor
 	return r
 }
 
-// Accepted for shape uniformity; ignored (single-page endpoint; see uman#132)
+// Accepted for shape uniformity; ignored (single-page endpoint; see core#132)
 func (r ApiGetSponsorshipPackagesRequest) Limit(limit int32) ApiGetSponsorshipPackagesRequest {
 	r.limit = &limit
 	return r

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **string** | keyset pagination sort key (uman#132) | [optional] 
+**CreatedAt** | Pointer to **string** | keyset pagination sort key (core#132) | [optional] 
 **ExternalRef** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 

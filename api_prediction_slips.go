@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -831,6 +831,159 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListPredictio
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest struct {
+	ctx context.Context
+	ApiService *PredictionSlipsAPIService
+	highlightedPredictionSlipRequest *HighlightedPredictionSlipRequest
+	xActingAs *string
+}
+
+// Daily preparation window
+func (r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest HighlightedPredictionSlipRequest) ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
+	r.highlightedPredictionSlipRequest = &highlightedPredictionSlipRequest
+	return r
+}
+
+// Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
+func (r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
+	r.xActingAs = &xActingAs
+	return r
+}
+
+func (r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) Execute() (*HighlightedPredictionSlipResponse, *http.Response, error) {
+	return r.ApiService.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipExecute(r)
+}
+
+/*
+PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip Prepare a Prediction slip from an upcoming highlighted event
+
+Uses the first usable event in saved Highlight order before the supplied deadline. Reads only the UTC editions intersecting that upcoming local day and never invokes AI. Creates an ordinary private slip for the authenticated tenant and acting identity. Owner and tenant cannot be selected in the request body. Returns data:null without creating a slip when no suitable highlight exists.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest
+*/
+func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(ctx context.Context) ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
+	return ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return HighlightedPredictionSlipResponse
+func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) (*HighlightedPredictionSlipResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *HighlightedPredictionSlipResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/prediction-slips/from-highlights"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.highlightedPredictionSlipRequest == nil {
+		return localVarReturnValue, nil, reportError("highlightedPredictionSlipRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xActingAs != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.highlightedPredictionSlipRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

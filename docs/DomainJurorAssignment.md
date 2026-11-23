@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AssignedAt** | Pointer to **string** |  | [optional] 
 **ContestId** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **string** | keyset pagination sort key (uman#132) | [optional] 
+**CreatedAt** | Pointer to **string** | keyset pagination sort key (core#132) | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **JurorId** | Pointer to **string** |  | [optional] 
 **Source** | Pointer to **string** | Use JurorAssignmentSourceRandom or JurorAssignmentSourceInvited | [optional] 

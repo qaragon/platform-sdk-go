@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -21,7 +21,7 @@ var _ MappedNullable = &CreatePlatformIdentityRequest{}
 // CreatePlatformIdentityRequest struct for CreatePlatformIdentityRequest
 type CreatePlatformIdentityRequest struct {
 	Company *string `json:"company,omitempty"`
-	// CountryCode is an optional ISO 3166-1 alpha-2 region the tenant supplies to scope geo-eligibility on the fan's contests and spaces. Empty is permitted — geo queries tolerate it by returning the wider unscoped result. Added in slice 22.6 / uman#107 (Member vestige cleanup).
+	// CountryCode is an optional ISO 3166-1 alpha-2 region the tenant supplies to scope geo-eligibility on the fan's contests and spaces. Empty is permitted — geo queries tolerate it by returning the wider unscoped result. Added in slice 22.6 / core#107 (Member vestige cleanup).
 	CountryCode *string `json:"country_code,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
 	FirstName *string `json:"first_name,omitempty"`

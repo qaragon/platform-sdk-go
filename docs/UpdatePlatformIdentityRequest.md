@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Company** | Pointer to **string** |  | [optional] 
-**CountryCode** | Pointer to **string** | CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value preserves the current value on the row (mirrors the image-URL preservation pattern below). Added in slice 22.6 / uman#107. | [optional] 
+**CountryCode** | Pointer to **string** | CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value preserves the current value on the row (mirrors the image-URL preservation pattern below). Added in slice 22.6 / core#107. | [optional] 
 **DisplayName** | **string** |  | 
 **FirstName** | Pointer to **string** |  | [optional] 
 **HeaderImageUrl** | Pointer to **string** |  | [optional] 

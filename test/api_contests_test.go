@@ -1,5 +1,5 @@
 /*
-User Management API
+Qaragon Core API
 
 Testing ContestsAPIService
 
@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func Test_platform_ContestsAPIService(t *testing.T) {

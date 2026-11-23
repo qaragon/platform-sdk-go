@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -24,7 +24,7 @@ var _ MappedNullable = &ContesthttpCreatePlatformContestHostingRequest{}
 type ContesthttpCreatePlatformContestHostingRequest struct {
 	CanParticipate *bool `json:"can_participate,omitempty"`
 	CanView *bool `json:"can_view,omitempty"`
-	// venue_id is not a request field (uman#177): the space determines the venue (spaces.venue_id is canonical), so the caller supplies only the space and the venue is derived from it.
+	// venue_id is not a request field (core#177): the space determines the venue (spaces.venue_id is canonical), so the caller supplies only the space and the venue is derived from it.
 	SpaceId string `json:"space_id"`
 }
 

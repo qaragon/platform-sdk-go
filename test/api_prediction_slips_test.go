@@ -1,5 +1,5 @@
 /*
-User Management API
+Qaragon Core API
 
 Testing PredictionSlipsAPIService
 
@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func Test_platform_PredictionSlipsAPIService(t *testing.T) {
@@ -90,6 +90,18 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerListPredictionSlips(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

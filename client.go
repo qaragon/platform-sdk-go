@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the User Management API API v1.0
+// APIClient manages communication with the Qaragon Core API API v1.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -52,9 +52,13 @@ type APIClient struct {
 
 	AnalyticsAPI *AnalyticsAPIService
 
+	AutomatedContestSchedulerAPI *AutomatedContestSchedulerAPIService
+
 	BlocksAPI *BlocksAPIService
 
 	CheckInAPI *CheckInAPIService
+
+	ContentAdministrationAPI *ContentAdministrationAPIService
 
 	ContestPuzzlesAPI *ContestPuzzlesAPIService
 
@@ -136,8 +140,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AnalyticsAPI = (*AnalyticsAPIService)(&c.common)
+	c.AutomatedContestSchedulerAPI = (*AutomatedContestSchedulerAPIService)(&c.common)
 	c.BlocksAPI = (*BlocksAPIService)(&c.common)
 	c.CheckInAPI = (*CheckInAPIService)(&c.common)
+	c.ContentAdministrationAPI = (*ContentAdministrationAPIService)(&c.common)
 	c.ContestPuzzlesAPI = (*ContestPuzzlesAPIService)(&c.common)
 	c.ContestsAPI = (*ContestsAPIService)(&c.common)
 	c.CreativeContestsAPI = (*CreativeContestsAPIService)(&c.common)

@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -53,7 +53,7 @@ CreateCelebs Create Member Stan
 Idempotent stan create. POSTing the same (caller, celeb) pair
 twice returns 200 with the existing row both times; side
 effects (space memberships + new-stan notification) fire
-only on the first call. See uman#94 / ADR 0023.
+only on the first call. See core#94 / ADR 0023.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateCelebsRequest

@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -253,7 +253,7 @@ func (r ApiCreateAdminGamesFansSayLibraryGenerateRequest) Execute() (*FanssayLib
 /*
 CreateAdminGamesFansSayLibraryGenerate Generate fresh Fans Say library content
 
-Platform-admin only. Enqueues fresh sets for the selected type: fans_say (default, 11 questions), seven_clues (7), or ten_in_sixty (4). Language defaults to en and difficulty to medium. Uses the same generation/review as creator drafts. No automatic paid retries. Poll the returned ID for progress; completed status/results are retained for 24 hours.
+Platform-admin only. Enqueues fresh sets for the selected type: fans_say (default, 11 questions), seven_clues (7), or ten_in_sixty (4). Language defaults to en and difficulty to medium. Uses the same model validation/review as creator drafts; saved questions await human publication approval. No automatic paid retries. Poll the returned ID for progress; completed status/results are retained for 24 hours.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAdminGamesFansSayLibraryGenerateRequest
@@ -449,7 +449,7 @@ func (r ApiCreateAdminGamesWordChainLibraryGenerateRequest) Execute() (*Wordchai
 /*
 CreateAdminGamesWordChainLibraryGenerate Generate fresh Word Chain library content
 
-Platform-admin only. Enqueues fresh sets for the selected type: word_chain (11 chains), link_clash (8), or link_rush (3). Chains are English and suitable for a broad audience. Uses the same generation/review as creator drafts. No automatic paid retries. Poll the returned ID for progress; completed status/results are retained for 24 hours.
+Platform-admin only. Enqueues fresh sets for the selected type: word_chain (11 chains), link_clash (8), or link_rush (3). Chains are English and suitable for a broad audience. Uses the same model validation/review as creator drafts; saved questions await human publication approval. No automatic paid retries. Poll the returned ID for progress; completed status/results are retained for 24 hours.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAdminGamesWordChainLibraryGenerateRequest
@@ -788,7 +788,7 @@ func (r ApiGetAdminGamesFansSayLibraryGenerationsByIdRequest) Execute() (*Fanssa
 /*
 GetAdminGamesFansSayLibraryGenerationsById Read a Fans Say library generation status
 
-Platform-admin only. Reports queued, running, completed or failed status and completed-set counts. Approved questions remain in the library if a later set fails. Completed queue results expire after 24 hours; the library content does not expire with them.
+Platform-admin only. Reports queued, running, completed or failed status and completed-set counts. Generated questions remain pending human publication review if a later set fails. Completed queue results expire after 24 hours; the library content does not expire with them.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Generation ID
@@ -944,7 +944,7 @@ func (r ApiGetAdminGamesWordChainLibraryGenerationsByIdRequest) Execute() (*Word
 /*
 GetAdminGamesWordChainLibraryGenerationsById Read a Word Chain library generation status
 
-Platform-admin only. Reports queued, running, completed or failed status and completed-set counts. Approved questions remain in the library if a later set fails. Completed queue results expire after 24 hours; the library content does not expire with them.
+Platform-admin only. Reports queued, running, completed or failed status and completed-set counts. Generated questions remain pending human publication review if a later set fails. Completed queue results expire after 24 hours; the library content does not expire with them.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Generation ID

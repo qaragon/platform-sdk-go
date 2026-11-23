@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -447,7 +447,7 @@ func (r ApiGetContestsByIdGroupedScoreboardRequest) Execute() (*DomainGroupedSco
 /*
 GetContestsByIdGroupedScoreboard Get ScoreBoard
 
-Get ScoreBoard
+Individual results by group. Completed Contests with Team Sets also include team winner counts and each team's share of all individual winners, including those without teams. Equal positive counts share the lead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Contest ID

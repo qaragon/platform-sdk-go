@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -517,7 +517,7 @@ GetSpacesByIdMemberships List space memberships (cursor-paginated)
 
 The space owner additionally sees pending requests; non-owners see
 only approved memberships. Each item carries its `status`
-(uman#132 flattened the former {subscribers, pending_request}
+(core#132 flattened the former {subscribers, pending_request}
 object into the declared Domain.SpaceMembership array).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

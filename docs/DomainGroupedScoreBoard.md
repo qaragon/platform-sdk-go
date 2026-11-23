@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Contest** | Pointer to [**DomainContest**](DomainContest.md) |  | [optional] 
 **MemberParticipation** | Pointer to [**DomainParticipation**](DomainParticipation.md) |  | [optional] 
 **ScoresByGroup** | Pointer to [**map[string][]DomainMemberResult**](array.md) |  | [optional] 
+**TeamResults** | Pointer to [**DomainTeamResults**](DomainTeamResults.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetScoresByGroup sets ScoresByGroup field to given value.
 `func (o *DomainGroupedScoreBoard) HasScoresByGroup() bool`
 
 HasScoresByGroup returns a boolean if a field has been set.
+
+### GetTeamResults
+
+`func (o *DomainGroupedScoreBoard) GetTeamResults() DomainTeamResults`
+
+GetTeamResults returns the TeamResults field if non-nil, zero value otherwise.
+
+### GetTeamResultsOk
+
+`func (o *DomainGroupedScoreBoard) GetTeamResultsOk() (*DomainTeamResults, bool)`
+
+GetTeamResultsOk returns a tuple with the TeamResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeamResults
+
+`func (o *DomainGroupedScoreBoard) SetTeamResults(v DomainTeamResults)`
+
+SetTeamResults sets TeamResults field to given value.
+
+### HasTeamResults
+
+`func (o *DomainGroupedScoreBoard) HasTeamResults() bool`
+
+HasTeamResults returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

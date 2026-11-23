@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContestId** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **string** | keyset pagination sort key (uman#132) | [optional] 
+**CreatedAt** | Pointer to **string** | keyset pagination sort key (core#132) | [optional] 
 **Duration** | Pointer to **int32** | nullable, for live recording (seconds) | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **MediaType** | Pointer to **string** | \&quot;image\&quot; or \&quot;video\&quot; | [optional] 

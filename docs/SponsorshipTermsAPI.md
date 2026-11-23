@@ -30,7 +30,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -98,7 +98,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -170,12 +170,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
-	cursor := "cursor_example" // string | Accepted for shape uniformity; ignored (single-page endpoint; see uman#132) (optional)
-	limit := int32(56) // int32 | Accepted for shape uniformity; ignored (single-page endpoint; see uman#132) (optional)
+	cursor := "cursor_example" // string | Accepted for shape uniformity; ignored (single-page endpoint; see core#132) (optional)
+	limit := int32(56) // int32 | Accepted for shape uniformity; ignored (single-page endpoint; see core#132) (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -201,8 +201,8 @@ Other parameters are passed through a pointer to a apiGetSponsorshipTermsRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **string** | Accepted for shape uniformity; ignored (single-page endpoint; see uman#132) | 
- **limit** | **int32** | Accepted for shape uniformity; ignored (single-page endpoint; see uman#132) | 
+ **cursor** | **string** | Accepted for shape uniformity; ignored (single-page endpoint; see core#132) | 
+ **limit** | **int32** | Accepted for shape uniformity; ignored (single-page endpoint; see core#132) | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
@@ -240,7 +240,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -312,7 +312,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -382,7 +382,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {

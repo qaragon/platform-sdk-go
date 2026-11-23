@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **MaxSelections** | Pointer to **int32** |  | [optional] 
 **NoOfGroups** | Pointer to **int32** |  | [optional] 
 **NoOfPuzzles** | Pointer to **int32** |  | [optional] 
-**NoOfWinners** | Pointer to **int32** |  | [optional] 
 **Options** | Pointer to [**[]VoteVoteOption**](VoteVoteOption.md) |  | [optional] 
 **Prompt** | Pointer to **string** |  | [optional] 
 **Quorum** | Pointer to **int32** |  | [optional] 
@@ -44,7 +43,7 @@ Name | Type | Description | Notes
 **WinnerCount** | Pointer to **int32** |  | [optional] 
 **WinnersPerGroup** | Pointer to **int32** |  | [optional] 
 **WinningStrategy** | Pointer to **string** |  | [optional] 
-**ZoneAdvantage** | Pointer to **int32** |  | [optional] 
+**ZoneAdvantage** | Pointer to **int32** | ZoneAdvantage configures group-scoped score deductions for MCQ/Moment only. | [optional] 
 
 ## Methods
 
@@ -489,31 +488,6 @@ SetNoOfPuzzles sets NoOfPuzzles field to given value.
 `func (o *TournamenthttpCreateContestPayload) HasNoOfPuzzles() bool`
 
 HasNoOfPuzzles returns a boolean if a field has been set.
-
-### GetNoOfWinners
-
-`func (o *TournamenthttpCreateContestPayload) GetNoOfWinners() int32`
-
-GetNoOfWinners returns the NoOfWinners field if non-nil, zero value otherwise.
-
-### GetNoOfWinnersOk
-
-`func (o *TournamenthttpCreateContestPayload) GetNoOfWinnersOk() (*int32, bool)`
-
-GetNoOfWinnersOk returns a tuple with the NoOfWinners field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNoOfWinners
-
-`func (o *TournamenthttpCreateContestPayload) SetNoOfWinners(v int32)`
-
-SetNoOfWinners sets NoOfWinners field to given value.
-
-### HasNoOfWinners
-
-`func (o *TournamenthttpCreateContestPayload) HasNoOfWinners() bool`
-
-HasNoOfWinners returns a boolean if a field has been set.
 
 ### GetOptions
 

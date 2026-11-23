@@ -4,18 +4,20 @@ info:
     email: api-support@fanscontest.com
     name: API Support
     url: https://api.fanscontest.com/support
-  description: API documentation for the User Management API a.k.a uman
+  description: "Qaragon Core API for identities, Spaces, Contests and Games"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://fanscontest.com/terms/
-  title: User Management API
+  title: Qaragon Core API
   version: "1.0"
 servers:
 - url: /
 security:
 - TenantApiKey: []
 tags:
+- name: Content administration
+  x-displayName: Content administration
 - name: Game content administration
   x-displayName: Game content administration
 - name: Contests
@@ -28,6 +30,8 @@ tags:
   x-displayName: Blocks
 - name: Stans
   x-displayName: Stans
+- name: Automated Contest Scheduler
+  x-displayName: Automated Contest Scheduler
 - name: Highlights
   x-displayName: Highlights
 - name: Sponsorships
@@ -83,6 +87,343 @@ tags:
 - name: Events
   x-displayName: Events
 paths:
+  /v2/admin/answer-boards:
+    get:
+      description: Qaragon platform administrators only. Includes hidden answers and
+        review metadata; ordinary tenant administrators have no access. Generation
+        success leaves candidates pending review.
+      operationId: getAdminAnswerBoards
+      parameters:
+      - description: Board kind
+        explode: true
+        in: query
+        name: kind
+        required: true
+        schema:
+          enum:
+          - word_chain
+          - word_reveal
+          type: string
+        style: form
+      - description: Review status
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          default: pending_review
+          enum:
+          - pending_review
+          - approved
+          - rejected
+          type: string
+        style: form
+      - description: Last board ID from the previous page
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Page size (1–100)
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          type: integer
+        style: form
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/answerboards.ReviewBoardListResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Browse answer boards for publication review
+      tags:
+      - Content administration
+  /v2/admin/answer-boards/{id}:
+    get:
+      description: "Qaragon platform administrators only. Reads pending, approved\
+        \ or rejected content without changing publication status."
+      operationId: getAdminAnswerBoardsById
+      parameters:
+      - description: Namespaced board ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/answerboards.ReviewBoardResponse"
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Read a candidate answer board with hidden answers
+      tags:
+      - Content administration
+  /v2/admin/answer-boards/{id}/review:
+    put:
+      description: "Qaragon platform administrators only. Records the authenticated\
+        \ reviewer and decision time. Repeating a decision preserves its audit. Approval\
+        \ affects future selection, never content already committed to Contests or\
+        \ Games."
+      operationId: updateAdminAnswerBoardsByIdReview
+      parameters:
+      - description: Namespaced board ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/answerboards.ReviewRequest"
+        description: Publication decision
+        required: true
+        x-originalParamName: request
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/answerboards.ReviewBoardResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Approve or reject an answer board for library publication
+      tags:
+      - Content administration
+  /v2/admin/answer-boards/generation:
+    get:
+      operationId: getAdminAnswerBoardsGeneration
+      parameters:
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/answerboards.GenerationSettingsListResponse"
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Read platform answer-board library generation settings
+      tags:
+      - Content administration
+  /v2/admin/answer-boards/generation/{kind}:
+    put:
+      description: "Platform-admin only. The daily 02:00 UTC job queues the requested\
+        \ community-board batch for every enabled setting, independently of library\
+        \ size and review backlog. Generated content requires human approval. Generation\
+        \ is disabled by default."
+      operationId: updateAdminAnswerBoardsGenerationByKind
+      parameters:
+      - description: Board kind
+        explode: false
+        in: path
+        name: kind
+        required: true
+        schema:
+          enum:
+          - word_chain
+          - word_reveal
+          type: string
+        style: simple
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/answerboards.GenerationSettings"
+        description: Operating settings
+        required: true
+        x-originalParamName: request
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/answerboards.GenerationSettingsResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Configure scheduled library generation
+      tags:
+      - Content administration
   /v2/admin/games/fans-feud/library/generate:
     post:
       description: "Platform-admin only. Enqueues fresh sets for the selected type:\
@@ -229,9 +570,10 @@ paths:
     post:
       description: "Platform-admin only. Enqueues fresh sets for the selected type:\
         \ fans_say (default, 11 questions), seven_clues (7), or ten_in_sixty (4).\
-        \ Language defaults to en and difficulty to medium. Uses the same generation/review\
-        \ as creator drafts. No automatic paid retries. Poll the returned ID for progress;\
-        \ completed status/results are retained for 24 hours."
+        \ Language defaults to en and difficulty to medium. Uses the same model validation/review\
+        \ as creator drafts; saved questions await human publication approval. No\
+        \ automatic paid retries. Poll the returned ID for progress; completed status/results\
+        \ are retained for 24 hours."
       operationId: createAdminGamesFansSayLibraryGenerate
       parameters:
       - description: Replay an identical request instead of enqueuing another paid
@@ -310,9 +652,9 @@ paths:
   /v2/admin/games/fans-say/library/generations/{id}:
     get:
       description: "Platform-admin only. Reports queued, running, completed or failed\
-        \ status and completed-set counts. Approved questions remain in the library\
-        \ if a later set fails. Completed queue results expire after 24 hours; the\
-        \ library content does not expire with them."
+        \ status and completed-set counts. Generated questions remain pending human\
+        \ publication review if a later set fails. Completed queue results expire\
+        \ after 24 hours; the library content does not expire with them."
       operationId: getAdminGamesFansSayLibraryGenerationsById
       parameters:
       - description: Generation ID
@@ -371,9 +713,10 @@ paths:
     post:
       description: "Platform-admin only. Enqueues fresh sets for the selected type:\
         \ word_chain (11 chains), link_clash (8), or link_rush (3). Chains are English\
-        \ and suitable for a broad audience. Uses the same generation/review as creator\
-        \ drafts. No automatic paid retries. Poll the returned ID for progress; completed\
-        \ status/results are retained for 24 hours."
+        \ and suitable for a broad audience. Uses the same model validation/review\
+        \ as creator drafts; saved questions await human publication approval. No\
+        \ automatic paid retries. Poll the returned ID for progress; completed status/results\
+        \ are retained for 24 hours."
       operationId: createAdminGamesWordChainLibraryGenerate
       parameters:
       - description: Replay an identical request instead of enqueuing another paid
@@ -452,9 +795,9 @@ paths:
   /v2/admin/games/word-chain/library/generations/{id}:
     get:
       description: "Platform-admin only. Reports queued, running, completed or failed\
-        \ status and completed-set counts. Approved questions remain in the library\
-        \ if a later set fails. Completed queue results expire after 24 hours; the\
-        \ library content does not expire with them."
+        \ status and completed-set counts. Generated questions remain pending human\
+        \ publication review if a later set fails. Completed queue results expire\
+        \ after 24 hours; the library content does not expire with them."
       operationId: getAdminGamesWordChainLibraryGenerationsById
       parameters:
       - description: Generation ID
@@ -711,7 +1054,7 @@ paths:
         regardless of space scope; side effects (unsubscribe +
         open-enrollment withdrawal) fire only on the first-time
         insert. To widen a space-scoped block to global, DELETE
-        first and re-POST. See uman#94 / ADR 0023 + ADR 0025.
+        first and re-POST. See core#94 / ADR 0023 + ADR 0025.
       operationId: createBlocks
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
@@ -915,7 +1258,7 @@ paths:
         Idempotent stan create. POSTing the same (caller, celeb) pair
         twice returns 200 with the existing row both times; side
         effects (space memberships + new-stan notification) fire
-        only on the first call. See uman#94 / ADR 0023.
+        only on the first call. See core#94 / ADR 0023.
       operationId: createCelebs
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
@@ -1124,6 +1467,234 @@ paths:
       summary: Get contest status
       tags:
       - Contest Puzzles
+  /v2/contest-schedulers:
+    get:
+      operationId: getContestSchedulers
+      parameters:
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/recurringcontests.ScheduleListResponse"
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: List the caller's scheduler settings
+      tags:
+      - Automated Contest Scheduler
+    post:
+      description: "Requires authority to create Contests in the selected Space. Opt-in\
+        \ daily automation using existing MCQ, Prediction, Word Chain and Word Reveal\
+        \ content. The local creation clock triggers one attempt for today. Any ordinary\
+        \ non-cancelled Contest already scheduled in the Space that day prevents creation.\
+        \ One type is selected randomly; missing content skips the day without backfill.\
+        \ Uses bragging rights and the ordinary Contest lifecycle."
+      operationId: createContestSchedulers
+      parameters:
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/recurringcontests.Settings"
+        description: Tenant scheduler settings; weekdays are Sunday=0 through Saturday=6
+        required: true
+        x-originalParamName: request
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/recurringcontests.ScheduleResponse"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Conflict
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Configure the Automated Contest Scheduler for a Space
+      tags:
+      - Automated Contest Scheduler
+  /v2/contest-schedulers/{id}:
+    put:
+      operationId: updateContestSchedulersById
+      parameters:
+      - description: Scheduler settings ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/recurringcontests.Settings"
+        description: Replacement settings; existing Contests remain unchanged
+        required: true
+        x-originalParamName: request
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/recurringcontests.ScheduleResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Update or disable the caller's scheduler settings
+      tags:
+      - Automated Contest Scheduler
+  /v2/contest-schedulers/contests:
+    get:
+      description: "Uses each schedule's local date. Includes country, containing-continent\
+        \ and worldwide Spaces. This is a marketing list; ordinary Contest access,\
+        \ membership and timing still govern participation. Includes manually and\
+        \ automatically created ordinary Contests. Cancelled/deleted and managed Contests\
+        \ are omitted; disabling automation does not hide existing editions."
+      operationId: getContestSchedulersContests
+      parameters:
+      - description: ISO country code; omit for worldwide only
+        explode: true
+        in: query
+        name: region
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Domain.ContestListResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpx.ErrorResponse"
+          description: Internal Server Error
+      summary: Read today's Contests in tenant-configured Daily Spaces
+      tags:
+      - Automated Contest Scheduler
   /v2/contests:
     get:
       operationId: getContests
@@ -2463,7 +3034,10 @@ paths:
       - CreativeContests
   /v2/contests/{id}/grouped-scoreboard:
     get:
-      description: Get ScoreBoard
+      description: "Individual results by group. Completed Contests with Team Sets\
+        \ also include team winner counts and each team's share of all individual\
+        \ winners, including those without teams. Equal positive counts share the\
+        \ lead."
       operationId: getContestsByIdGroupedScoreboard
       parameters:
       - description: Contest ID
@@ -3223,7 +3797,7 @@ paths:
       description: |-
         Get public list of jurors for a contest (visible after contest ends).
         This list is derived from confirmed assignments (a compound query),
-        not a single keyset; per uman#132 it returns the full bounded set as
+        not a single keyset; per core#132 it returns the full bounded set as
         one page with an inert pagination block (has_next:false).
       operationId: getContestsByIdJurors
       parameters:
@@ -3541,7 +4115,7 @@ paths:
       description: |-
         Returns statistics for all questions in a multiple choice contest, including successes, failures, and rates. Default sort is by question number. Supports optional sorting by failures, successes, failure_rate, or success_rate (with question number as tie-breaker). Only the contest owner or admins can access this endpoint.
         Per-question stats are a computed aggregate, not a keyset list; per
-        uman#132 the response carries an inert pagination block
+        core#132 the response carries an inert pagination block
         (has_next:false) for shape uniformity and ignores cursor/limit.
       operationId: getContestsByIdQuestionStats
       parameters:
@@ -5711,7 +6285,7 @@ paths:
   /v2/identities/{piid}/buddy-board-invites:
     get:
       description: |-
-        Renamed from /members/buddy-board-invites in uman ADR 0018;
+        Renamed from /members/buddy-board-invites in core ADR 0018;
         PI-existence gate is tenant-scoped.
       operationId: getIdentitiesByPiidBuddyBoardInvites
       parameters:
@@ -6377,7 +6951,7 @@ paths:
       description: |-
         Get all pending invitations for the current user. This list is
         assembled in the service layer (filtered), not a single keyset; per
-        uman#132 it returns the full set as one page with an inert
+        core#132 it returns the full set as one page with an inert
         pagination block (has_next:false).
       operationId: getJurorsInvitations
       parameters:
@@ -7278,6 +7852,67 @@ paths:
                 $ref: "#/components/schemas/PredictionSlipsListResponse"
           description: Community prediction slips list
       summary: List public/community prediction slips
+      tags:
+      - Prediction Slips
+  /v2/prediction-slips/from-highlights:
+    post:
+      description: Uses the first usable event in saved Highlight order before the
+        supplied deadline. Reads only the UTC editions intersecting that upcoming
+        local day and never invokes AI. Creates an ordinary private slip for the authenticated
+        tenant and acting identity. Owner and tenant cannot be selected in the request
+        body. Returns data:null without creating a slip when no suitable highlight
+        exists.
+      operationId: PuzzleWeb.V2.PredictionController.prepare_highlighted_prediction_slip
+      parameters:
+      - description: Acting-as. The platform identity id (piid) this request is on
+          behalf of. The platform verifies the piid belongs to the calling tenant
+          and acts as that identity. Omit for tenant-level calls.
+        explode: false
+        in: header
+        name: X-Acting-As
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HighlightedPredictionSlipRequest"
+        description: Daily preparation window
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HighlightedPredictionSlipResponse"
+          description: No suitable Highlight
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HighlightedPredictionSlipResponse"
+          description: Prepared slip source
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Invalid window
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Acting identity required
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Preparation unavailable
+      summary: Prepare a Prediction slip from an upcoming highlighted event
       tags:
       - Prediction Slips
   /v2/prediction-slips/open:
@@ -8456,7 +9091,7 @@ paths:
       description: |-
         The space owner additionally sees pending requests; non-owners see
         only approved memberships. Each item carries its `status`
-        (uman#132 flattened the former {subscribers, pending_request}
+        (core#132 flattened the former {subscribers, pending_request}
         object into the declared Domain.SpaceMembership array).
       operationId: getSpacesByIdMemberships
       parameters:
@@ -8873,7 +9508,7 @@ paths:
   /v2/spaces/{id}/team-sets:
     get:
       description: |-
-        Bounded set sorted by name (not a keyset list); per uman#132 it
+        Bounded set sorted by name (not a keyset list); per core#132 it
         carries an inert pagination block (has_next:false) and ignores
         cursor/limit.
       operationId: getSpacesByIdTeamSets
@@ -9719,7 +10354,7 @@ paths:
       operationId: getSponsorshipPackages
       parameters:
       - description: Accepted for shape uniformity; ignored (single-page endpoint;
-          see uman#132)
+          see core#132)
         explode: true
         in: query
         name: cursor
@@ -9728,7 +10363,7 @@ paths:
           type: string
         style: form
       - description: Accepted for shape uniformity; ignored (single-page endpoint;
-          see uman#132)
+          see core#132)
         explode: true
         in: query
         name: limit
@@ -10064,7 +10699,7 @@ paths:
       operationId: getSponsorshipTerms
       parameters:
       - description: Accepted for shape uniformity; ignored (single-page endpoint;
-          see uman#132)
+          see core#132)
         explode: true
         in: query
         name: cursor
@@ -10073,7 +10708,7 @@ paths:
           type: string
         style: form
       - description: Accepted for shape uniformity; ignored (single-page endpoint;
-          see uman#132)
+          see core#132)
         explode: true
         in: query
         name: limit
@@ -10869,9 +11504,9 @@ paths:
   /v2/team-sets/system:
     get:
       description: |-
-        Tenant-scoped (uman#40): a "system" team set is a tenant-global set
+        Tenant-scoped (core#40): a "system" team set is a tenant-global set
         (owned by the tenant, not a space). This is a bounded set sorted by
-        name (not a keyset list); per uman#132 it carries an inert pagination
+        name (not a keyset list); per core#132 it carries an inert pagination
         block (has_next:false) and ignores cursor/limit.
       operationId: getTeamSetsSystem
       parameters:
@@ -12365,7 +13000,7 @@ components:
             supplies to scope geo-eligibility on the fan's contests and
             spaces. Empty is permitted — geo queries tolerate it by
             returning the wider unscoped result. Added in slice 22.6 /
-            uman#107 (Member vestige cleanup).
+            core#107 (Member vestige cleanup).
           type: string
         display_name:
           maxLength: 255
@@ -12859,7 +13494,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -13245,7 +13880,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -13286,7 +13921,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -15171,7 +15806,7 @@ components:
         contest_id:
           type: string
         created_at:
-          description: keyset pagination sort key (uman#132)
+          description: keyset pagination sort key (core#132)
           type: string
         id:
           type: string
@@ -15216,7 +15851,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -15625,7 +16260,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -16334,7 +16969,7 @@ components:
         contest_id:
           type: string
         created_at:
-          description: keyset pagination sort key (uman#132)
+          description: keyset pagination sort key (core#132)
           type: string
         duration:
           description: "nullable, for live recording (seconds)"
@@ -16384,7 +17019,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -16446,7 +17081,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -17028,6 +17663,25 @@ components:
               id: id
               name: name
               sort_order: 0
+        team_results:
+          teams:
+          - leading: true
+            team:
+              icon_url: icon_url
+              id: id
+              name: name
+              sort_order: 0
+            winner_share_pct: 0.8008281904610115
+            winners: 6
+          - leading: true
+            team:
+              icon_url: icon_url
+              id: id
+              name: name
+              sort_order: 0
+            winner_share_pct: 0.8008281904610115
+            winners: 6
+          total_winners: 1
       properties:
         contest:
           $ref: "#/components/schemas/Domain.Contest"
@@ -17039,6 +17693,8 @@ components:
               $ref: "#/components/schemas/Domain.MemberResult"
             type: array
           type: object
+        team_results:
+          $ref: "#/components/schemas/Domain.TeamResults"
       type: object
     Domain.GroupedScoreBoardResponse:
       example:
@@ -17610,6 +18266,25 @@ components:
                 id: id
                 name: name
                 sort_order: 0
+          team_results:
+            teams:
+            - leading: true
+              team:
+                icon_url: icon_url
+                id: id
+                name: name
+                sort_order: 0
+              winner_share_pct: 0.8008281904610115
+              winners: 6
+            - leading: true
+              team:
+                icon_url: icon_url
+                id: id
+                name: name
+                sort_order: 0
+              winner_share_pct: 0.8008281904610115
+              winners: 6
+            total_winners: 1
       properties:
         data:
           $ref: "#/components/schemas/Domain.GroupedScoreBoard"
@@ -17669,7 +18344,7 @@ components:
         contest_id:
           type: string
         created_at:
-          description: keyset pagination sort key (uman#132)
+          description: keyset pagination sort key (core#132)
           type: string
         id:
           type: string
@@ -17703,7 +18378,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -17752,7 +18427,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -19257,7 +19932,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -19728,7 +20403,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -19847,7 +20522,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -20026,7 +20701,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -20203,7 +20878,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -20312,7 +20987,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -20512,7 +21187,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -20890,7 +21565,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -20970,6 +21645,54 @@ components:
           $ref: "#/components/schemas/Domain.SubmissionZone"
         red_zone:
           $ref: "#/components/schemas/Domain.SubmissionZone"
+      type: object
+    Domain.TeamResult:
+      example:
+        leading: true
+        team:
+          icon_url: icon_url
+          id: id
+          name: name
+          sort_order: 0
+        winner_share_pct: 0.8008281904610115
+        winners: 6
+      properties:
+        leading:
+          type: boolean
+        team:
+          $ref: "#/components/schemas/teams.Team"
+        winner_share_pct:
+          type: number
+        winners:
+          type: integer
+      type: object
+    Domain.TeamResults:
+      example:
+        teams:
+        - leading: true
+          team:
+            icon_url: icon_url
+            id: id
+            name: name
+            sort_order: 0
+          winner_share_pct: 0.8008281904610115
+          winners: 6
+        - leading: true
+          team:
+            icon_url: icon_url
+            id: id
+            name: name
+            sort_order: 0
+          winner_share_pct: 0.8008281904610115
+          winners: 6
+        total_winners: 1
+      properties:
+        teams:
+          items:
+            $ref: "#/components/schemas/Domain.TeamResult"
+          type: array
+        total_winners:
+          type: integer
       type: object
     Domain.TimePenaltyConfiguration:
       example:
@@ -21429,7 +22152,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -21695,7 +22418,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -22523,7 +23246,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -22665,6 +23388,32 @@ components:
         expires_at:
           type: string
       type: object
+    HighlightedPredictionSlipRequest:
+      example:
+        before: 2000-01-23T04:56:07.000+00:00
+      properties:
+        before:
+          description: "Exclusive kickoff deadline, in the future and at most 25 hours\
+            \ away to allow a local day across daylight saving changes."
+          format: date-time
+          type: string
+      required:
+      - before
+      title: HighlightedPredictionSlipRequest
+      type: object
+    HighlightedPredictionSlipResponse:
+      example:
+        data:
+          count: 0
+          deadline: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        data:
+          $ref: "#/components/schemas/HighlightedPredictionSlipResponse_data"
+      required:
+      - data
+      title: HighlightedPredictionSlipResponse
+      type: object
     MessageResponse:
       description: "Simple {data: {message}} envelope used by a few action endpoints."
       example:
@@ -22768,7 +23517,7 @@ components:
       example:
         has_next: true
         has_previous: true
-        limit: 0
+        limit: 1
         next_cursor: next_cursor
         prev_cursor: prev_cursor
       properties:
@@ -23255,7 +24004,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -23616,7 +24365,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -23686,7 +24435,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -23929,7 +24678,7 @@ components:
           description: |-
             CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value
             preserves the current value on the row (mirrors the image-URL
-            preservation pattern below). Added in slice 22.6 / uman#107.
+            preservation pattern below). Added in slice 22.6 / core#107.
           type: string
         display_name:
           maxLength: 255
@@ -24029,6 +24778,272 @@ components:
           $ref: "#/components/schemas/UserEventStatusResponse_data"
       title: UserEventStatusResponse
       type: object
+    answerboards.Answer:
+      example:
+        id: id
+        points: 0
+        text: text
+      properties:
+        id:
+          type: string
+        points:
+          type: integer
+        text:
+          type: string
+      type: object
+    answerboards.GenerationSettings:
+      example:
+        batch_size: 1
+        brief: brief
+        difficulty: easy
+        enabled: true
+        kind: word_chain
+        language: language
+        updated_at: updated_at
+      properties:
+        batch_size:
+          minimum: 1
+          type: integer
+        brief:
+          maxLength: 300
+          type: string
+        difficulty:
+          enum:
+          - easy
+          - medium
+          - hard
+          type: string
+        enabled:
+          type: boolean
+        kind:
+          enum:
+          - word_chain
+          - word_reveal
+          type: string
+        language:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - brief
+      - language
+      type: object
+    answerboards.GenerationSettingsListResponse:
+      example:
+        data:
+        - batch_size: 1
+          brief: brief
+          difficulty: easy
+          enabled: true
+          kind: word_chain
+          language: language
+          updated_at: updated_at
+        - batch_size: 1
+          brief: brief
+          difficulty: easy
+          enabled: true
+          kind: word_chain
+          language: language
+          updated_at: updated_at
+        pagination:
+          has_next: true
+          has_previous: true
+          limit: 1
+          next_cursor: next_cursor
+          prev_cursor: prev_cursor
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/answerboards.GenerationSettings"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - data
+      type: object
+    answerboards.GenerationSettingsResponse:
+      example:
+        data:
+          batch_size: 1
+          brief: brief
+          difficulty: easy
+          enabled: true
+          kind: word_chain
+          language: language
+          updated_at: updated_at
+      properties:
+        data:
+          $ref: "#/components/schemas/answerboards.GenerationSettings"
+      required:
+      - data
+      type: object
+    answerboards.ReviewBoard:
+      example:
+        answers:
+        - id: id
+          points: 0
+          text: text
+        - id: id
+          points: 0
+          text: text
+        created_at: created_at
+        culture: culture
+        difficulty: difficulty
+        id: id
+        kind: word_chain
+        language: language
+        minimum_age: 6
+        prompt: prompt
+        review_status: pending_review
+        reviewed_at: reviewed_at
+        reviewed_by: reviewed_by
+        source: source
+        topics:
+        - topics
+        - topics
+      properties:
+        answers:
+          items:
+            $ref: "#/components/schemas/answerboards.Answer"
+          type: array
+        created_at:
+          type: string
+        culture:
+          type: string
+        difficulty:
+          type: string
+        id:
+          type: string
+        kind:
+          enum:
+          - word_chain
+          - word_reveal
+          type: string
+        language:
+          type: string
+        minimum_age:
+          type: integer
+        prompt:
+          type: string
+        review_status:
+          enum:
+          - pending_review
+          - approved
+          - rejected
+          type: string
+        reviewed_at:
+          type: string
+        reviewed_by:
+          type: string
+        source:
+          type: string
+        topics:
+          items:
+            type: string
+          type: array
+      type: object
+    answerboards.ReviewBoardListResponse:
+      example:
+        data:
+        - answers:
+          - id: id
+            points: 0
+            text: text
+          - id: id
+            points: 0
+            text: text
+          created_at: created_at
+          culture: culture
+          difficulty: difficulty
+          id: id
+          kind: word_chain
+          language: language
+          minimum_age: 6
+          prompt: prompt
+          review_status: pending_review
+          reviewed_at: reviewed_at
+          reviewed_by: reviewed_by
+          source: source
+          topics:
+          - topics
+          - topics
+        - answers:
+          - id: id
+            points: 0
+            text: text
+          - id: id
+            points: 0
+            text: text
+          created_at: created_at
+          culture: culture
+          difficulty: difficulty
+          id: id
+          kind: word_chain
+          language: language
+          minimum_age: 6
+          prompt: prompt
+          review_status: pending_review
+          reviewed_at: reviewed_at
+          reviewed_by: reviewed_by
+          source: source
+          topics:
+          - topics
+          - topics
+        pagination:
+          has_next: true
+          has_previous: true
+          limit: 1
+          next_cursor: next_cursor
+          prev_cursor: prev_cursor
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/answerboards.ReviewBoard"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - data
+      type: object
+    answerboards.ReviewBoardResponse:
+      example:
+        data:
+          answers:
+          - id: id
+            points: 0
+            text: text
+          - id: id
+            points: 0
+            text: text
+          created_at: created_at
+          culture: culture
+          difficulty: difficulty
+          id: id
+          kind: word_chain
+          language: language
+          minimum_age: 6
+          prompt: prompt
+          review_status: pending_review
+          reviewed_at: reviewed_at
+          reviewed_by: reviewed_by
+          source: source
+          topics:
+          - topics
+          - topics
+      properties:
+        data:
+          $ref: "#/components/schemas/answerboards.ReviewBoard"
+      required:
+      - data
+      type: object
+    answerboards.ReviewRequest:
+      properties:
+        status:
+          enum:
+          - approved
+          - rejected
+          type: string
+      type: object
     answerboards.Summary:
       example:
         answer_count: 0
@@ -24063,7 +25078,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -24336,9 +25351,6 @@ components:
         no_of_puzzles:
           minimum: 0
           type: integer
-        no_of_winners:
-          minimum: 1
-          type: integer
         options:
           items:
             $ref: "#/components/schemas/vote.VoteOption"
@@ -24413,6 +25425,8 @@ components:
           - least_n
           type: string
         zone_advantage:
+          description: ZoneAdvantage configures group-scoped score deductions for
+            MCQ/Moment only.
           minimum: 0
           type: integer
       required:
@@ -24439,6 +25453,7 @@ components:
           - open
           type: string
         no_of_groups:
+          minimum: 1
           type: integer
         reward:
           $ref: "#/components/schemas/Domain.Reward"
@@ -24447,6 +25462,7 @@ components:
         title:
           type: string
         winners_per_group:
+          minimum: 1
           type: integer
       required:
       - description
@@ -24464,7 +25480,7 @@ components:
           type: boolean
         space_id:
           description: |-
-            venue_id is not a request field (uman#177): the space determines the
+            venue_id is not a request field (core#177): the space determines the
             venue (spaces.venue_id is canonical), so the caller supplies only the
             space and the venue is derived from it.
           type: string
@@ -25920,7 +26936,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -26618,7 +27634,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -26752,6 +27768,244 @@ components:
           type: string
         module:
           $ref: "#/components/schemas/play.ModuleRef"
+      type: object
+    recurringcontests.ContestType:
+      example:
+        source_type: mc
+        source_variant: word_chain
+      properties:
+        source_type:
+          enum:
+          - mc
+          - prediction
+          - guess
+          type: string
+        source_variant:
+          enum:
+          - word_chain
+          - word_reveal
+          type: string
+      required:
+      - source_type
+      type: object
+    recurringcontests.Schedule:
+      example:
+        contest_types:
+        - source_type: mc
+          source_variant: word_chain
+        - source_type: mc
+          source_variant: word_chain
+        created_at: created_at
+        creation_time: creation_time
+        creator_identity_id: creator_identity_id
+        description: description
+        duration_minutes: 1
+        enabled: true
+        id: id
+        language: language
+        question_count: 1
+        space_id: space_id
+        start_time: start_time
+        time_zone: time_zone
+        title: title
+        updated_at: updated_at
+        weekdays:
+        - 1
+        - 1
+        winners_per_group: 1
+      properties:
+        contest_types:
+          items:
+            $ref: "#/components/schemas/recurringcontests.ContestType"
+          minItems: 1
+          type: array
+        created_at:
+          type: string
+        creation_time:
+          type: string
+        creator_identity_id:
+          type: string
+        description:
+          type: string
+        duration_minutes:
+          minimum: 1
+          type: integer
+        enabled:
+          type: boolean
+        id:
+          type: string
+        language:
+          type: string
+        question_count:
+          minimum: 1
+          type: integer
+        space_id:
+          type: string
+        start_time:
+          type: string
+        time_zone:
+          type: string
+        title:
+          maxLength: 255
+          type: string
+        updated_at:
+          type: string
+        weekdays:
+          items:
+            type: integer
+          type: array
+        winners_per_group:
+          minimum: 1
+          type: integer
+      required:
+      - contest_types
+      - creation_time
+      - space_id
+      - start_time
+      - time_zone
+      - title
+      type: object
+    recurringcontests.ScheduleListResponse:
+      example:
+        data:
+        - contest_types:
+          - source_type: mc
+            source_variant: word_chain
+          - source_type: mc
+            source_variant: word_chain
+          created_at: created_at
+          creation_time: creation_time
+          creator_identity_id: creator_identity_id
+          description: description
+          duration_minutes: 1
+          enabled: true
+          id: id
+          language: language
+          question_count: 1
+          space_id: space_id
+          start_time: start_time
+          time_zone: time_zone
+          title: title
+          updated_at: updated_at
+          weekdays:
+          - 1
+          - 1
+          winners_per_group: 1
+        - contest_types:
+          - source_type: mc
+            source_variant: word_chain
+          - source_type: mc
+            source_variant: word_chain
+          created_at: created_at
+          creation_time: creation_time
+          creator_identity_id: creator_identity_id
+          description: description
+          duration_minutes: 1
+          enabled: true
+          id: id
+          language: language
+          question_count: 1
+          space_id: space_id
+          start_time: start_time
+          time_zone: time_zone
+          title: title
+          updated_at: updated_at
+          weekdays:
+          - 1
+          - 1
+          winners_per_group: 1
+        pagination:
+          has_next: true
+          has_previous: true
+          limit: 1
+          next_cursor: next_cursor
+          prev_cursor: prev_cursor
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/recurringcontests.Schedule"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - data
+      type: object
+    recurringcontests.ScheduleResponse:
+      example:
+        data:
+          contest_types:
+          - source_type: mc
+            source_variant: word_chain
+          - source_type: mc
+            source_variant: word_chain
+          created_at: created_at
+          creation_time: creation_time
+          creator_identity_id: creator_identity_id
+          description: description
+          duration_minutes: 1
+          enabled: true
+          id: id
+          language: language
+          question_count: 1
+          space_id: space_id
+          start_time: start_time
+          time_zone: time_zone
+          title: title
+          updated_at: updated_at
+          weekdays:
+          - 1
+          - 1
+          winners_per_group: 1
+      properties:
+        data:
+          $ref: "#/components/schemas/recurringcontests.Schedule"
+      required:
+      - data
+      type: object
+    recurringcontests.Settings:
+      properties:
+        contest_types:
+          items:
+            $ref: "#/components/schemas/recurringcontests.ContestType"
+          minItems: 1
+          type: array
+        creation_time:
+          type: string
+        description:
+          type: string
+        duration_minutes:
+          minimum: 1
+          type: integer
+        enabled:
+          type: boolean
+        language:
+          type: string
+        question_count:
+          minimum: 1
+          type: integer
+        space_id:
+          type: string
+        start_time:
+          type: string
+        time_zone:
+          type: string
+        title:
+          maxLength: 255
+          type: string
+        weekdays:
+          items:
+            type: integer
+          type: array
+        winners_per_group:
+          minimum: 1
+          type: integer
+      required:
+      - contest_types
+      - creation_time
+      - space_id
+      - start_time
+      - time_zone
+      - title
       type: object
     sevenclues.AnswerView:
       properties:
@@ -27186,7 +28440,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -27440,7 +28694,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -27811,7 +29065,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -27985,7 +29239,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -28219,9 +29473,6 @@ components:
         no_of_puzzles:
           minimum: 0
           type: integer
-        no_of_winners:
-          minimum: 1
-          type: integer
         options:
           items:
             $ref: "#/components/schemas/vote.VoteOption"
@@ -28296,6 +29547,8 @@ components:
           - least_n
           type: string
         zone_advantage:
+          description: ZoneAdvantage configures group-scoped score deductions for
+            MCQ/Moment only.
           minimum: 0
           type: integer
       required:
@@ -28327,7 +29580,7 @@ components:
         type: type
       properties:
         created_at:
-          description: keyset pagination sort key (uman#132)
+          description: keyset pagination sort key (core#132)
           type: string
         external_ref:
           type: string
@@ -28358,7 +29611,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -28427,7 +29680,7 @@ components:
         pagination:
           has_next: true
           has_previous: true
-          limit: 0
+          limit: 1
           next_cursor: next_cursor
           prev_cursor: prev_cursor
       properties:
@@ -30703,6 +31956,30 @@ components:
         title:
           type: string
       type: object
+    HighlightedPredictionSlipResponse_data:
+      example:
+        count: 0
+        deadline: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      nullable: true
+      properties:
+        count:
+          description: Number of events in the prepared slip.
+          enum:
+          - 1
+          type: integer
+        deadline:
+          description: "Submission deadline: the selected event's kickoff."
+          format: date-time
+          type: string
+        id:
+          format: uuid
+          type: string
+      required:
+      - count
+      - deadline
+      - id
+      type: object
     MessageResponse_data:
       example:
         message: message
@@ -30970,14 +32247,16 @@ components:
       scheme: bearer
       type: http
 x-tagGroups:
-- name: User Management API
+- name: Qaragon Core API
   tags:
+  - Content administration
   - Game content administration
   - Contests
   - Analytics
   - Guess
   - Blocks
   - Stans
+  - Automated Contest Scheduler
   - Highlights
   - Sponsorships
   - CheckIn

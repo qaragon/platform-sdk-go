@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -23,7 +23,7 @@ var _ MappedNullable = &UpdatePlatformIdentityRequest{}
 // UpdatePlatformIdentityRequest struct for UpdatePlatformIdentityRequest
 type UpdatePlatformIdentityRequest struct {
 	Company *string `json:"company,omitempty"`
-	// CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value preserves the current value on the row (mirrors the image-URL preservation pattern below). Added in slice 22.6 / uman#107.
+	// CountryCode is optional. Sent as ISO 3166-1 alpha-2; empty value preserves the current value on the row (mirrors the image-URL preservation pattern below). Added in slice 22.6 / core#107.
 	CountryCode *string `json:"country_code,omitempty"`
 	DisplayName string `json:"display_name"`
 	FirstName *string `json:"first_name,omitempty"`

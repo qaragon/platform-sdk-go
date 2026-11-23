@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**PuzzleWebV2PredictionControllerListCommunityPredictionSlips**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerListCommunityPredictionSlips) | **Get** /v2/prediction-slips/community | List public/community prediction slips
 [**PuzzleWebV2PredictionControllerListCuratedSlips**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerListCuratedSlips) | **Get** /v2/curated-slips | List curated prediction slips
 [**PuzzleWebV2PredictionControllerListPredictionSlips**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerListPredictionSlips) | **Get** /v2/prediction-slips | List the caller&#39;s prediction slips
+[**PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip) | **Post** /v2/prediction-slips/from-highlights | Prepare a Prediction slip from an upcoming highlighted event
 [**PuzzleWebV2PredictionControllerShowOpenPredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerShowOpenPredictionSlip) | **Get** /v2/prediction-slips/open | Get the caller&#39;s open prediction slip
 [**PuzzleWebV2PredictionControllerShowPredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerShowPredictionSlip) | **Get** /v2/prediction-slips/{id} | Get prediction slip
 [**PuzzleWebV2PredictionControllerUpdatePredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerUpdatePredictionSlip) | **Put** /v2/prediction-slips/{id} | Update prediction slip
@@ -31,7 +32,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -103,7 +104,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -169,7 +170,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -239,7 +240,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -307,7 +308,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -381,7 +382,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -436,6 +437,75 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip
+
+> HighlightedPredictionSlipResponse PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(ctx).HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest).XActingAs(xActingAs).Execute()
+
+Prepare a Prediction slip from an upcoming highlighted event
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+    "time"
+	openapiclient "github.com/qaragon/platform-sdk-go"
+)
+
+func main() {
+	highlightedPredictionSlipRequest := *openapiclient.NewHighlightedPredictionSlipRequest(time.Now()) // HighlightedPredictionSlipRequest | Daily preparation window
+	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(context.Background()).HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest).XActingAs(xActingAs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip`: HighlightedPredictionSlipResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **highlightedPredictionSlipRequest** | [**HighlightedPredictionSlipRequest**](HighlightedPredictionSlipRequest.md) | Daily preparation window | 
+ **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
+
+### Return type
+
+[**HighlightedPredictionSlipResponse**](HighlightedPredictionSlipResponse.md)
+
+### Authorization
+
+[TenantApiKey](../README.md#TenantApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PuzzleWebV2PredictionControllerShowOpenPredictionSlip
 
 > OpenPredictionSlipResponse PuzzleWebV2PredictionControllerShowOpenPredictionSlip(ctx).XActingAs(xActingAs).Execute()
@@ -453,7 +523,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -517,7 +587,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -587,7 +657,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {

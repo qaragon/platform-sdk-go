@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Company** | Pointer to **string** |  | [optional] 
-**CountryCode** | Pointer to **string** | CountryCode is an optional ISO 3166-1 alpha-2 region the tenant supplies to scope geo-eligibility on the fan&#39;s contests and spaces. Empty is permitted — geo queries tolerate it by returning the wider unscoped result. Added in slice 22.6 / uman#107 (Member vestige cleanup). | [optional] 
+**CountryCode** | Pointer to **string** | CountryCode is an optional ISO 3166-1 alpha-2 region the tenant supplies to scope geo-eligibility on the fan&#39;s contests and spaces. Empty is permitted — geo queries tolerate it by returning the wider unscoped result. Added in slice 22.6 / core#107 (Member vestige cleanup). | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
 **FirstName** | Pointer to **string** |  | [optional] 
 **HeaderImageUrl** | Pointer to **string** |  | [optional] 

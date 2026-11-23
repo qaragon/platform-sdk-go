@@ -31,7 +31,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -97,7 +97,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -167,7 +167,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -237,7 +237,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -305,7 +305,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -377,7 +377,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -443,7 +443,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -517,7 +517,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {
@@ -587,7 +587,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fanscontest/platform-sdk-go"
+	openapiclient "github.com/qaragon/platform-sdk-go"
 )
 
 func main() {

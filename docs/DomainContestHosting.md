@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CanParticipate** | Pointer to **bool** |  | [optional] 
 **CanView** | Pointer to **bool** |  | [optional] 
 **ContestId** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **string** | keyset pagination sort key (uman#132) | [optional] 
+**CreatedAt** | Pointer to **string** | keyset pagination sort key (core#132) | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IdentityPolicy** | Pointer to **string** |  | [optional] 
 **InvitedByTenantId** | Pointer to **string** |  | [optional] 

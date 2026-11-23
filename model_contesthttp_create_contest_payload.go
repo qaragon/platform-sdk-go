@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -41,7 +41,6 @@ type ContesthttpCreateContestPayload struct {
 	MaxSelections *int32 `json:"max_selections,omitempty"`
 	NoOfGroups *int32 `json:"no_of_groups,omitempty"`
 	NoOfPuzzles *int32 `json:"no_of_puzzles,omitempty"`
-	NoOfWinners *int32 `json:"no_of_winners,omitempty"`
 	Options []VoteVoteOption `json:"options,omitempty"`
 	Prompt *string `json:"prompt,omitempty"`
 	Quorum *int32 `json:"quorum,omitempty"`
@@ -64,6 +63,7 @@ type ContesthttpCreateContestPayload struct {
 	WinnerCount *int32 `json:"winner_count,omitempty"`
 	WinnersPerGroup *int32 `json:"winners_per_group,omitempty"`
 	WinningStrategy *string `json:"winning_strategy,omitempty"`
+	// ZoneAdvantage configures group-scoped score deductions for MCQ/Moment only.
 	ZoneAdvantage *int32 `json:"zone_advantage,omitempty"`
 }
 
@@ -633,38 +633,6 @@ func (o *ContesthttpCreateContestPayload) HasNoOfPuzzles() bool {
 // SetNoOfPuzzles gets a reference to the given int32 and assigns it to the NoOfPuzzles field.
 func (o *ContesthttpCreateContestPayload) SetNoOfPuzzles(v int32) {
 	o.NoOfPuzzles = &v
-}
-
-// GetNoOfWinners returns the NoOfWinners field value if set, zero value otherwise.
-func (o *ContesthttpCreateContestPayload) GetNoOfWinners() int32 {
-	if o == nil || IsNil(o.NoOfWinners) {
-		var ret int32
-		return ret
-	}
-	return *o.NoOfWinners
-}
-
-// GetNoOfWinnersOk returns a tuple with the NoOfWinners field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContesthttpCreateContestPayload) GetNoOfWinnersOk() (*int32, bool) {
-	if o == nil || IsNil(o.NoOfWinners) {
-		return nil, false
-	}
-	return o.NoOfWinners, true
-}
-
-// HasNoOfWinners returns a boolean if a field has been set.
-func (o *ContesthttpCreateContestPayload) HasNoOfWinners() bool {
-	if o != nil && !IsNil(o.NoOfWinners) {
-		return true
-	}
-
-	return false
-}
-
-// SetNoOfWinners gets a reference to the given int32 and assigns it to the NoOfWinners field.
-func (o *ContesthttpCreateContestPayload) SetNoOfWinners(v int32) {
-	o.NoOfWinners = &v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
@@ -1423,9 +1391,6 @@ func (o ContesthttpCreateContestPayload) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.NoOfPuzzles) {
 		toSerialize["no_of_puzzles"] = o.NoOfPuzzles
-	}
-	if !IsNil(o.NoOfWinners) {
-		toSerialize["no_of_winners"] = o.NoOfWinners
 	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options

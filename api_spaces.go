@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -1262,7 +1262,7 @@ func (r ApiGetSpacesByIdTeamSetsRequest) Execute() (*TeamsTeamSetListResponse, *
 /*
 GetSpacesByIdTeamSets List team sets owned by a space
 
-Bounded set sorted by name (not a keyset list); per uman#132 it
+Bounded set sorted by name (not a keyset list); per core#132 it
 carries an inert pagination block (has_next:false) and ignores
 cursor/limit.
 
@@ -1917,9 +1917,9 @@ func (r ApiGetTeamSetsSystemRequest) Execute() (*TeamsTeamSetListResponse, *http
 /*
 GetTeamSetsSystem List the calling tenant's system team sets
 
-Tenant-scoped (uman#40): a "system" team set is a tenant-global set
+Tenant-scoped (core#40): a "system" team set is a tenant-global set
 (owned by the tenant, not a space). This is a bounded set sorted by
-name (not a keyset list); per uman#132 it carries an inert pagination
+name (not a keyset list); per core#132 it carries an inert pagination
 block (has_next:false) and ignores cursor/limit.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

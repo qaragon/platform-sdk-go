@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -3124,7 +3124,7 @@ GetContestsByIdQuestionStats Get question statistics for a contest (Contest Owne
 
 Returns statistics for all questions in a multiple choice contest, including successes, failures, and rates. Default sort is by question number. Supports optional sorting by failures, successes, failure_rate, or success_rate (with question number as tie-breaker). Only the contest owner or admins can access this endpoint.
 Per-question stats are a computed aggregate, not a keyset list; per
-uman#132 the response carries an inert pagination block
+core#132 the response carries an inert pagination block
 (has_next:false) for shape uniformity and ignores cursor/limit.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3952,7 +3952,7 @@ func (r ApiGetIdentitiesByPiidBuddyBoardInvitesRequest) Execute() (*DomainBuddyB
 /*
 GetIdentitiesByPiidBuddyBoardInvites List buddy board invites for a platform identity
 
-Renamed from /members/buddy-board-invites in uman ADR 0018;
+Renamed from /members/buddy-board-invites in core ADR 0018;
 PI-existence gate is tenant-scoped.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

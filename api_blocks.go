@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -55,7 +55,7 @@ Idempotent block create. A repeat POST for the same
 regardless of space scope; side effects (unsubscribe +
 open-enrollment withdrawal) fire only on the first-time
 insert. To widen a space-scoped block to global, DELETE
-first and re-POST. See uman#94 / ADR 0023 + ADR 0025.
+first and re-POST. See core#94 / ADR 0023 + ADR 0025.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateBlocksRequest

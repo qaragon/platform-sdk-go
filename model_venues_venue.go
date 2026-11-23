@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -20,7 +20,7 @@ var _ MappedNullable = &VenuesVenue{}
 
 // VenuesVenue struct for VenuesVenue
 type VenuesVenue struct {
-	// keyset pagination sort key (uman#132)
+	// keyset pagination sort key (core#132)
 	CreatedAt *string `json:"created_at,omitempty"`
 	ExternalRef *string `json:"external_ref,omitempty"`
 	Id *string `json:"id,omitempty"`

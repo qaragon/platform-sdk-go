@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -1670,7 +1670,7 @@ GetContestsByIdJurors Get jurors for a contest
 
 Get public list of jurors for a contest (visible after contest ends).
 This list is derived from confirmed assignments (a compound query),
-not a single keyset; per uman#132 it returns the full bounded set as
+not a single keyset; per core#132 it returns the full bounded set as
 one page with an inert pagination block (has_next:false).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2141,7 +2141,7 @@ GetJurorsInvitations Get my pending invitations
 
 Get all pending invitations for the current user. This list is
 assembled in the service layer (filtered), not a single keyset; per
-uman#132 it returns the full set as one page with an inert
+core#132 it returns the full set as one page with an inert
 pagination block (has_next:false).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

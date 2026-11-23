@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CanParticipate** | Pointer to **bool** |  | [optional] 
 **CanView** | Pointer to **bool** |  | [optional] 
-**SpaceId** | **string** | venue_id is not a request field (uman#177): the space determines the venue (spaces.venue_id is canonical), so the caller supplies only the space and the venue is derived from it. | 
+**SpaceId** | **string** | venue_id is not a request field (core#177): the space determines the venue (spaces.venue_id is canonical), so the caller supplies only the space and the venue is derived from it. | 
 
 ## Methods
 

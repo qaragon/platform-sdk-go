@@ -1,7 +1,7 @@
 /*
-User Management API
+Qaragon Core API
 
-API documentation for the User Management API a.k.a uman
+Qaragon Core API for identities, Spaces, Contests and Games
 
 API version: 1.0
 Contact: api-support@fanscontest.com
@@ -21,7 +21,7 @@ var _ MappedNullable = &DomainEntry{}
 // DomainEntry struct for DomainEntry
 type DomainEntry struct {
 	ContestId *string `json:"contest_id,omitempty"`
-	// keyset pagination sort key (uman#132)
+	// keyset pagination sort key (core#132)
 	CreatedAt *string `json:"created_at,omitempty"`
 	// nullable, for live recording (seconds)
 	Duration *int32 `json:"duration,omitempty"`

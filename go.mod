@@ -1,4 +1,4 @@
-module github.com/fanscontest/platform-sdk-go
+module github.com/qaragon/platform-sdk-go
 
 go 1.23
 
