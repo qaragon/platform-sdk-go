@@ -23,7 +23,7 @@ import (
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
 
-type ApiPuzzleWebV2EventHighlightsControllerGenerateRequest struct {
+type ApiContentWebV2EventHighlightsControllerGenerateRequest struct {
 	ctx context.Context
 	ApiService *DefaultAPIService
 	xActingAs *string
@@ -31,31 +31,31 @@ type ApiPuzzleWebV2EventHighlightsControllerGenerateRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventHighlightsControllerGenerateRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventHighlightsControllerGenerateRequest {
+func (r ApiContentWebV2EventHighlightsControllerGenerateRequest) XActingAs(xActingAs string) ApiContentWebV2EventHighlightsControllerGenerateRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // UTC day and optional refresh
-func (r ApiPuzzleWebV2EventHighlightsControllerGenerateRequest) EventHighlightsGenerationRequest(eventHighlightsGenerationRequest EventHighlightsGenerationRequest) ApiPuzzleWebV2EventHighlightsControllerGenerateRequest {
+func (r ApiContentWebV2EventHighlightsControllerGenerateRequest) EventHighlightsGenerationRequest(eventHighlightsGenerationRequest EventHighlightsGenerationRequest) ApiContentWebV2EventHighlightsControllerGenerateRequest {
 	r.eventHighlightsGenerationRequest = &eventHighlightsGenerationRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2EventHighlightsControllerGenerateRequest) Execute() (*EventHighlightsGenerationResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventHighlightsControllerGenerateExecute(r)
+func (r ApiContentWebV2EventHighlightsControllerGenerateRequest) Execute() (*EventHighlightsGenerationResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventHighlightsControllerGenerateExecute(r)
 }
 
 /*
-PuzzleWebV2EventHighlightsControllerGenerate Queue shared daily event highlight preparation
+ContentWebV2EventHighlightsControllerGenerate Queue shared daily event highlight preparation
 
 Administrator-only operation using Puzzle's existing administrator gate. A refresh replaces the edition only after successful selection.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2EventHighlightsControllerGenerateRequest
+ @return ApiContentWebV2EventHighlightsControllerGenerateRequest
 */
-func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerGenerate(ctx context.Context) ApiPuzzleWebV2EventHighlightsControllerGenerateRequest {
-	return ApiPuzzleWebV2EventHighlightsControllerGenerateRequest{
+func (a *DefaultAPIService) ContentWebV2EventHighlightsControllerGenerate(ctx context.Context) ApiContentWebV2EventHighlightsControllerGenerateRequest {
+	return ApiContentWebV2EventHighlightsControllerGenerateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -63,7 +63,7 @@ func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerGenerate(ctx con
 
 // Execute executes the request
 //  @return EventHighlightsGenerationResponse
-func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerGenerateExecute(r ApiPuzzleWebV2EventHighlightsControllerGenerateRequest) (*EventHighlightsGenerationResponse, *http.Response, error) {
+func (a *DefaultAPIService) ContentWebV2EventHighlightsControllerGenerateExecute(r ApiContentWebV2EventHighlightsControllerGenerateRequest) (*EventHighlightsGenerationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -71,7 +71,7 @@ func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerGenerateExecute(
 		localVarReturnValue  *EventHighlightsGenerationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PuzzleWebV2EventHighlightsControllerGenerate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ContentWebV2EventHighlightsControllerGenerate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -184,38 +184,38 @@ func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerGenerateExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2EventHighlightsControllerIndexRequest struct {
+type ApiContentWebV2EventHighlightsControllerIndexRequest struct {
 	ctx context.Context
 	ApiService *DefaultAPIService
 	date *string
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2EventHighlightsControllerIndexRequest) Date(date string) ApiPuzzleWebV2EventHighlightsControllerIndexRequest {
+func (r ApiContentWebV2EventHighlightsControllerIndexRequest) Date(date string) ApiContentWebV2EventHighlightsControllerIndexRequest {
 	r.date = &date
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventHighlightsControllerIndexRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventHighlightsControllerIndexRequest {
+func (r ApiContentWebV2EventHighlightsControllerIndexRequest) XActingAs(xActingAs string) ApiContentWebV2EventHighlightsControllerIndexRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2EventHighlightsControllerIndexRequest) Execute() (*EventHighlightsResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventHighlightsControllerIndexExecute(r)
+func (r ApiContentWebV2EventHighlightsControllerIndexRequest) Execute() (*EventHighlightsResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventHighlightsControllerIndexExecute(r)
 }
 
 /*
-PuzzleWebV2EventHighlightsControllerIndex Read Qaragon's shared daily event Highlights
+ContentWebV2EventHighlightsControllerIndex Read Qaragon's shared daily event Highlights
 
 One saved ordered selection per UTC day, shared by every tenant. Reads never invoke AI.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2EventHighlightsControllerIndexRequest
+ @return ApiContentWebV2EventHighlightsControllerIndexRequest
 */
-func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerIndex(ctx context.Context) ApiPuzzleWebV2EventHighlightsControllerIndexRequest {
-	return ApiPuzzleWebV2EventHighlightsControllerIndexRequest{
+func (a *DefaultAPIService) ContentWebV2EventHighlightsControllerIndex(ctx context.Context) ApiContentWebV2EventHighlightsControllerIndexRequest {
+	return ApiContentWebV2EventHighlightsControllerIndexRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -223,7 +223,7 @@ func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerIndex(ctx contex
 
 // Execute executes the request
 //  @return EventHighlightsResponse
-func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerIndexExecute(r ApiPuzzleWebV2EventHighlightsControllerIndexRequest) (*EventHighlightsResponse, *http.Response, error) {
+func (a *DefaultAPIService) ContentWebV2EventHighlightsControllerIndexExecute(r ApiContentWebV2EventHighlightsControllerIndexRequest) (*EventHighlightsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -231,7 +231,7 @@ func (a *DefaultAPIService) PuzzleWebV2EventHighlightsControllerIndexExecute(r A
 		localVarReturnValue  *EventHighlightsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PuzzleWebV2EventHighlightsControllerIndex")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ContentWebV2EventHighlightsControllerIndex")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

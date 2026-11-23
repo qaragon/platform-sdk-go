@@ -22,13 +22,13 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerClonePredictionSlip", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerClonePredictionSlip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerClonePredictionSlip(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerClonePredictionSlip(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,11 +36,11 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerCreatePredictionSlip", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerCreatePredictionSlip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerCreatePredictionSlip(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerCreatePredictionSlip(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,24 +48,24 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerDeletePredictionSlip", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerDeletePredictionSlip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerDeletePredictionSlip(context.Background(), id).Execute()
+		httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerDeletePredictionSlip(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerListCommunityPredictionSlips", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerListCommunityPredictionSlips", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCommunityPredictionSlips(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerListCommunityPredictionSlips(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -73,11 +73,11 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerListCuratedSlips", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerListCuratedSlips", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCuratedSlips(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerListCuratedSlips(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -85,11 +85,11 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerListPredictionSlips", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerListPredictionSlips", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerListPredictionSlips(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerListPredictionSlips(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -97,11 +97,11 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -109,11 +109,11 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerShowOpenPredictionSlip", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerShowOpenPredictionSlip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowOpenPredictionSlip(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerShowOpenPredictionSlip(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -121,13 +121,13 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerShowPredictionSlip", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerShowPredictionSlip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowPredictionSlip(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerShowPredictionSlip(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -135,13 +135,13 @@ func Test_platform_PredictionSlipsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PredictionSlipsAPIService PuzzleWebV2PredictionControllerUpdatePredictionSlip", func(t *testing.T) {
+	t.Run("Test PredictionSlipsAPIService ContentWebV2PredictionControllerUpdatePredictionSlip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerUpdatePredictionSlip(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerUpdatePredictionSlip(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

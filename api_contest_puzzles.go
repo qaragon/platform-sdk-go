@@ -24,7 +24,7 @@ import (
 // ContestPuzzlesAPIService ContestPuzzlesAPI service
 type ContestPuzzlesAPIService service
 
-type ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest struct {
+type ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest struct {
 	ctx context.Context
 	ApiService *ContestPuzzlesAPIService
 	contestId string
@@ -32,26 +32,26 @@ type ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest) XActingAs(xActingAs string) ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest {
+func (r ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest) XActingAs(xActingAs string) ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest) Execute() (*ContestPuzzleResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2ContestPuzzleControllerGetPuzzleExecute(r)
+func (r ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest) Execute() (*ContestPuzzleResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2ContestPuzzleControllerGetPuzzleExecute(r)
 }
 
 /*
-PuzzleWebV2ContestPuzzleControllerGetPuzzle Get contest source
+ContentWebV2ContestPuzzleControllerGetPuzzle Get contest source
 
 Returns the contest's source directly: a PuzzleSheet for MCQ, a PredictionSlip for prediction contests, or a creative challenge map.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param contestId
- @return ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest
+ @return ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest
 */
-func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerGetPuzzle(ctx context.Context, contestId string) ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest {
-	return ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest{
+func (a *ContestPuzzlesAPIService) ContentWebV2ContestPuzzleControllerGetPuzzle(ctx context.Context, contestId string) ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest {
+	return ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest{
 		ApiService: a,
 		ctx: ctx,
 		contestId: contestId,
@@ -60,7 +60,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerGetPuzzle(c
 
 // Execute executes the request
 //  @return ContestPuzzleResponse
-func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerGetPuzzleExecute(r ApiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest) (*ContestPuzzleResponse, *http.Response, error) {
+func (a *ContestPuzzlesAPIService) ContentWebV2ContestPuzzleControllerGetPuzzleExecute(r ApiContentWebV2ContestPuzzleControllerGetPuzzleRequest) (*ContestPuzzleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerGetPuzzleEx
 		localVarReturnValue  *ContestPuzzleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContestPuzzlesAPIService.PuzzleWebV2ContestPuzzleControllerGetPuzzle")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContestPuzzlesAPIService.ContentWebV2ContestPuzzleControllerGetPuzzle")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -158,7 +158,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerGetPuzzleEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest struct {
+type ApiContentWebV2ContestPuzzleControllerRankingsRequest struct {
 	ctx context.Context
 	ApiService *ContestPuzzlesAPIService
 	contestId string
@@ -166,26 +166,26 @@ type ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest) XActingAs(xActingAs string) ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest {
+func (r ApiContentWebV2ContestPuzzleControllerRankingsRequest) XActingAs(xActingAs string) ApiContentWebV2ContestPuzzleControllerRankingsRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest) Execute() (*RankingsResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2ContestPuzzleControllerRankingsExecute(r)
+func (r ApiContentWebV2ContestPuzzleControllerRankingsRequest) Execute() (*RankingsResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2ContestPuzzleControllerRankingsExecute(r)
 }
 
 /*
-PuzzleWebV2ContestPuzzleControllerRankings Get contest rankings
+ContentWebV2ContestPuzzleControllerRankings Get contest rankings
 
 Returns the leaderboard for a contest.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param contestId
- @return ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest
+ @return ApiContentWebV2ContestPuzzleControllerRankingsRequest
 */
-func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerRankings(ctx context.Context, contestId string) ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest {
-	return ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest{
+func (a *ContestPuzzlesAPIService) ContentWebV2ContestPuzzleControllerRankings(ctx context.Context, contestId string) ApiContentWebV2ContestPuzzleControllerRankingsRequest {
+	return ApiContentWebV2ContestPuzzleControllerRankingsRequest{
 		ApiService: a,
 		ctx: ctx,
 		contestId: contestId,
@@ -194,7 +194,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerRankings(ct
 
 // Execute executes the request
 //  @return RankingsResponse
-func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerRankingsExecute(r ApiPuzzleWebV2ContestPuzzleControllerRankingsRequest) (*RankingsResponse, *http.Response, error) {
+func (a *ContestPuzzlesAPIService) ContentWebV2ContestPuzzleControllerRankingsExecute(r ApiContentWebV2ContestPuzzleControllerRankingsRequest) (*RankingsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -202,7 +202,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerRankingsExe
 		localVarReturnValue  *RankingsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContestPuzzlesAPIService.PuzzleWebV2ContestPuzzleControllerRankings")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContestPuzzlesAPIService.ContentWebV2ContestPuzzleControllerRankings")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -271,7 +271,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerRankingsExe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2ContestPuzzleControllerStatusRequest struct {
+type ApiContentWebV2ContestPuzzleControllerStatusRequest struct {
 	ctx context.Context
 	ApiService *ContestPuzzlesAPIService
 	contestId string
@@ -279,26 +279,26 @@ type ApiPuzzleWebV2ContestPuzzleControllerStatusRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2ContestPuzzleControllerStatusRequest) XActingAs(xActingAs string) ApiPuzzleWebV2ContestPuzzleControllerStatusRequest {
+func (r ApiContentWebV2ContestPuzzleControllerStatusRequest) XActingAs(xActingAs string) ApiContentWebV2ContestPuzzleControllerStatusRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2ContestPuzzleControllerStatusRequest) Execute() (*ContestStatusResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2ContestPuzzleControllerStatusExecute(r)
+func (r ApiContentWebV2ContestPuzzleControllerStatusRequest) Execute() (*ContestStatusResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2ContestPuzzleControllerStatusExecute(r)
 }
 
 /*
-PuzzleWebV2ContestPuzzleControllerStatus Get contest status
+ContentWebV2ContestPuzzleControllerStatus Get contest status
 
 Returns the contest's lifecycle status and source type.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param contestId
- @return ApiPuzzleWebV2ContestPuzzleControllerStatusRequest
+ @return ApiContentWebV2ContestPuzzleControllerStatusRequest
 */
-func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerStatus(ctx context.Context, contestId string) ApiPuzzleWebV2ContestPuzzleControllerStatusRequest {
-	return ApiPuzzleWebV2ContestPuzzleControllerStatusRequest{
+func (a *ContestPuzzlesAPIService) ContentWebV2ContestPuzzleControllerStatus(ctx context.Context, contestId string) ApiContentWebV2ContestPuzzleControllerStatusRequest {
+	return ApiContentWebV2ContestPuzzleControllerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
 		contestId: contestId,
@@ -307,7 +307,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerStatus(ctx 
 
 // Execute executes the request
 //  @return ContestStatusResponse
-func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerStatusExecute(r ApiPuzzleWebV2ContestPuzzleControllerStatusRequest) (*ContestStatusResponse, *http.Response, error) {
+func (a *ContestPuzzlesAPIService) ContentWebV2ContestPuzzleControllerStatusExecute(r ApiContentWebV2ContestPuzzleControllerStatusRequest) (*ContestStatusResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -315,7 +315,7 @@ func (a *ContestPuzzlesAPIService) PuzzleWebV2ContestPuzzleControllerStatusExecu
 		localVarReturnValue  *ContestStatusResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContestPuzzlesAPIService.PuzzleWebV2ContestPuzzleControllerStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContestPuzzlesAPIService.ContentWebV2ContestPuzzleControllerStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

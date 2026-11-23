@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PuzzleWebV2EventControllerApproveResult**](EventsAPI.md#PuzzleWebV2EventControllerApproveResult) | **Post** /v2/events/{id}/approve | Approve event result
-[**PuzzleWebV2EventControllerEnterResult**](EventsAPI.md#PuzzleWebV2EventControllerEnterResult) | **Patch** /v2/events/{id}/result | Enter event result
-[**PuzzleWebV2EventControllerPendingApproval**](EventsAPI.md#PuzzleWebV2EventControllerPendingApproval) | **Get** /v2/events/pending-approval | List events with results pending approval
-[**PuzzleWebV2EventControllerSearch**](EventsAPI.md#PuzzleWebV2EventControllerSearch) | **Get** /v2/events/search | Search events
-[**PuzzleWebV2EventControllerShow**](EventsAPI.md#PuzzleWebV2EventControllerShow) | **Get** /v2/events/{id} | Get event by es_event_id
-[**PuzzleWebV2EventControllerShowDetails**](EventsAPI.md#PuzzleWebV2EventControllerShowDetails) | **Get** /v2/events/{id}/details | Get event details (from Postgres)
+[**ContentWebV2EventControllerApproveResult**](EventsAPI.md#ContentWebV2EventControllerApproveResult) | **Post** /v2/events/{id}/approve | Approve event result
+[**ContentWebV2EventControllerEnterResult**](EventsAPI.md#ContentWebV2EventControllerEnterResult) | **Patch** /v2/events/{id}/result | Enter event result
+[**ContentWebV2EventControllerPendingApproval**](EventsAPI.md#ContentWebV2EventControllerPendingApproval) | **Get** /v2/events/pending-approval | List events with results pending approval
+[**ContentWebV2EventControllerSearch**](EventsAPI.md#ContentWebV2EventControllerSearch) | **Get** /v2/events/search | Search events
+[**ContentWebV2EventControllerShow**](EventsAPI.md#ContentWebV2EventControllerShow) | **Get** /v2/events/{id} | Get event by es_event_id
+[**ContentWebV2EventControllerShowDetails**](EventsAPI.md#ContentWebV2EventControllerShowDetails) | **Get** /v2/events/{id}/details | Get event details (from Postgres)
 
 
 
-## PuzzleWebV2EventControllerApproveResult
+## ContentWebV2EventControllerApproveResult
 
-> EventResponse PuzzleWebV2EventControllerApproveResult(ctx, id).XActingAs(xActingAs).Execute()
+> EventResponse ContentWebV2EventControllerApproveResult(ctx, id).XActingAs(xActingAs).Execute()
 
 Approve event result
 
@@ -39,13 +39,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.PuzzleWebV2EventControllerApproveResult(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.EventsAPI.ContentWebV2EventControllerApproveResult(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.PuzzleWebV2EventControllerApproveResult``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ContentWebV2EventControllerApproveResult``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventControllerApproveResult`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.PuzzleWebV2EventControllerApproveResult`: %v\n", resp)
+	// response from `ContentWebV2EventControllerApproveResult`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ContentWebV2EventControllerApproveResult`: %v\n", resp)
 }
 ```
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventControllerApproveResultRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventControllerApproveResultRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -85,9 +85,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2EventControllerEnterResult
+## ContentWebV2EventControllerEnterResult
 
-> EventResponse PuzzleWebV2EventControllerEnterResult(ctx, id).XActingAs(xActingAs).EnterEventResultRequest(enterEventResultRequest).Execute()
+> EventResponse ContentWebV2EventControllerEnterResult(ctx, id).XActingAs(xActingAs).EnterEventResultRequest(enterEventResultRequest).Execute()
 
 Enter event result
 
@@ -110,13 +110,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.PuzzleWebV2EventControllerEnterResult(context.Background(), id).XActingAs(xActingAs).EnterEventResultRequest(enterEventResultRequest).Execute()
+	resp, r, err := apiClient.EventsAPI.ContentWebV2EventControllerEnterResult(context.Background(), id).XActingAs(xActingAs).EnterEventResultRequest(enterEventResultRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.PuzzleWebV2EventControllerEnterResult``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ContentWebV2EventControllerEnterResult``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventControllerEnterResult`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.PuzzleWebV2EventControllerEnterResult`: %v\n", resp)
+	// response from `ContentWebV2EventControllerEnterResult`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ContentWebV2EventControllerEnterResult`: %v\n", resp)
 }
 ```
 
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventControllerEnterResultRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventControllerEnterResultRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -157,9 +157,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2EventControllerPendingApproval
+## ContentWebV2EventControllerPendingApproval
 
-> EventsListResponse PuzzleWebV2EventControllerPendingApproval(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> EventsListResponse ContentWebV2EventControllerPendingApproval(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List events with results pending approval
 
@@ -184,13 +184,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.PuzzleWebV2EventControllerPendingApproval(context.Background()).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.EventsAPI.ContentWebV2EventControllerPendingApproval(context.Background()).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.PuzzleWebV2EventControllerPendingApproval``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ContentWebV2EventControllerPendingApproval``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventControllerPendingApproval`: EventsListResponse
-	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.PuzzleWebV2EventControllerPendingApproval`: %v\n", resp)
+	// response from `ContentWebV2EventControllerPendingApproval`: EventsListResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ContentWebV2EventControllerPendingApproval`: %v\n", resp)
 }
 ```
 
@@ -200,7 +200,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventControllerPendingApprovalRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventControllerPendingApprovalRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -227,9 +227,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2EventControllerSearch
+## ContentWebV2EventControllerSearch
 
-> EventsListResponse PuzzleWebV2EventControllerSearch(ctx).Q(q).DateFrom(dateFrom).DateTo(dateTo).Category(category).Competition(competition).IsUserEvent(isUserEvent).Size(size).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> EventsListResponse ContentWebV2EventControllerSearch(ctx).Q(q).DateFrom(dateFrom).DateTo(dateTo).Category(category).Competition(competition).IsUserEvent(isUserEvent).Size(size).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 Search events
 
@@ -262,13 +262,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.PuzzleWebV2EventControllerSearch(context.Background()).Q(q).DateFrom(dateFrom).DateTo(dateTo).Category(category).Competition(competition).IsUserEvent(isUserEvent).Size(size).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.EventsAPI.ContentWebV2EventControllerSearch(context.Background()).Q(q).DateFrom(dateFrom).DateTo(dateTo).Category(category).Competition(competition).IsUserEvent(isUserEvent).Size(size).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.PuzzleWebV2EventControllerSearch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ContentWebV2EventControllerSearch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventControllerSearch`: EventsListResponse
-	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.PuzzleWebV2EventControllerSearch`: %v\n", resp)
+	// response from `ContentWebV2EventControllerSearch`: EventsListResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ContentWebV2EventControllerSearch`: %v\n", resp)
 }
 ```
 
@@ -278,7 +278,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventControllerSearchRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventControllerSearchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -312,9 +312,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2EventControllerShow
+## ContentWebV2EventControllerShow
 
-> EventResponse PuzzleWebV2EventControllerShow(ctx, id).XActingAs(xActingAs).Execute()
+> EventResponse ContentWebV2EventControllerShow(ctx, id).XActingAs(xActingAs).Execute()
 
 Get event by es_event_id
 
@@ -336,13 +336,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.PuzzleWebV2EventControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.EventsAPI.ContentWebV2EventControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.PuzzleWebV2EventControllerShow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ContentWebV2EventControllerShow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventControllerShow`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.PuzzleWebV2EventControllerShow`: %v\n", resp)
+	// response from `ContentWebV2EventControllerShow`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ContentWebV2EventControllerShow`: %v\n", resp)
 }
 ```
 
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventControllerShowRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventControllerShowRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -382,9 +382,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2EventControllerShowDetails
+## ContentWebV2EventControllerShowDetails
 
-> EventResponse PuzzleWebV2EventControllerShowDetails(ctx, id).XActingAs(xActingAs).Execute()
+> EventResponse ContentWebV2EventControllerShowDetails(ctx, id).XActingAs(xActingAs).Execute()
 
 Get event details (from Postgres)
 
@@ -408,13 +408,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.PuzzleWebV2EventControllerShowDetails(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.EventsAPI.ContentWebV2EventControllerShowDetails(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.PuzzleWebV2EventControllerShowDetails``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ContentWebV2EventControllerShowDetails``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventControllerShowDetails`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.PuzzleWebV2EventControllerShowDetails`: %v\n", resp)
+	// response from `ContentWebV2EventControllerShowDetails`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.ContentWebV2EventControllerShowDetails`: %v\n", resp)
 }
 ```
 
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventControllerShowDetailsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventControllerShowDetailsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

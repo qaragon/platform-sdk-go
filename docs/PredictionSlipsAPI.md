@@ -4,22 +4,22 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PuzzleWebV2PredictionControllerClonePredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerClonePredictionSlip) | **Post** /v2/prediction-slips/{id}/clone | Clone prediction slip
-[**PuzzleWebV2PredictionControllerCreatePredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerCreatePredictionSlip) | **Post** /v2/prediction-slips | Create prediction slip
-[**PuzzleWebV2PredictionControllerDeletePredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerDeletePredictionSlip) | **Delete** /v2/prediction-slips/{id} | Delete prediction slip
-[**PuzzleWebV2PredictionControllerListCommunityPredictionSlips**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerListCommunityPredictionSlips) | **Get** /v2/prediction-slips/community | List public/community prediction slips
-[**PuzzleWebV2PredictionControllerListCuratedSlips**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerListCuratedSlips) | **Get** /v2/curated-slips | List curated prediction slips
-[**PuzzleWebV2PredictionControllerListPredictionSlips**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerListPredictionSlips) | **Get** /v2/prediction-slips | List the caller&#39;s prediction slips
-[**PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip) | **Post** /v2/prediction-slips/from-highlights | Prepare a Prediction slip from an upcoming highlighted event
-[**PuzzleWebV2PredictionControllerShowOpenPredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerShowOpenPredictionSlip) | **Get** /v2/prediction-slips/open | Get the caller&#39;s open prediction slip
-[**PuzzleWebV2PredictionControllerShowPredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerShowPredictionSlip) | **Get** /v2/prediction-slips/{id} | Get prediction slip
-[**PuzzleWebV2PredictionControllerUpdatePredictionSlip**](PredictionSlipsAPI.md#PuzzleWebV2PredictionControllerUpdatePredictionSlip) | **Put** /v2/prediction-slips/{id} | Update prediction slip
+[**ContentWebV2PredictionControllerClonePredictionSlip**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerClonePredictionSlip) | **Post** /v2/prediction-slips/{id}/clone | Clone prediction slip
+[**ContentWebV2PredictionControllerCreatePredictionSlip**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerCreatePredictionSlip) | **Post** /v2/prediction-slips | Create prediction slip
+[**ContentWebV2PredictionControllerDeletePredictionSlip**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerDeletePredictionSlip) | **Delete** /v2/prediction-slips/{id} | Delete prediction slip
+[**ContentWebV2PredictionControllerListCommunityPredictionSlips**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerListCommunityPredictionSlips) | **Get** /v2/prediction-slips/community | List public/community prediction slips
+[**ContentWebV2PredictionControllerListCuratedSlips**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerListCuratedSlips) | **Get** /v2/curated-slips | List curated prediction slips
+[**ContentWebV2PredictionControllerListPredictionSlips**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerListPredictionSlips) | **Get** /v2/prediction-slips | List the caller&#39;s prediction slips
+[**ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip) | **Post** /v2/prediction-slips/from-highlights | Prepare a Prediction slip from an upcoming highlighted event
+[**ContentWebV2PredictionControllerShowOpenPredictionSlip**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerShowOpenPredictionSlip) | **Get** /v2/prediction-slips/open | Get the caller&#39;s open prediction slip
+[**ContentWebV2PredictionControllerShowPredictionSlip**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerShowPredictionSlip) | **Get** /v2/prediction-slips/{id} | Get prediction slip
+[**ContentWebV2PredictionControllerUpdatePredictionSlip**](PredictionSlipsAPI.md#ContentWebV2PredictionControllerUpdatePredictionSlip) | **Put** /v2/prediction-slips/{id} | Update prediction slip
 
 
 
-## PuzzleWebV2PredictionControllerClonePredictionSlip
+## ContentWebV2PredictionControllerClonePredictionSlip
 
-> PredictionSlipResponse PuzzleWebV2PredictionControllerClonePredictionSlip(ctx, id).XActingAs(xActingAs).ClonePredictionSlipRequest(clonePredictionSlipRequest).Execute()
+> PredictionSlipResponse ContentWebV2PredictionControllerClonePredictionSlip(ctx, id).XActingAs(xActingAs).ClonePredictionSlipRequest(clonePredictionSlipRequest).Execute()
 
 Clone prediction slip
 
@@ -42,13 +42,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerClonePredictionSlip(context.Background(), id).XActingAs(xActingAs).ClonePredictionSlipRequest(clonePredictionSlipRequest).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerClonePredictionSlip(context.Background(), id).XActingAs(xActingAs).ClonePredictionSlipRequest(clonePredictionSlipRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerClonePredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerClonePredictionSlip``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerClonePredictionSlip`: PredictionSlipResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerClonePredictionSlip`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerClonePredictionSlip`: PredictionSlipResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerClonePredictionSlip`: %v\n", resp)
 }
 ```
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerClonePredictionSlipRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerClonePredictionSlipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -89,9 +89,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerCreatePredictionSlip
+## ContentWebV2PredictionControllerCreatePredictionSlip
 
-> PredictionSlipResponse PuzzleWebV2PredictionControllerCreatePredictionSlip(ctx).XActingAs(xActingAs).CreatePredictionSlipRequest(createPredictionSlipRequest).Execute()
+> PredictionSlipResponse ContentWebV2PredictionControllerCreatePredictionSlip(ctx).XActingAs(xActingAs).CreatePredictionSlipRequest(createPredictionSlipRequest).Execute()
 
 Create prediction slip
 
@@ -113,13 +113,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerCreatePredictionSlip(context.Background()).XActingAs(xActingAs).CreatePredictionSlipRequest(createPredictionSlipRequest).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerCreatePredictionSlip(context.Background()).XActingAs(xActingAs).CreatePredictionSlipRequest(createPredictionSlipRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerCreatePredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerCreatePredictionSlip``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerCreatePredictionSlip`: PredictionSlipResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerCreatePredictionSlip`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerCreatePredictionSlip`: PredictionSlipResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerCreatePredictionSlip`: %v\n", resp)
 }
 ```
 
@@ -129,7 +129,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerCreatePredictionSlipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -155,9 +155,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerDeletePredictionSlip
+## ContentWebV2PredictionControllerDeletePredictionSlip
 
-> PuzzleWebV2PredictionControllerDeletePredictionSlip(ctx, id).XActingAs(xActingAs).Execute()
+> ContentWebV2PredictionControllerDeletePredictionSlip(ctx, id).XActingAs(xActingAs).Execute()
 
 Delete prediction slip
 
@@ -179,9 +179,9 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerDeletePredictionSlip(context.Background(), id).XActingAs(xActingAs).Execute()
+	r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerDeletePredictionSlip(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerDeletePredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerDeletePredictionSlip``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerDeletePredictionSlipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -223,9 +223,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerListCommunityPredictionSlips
+## ContentWebV2PredictionControllerListCommunityPredictionSlips
 
-> PredictionSlipsListResponse PuzzleWebV2PredictionControllerListCommunityPredictionSlips(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PredictionSlipsListResponse ContentWebV2PredictionControllerListCommunityPredictionSlips(ctx).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List public/community prediction slips
 
@@ -250,13 +250,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCommunityPredictionSlips(context.Background()).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerListCommunityPredictionSlips(context.Background()).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCommunityPredictionSlips``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerListCommunityPredictionSlips``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerListCommunityPredictionSlips`: PredictionSlipsListResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCommunityPredictionSlips`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerListCommunityPredictionSlips`: PredictionSlipsListResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerListCommunityPredictionSlips`: %v\n", resp)
 }
 ```
 
@@ -266,7 +266,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -293,9 +293,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerListCuratedSlips
+## ContentWebV2PredictionControllerListCuratedSlips
 
-> PredictionSlipsListResponse PuzzleWebV2PredictionControllerListCuratedSlips(ctx).Family(family).Tags(tags).IsPublic(isPublic).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PredictionSlipsListResponse ContentWebV2PredictionControllerListCuratedSlips(ctx).Family(family).Tags(tags).IsPublic(isPublic).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List curated prediction slips
 
@@ -321,13 +321,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCuratedSlips(context.Background()).Family(family).Tags(tags).IsPublic(isPublic).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerListCuratedSlips(context.Background()).Family(family).Tags(tags).IsPublic(isPublic).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCuratedSlips``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerListCuratedSlips``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerListCuratedSlips`: PredictionSlipsListResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerListCuratedSlips`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerListCuratedSlips`: PredictionSlipsListResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerListCuratedSlips`: %v\n", resp)
 }
 ```
 
@@ -337,7 +337,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerListCuratedSlipsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerListCuratedSlipsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -367,9 +367,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerListPredictionSlips
+## ContentWebV2PredictionControllerListPredictionSlips
 
-> PredictionSlipsListResponse PuzzleWebV2PredictionControllerListPredictionSlips(ctx).Locked(locked).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PredictionSlipsListResponse ContentWebV2PredictionControllerListPredictionSlips(ctx).Locked(locked).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List the caller's prediction slips
 
@@ -393,13 +393,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerListPredictionSlips(context.Background()).Locked(locked).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerListPredictionSlips(context.Background()).Locked(locked).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerListPredictionSlips``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerListPredictionSlips``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerListPredictionSlips`: PredictionSlipsListResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerListPredictionSlips`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerListPredictionSlips`: PredictionSlipsListResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerListPredictionSlips`: %v\n", resp)
 }
 ```
 
@@ -409,7 +409,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerListPredictionSlipsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerListPredictionSlipsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -437,9 +437,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip
+## ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip
 
-> HighlightedPredictionSlipResponse PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(ctx).HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest).XActingAs(xActingAs).Execute()
+> HighlightedPredictionSlipResponse ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip(ctx).HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest).XActingAs(xActingAs).Execute()
 
 Prepare a Prediction slip from an upcoming highlighted event
 
@@ -464,13 +464,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(context.Background()).HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip(context.Background()).HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip`: HighlightedPredictionSlipResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip`: HighlightedPredictionSlipResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip`: %v\n", resp)
 }
 ```
 
@@ -480,7 +480,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -506,9 +506,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerShowOpenPredictionSlip
+## ContentWebV2PredictionControllerShowOpenPredictionSlip
 
-> OpenPredictionSlipResponse PuzzleWebV2PredictionControllerShowOpenPredictionSlip(ctx).XActingAs(xActingAs).Execute()
+> OpenPredictionSlipResponse ContentWebV2PredictionControllerShowOpenPredictionSlip(ctx).XActingAs(xActingAs).Execute()
 
 Get the caller's open prediction slip
 
@@ -531,13 +531,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowOpenPredictionSlip(context.Background()).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerShowOpenPredictionSlip(context.Background()).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowOpenPredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerShowOpenPredictionSlip``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerShowOpenPredictionSlip`: OpenPredictionSlipResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowOpenPredictionSlip`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerShowOpenPredictionSlip`: OpenPredictionSlipResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerShowOpenPredictionSlip`: %v\n", resp)
 }
 ```
 
@@ -547,7 +547,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerShowOpenPredictionSlipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -572,9 +572,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerShowPredictionSlip
+## ContentWebV2PredictionControllerShowPredictionSlip
 
-> PredictionSlipResponse PuzzleWebV2PredictionControllerShowPredictionSlip(ctx, id).XActingAs(xActingAs).Execute()
+> PredictionSlipResponse ContentWebV2PredictionControllerShowPredictionSlip(ctx, id).XActingAs(xActingAs).Execute()
 
 Get prediction slip
 
@@ -596,13 +596,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowPredictionSlip(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerShowPredictionSlip(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowPredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerShowPredictionSlip``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerShowPredictionSlip`: PredictionSlipResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerShowPredictionSlip`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerShowPredictionSlip`: PredictionSlipResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerShowPredictionSlip`: %v\n", resp)
 }
 ```
 
@@ -616,7 +616,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerShowPredictionSlipRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerShowPredictionSlipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -642,9 +642,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PredictionControllerUpdatePredictionSlip
+## ContentWebV2PredictionControllerUpdatePredictionSlip
 
-> PredictionSlipResponse PuzzleWebV2PredictionControllerUpdatePredictionSlip(ctx, id).XActingAs(xActingAs).UpdatePredictionSlipRequest(updatePredictionSlipRequest).Execute()
+> PredictionSlipResponse ContentWebV2PredictionControllerUpdatePredictionSlip(ctx, id).XActingAs(xActingAs).UpdatePredictionSlipRequest(updatePredictionSlipRequest).Execute()
 
 Update prediction slip
 
@@ -667,13 +667,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PredictionSlipsAPI.PuzzleWebV2PredictionControllerUpdatePredictionSlip(context.Background(), id).XActingAs(xActingAs).UpdatePredictionSlipRequest(updatePredictionSlipRequest).Execute()
+	resp, r, err := apiClient.PredictionSlipsAPI.ContentWebV2PredictionControllerUpdatePredictionSlip(context.Background(), id).XActingAs(xActingAs).UpdatePredictionSlipRequest(updatePredictionSlipRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.PuzzleWebV2PredictionControllerUpdatePredictionSlip``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PredictionSlipsAPI.ContentWebV2PredictionControllerUpdatePredictionSlip``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PredictionControllerUpdatePredictionSlip`: PredictionSlipResponse
-	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.PuzzleWebV2PredictionControllerUpdatePredictionSlip`: %v\n", resp)
+	// response from `ContentWebV2PredictionControllerUpdatePredictionSlip`: PredictionSlipResponse
+	fmt.Fprintf(os.Stdout, "Response from `PredictionSlipsAPI.ContentWebV2PredictionControllerUpdatePredictionSlip`: %v\n", resp)
 }
 ```
 
@@ -687,7 +687,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PredictionControllerUpdatePredictionSlipRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

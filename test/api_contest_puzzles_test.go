@@ -22,13 +22,13 @@ func Test_platform_ContestPuzzlesAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ContestPuzzlesAPIService PuzzleWebV2ContestPuzzleControllerGetPuzzle", func(t *testing.T) {
+	t.Run("Test ContestPuzzlesAPIService ContentWebV2ContestPuzzleControllerGetPuzzle", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var contestId string
 
-		resp, httpRes, err := apiClient.ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerGetPuzzle(context.Background(), contestId).Execute()
+		resp, httpRes, err := apiClient.ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerGetPuzzle(context.Background(), contestId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,13 +36,13 @@ func Test_platform_ContestPuzzlesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContestPuzzlesAPIService PuzzleWebV2ContestPuzzleControllerRankings", func(t *testing.T) {
+	t.Run("Test ContestPuzzlesAPIService ContentWebV2ContestPuzzleControllerRankings", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var contestId string
 
-		resp, httpRes, err := apiClient.ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerRankings(context.Background(), contestId).Execute()
+		resp, httpRes, err := apiClient.ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerRankings(context.Background(), contestId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,13 +50,13 @@ func Test_platform_ContestPuzzlesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContestPuzzlesAPIService PuzzleWebV2ContestPuzzleControllerStatus", func(t *testing.T) {
+	t.Run("Test ContestPuzzlesAPIService ContentWebV2ContestPuzzleControllerStatus", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var contestId string
 
-		resp, httpRes, err := apiClient.ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerStatus(context.Background(), contestId).Execute()
+		resp, httpRes, err := apiClient.ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerStatus(context.Background(), contestId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

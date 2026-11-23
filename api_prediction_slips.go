@@ -24,7 +24,7 @@ import (
 // PredictionSlipsAPIService PredictionSlipsAPI service
 type PredictionSlipsAPIService service
 
-type ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest struct {
+type ApiContentWebV2PredictionControllerClonePredictionSlipRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	id string
@@ -33,30 +33,30 @@ type ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerClonePredictionSlipRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerClonePredictionSlipRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Clone payload
-func (r ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest) ClonePredictionSlipRequest(clonePredictionSlipRequest ClonePredictionSlipRequest) ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerClonePredictionSlipRequest) ClonePredictionSlipRequest(clonePredictionSlipRequest ClonePredictionSlipRequest) ApiContentWebV2PredictionControllerClonePredictionSlipRequest {
 	r.clonePredictionSlipRequest = &clonePredictionSlipRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerClonePredictionSlipExecute(r)
+func (r ApiContentWebV2PredictionControllerClonePredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerClonePredictionSlipExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerClonePredictionSlip Clone prediction slip
+ContentWebV2PredictionControllerClonePredictionSlip Clone prediction slip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest
+ @return ApiContentWebV2PredictionControllerClonePredictionSlipRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerClonePredictionSlip(ctx context.Context, id string) ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest {
-	return ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerClonePredictionSlip(ctx context.Context, id string) ApiContentWebV2PredictionControllerClonePredictionSlipRequest {
+	return ApiContentWebV2PredictionControllerClonePredictionSlipRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -65,7 +65,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerClonePredicti
 
 // Execute executes the request
 //  @return PredictionSlipResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerClonePredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerClonePredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerClonePredictionSlipExecute(r ApiContentWebV2PredictionControllerClonePredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerClonePredicti
 		localVarReturnValue  *PredictionSlipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerClonePredictionSlip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerClonePredictionSlip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -165,7 +165,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerClonePredicti
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest struct {
+type ApiContentWebV2PredictionControllerCreatePredictionSlipRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	xActingAs *string
@@ -173,29 +173,29 @@ type ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerCreatePredictionSlipRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerCreatePredictionSlipRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Prediction slip payload
-func (r ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest) CreatePredictionSlipRequest(createPredictionSlipRequest CreatePredictionSlipRequest) ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerCreatePredictionSlipRequest) CreatePredictionSlipRequest(createPredictionSlipRequest CreatePredictionSlipRequest) ApiContentWebV2PredictionControllerCreatePredictionSlipRequest {
 	r.createPredictionSlipRequest = &createPredictionSlipRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerCreatePredictionSlipExecute(r)
+func (r ApiContentWebV2PredictionControllerCreatePredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerCreatePredictionSlipExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerCreatePredictionSlip Create prediction slip
+ContentWebV2PredictionControllerCreatePredictionSlip Create prediction slip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest
+ @return ApiContentWebV2PredictionControllerCreatePredictionSlipRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerCreatePredictionSlip(ctx context.Context) ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest {
-	return ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerCreatePredictionSlip(ctx context.Context) ApiContentWebV2PredictionControllerCreatePredictionSlipRequest {
+	return ApiContentWebV2PredictionControllerCreatePredictionSlipRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -203,7 +203,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerCreatePredict
 
 // Execute executes the request
 //  @return PredictionSlipResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerCreatePredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerCreatePredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerCreatePredictionSlipExecute(r ApiContentWebV2PredictionControllerCreatePredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -211,7 +211,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerCreatePredict
 		localVarReturnValue  *PredictionSlipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerCreatePredictionSlip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerCreatePredictionSlip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -302,7 +302,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerCreatePredict
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest struct {
+type ApiContentWebV2PredictionControllerDeletePredictionSlipRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	id string
@@ -310,24 +310,24 @@ type ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerDeletePredictionSlipRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerDeletePredictionSlipRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerDeletePredictionSlipExecute(r)
+func (r ApiContentWebV2PredictionControllerDeletePredictionSlipRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerDeletePredictionSlipExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerDeletePredictionSlip Delete prediction slip
+ContentWebV2PredictionControllerDeletePredictionSlip Delete prediction slip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest
+ @return ApiContentWebV2PredictionControllerDeletePredictionSlipRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerDeletePredictionSlip(ctx context.Context, id string) ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest {
-	return ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerDeletePredictionSlip(ctx context.Context, id string) ApiContentWebV2PredictionControllerDeletePredictionSlipRequest {
+	return ApiContentWebV2PredictionControllerDeletePredictionSlipRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -335,14 +335,14 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerDeletePredict
 }
 
 // Execute executes the request
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerDeletePredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerDeletePredictionSlipRequest) (*http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerDeletePredictionSlipExecute(r ApiContentWebV2PredictionControllerDeletePredictionSlipRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerDeletePredictionSlip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerDeletePredictionSlip")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -434,7 +434,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerDeletePredict
 	return localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest struct {
+type ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	cursor *string
@@ -442,36 +442,36 @@ type ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest struc
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest) Cursor(cursor string) ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest) Cursor(cursor string) ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest) Limit(limit int32) ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest) Limit(limit int32) ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest) Execute() (*PredictionSlipsListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerListCommunityPredictionSlipsExecute(r)
+func (r ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest) Execute() (*PredictionSlipsListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerListCommunityPredictionSlipsExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerListCommunityPredictionSlips List public/community prediction slips
+ContentWebV2PredictionControllerListCommunityPredictionSlips List public/community prediction slips
 
 Community feed: the tenant's public prediction slips (is_public=true) across all owners, newest first, cursor-paginated.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest
+ @return ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCommunityPredictionSlips(ctx context.Context) ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest {
-	return ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerListCommunityPredictionSlips(ctx context.Context) ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest {
+	return ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -479,7 +479,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCommunity
 
 // Execute executes the request
 //  @return PredictionSlipsListResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCommunityPredictionSlipsExecute(r ApiPuzzleWebV2PredictionControllerListCommunityPredictionSlipsRequest) (*PredictionSlipsListResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerListCommunityPredictionSlipsExecute(r ApiContentWebV2PredictionControllerListCommunityPredictionSlipsRequest) (*PredictionSlipsListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -487,7 +487,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCommunity
 		localVarReturnValue  *PredictionSlipsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerListCommunityPredictionSlips")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerListCommunityPredictionSlips")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -561,7 +561,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCommunity
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest struct {
+type ApiContentWebV2PredictionControllerListCuratedSlipsRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	family *string
@@ -572,49 +572,49 @@ type ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) Family(family string) ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) Family(family string) ApiContentWebV2PredictionControllerListCuratedSlipsRequest {
 	r.family = &family
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) Tags(tags string) ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) Tags(tags string) ApiContentWebV2PredictionControllerListCuratedSlipsRequest {
 	r.tags = &tags
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) IsPublic(isPublic bool) ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) IsPublic(isPublic bool) ApiContentWebV2PredictionControllerListCuratedSlipsRequest {
 	r.isPublic = &isPublic
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) Cursor(cursor string) ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) Cursor(cursor string) ApiContentWebV2PredictionControllerListCuratedSlipsRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) Limit(limit int32) ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) Limit(limit int32) ApiContentWebV2PredictionControllerListCuratedSlipsRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerListCuratedSlipsRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) Execute() (*PredictionSlipsListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerListCuratedSlipsExecute(r)
+func (r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) Execute() (*PredictionSlipsListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerListCuratedSlipsExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerListCuratedSlips List curated prediction slips
+ContentWebV2PredictionControllerListCuratedSlips List curated prediction slips
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest
+ @return ApiContentWebV2PredictionControllerListCuratedSlipsRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCuratedSlips(ctx context.Context) ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest {
-	return ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerListCuratedSlips(ctx context.Context) ApiContentWebV2PredictionControllerListCuratedSlipsRequest {
+	return ApiContentWebV2PredictionControllerListCuratedSlipsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -622,7 +622,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCuratedSl
 
 // Execute executes the request
 //  @return PredictionSlipsListResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCuratedSlipsExecute(r ApiPuzzleWebV2PredictionControllerListCuratedSlipsRequest) (*PredictionSlipsListResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerListCuratedSlipsExecute(r ApiContentWebV2PredictionControllerListCuratedSlipsRequest) (*PredictionSlipsListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -630,7 +630,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCuratedSl
 		localVarReturnValue  *PredictionSlipsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerListCuratedSlips")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerListCuratedSlips")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -713,7 +713,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListCuratedSl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest struct {
+type ApiContentWebV2PredictionControllerListPredictionSlipsRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	locked *bool
@@ -722,39 +722,39 @@ type ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest) Locked(locked bool) ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListPredictionSlipsRequest) Locked(locked bool) ApiContentWebV2PredictionControllerListPredictionSlipsRequest {
 	r.locked = &locked
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest) Cursor(cursor string) ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListPredictionSlipsRequest) Cursor(cursor string) ApiContentWebV2PredictionControllerListPredictionSlipsRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest) Limit(limit int32) ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListPredictionSlipsRequest) Limit(limit int32) ApiContentWebV2PredictionControllerListPredictionSlipsRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest {
+func (r ApiContentWebV2PredictionControllerListPredictionSlipsRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerListPredictionSlipsRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest) Execute() (*PredictionSlipsListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerListPredictionSlipsExecute(r)
+func (r ApiContentWebV2PredictionControllerListPredictionSlipsRequest) Execute() (*PredictionSlipsListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerListPredictionSlipsExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerListPredictionSlips List the caller's prediction slips
+ContentWebV2PredictionControllerListPredictionSlips List the caller's prediction slips
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest
+ @return ApiContentWebV2PredictionControllerListPredictionSlipsRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListPredictionSlips(ctx context.Context) ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest {
-	return ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerListPredictionSlips(ctx context.Context) ApiContentWebV2PredictionControllerListPredictionSlipsRequest {
+	return ApiContentWebV2PredictionControllerListPredictionSlipsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -762,7 +762,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListPredictio
 
 // Execute executes the request
 //  @return PredictionSlipsListResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListPredictionSlipsExecute(r ApiPuzzleWebV2PredictionControllerListPredictionSlipsRequest) (*PredictionSlipsListResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerListPredictionSlipsExecute(r ApiContentWebV2PredictionControllerListPredictionSlipsRequest) (*PredictionSlipsListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -770,7 +770,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListPredictio
 		localVarReturnValue  *PredictionSlipsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerListPredictionSlips")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerListPredictionSlips")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -847,7 +847,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerListPredictio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest struct {
+type ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	highlightedPredictionSlipRequest *HighlightedPredictionSlipRequest
@@ -855,31 +855,31 @@ type ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest s
 }
 
 // Daily preparation window
-func (r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest HighlightedPredictionSlipRequest) ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) HighlightedPredictionSlipRequest(highlightedPredictionSlipRequest HighlightedPredictionSlipRequest) ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
 	r.highlightedPredictionSlipRequest = &highlightedPredictionSlipRequest
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) Execute() (*HighlightedPredictionSlipResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipExecute(r)
+func (r ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) Execute() (*HighlightedPredictionSlipResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerPrepareHighlightedPredictionSlipExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip Prepare a Prediction slip from an upcoming highlighted event
+ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip Prepare a Prediction slip from an upcoming highlighted event
 
 Uses the first usable event in saved Highlight order before the supplied deadline. Reads only the UTC editions intersecting that upcoming local day and never invokes AI. Creates an ordinary private slip for the authenticated tenant and acting identity. Owner and tenant cannot be selected in the request body. Returns data:null without creating a slip when no suitable highlight exists.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest
+ @return ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip(ctx context.Context) ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
-	return ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip(ctx context.Context) ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest {
+	return ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -887,7 +887,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerPrepareHighli
 
 // Execute executes the request
 //  @return HighlightedPredictionSlipResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) (*HighlightedPredictionSlipResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerPrepareHighlightedPredictionSlipExecute(r ApiContentWebV2PredictionControllerPrepareHighlightedPredictionSlipRequest) (*HighlightedPredictionSlipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -895,7 +895,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerPrepareHighli
 		localVarReturnValue  *HighlightedPredictionSlipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1000,32 +1000,32 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerPrepareHighli
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest struct {
+type ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	xActingAs *string
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest) Execute() (*OpenPredictionSlipResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerShowOpenPredictionSlipExecute(r)
+func (r ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest) Execute() (*OpenPredictionSlipResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerShowOpenPredictionSlipExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerShowOpenPredictionSlip Get the caller's open prediction slip
+ContentWebV2PredictionControllerShowOpenPredictionSlip Get the caller's open prediction slip
 
 Returns the user's currently-open slip or `{data: null}` when none exists.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest
+ @return ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowOpenPredictionSlip(ctx context.Context) ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest {
-	return ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerShowOpenPredictionSlip(ctx context.Context) ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest {
+	return ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1033,7 +1033,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowOpenPredi
 
 // Execute executes the request
 //  @return OpenPredictionSlipResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowOpenPredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerShowOpenPredictionSlipRequest) (*OpenPredictionSlipResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerShowOpenPredictionSlipExecute(r ApiContentWebV2PredictionControllerShowOpenPredictionSlipRequest) (*OpenPredictionSlipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1041,7 +1041,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowOpenPredi
 		localVarReturnValue  *OpenPredictionSlipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerShowOpenPredictionSlip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerShowOpenPredictionSlip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1109,7 +1109,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowOpenPredi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest struct {
+type ApiContentWebV2PredictionControllerShowPredictionSlipRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	id string
@@ -1117,24 +1117,24 @@ type ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerShowPredictionSlipRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerShowPredictionSlipRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerShowPredictionSlipExecute(r)
+func (r ApiContentWebV2PredictionControllerShowPredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerShowPredictionSlipExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerShowPredictionSlip Get prediction slip
+ContentWebV2PredictionControllerShowPredictionSlip Get prediction slip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest
+ @return ApiContentWebV2PredictionControllerShowPredictionSlipRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowPredictionSlip(ctx context.Context, id string) ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest {
-	return ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerShowPredictionSlip(ctx context.Context, id string) ApiContentWebV2PredictionControllerShowPredictionSlipRequest {
+	return ApiContentWebV2PredictionControllerShowPredictionSlipRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1143,7 +1143,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowPredictio
 
 // Execute executes the request
 //  @return PredictionSlipResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowPredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerShowPredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerShowPredictionSlipExecute(r ApiContentWebV2PredictionControllerShowPredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1151,7 +1151,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowPredictio
 		localVarReturnValue  *PredictionSlipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerShowPredictionSlip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerShowPredictionSlip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1230,7 +1230,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerShowPredictio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest struct {
+type ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest struct {
 	ctx context.Context
 	ApiService *PredictionSlipsAPIService
 	id string
@@ -1239,30 +1239,30 @@ type ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest) XActingAs(xActingAs string) ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Prediction slip update payload
-func (r ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest) UpdatePredictionSlipRequest(updatePredictionSlipRequest UpdatePredictionSlipRequest) ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest {
+func (r ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest) UpdatePredictionSlipRequest(updatePredictionSlipRequest UpdatePredictionSlipRequest) ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest {
 	r.updatePredictionSlipRequest = &updatePredictionSlipRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PredictionControllerUpdatePredictionSlipExecute(r)
+func (r ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest) Execute() (*PredictionSlipResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PredictionControllerUpdatePredictionSlipExecute(r)
 }
 
 /*
-PuzzleWebV2PredictionControllerUpdatePredictionSlip Update prediction slip
+ContentWebV2PredictionControllerUpdatePredictionSlip Update prediction slip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest
+ @return ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest
 */
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerUpdatePredictionSlip(ctx context.Context, id string) ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest {
-	return ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest{
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerUpdatePredictionSlip(ctx context.Context, id string) ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest {
+	return ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1271,7 +1271,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerUpdatePredict
 
 // Execute executes the request
 //  @return PredictionSlipResponse
-func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerUpdatePredictionSlipExecute(r ApiPuzzleWebV2PredictionControllerUpdatePredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
+func (a *PredictionSlipsAPIService) ContentWebV2PredictionControllerUpdatePredictionSlipExecute(r ApiContentWebV2PredictionControllerUpdatePredictionSlipRequest) (*PredictionSlipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1279,7 +1279,7 @@ func (a *PredictionSlipsAPIService) PuzzleWebV2PredictionControllerUpdatePredict
 		localVarReturnValue  *PredictionSlipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.PuzzleWebV2PredictionControllerUpdatePredictionSlip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PredictionSlipsAPIService.ContentWebV2PredictionControllerUpdatePredictionSlip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

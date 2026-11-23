@@ -22,11 +22,11 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerCreate", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerCreate(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerCreate(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,26 +34,26 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerDelete", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerDelete(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerGetResultSuggestions", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerGetResultSuggestions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var userEventsId string
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerGetResultSuggestions(context.Background(), userEventsId).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerGetResultSuggestions(context.Background(), userEventsId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -61,13 +61,13 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerGetStatus", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerGetStatus", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var userEventsId string
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerGetStatus(context.Background(), userEventsId).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerGetStatus(context.Background(), userEventsId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -75,11 +75,11 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerIndex", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerIndex", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerIndex(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerIndex(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -87,11 +87,11 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerListTemplates", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerListTemplates", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerListTemplates(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerListTemplates(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -99,13 +99,13 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerShow", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerShow", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerShow(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerShow(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -113,13 +113,13 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerUpdate", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerUpdate(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerUpdate(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -127,13 +127,13 @@ func Test_platform_UserEventsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserEventsAPIService PuzzleWebV2UserEventsControllerUseExistingResult", func(t *testing.T) {
+	t.Run("Test UserEventsAPIService ContentWebV2UserEventsControllerUseExistingResult", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var userEventsId string
 
-		resp, httpRes, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerUseExistingResult(context.Background(), userEventsId).Execute()
+		resp, httpRes, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerUseExistingResult(context.Background(), userEventsId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -581,7 +581,7 @@ func (r ApiGetContestsByIdLiveRankingRequest) Execute() (*DomainGroupedScoreBoar
 /*
 GetContestsByIdLiveRanking Get live ranking snapshot
 
-Returns the latest provisional ranking for an active contest, cached from puzzle.ranking.live.
+Returns the latest provisional ranking for an active contest, cached from content.ranking.live.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Contest ID

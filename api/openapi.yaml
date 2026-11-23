@@ -74,18 +74,18 @@ tags:
   x-displayName: Tenants
 - name: Venues
   x-displayName: Venues
-- name: User Events
-  x-displayName: User Events
-- name: Puzzle Sheets
-  x-displayName: Puzzle Sheets
-- name: Contest Puzzles
-  x-displayName: Contest Puzzles
-- name: Prediction Slips
-  x-displayName: Prediction Slips
 - name: Puzzles
   x-displayName: Puzzles
 - name: Events
   x-displayName: Events
+- name: User Events
+  x-displayName: User Events
+- name: Prediction Slips
+  x-displayName: Prediction Slips
+- name: Puzzle Sheets
+  x-displayName: Puzzle Sheets
+- name: Contest Puzzles
+  x-displayName: Contest Puzzles
 paths:
   /v2/admin/answer-boards:
     get:
@@ -1356,7 +1356,7 @@ paths:
     get:
       description: "Returns the contest's source directly: a PuzzleSheet for MCQ,\
         \ a PredictionSlip for prediction contests, or a creative challenge map."
-      operationId: PuzzleWeb.V2.ContestPuzzleController.get_puzzle
+      operationId: ContentWeb.V2.ContestPuzzleController.get_puzzle
       parameters:
       - explode: false
         in: path
@@ -1400,7 +1400,7 @@ paths:
   /v2/contest-puzzles/{contest_id}/rankings:
     get:
       description: Returns the leaderboard for a contest.
-      operationId: PuzzleWeb.V2.ContestPuzzleController.rankings
+      operationId: ContentWeb.V2.ContestPuzzleController.rankings
       parameters:
       - explode: false
         in: path
@@ -1432,7 +1432,7 @@ paths:
   /v2/contest-puzzles/{contest_id}/status:
     get:
       description: Returns the contest's lifecycle status and source type.
-      operationId: PuzzleWeb.V2.ContestPuzzleController.status
+      operationId: ContentWeb.V2.ContestPuzzleController.status
       parameters:
       - explode: false
         in: path
@@ -3988,7 +3988,7 @@ paths:
   /v2/contests/{id}/live-ranking:
     get:
       description: "Returns the latest provisional ranking for an active contest,\
-        \ cached from puzzle.ranking.live."
+        \ cached from content.ranking.live."
       operationId: getContestsByIdLiveRanking
       parameters:
       - description: Contest ID
@@ -4865,7 +4865,7 @@ paths:
       - Contests
   /v2/curated-slips:
     get:
-      operationId: PuzzleWeb.V2.PredictionController.list_curated_slips
+      operationId: ContentWeb.V2.PredictionController.list_curated_slips
       parameters:
       - explode: true
         in: query
@@ -4926,7 +4926,7 @@ paths:
     get:
       description: "One saved ordered selection per UTC day, shared by every tenant.\
         \ Reads never invoke AI."
-      operationId: PuzzleWeb.V2.EventHighlightsController.index
+      operationId: ContentWeb.V2.EventHighlightsController.index
       parameters:
       - explode: true
         in: query
@@ -4970,7 +4970,7 @@ paths:
     post:
       description: Administrator-only operation using Puzzle's existing administrator
         gate. A refresh replaces the edition only after successful selection.
-      operationId: PuzzleWeb.V2.EventHighlightsController.generate
+      operationId: ContentWeb.V2.EventHighlightsController.generate
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -5023,7 +5023,7 @@ paths:
   /v2/event-templates:
     get:
       description: Public catalog of templates users can instantiate as user events.
-      operationId: PuzzleWeb.V2.UserEventsController.list_templates
+      operationId: ContentWeb.V2.UserEventsController.list_templates
       parameters:
       - explode: true
         in: query
@@ -5061,7 +5061,7 @@ paths:
       - User Events
   /v2/events/{id}:
     get:
-      operationId: PuzzleWeb.V2.EventController.show
+      operationId: ContentWeb.V2.EventController.show
       parameters:
       - explode: false
         in: path
@@ -5106,7 +5106,7 @@ paths:
     post:
       description: Approves a previously-entered result. Queues an async job to advance
         contest grading when all events in a contest are approved.
-      operationId: PuzzleWeb.V2.EventController.approve_result
+      operationId: ContentWeb.V2.EventController.approve_result
       parameters:
       - explode: false
         in: path
@@ -5163,7 +5163,7 @@ paths:
     get:
       description: Fetches a prediction event directly from Postgres rather than the
         search index.
-      operationId: PuzzleWeb.V2.EventController.show_details
+      operationId: ContentWeb.V2.EventController.show_details
       parameters:
       - explode: false
         in: path
@@ -5200,7 +5200,7 @@ paths:
       - Events
   /v2/events/{id}/result:
     patch:
-      operationId: PuzzleWeb.V2.EventController.enter_result
+      operationId: ContentWeb.V2.EventController.enter_result
       parameters:
       - explode: false
         in: path
@@ -5263,7 +5263,7 @@ paths:
     get:
       description: Admins see system events + their own user events; users see only
         their own.
-      operationId: PuzzleWeb.V2.EventController.pending_approval
+      operationId: ContentWeb.V2.EventController.pending_approval
       parameters:
       - explode: true
         in: query
@@ -5302,7 +5302,7 @@ paths:
   /v2/events/search:
     get:
       description: Elasticsearch-backed event search with cursor pagination.
-      operationId: PuzzleWeb.V2.EventController.search
+      operationId: ContentWeb.V2.EventController.search
       parameters:
       - explode: true
         in: query
@@ -7540,7 +7540,7 @@ paths:
       - Participation
   /v2/prediction-slips:
     get:
-      operationId: PuzzleWeb.V2.PredictionController.list_prediction_slips
+      operationId: ContentWeb.V2.PredictionController.list_prediction_slips
       parameters:
       - explode: true
         in: query
@@ -7584,7 +7584,7 @@ paths:
       tags:
       - Prediction Slips
     post:
-      operationId: PuzzleWeb.V2.PredictionController.create_prediction_slip
+      operationId: ContentWeb.V2.PredictionController.create_prediction_slip
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -7627,7 +7627,7 @@ paths:
       - Prediction Slips
   /v2/prediction-slips/{id}:
     delete:
-      operationId: PuzzleWeb.V2.PredictionController.delete_prediction_slip
+      operationId: ContentWeb.V2.PredictionController.delete_prediction_slip
       parameters:
       - explode: false
         in: path
@@ -7672,7 +7672,7 @@ paths:
       tags:
       - Prediction Slips
     get:
-      operationId: PuzzleWeb.V2.PredictionController.show_prediction_slip
+      operationId: ContentWeb.V2.PredictionController.show_prediction_slip
       parameters:
       - explode: false
         in: path
@@ -7709,7 +7709,7 @@ paths:
       tags:
       - Prediction Slips
     put:
-      operationId: PuzzleWeb.V2.PredictionController.update_prediction_slip
+      operationId: ContentWeb.V2.PredictionController.update_prediction_slip
       parameters:
       - explode: false
         in: path
@@ -7766,7 +7766,7 @@ paths:
       - Prediction Slips
   /v2/prediction-slips/{id}/clone:
     post:
-      operationId: PuzzleWeb.V2.PredictionController.clone_prediction_slip
+      operationId: ContentWeb.V2.PredictionController.clone_prediction_slip
       parameters:
       - explode: false
         in: path
@@ -7818,7 +7818,7 @@ paths:
     get:
       description: "Community feed: the tenant's public prediction slips (is_public=true)\
         \ across all owners, newest first, cursor-paginated."
-      operationId: PuzzleWeb.V2.PredictionController.list_community_prediction_slips
+      operationId: ContentWeb.V2.PredictionController.list_community_prediction_slips
       parameters:
       - explode: true
         in: query
@@ -7862,7 +7862,7 @@ paths:
         tenant and acting identity. Owner and tenant cannot be selected in the request
         body. Returns data:null without creating a slip when no suitable highlight
         exists.
-      operationId: PuzzleWeb.V2.PredictionController.prepare_highlighted_prediction_slip
+      operationId: ContentWeb.V2.PredictionController.prepare_highlighted_prediction_slip
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -7919,7 +7919,7 @@ paths:
     get:
       description: "Returns the user's currently-open slip or `{data: null}` when\
         \ none exists."
-      operationId: PuzzleWeb.V2.PredictionController.show_open_prediction_slip
+      operationId: ContentWeb.V2.PredictionController.show_open_prediction_slip
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -7945,7 +7945,7 @@ paths:
     get:
       description: Cursor-paginated puzzle sheets visible to the caller within their
         tenant.
-      operationId: PuzzleWeb.V2.PuzzleSheetController.index
+      operationId: ContentWeb.V2.PuzzleSheetController.index
       parameters:
       - explode: true
         in: query
@@ -7992,7 +7992,7 @@ paths:
       tags:
       - Puzzle Sheets
     post:
-      operationId: PuzzleWeb.V2.PuzzleSheetController.create
+      operationId: ContentWeb.V2.PuzzleSheetController.create
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -8028,7 +8028,7 @@ paths:
       - Puzzle Sheets
   /v2/puzzle-sheets/{id}:
     delete:
-      operationId: PuzzleWeb.V2.PuzzleSheetController.delete
+      operationId: ContentWeb.V2.PuzzleSheetController.delete
       parameters:
       - explode: false
         in: path
@@ -8061,7 +8061,7 @@ paths:
       tags:
       - Puzzle Sheets
     get:
-      operationId: PuzzleWeb.V2.PuzzleSheetController.show
+      operationId: ContentWeb.V2.PuzzleSheetController.show
       parameters:
       - explode: false
         in: path
@@ -8098,7 +8098,7 @@ paths:
       tags:
       - Puzzle Sheets
     patch:
-      operationId: PuzzleWeb.V2.PuzzleSheetController.update
+      operationId: ContentWeb.V2.PuzzleSheetController.update
       parameters:
       - explode: false
         in: path
@@ -8148,7 +8148,7 @@ paths:
       - Puzzle Sheets
   /v2/puzzle-sheets/{id}/clone:
     post:
-      operationId: PuzzleWeb.V2.PuzzleSheetController.clone_puzzle_sheet
+      operationId: ContentWeb.V2.PuzzleSheetController.clone_puzzle_sheet
       parameters:
       - explode: false
         in: path
@@ -8206,7 +8206,7 @@ paths:
     post:
       description: "Builds a system-visibility sheet from puzzle bank questions matching\
         \ topic+difficulty, scoped to the caller's tenant."
-      operationId: PuzzleWeb.V2.PuzzleSheetController.create_adhoc_community_sheet
+      operationId: ContentWeb.V2.PuzzleSheetController.create_adhoc_community_sheet
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -8244,7 +8244,7 @@ paths:
     post:
       description: Builds a per-user adhoc sheet by sampling N puzzles from an existing
         sheet the caller owns within their tenant.
-      operationId: PuzzleWeb.V2.PuzzleSheetController.create_adhoc_user_sheet
+      operationId: ContentWeb.V2.PuzzleSheetController.create_adhoc_user_sheet
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -8287,7 +8287,7 @@ paths:
   /v2/puzzles:
     get:
       description: Cursor-paginated list of puzzles the caller can see.
-      operationId: PuzzleWeb.V2.PuzzleController.index
+      operationId: ContentWeb.V2.PuzzleController.index
       parameters:
       - explode: true
         in: query
@@ -8334,7 +8334,7 @@ paths:
       tags:
       - Puzzles
     post:
-      operationId: PuzzleWeb.V2.PuzzleController.create
+      operationId: ContentWeb.V2.PuzzleController.create
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -8370,7 +8370,7 @@ paths:
       - Puzzles
   /v2/puzzles/{id}:
     delete:
-      operationId: PuzzleWeb.V2.PuzzleController.delete
+      operationId: ContentWeb.V2.PuzzleController.delete
       parameters:
       - explode: false
         in: path
@@ -8403,7 +8403,7 @@ paths:
       tags:
       - Puzzles
     get:
-      operationId: PuzzleWeb.V2.PuzzleController.show
+      operationId: ContentWeb.V2.PuzzleController.show
       parameters:
       - explode: false
         in: path
@@ -8440,7 +8440,7 @@ paths:
       tags:
       - Puzzles
     patch:
-      operationId: PuzzleWeb.V2.PuzzleController.update
+      operationId: ContentWeb.V2.PuzzleController.update
       parameters:
       - explode: false
         in: path
@@ -8492,7 +8492,7 @@ paths:
     get:
       description: "Returns categories aggregated from the puzzle bank, enriched with\
         \ metadata."
-      operationId: PuzzleWeb.V2.PuzzleController.get_unique_categories
+      operationId: ContentWeb.V2.PuzzleController.get_unique_categories
       parameters:
       - explode: true
         in: query
@@ -8533,7 +8533,7 @@ paths:
   /v2/puzzles/get-topic-configuration:
     get:
       description: Returns per-difficulty max-question counts for a topic.
-      operationId: PuzzleWeb.V2.PuzzleController.get_topic_configuration
+      operationId: ContentWeb.V2.PuzzleController.get_topic_configuration
       parameters:
       - explode: true
         in: query
@@ -8581,8 +8581,8 @@ paths:
   /v2/puzzles/migrate:
     get:
       description: Triggers a cross-tenant re-index of the puzzle bank into OpenSearch.
-        Gated by a hard-coded owner check pending puzzle#20.
-      operationId: PuzzleWeb.V2.PuzzleController.migrate_puzzles_to_opensearch
+        Gated by a hard-coded owner check pending content#20.
+      operationId: ContentWeb.V2.PuzzleController.migrate_puzzles_to_opensearch
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -8620,7 +8620,7 @@ paths:
     get:
       description: "Autocomplete search against OpenSearch puzzle bank, scoped to\
         \ the caller's tenant."
-      operationId: PuzzleWeb.V2.PuzzleController.search_puzzle_bank
+      operationId: ContentWeb.V2.PuzzleController.search_puzzle_bank
       parameters:
       - explode: true
         in: query
@@ -12196,7 +12196,7 @@ paths:
       - Contests
   /v2/user-events:
     get:
-      operationId: PuzzleWeb.V2.UserEventsController.index
+      operationId: ContentWeb.V2.UserEventsController.index
       parameters:
       - explode: true
         in: query
@@ -12243,13 +12243,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PuzzleWeb_V2_UserEventsController_index_200_response"
+                $ref: "#/components/schemas/ContentWeb_V2_UserEventsController_index_200_response"
           description: User events
       summary: List user events
       tags:
       - User Events
     post:
-      operationId: PuzzleWeb.V2.UserEventsController.create
+      operationId: ContentWeb.V2.UserEventsController.create
       parameters:
       - description: Acting-as. The platform identity id (piid) this request is on
           behalf of. The platform verifies the piid belongs to the calling tenant
@@ -12297,7 +12297,7 @@ paths:
       - User Events
   /v2/user-events/{id}:
     delete:
-      operationId: PuzzleWeb.V2.UserEventsController.delete
+      operationId: ContentWeb.V2.UserEventsController.delete
       parameters:
       - explode: false
         in: path
@@ -12341,7 +12341,7 @@ paths:
       tags:
       - User Events
     get:
-      operationId: PuzzleWeb.V2.UserEventsController.show
+      operationId: ContentWeb.V2.UserEventsController.show
       parameters:
       - explode: false
         in: path
@@ -12383,7 +12383,7 @@ paths:
       tags:
       - User Events
     patch:
-      operationId: PuzzleWeb.V2.UserEventsController.update
+      operationId: ContentWeb.V2.UserEventsController.update
       parameters:
       - explode: false
         in: path
@@ -12438,7 +12438,7 @@ paths:
       - User Events
   /v2/user-events/{user_events_id}/result-suggestions:
     get:
-      operationId: PuzzleWeb.V2.UserEventsController.get_result_suggestions
+      operationId: ContentWeb.V2.UserEventsController.get_result_suggestions
       parameters:
       - explode: false
         in: path
@@ -12475,7 +12475,7 @@ paths:
       - User Events
   /v2/user-events/{user_events_id}/status:
     get:
-      operationId: PuzzleWeb.V2.UserEventsController.get_status
+      operationId: ContentWeb.V2.UserEventsController.get_status
       parameters:
       - explode: false
         in: path
@@ -12512,7 +12512,7 @@ paths:
       - User Events
   /v2/user-events/{user_events_id}/use-result:
     post:
-      operationId: PuzzleWeb.V2.UserEventsController.use_existing_result
+      operationId: ContentWeb.V2.UserEventsController.use_existing_result
       parameters:
       - explode: false
         in: path
@@ -12882,7 +12882,7 @@ components:
         data:
           items:
             additionalProperties: true
-            description: Enriched category metadata. Keys depend on Puzzle.CategoryMetadata
+            description: Enriched category metadata. Keys depend on Content.CategoryMetadata
               enrichment.
             type: object
           type: array
@@ -24458,7 +24458,7 @@ components:
         data:
           items:
             additionalProperties: true
-            description: Ranking entry. Shape is defined by PuzzleWeb.ContestView.render/2
+            description: Ranking entry. Shape is defined by ContentWeb.ContestView.render/2
               with template rankings.json.
             type: object
           type: array
@@ -31359,7 +31359,7 @@ components:
       required:
       - data
       type: object
-    PuzzleWeb_V2_UserEventsController_index_200_response:
+    ContentWeb_V2_UserEventsController_index_200_response:
       example:
         data:
         - category: category
@@ -32278,11 +32278,11 @@ x-tagGroups:
   - TeamPreferences
   - Tenants
   - Venues
-- name: Puzzle Platform API
+- name: Content Platform API
   tags:
-  - User Events
-  - Puzzle Sheets
-  - Contest Puzzles
-  - Prediction Slips
   - Puzzles
   - Events
+  - User Events
+  - Prediction Slips
+  - Puzzle Sheets
+  - Contest Puzzles

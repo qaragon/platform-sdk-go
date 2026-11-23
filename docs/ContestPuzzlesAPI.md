@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PuzzleWebV2ContestPuzzleControllerGetPuzzle**](ContestPuzzlesAPI.md#PuzzleWebV2ContestPuzzleControllerGetPuzzle) | **Get** /v2/contest-puzzles/{contest_id} | Get contest source
-[**PuzzleWebV2ContestPuzzleControllerRankings**](ContestPuzzlesAPI.md#PuzzleWebV2ContestPuzzleControllerRankings) | **Get** /v2/contest-puzzles/{contest_id}/rankings | Get contest rankings
-[**PuzzleWebV2ContestPuzzleControllerStatus**](ContestPuzzlesAPI.md#PuzzleWebV2ContestPuzzleControllerStatus) | **Get** /v2/contest-puzzles/{contest_id}/status | Get contest status
+[**ContentWebV2ContestPuzzleControllerGetPuzzle**](ContestPuzzlesAPI.md#ContentWebV2ContestPuzzleControllerGetPuzzle) | **Get** /v2/contest-puzzles/{contest_id} | Get contest source
+[**ContentWebV2ContestPuzzleControllerRankings**](ContestPuzzlesAPI.md#ContentWebV2ContestPuzzleControllerRankings) | **Get** /v2/contest-puzzles/{contest_id}/rankings | Get contest rankings
+[**ContentWebV2ContestPuzzleControllerStatus**](ContestPuzzlesAPI.md#ContentWebV2ContestPuzzleControllerStatus) | **Get** /v2/contest-puzzles/{contest_id}/status | Get contest status
 
 
 
-## PuzzleWebV2ContestPuzzleControllerGetPuzzle
+## ContentWebV2ContestPuzzleControllerGetPuzzle
 
-> ContestPuzzleResponse PuzzleWebV2ContestPuzzleControllerGetPuzzle(ctx, contestId).XActingAs(xActingAs).Execute()
+> ContestPuzzleResponse ContentWebV2ContestPuzzleControllerGetPuzzle(ctx, contestId).XActingAs(xActingAs).Execute()
 
 Get contest source
 
@@ -36,13 +36,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerGetPuzzle(context.Background(), contestId).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerGetPuzzle(context.Background(), contestId).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerGetPuzzle``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerGetPuzzle``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2ContestPuzzleControllerGetPuzzle`: ContestPuzzleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerGetPuzzle`: %v\n", resp)
+	// response from `ContentWebV2ContestPuzzleControllerGetPuzzle`: ContestPuzzleResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerGetPuzzle`: %v\n", resp)
 }
 ```
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2ContestPuzzleControllerGetPuzzleRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2ContestPuzzleControllerGetPuzzleRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -82,9 +82,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2ContestPuzzleControllerRankings
+## ContentWebV2ContestPuzzleControllerRankings
 
-> RankingsResponse PuzzleWebV2ContestPuzzleControllerRankings(ctx, contestId).XActingAs(xActingAs).Execute()
+> RankingsResponse ContentWebV2ContestPuzzleControllerRankings(ctx, contestId).XActingAs(xActingAs).Execute()
 
 Get contest rankings
 
@@ -108,13 +108,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerRankings(context.Background(), contestId).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerRankings(context.Background(), contestId).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerRankings``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerRankings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2ContestPuzzleControllerRankings`: RankingsResponse
-	fmt.Fprintf(os.Stdout, "Response from `ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerRankings`: %v\n", resp)
+	// response from `ContentWebV2ContestPuzzleControllerRankings`: RankingsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerRankings`: %v\n", resp)
 }
 ```
 
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2ContestPuzzleControllerRankingsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2ContestPuzzleControllerRankingsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -154,9 +154,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2ContestPuzzleControllerStatus
+## ContentWebV2ContestPuzzleControllerStatus
 
-> ContestStatusResponse PuzzleWebV2ContestPuzzleControllerStatus(ctx, contestId).XActingAs(xActingAs).Execute()
+> ContestStatusResponse ContentWebV2ContestPuzzleControllerStatus(ctx, contestId).XActingAs(xActingAs).Execute()
 
 Get contest status
 
@@ -180,13 +180,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerStatus(context.Background(), contestId).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerStatus(context.Background(), contestId).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerStatus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2ContestPuzzleControllerStatus`: ContestStatusResponse
-	fmt.Fprintf(os.Stdout, "Response from `ContestPuzzlesAPI.PuzzleWebV2ContestPuzzleControllerStatus`: %v\n", resp)
+	// response from `ContentWebV2ContestPuzzleControllerStatus`: ContestStatusResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContestPuzzlesAPI.ContentWebV2ContestPuzzleControllerStatus`: %v\n", resp)
 }
 ```
 
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2ContestPuzzleControllerStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2ContestPuzzleControllerStatusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

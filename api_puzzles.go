@@ -24,7 +24,7 @@ import (
 // PuzzlesAPIService PuzzlesAPI service
 type PuzzlesAPIService service
 
-type ApiPuzzleWebV2PuzzleControllerCreateRequest struct {
+type ApiContentWebV2PuzzleControllerCreateRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	xActingAs *string
@@ -32,29 +32,29 @@ type ApiPuzzleWebV2PuzzleControllerCreateRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerCreateRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerCreateRequest {
+func (r ApiContentWebV2PuzzleControllerCreateRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerCreateRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Create puzzle request
-func (r ApiPuzzleWebV2PuzzleControllerCreateRequest) CreatePuzzleRequest(createPuzzleRequest CreatePuzzleRequest) ApiPuzzleWebV2PuzzleControllerCreateRequest {
+func (r ApiContentWebV2PuzzleControllerCreateRequest) CreatePuzzleRequest(createPuzzleRequest CreatePuzzleRequest) ApiContentWebV2PuzzleControllerCreateRequest {
 	r.createPuzzleRequest = &createPuzzleRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerCreateRequest) Execute() (*PuzzleResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerCreateExecute(r)
+func (r ApiContentWebV2PuzzleControllerCreateRequest) Execute() (*PuzzleResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerCreateExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerCreate Create puzzle
+ContentWebV2PuzzleControllerCreate Create puzzle
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleControllerCreateRequest
+ @return ApiContentWebV2PuzzleControllerCreateRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerCreate(ctx context.Context) ApiPuzzleWebV2PuzzleControllerCreateRequest {
-	return ApiPuzzleWebV2PuzzleControllerCreateRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerCreate(ctx context.Context) ApiContentWebV2PuzzleControllerCreateRequest {
+	return ApiContentWebV2PuzzleControllerCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -62,7 +62,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerCreate(ctx context.Contex
 
 // Execute executes the request
 //  @return PuzzleResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerCreateExecute(r ApiPuzzleWebV2PuzzleControllerCreateRequest) (*PuzzleResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerCreateExecute(r ApiContentWebV2PuzzleControllerCreateRequest) (*PuzzleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -70,7 +70,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerCreateExecute(r ApiPuzzle
 		localVarReturnValue  *PuzzleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -150,7 +150,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerCreateExecute(r ApiPuzzle
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerDeleteRequest struct {
+type ApiContentWebV2PuzzleControllerDeleteRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	id string
@@ -158,24 +158,24 @@ type ApiPuzzleWebV2PuzzleControllerDeleteRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerDeleteRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerDeleteRequest {
+func (r ApiContentWebV2PuzzleControllerDeleteRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerDeleteRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerDeleteExecute(r)
+func (r ApiContentWebV2PuzzleControllerDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerDeleteExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerDelete Delete puzzle
+ContentWebV2PuzzleControllerDelete Delete puzzle
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PuzzleControllerDeleteRequest
+ @return ApiContentWebV2PuzzleControllerDeleteRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerDelete(ctx context.Context, id string) ApiPuzzleWebV2PuzzleControllerDeleteRequest {
-	return ApiPuzzleWebV2PuzzleControllerDeleteRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerDelete(ctx context.Context, id string) ApiContentWebV2PuzzleControllerDeleteRequest {
+	return ApiContentWebV2PuzzleControllerDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -183,14 +183,14 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerDelete(ctx context.Contex
 }
 
 // Execute executes the request
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerDeleteExecute(r ApiPuzzleWebV2PuzzleControllerDeleteRequest) (*http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerDeleteExecute(r ApiContentWebV2PuzzleControllerDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -260,7 +260,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerDeleteExecute(r ApiPuzzle
 	return localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest struct {
+type ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	topic *string
@@ -268,36 +268,36 @@ type ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest) Topic(topic string) ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest {
+func (r ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest) Topic(topic string) ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest {
 	r.topic = &topic
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest {
+func (r ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest) Format(format string) ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest {
 	r.format = &format
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest {
+func (r ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest) Execute() (*TopicConfigurationResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerGetTopicConfigurationExecute(r)
+func (r ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest) Execute() (*TopicConfigurationResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerGetTopicConfigurationExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerGetTopicConfiguration Get topic configuration
+ContentWebV2PuzzleControllerGetTopicConfiguration Get topic configuration
 
 Returns per-difficulty max-question counts for a topic.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest
+ @return ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetTopicConfiguration(ctx context.Context) ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest {
-	return ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerGetTopicConfiguration(ctx context.Context) ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest {
+	return ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -305,7 +305,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetTopicConfiguration(ctx
 
 // Execute executes the request
 //  @return TopicConfigurationResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetTopicConfigurationExecute(r ApiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest) (*TopicConfigurationResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerGetTopicConfigurationExecute(r ApiContentWebV2PuzzleControllerGetTopicConfigurationRequest) (*TopicConfigurationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -313,7 +313,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetTopicConfigurationExec
 		localVarReturnValue  *TopicConfigurationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerGetTopicConfiguration")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerGetTopicConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -398,38 +398,38 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetTopicConfigurationExec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest struct {
+type ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	format *string
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest {
+func (r ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest) Format(format string) ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest {
 	r.format = &format
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest {
+func (r ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest) Execute() (*CategoriesResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerGetUniqueCategoriesExecute(r)
+func (r ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest) Execute() (*CategoriesResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerGetUniqueCategoriesExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerGetUniqueCategories List unique categories
+ContentWebV2PuzzleControllerGetUniqueCategories List unique categories
 
 Returns categories aggregated from the puzzle bank, enriched with metadata.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest
+ @return ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetUniqueCategories(ctx context.Context) ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest {
-	return ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerGetUniqueCategories(ctx context.Context) ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest {
+	return ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -437,7 +437,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetUniqueCategories(ctx c
 
 // Execute executes the request
 //  @return CategoriesResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetUniqueCategoriesExecute(r ApiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest) (*CategoriesResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerGetUniqueCategoriesExecute(r ApiContentWebV2PuzzleControllerGetUniqueCategoriesRequest) (*CategoriesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -445,7 +445,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetUniqueCategoriesExecut
 		localVarReturnValue  *CategoriesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerGetUniqueCategories")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerGetUniqueCategories")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -526,7 +526,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerGetUniqueCategoriesExecut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerIndexRequest struct {
+type ApiContentWebV2PuzzleControllerIndexRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	format *string
@@ -535,41 +535,41 @@ type ApiPuzzleWebV2PuzzleControllerIndexRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerIndexRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerIndexRequest {
+func (r ApiContentWebV2PuzzleControllerIndexRequest) Format(format string) ApiContentWebV2PuzzleControllerIndexRequest {
 	r.format = &format
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerIndexRequest) Cursor(cursor string) ApiPuzzleWebV2PuzzleControllerIndexRequest {
+func (r ApiContentWebV2PuzzleControllerIndexRequest) Cursor(cursor string) ApiContentWebV2PuzzleControllerIndexRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerIndexRequest) Limit(limit int32) ApiPuzzleWebV2PuzzleControllerIndexRequest {
+func (r ApiContentWebV2PuzzleControllerIndexRequest) Limit(limit int32) ApiContentWebV2PuzzleControllerIndexRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerIndexRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerIndexRequest {
+func (r ApiContentWebV2PuzzleControllerIndexRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerIndexRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerIndexRequest) Execute() (*PuzzlesListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerIndexExecute(r)
+func (r ApiContentWebV2PuzzleControllerIndexRequest) Execute() (*PuzzlesListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerIndexExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerIndex List puzzles
+ContentWebV2PuzzleControllerIndex List puzzles
 
 Cursor-paginated list of puzzles the caller can see.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleControllerIndexRequest
+ @return ApiContentWebV2PuzzleControllerIndexRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerIndex(ctx context.Context) ApiPuzzleWebV2PuzzleControllerIndexRequest {
-	return ApiPuzzleWebV2PuzzleControllerIndexRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerIndex(ctx context.Context) ApiContentWebV2PuzzleControllerIndexRequest {
+	return ApiContentWebV2PuzzleControllerIndexRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -577,7 +577,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerIndex(ctx context.Context
 
 // Execute executes the request
 //  @return PuzzlesListResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerIndexExecute(r ApiPuzzleWebV2PuzzleControllerIndexRequest) (*PuzzlesListResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerIndexExecute(r ApiContentWebV2PuzzleControllerIndexRequest) (*PuzzlesListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -585,7 +585,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerIndexExecute(r ApiPuzzleW
 		localVarReturnValue  *PuzzlesListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerIndex")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerIndex")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -662,32 +662,32 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerIndexExecute(r ApiPuzzleW
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest struct {
+type ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	xActingAs *string
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest {
+func (r ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest) Execute() (*MessageResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchExecute(r)
+func (r ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest) Execute() (*MessageResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerMigratePuzzlesToOpensearchExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch Migrate puzzles to OpenSearch
+ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch Migrate puzzles to OpenSearch
 
-Triggers a cross-tenant re-index of the puzzle bank into OpenSearch. Gated by a hard-coded owner check pending puzzle#20.
+Triggers a cross-tenant re-index of the puzzle bank into OpenSearch. Gated by a hard-coded owner check pending content#20.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest
+ @return ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch(ctx context.Context) ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest {
-	return ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch(ctx context.Context) ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest {
+	return ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -695,7 +695,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearc
 
 // Execute executes the request
 //  @return MessageResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchExecute(r ApiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest) (*MessageResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerMigratePuzzlesToOpensearchExecute(r ApiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest) (*MessageResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -703,7 +703,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearc
 		localVarReturnValue  *MessageResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -792,7 +792,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest struct {
+type ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	topic *string
@@ -803,51 +803,51 @@ type ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Topic(topic string) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
+func (r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) Topic(topic string) ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest {
 	r.topic = &topic
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Format(format string) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
+func (r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) Format(format string) ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest {
 	r.format = &format
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Difficulty(difficulty string) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
+func (r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) Difficulty(difficulty string) ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest {
 	r.difficulty = &difficulty
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Cursor(cursor string) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
+func (r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) Cursor(cursor string) ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Limit(limit int32) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
+func (r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) Limit(limit int32) ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
+func (r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) Execute() (*PuzzlesListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerSearchPuzzleBankExecute(r)
+func (r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) Execute() (*PuzzlesListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerSearchPuzzleBankExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerSearchPuzzleBank Search puzzle bank
+ContentWebV2PuzzleControllerSearchPuzzleBank Search puzzle bank
 
 Autocomplete search against OpenSearch puzzle bank, scoped to the caller's tenant.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest
+ @return ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerSearchPuzzleBank(ctx context.Context) ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest {
-	return ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerSearchPuzzleBank(ctx context.Context) ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest {
+	return ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -855,7 +855,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerSearchPuzzleBank(ctx cont
 
 // Execute executes the request
 //  @return PuzzlesListResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerSearchPuzzleBankExecute(r ApiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest) (*PuzzlesListResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerSearchPuzzleBankExecute(r ApiContentWebV2PuzzleControllerSearchPuzzleBankRequest) (*PuzzlesListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -863,7 +863,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerSearchPuzzleBankExecute(r
 		localVarReturnValue  *PuzzlesListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerSearchPuzzleBank")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerSearchPuzzleBank")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -957,7 +957,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerSearchPuzzleBankExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerShowRequest struct {
+type ApiContentWebV2PuzzleControllerShowRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	id string
@@ -965,24 +965,24 @@ type ApiPuzzleWebV2PuzzleControllerShowRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerShowRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerShowRequest {
+func (r ApiContentWebV2PuzzleControllerShowRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerShowRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerShowRequest) Execute() (*PuzzleResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerShowExecute(r)
+func (r ApiContentWebV2PuzzleControllerShowRequest) Execute() (*PuzzleResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerShowExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerShow Get puzzle
+ContentWebV2PuzzleControllerShow Get puzzle
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PuzzleControllerShowRequest
+ @return ApiContentWebV2PuzzleControllerShowRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerShow(ctx context.Context, id string) ApiPuzzleWebV2PuzzleControllerShowRequest {
-	return ApiPuzzleWebV2PuzzleControllerShowRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerShow(ctx context.Context, id string) ApiContentWebV2PuzzleControllerShowRequest {
+	return ApiContentWebV2PuzzleControllerShowRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -991,7 +991,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerShow(ctx context.Context,
 
 // Execute executes the request
 //  @return PuzzleResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerShowExecute(r ApiPuzzleWebV2PuzzleControllerShowRequest) (*PuzzleResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerShowExecute(r ApiContentWebV2PuzzleControllerShowRequest) (*PuzzleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -999,7 +999,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerShowExecute(r ApiPuzzleWe
 		localVarReturnValue  *PuzzleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerShow")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerShow")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1078,7 +1078,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerShowExecute(r ApiPuzzleWe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleControllerUpdateRequest struct {
+type ApiContentWebV2PuzzleControllerUpdateRequest struct {
 	ctx context.Context
 	ApiService *PuzzlesAPIService
 	id string
@@ -1087,30 +1087,30 @@ type ApiPuzzleWebV2PuzzleControllerUpdateRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleControllerUpdateRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleControllerUpdateRequest {
+func (r ApiContentWebV2PuzzleControllerUpdateRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleControllerUpdateRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Update puzzle request
-func (r ApiPuzzleWebV2PuzzleControllerUpdateRequest) UpdatePuzzleRequest(updatePuzzleRequest UpdatePuzzleRequest) ApiPuzzleWebV2PuzzleControllerUpdateRequest {
+func (r ApiContentWebV2PuzzleControllerUpdateRequest) UpdatePuzzleRequest(updatePuzzleRequest UpdatePuzzleRequest) ApiContentWebV2PuzzleControllerUpdateRequest {
 	r.updatePuzzleRequest = &updatePuzzleRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleControllerUpdateRequest) Execute() (*PuzzleResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleControllerUpdateExecute(r)
+func (r ApiContentWebV2PuzzleControllerUpdateRequest) Execute() (*PuzzleResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleControllerUpdateExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleControllerUpdate Update puzzle
+ContentWebV2PuzzleControllerUpdate Update puzzle
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PuzzleControllerUpdateRequest
+ @return ApiContentWebV2PuzzleControllerUpdateRequest
 */
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerUpdate(ctx context.Context, id string) ApiPuzzleWebV2PuzzleControllerUpdateRequest {
-	return ApiPuzzleWebV2PuzzleControllerUpdateRequest{
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerUpdate(ctx context.Context, id string) ApiContentWebV2PuzzleControllerUpdateRequest {
+	return ApiContentWebV2PuzzleControllerUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1119,7 +1119,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerUpdate(ctx context.Contex
 
 // Execute executes the request
 //  @return PuzzleResponse
-func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerUpdateExecute(r ApiPuzzleWebV2PuzzleControllerUpdateRequest) (*PuzzleResponse, *http.Response, error) {
+func (a *PuzzlesAPIService) ContentWebV2PuzzleControllerUpdateExecute(r ApiContentWebV2PuzzleControllerUpdateRequest) (*PuzzleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1127,7 +1127,7 @@ func (a *PuzzlesAPIService) PuzzleWebV2PuzzleControllerUpdateExecute(r ApiPuzzle
 		localVarReturnValue  *PuzzleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.PuzzleWebV2PuzzleControllerUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzlesAPIService.ContentWebV2PuzzleControllerUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

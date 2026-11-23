@@ -4,20 +4,20 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet) | **Post** /v2/puzzle-sheets/{id}/clone | Clone puzzle sheet
-[**PuzzleWebV2PuzzleSheetControllerCreate**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerCreate) | **Post** /v2/puzzle-sheets | Create puzzle sheet
-[**PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet) | **Post** /v2/puzzle-sheets/adhoc-community-sheet | Create adhoc community puzzle sheet
-[**PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet) | **Post** /v2/puzzle-sheets/adhoc-user-sheet | Create adhoc user puzzle sheet
-[**PuzzleWebV2PuzzleSheetControllerDelete**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerDelete) | **Delete** /v2/puzzle-sheets/{id} | Delete puzzle sheet
-[**PuzzleWebV2PuzzleSheetControllerIndex**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerIndex) | **Get** /v2/puzzle-sheets | List puzzle sheets
-[**PuzzleWebV2PuzzleSheetControllerShow**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerShow) | **Get** /v2/puzzle-sheets/{id} | Get puzzle sheet
-[**PuzzleWebV2PuzzleSheetControllerUpdate**](PuzzleSheetsAPI.md#PuzzleWebV2PuzzleSheetControllerUpdate) | **Patch** /v2/puzzle-sheets/{id} | Update puzzle sheet
+[**ContentWebV2PuzzleSheetControllerClonePuzzleSheet**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerClonePuzzleSheet) | **Post** /v2/puzzle-sheets/{id}/clone | Clone puzzle sheet
+[**ContentWebV2PuzzleSheetControllerCreate**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerCreate) | **Post** /v2/puzzle-sheets | Create puzzle sheet
+[**ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet) | **Post** /v2/puzzle-sheets/adhoc-community-sheet | Create adhoc community puzzle sheet
+[**ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet) | **Post** /v2/puzzle-sheets/adhoc-user-sheet | Create adhoc user puzzle sheet
+[**ContentWebV2PuzzleSheetControllerDelete**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerDelete) | **Delete** /v2/puzzle-sheets/{id} | Delete puzzle sheet
+[**ContentWebV2PuzzleSheetControllerIndex**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerIndex) | **Get** /v2/puzzle-sheets | List puzzle sheets
+[**ContentWebV2PuzzleSheetControllerShow**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerShow) | **Get** /v2/puzzle-sheets/{id} | Get puzzle sheet
+[**ContentWebV2PuzzleSheetControllerUpdate**](PuzzleSheetsAPI.md#ContentWebV2PuzzleSheetControllerUpdate) | **Patch** /v2/puzzle-sheets/{id} | Update puzzle sheet
 
 
 
-## PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet
+## ContentWebV2PuzzleSheetControllerClonePuzzleSheet
 
-> PuzzleSheetResponse PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet(ctx, id).XActingAs(xActingAs).ClonePuzzleSheetRequest(clonePuzzleSheetRequest).Execute()
+> PuzzleSheetResponse ContentWebV2PuzzleSheetControllerClonePuzzleSheet(ctx, id).XActingAs(xActingAs).ClonePuzzleSheetRequest(clonePuzzleSheetRequest).Execute()
 
 Clone puzzle sheet
 
@@ -40,13 +40,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet(context.Background(), id).XActingAs(xActingAs).ClonePuzzleSheetRequest(clonePuzzleSheetRequest).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerClonePuzzleSheet(context.Background(), id).XActingAs(xActingAs).ClonePuzzleSheetRequest(clonePuzzleSheetRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerClonePuzzleSheet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet`: PuzzleSheetResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet`: %v\n", resp)
+	// response from `ContentWebV2PuzzleSheetControllerClonePuzzleSheet`: PuzzleSheetResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerClonePuzzleSheet`: %v\n", resp)
 }
 ```
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -87,9 +87,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleSheetControllerCreate
+## ContentWebV2PuzzleSheetControllerCreate
 
-> PuzzleSheetResponse PuzzleWebV2PuzzleSheetControllerCreate(ctx).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
+> PuzzleSheetResponse ContentWebV2PuzzleSheetControllerCreate(ctx).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
 
 Create puzzle sheet
 
@@ -111,13 +111,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreate(context.Background()).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreate(context.Background()).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleSheetControllerCreate`: PuzzleSheetResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreate`: %v\n", resp)
+	// response from `ContentWebV2PuzzleSheetControllerCreate`: PuzzleSheetResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreate`: %v\n", resp)
 }
 ```
 
@@ -127,7 +127,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -153,9 +153,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet
+## ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet
 
-> PuzzleSheetResponse PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(ctx).XActingAs(xActingAs).CreateAdhocCommunitySheetRequest(createAdhocCommunitySheetRequest).Execute()
+> PuzzleSheetResponse ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(ctx).XActingAs(xActingAs).CreateAdhocCommunitySheetRequest(createAdhocCommunitySheetRequest).Execute()
 
 Create adhoc community puzzle sheet
 
@@ -179,13 +179,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(context.Background()).XActingAs(xActingAs).CreateAdhocCommunitySheetRequest(createAdhocCommunitySheetRequest).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(context.Background()).XActingAs(xActingAs).CreateAdhocCommunitySheetRequest(createAdhocCommunitySheetRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet`: PuzzleSheetResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet`: %v\n", resp)
+	// response from `ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet`: PuzzleSheetResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet`: %v\n", resp)
 }
 ```
 
@@ -195,7 +195,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -221,9 +221,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet
+## ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet
 
-> PuzzleSheetResponse PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet(ctx).XActingAs(xActingAs).CreateAdhocUserSheetRequest(createAdhocUserSheetRequest).Execute()
+> PuzzleSheetResponse ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet(ctx).XActingAs(xActingAs).CreateAdhocUserSheetRequest(createAdhocUserSheetRequest).Execute()
 
 Create adhoc user puzzle sheet
 
@@ -247,13 +247,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet(context.Background()).XActingAs(xActingAs).CreateAdhocUserSheetRequest(createAdhocUserSheetRequest).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet(context.Background()).XActingAs(xActingAs).CreateAdhocUserSheetRequest(createAdhocUserSheetRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet`: PuzzleSheetResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet`: %v\n", resp)
+	// response from `ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet`: PuzzleSheetResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet`: %v\n", resp)
 }
 ```
 
@@ -263,7 +263,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -289,9 +289,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleSheetControllerDelete
+## ContentWebV2PuzzleSheetControllerDelete
 
-> PuzzleWebV2PuzzleSheetControllerDelete(ctx, id).XActingAs(xActingAs).Execute()
+> ContentWebV2PuzzleSheetControllerDelete(ctx, id).XActingAs(xActingAs).Execute()
 
 Delete puzzle sheet
 
@@ -313,9 +313,9 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerDelete(context.Background(), id).XActingAs(xActingAs).Execute()
+	r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerDelete(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -357,9 +357,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleSheetControllerIndex
+## ContentWebV2PuzzleSheetControllerIndex
 
-> PuzzleSheetsListResponse PuzzleWebV2PuzzleSheetControllerIndex(ctx).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PuzzleSheetsListResponse ContentWebV2PuzzleSheetControllerIndex(ctx).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List puzzle sheets
 
@@ -385,13 +385,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerIndex(context.Background()).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerIndex(context.Background()).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerIndex``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerIndex``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleSheetControllerIndex`: PuzzleSheetsListResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerIndex`: %v\n", resp)
+	// response from `ContentWebV2PuzzleSheetControllerIndex`: PuzzleSheetsListResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerIndex`: %v\n", resp)
 }
 ```
 
@@ -401,7 +401,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerIndexRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerIndexRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -429,9 +429,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleSheetControllerShow
+## ContentWebV2PuzzleSheetControllerShow
 
-> PuzzleSheetResponse PuzzleWebV2PuzzleSheetControllerShow(ctx, id).XActingAs(xActingAs).Execute()
+> PuzzleSheetResponse ContentWebV2PuzzleSheetControllerShow(ctx, id).XActingAs(xActingAs).Execute()
 
 Get puzzle sheet
 
@@ -453,13 +453,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerShow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerShow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleSheetControllerShow`: PuzzleSheetResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerShow`: %v\n", resp)
+	// response from `ContentWebV2PuzzleSheetControllerShow`: PuzzleSheetResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerShow`: %v\n", resp)
 }
 ```
 
@@ -473,7 +473,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerShowRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerShowRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -499,9 +499,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleSheetControllerUpdate
+## ContentWebV2PuzzleSheetControllerUpdate
 
-> PuzzleSheetResponse PuzzleWebV2PuzzleSheetControllerUpdate(ctx, id).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
+> PuzzleSheetResponse ContentWebV2PuzzleSheetControllerUpdate(ctx, id).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
 
 Update puzzle sheet
 
@@ -524,13 +524,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerUpdate(context.Background(), id).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
+	resp, r, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerUpdate(context.Background(), id).XActingAs(xActingAs).CreatePuzzleSheetRequest(createPuzzleSheetRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleSheetControllerUpdate`: PuzzleSheetResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerUpdate`: %v\n", resp)
+	// response from `ContentWebV2PuzzleSheetControllerUpdate`: PuzzleSheetResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerUpdate`: %v\n", resp)
 }
 ```
 
@@ -544,7 +544,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleSheetControllerUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleSheetControllerUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

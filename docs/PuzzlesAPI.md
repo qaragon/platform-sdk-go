@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PuzzleWebV2PuzzleControllerCreate**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerCreate) | **Post** /v2/puzzles | Create puzzle
-[**PuzzleWebV2PuzzleControllerDelete**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerDelete) | **Delete** /v2/puzzles/{id} | Delete puzzle
-[**PuzzleWebV2PuzzleControllerGetTopicConfiguration**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerGetTopicConfiguration) | **Get** /v2/puzzles/get-topic-configuration | Get topic configuration
-[**PuzzleWebV2PuzzleControllerGetUniqueCategories**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerGetUniqueCategories) | **Get** /v2/puzzles/categories | List unique categories
-[**PuzzleWebV2PuzzleControllerIndex**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerIndex) | **Get** /v2/puzzles | List puzzles
-[**PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch) | **Get** /v2/puzzles/migrate | Migrate puzzles to OpenSearch
-[**PuzzleWebV2PuzzleControllerSearchPuzzleBank**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerSearchPuzzleBank) | **Get** /v2/puzzles/search-puzzle-bank | Search puzzle bank
-[**PuzzleWebV2PuzzleControllerShow**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerShow) | **Get** /v2/puzzles/{id} | Get puzzle
-[**PuzzleWebV2PuzzleControllerUpdate**](PuzzlesAPI.md#PuzzleWebV2PuzzleControllerUpdate) | **Patch** /v2/puzzles/{id} | Update puzzle
+[**ContentWebV2PuzzleControllerCreate**](PuzzlesAPI.md#ContentWebV2PuzzleControllerCreate) | **Post** /v2/puzzles | Create puzzle
+[**ContentWebV2PuzzleControllerDelete**](PuzzlesAPI.md#ContentWebV2PuzzleControllerDelete) | **Delete** /v2/puzzles/{id} | Delete puzzle
+[**ContentWebV2PuzzleControllerGetTopicConfiguration**](PuzzlesAPI.md#ContentWebV2PuzzleControllerGetTopicConfiguration) | **Get** /v2/puzzles/get-topic-configuration | Get topic configuration
+[**ContentWebV2PuzzleControllerGetUniqueCategories**](PuzzlesAPI.md#ContentWebV2PuzzleControllerGetUniqueCategories) | **Get** /v2/puzzles/categories | List unique categories
+[**ContentWebV2PuzzleControllerIndex**](PuzzlesAPI.md#ContentWebV2PuzzleControllerIndex) | **Get** /v2/puzzles | List puzzles
+[**ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch**](PuzzlesAPI.md#ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch) | **Get** /v2/puzzles/migrate | Migrate puzzles to OpenSearch
+[**ContentWebV2PuzzleControllerSearchPuzzleBank**](PuzzlesAPI.md#ContentWebV2PuzzleControllerSearchPuzzleBank) | **Get** /v2/puzzles/search-puzzle-bank | Search puzzle bank
+[**ContentWebV2PuzzleControllerShow**](PuzzlesAPI.md#ContentWebV2PuzzleControllerShow) | **Get** /v2/puzzles/{id} | Get puzzle
+[**ContentWebV2PuzzleControllerUpdate**](PuzzlesAPI.md#ContentWebV2PuzzleControllerUpdate) | **Patch** /v2/puzzles/{id} | Update puzzle
 
 
 
-## PuzzleWebV2PuzzleControllerCreate
+## ContentWebV2PuzzleControllerCreate
 
-> PuzzleResponse PuzzleWebV2PuzzleControllerCreate(ctx).XActingAs(xActingAs).CreatePuzzleRequest(createPuzzleRequest).Execute()
+> PuzzleResponse ContentWebV2PuzzleControllerCreate(ctx).XActingAs(xActingAs).CreatePuzzleRequest(createPuzzleRequest).Execute()
 
 Create puzzle
 
@@ -40,13 +40,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerCreate(context.Background()).XActingAs(xActingAs).CreatePuzzleRequest(createPuzzleRequest).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerCreate(context.Background()).XActingAs(xActingAs).CreatePuzzleRequest(createPuzzleRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerCreate`: PuzzleResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerCreate`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerCreate`: PuzzleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerCreate`: %v\n", resp)
 }
 ```
 
@@ -56,7 +56,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -82,9 +82,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerDelete
+## ContentWebV2PuzzleControllerDelete
 
-> PuzzleWebV2PuzzleControllerDelete(ctx, id).XActingAs(xActingAs).Execute()
+> ContentWebV2PuzzleControllerDelete(ctx, id).XActingAs(xActingAs).Execute()
 
 Delete puzzle
 
@@ -106,9 +106,9 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerDelete(context.Background(), id).XActingAs(xActingAs).Execute()
+	r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerDelete(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -150,9 +150,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerGetTopicConfiguration
+## ContentWebV2PuzzleControllerGetTopicConfiguration
 
-> TopicConfigurationResponse PuzzleWebV2PuzzleControllerGetTopicConfiguration(ctx).Topic(topic).Format(format).XActingAs(xActingAs).Execute()
+> TopicConfigurationResponse ContentWebV2PuzzleControllerGetTopicConfiguration(ctx).Topic(topic).Format(format).XActingAs(xActingAs).Execute()
 
 Get topic configuration
 
@@ -177,13 +177,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerGetTopicConfiguration(context.Background()).Topic(topic).Format(format).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerGetTopicConfiguration(context.Background()).Topic(topic).Format(format).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerGetTopicConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerGetTopicConfiguration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerGetTopicConfiguration`: TopicConfigurationResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerGetTopicConfiguration`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerGetTopicConfiguration`: TopicConfigurationResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerGetTopicConfiguration`: %v\n", resp)
 }
 ```
 
@@ -193,7 +193,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerGetTopicConfigurationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerGetTopicConfigurationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -220,9 +220,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerGetUniqueCategories
+## ContentWebV2PuzzleControllerGetUniqueCategories
 
-> CategoriesResponse PuzzleWebV2PuzzleControllerGetUniqueCategories(ctx).Format(format).XActingAs(xActingAs).Execute()
+> CategoriesResponse ContentWebV2PuzzleControllerGetUniqueCategories(ctx).Format(format).XActingAs(xActingAs).Execute()
 
 List unique categories
 
@@ -246,13 +246,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerGetUniqueCategories(context.Background()).Format(format).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerGetUniqueCategories(context.Background()).Format(format).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerGetUniqueCategories``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerGetUniqueCategories``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerGetUniqueCategories`: CategoriesResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerGetUniqueCategories`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerGetUniqueCategories`: CategoriesResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerGetUniqueCategories`: %v\n", resp)
 }
 ```
 
@@ -262,7 +262,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerGetUniqueCategoriesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerGetUniqueCategoriesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -288,9 +288,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerIndex
+## ContentWebV2PuzzleControllerIndex
 
-> PuzzlesListResponse PuzzleWebV2PuzzleControllerIndex(ctx).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PuzzlesListResponse ContentWebV2PuzzleControllerIndex(ctx).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 List puzzles
 
@@ -316,13 +316,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerIndex(context.Background()).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerIndex(context.Background()).Format(format).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerIndex``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerIndex``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerIndex`: PuzzlesListResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerIndex`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerIndex`: PuzzlesListResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerIndex`: %v\n", resp)
 }
 ```
 
@@ -332,7 +332,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerIndexRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerIndexRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -360,9 +360,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch
+## ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch
 
-> MessageResponse PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch(ctx).XActingAs(xActingAs).Execute()
+> MessageResponse ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch(ctx).XActingAs(xActingAs).Execute()
 
 Migrate puzzles to OpenSearch
 
@@ -385,13 +385,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch(context.Background()).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch(context.Background()).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch`: MessageResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch`: MessageResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch`: %v\n", resp)
 }
 ```
 
@@ -401,7 +401,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerMigratePuzzlesToOpensearchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -426,9 +426,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerSearchPuzzleBank
+## ContentWebV2PuzzleControllerSearchPuzzleBank
 
-> PuzzlesListResponse PuzzleWebV2PuzzleControllerSearchPuzzleBank(ctx).Topic(topic).Format(format).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+> PuzzlesListResponse ContentWebV2PuzzleControllerSearchPuzzleBank(ctx).Topic(topic).Format(format).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 
 Search puzzle bank
 
@@ -456,13 +456,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerSearchPuzzleBank(context.Background()).Topic(topic).Format(format).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerSearchPuzzleBank(context.Background()).Topic(topic).Format(format).Difficulty(difficulty).Cursor(cursor).Limit(limit).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerSearchPuzzleBank``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerSearchPuzzleBank``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerSearchPuzzleBank`: PuzzlesListResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerSearchPuzzleBank`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerSearchPuzzleBank`: PuzzlesListResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerSearchPuzzleBank`: %v\n", resp)
 }
 ```
 
@@ -472,7 +472,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerSearchPuzzleBankRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerSearchPuzzleBankRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -502,9 +502,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerShow
+## ContentWebV2PuzzleControllerShow
 
-> PuzzleResponse PuzzleWebV2PuzzleControllerShow(ctx, id).XActingAs(xActingAs).Execute()
+> PuzzleResponse ContentWebV2PuzzleControllerShow(ctx, id).XActingAs(xActingAs).Execute()
 
 Get puzzle
 
@@ -526,13 +526,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerShow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerShow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerShow`: PuzzleResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerShow`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerShow`: PuzzleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerShow`: %v\n", resp)
 }
 ```
 
@@ -546,7 +546,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerShowRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerShowRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -572,9 +572,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2PuzzleControllerUpdate
+## ContentWebV2PuzzleControllerUpdate
 
-> PuzzleResponse PuzzleWebV2PuzzleControllerUpdate(ctx, id).XActingAs(xActingAs).UpdatePuzzleRequest(updatePuzzleRequest).Execute()
+> PuzzleResponse ContentWebV2PuzzleControllerUpdate(ctx, id).XActingAs(xActingAs).UpdatePuzzleRequest(updatePuzzleRequest).Execute()
 
 Update puzzle
 
@@ -597,13 +597,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PuzzlesAPI.PuzzleWebV2PuzzleControllerUpdate(context.Background(), id).XActingAs(xActingAs).UpdatePuzzleRequest(updatePuzzleRequest).Execute()
+	resp, r, err := apiClient.PuzzlesAPI.ContentWebV2PuzzleControllerUpdate(context.Background(), id).XActingAs(xActingAs).UpdatePuzzleRequest(updatePuzzleRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.PuzzleWebV2PuzzleControllerUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PuzzlesAPI.ContentWebV2PuzzleControllerUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2PuzzleControllerUpdate`: PuzzleResponse
-	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.PuzzleWebV2PuzzleControllerUpdate`: %v\n", resp)
+	// response from `ContentWebV2PuzzleControllerUpdate`: PuzzleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PuzzlesAPI.ContentWebV2PuzzleControllerUpdate`: %v\n", resp)
 }
 ```
 
@@ -617,7 +617,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2PuzzleControllerUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2PuzzleControllerUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

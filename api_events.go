@@ -24,7 +24,7 @@ import (
 // EventsAPIService EventsAPI service
 type EventsAPIService service
 
-type ApiPuzzleWebV2EventControllerApproveResultRequest struct {
+type ApiContentWebV2EventControllerApproveResultRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	id string
@@ -32,26 +32,26 @@ type ApiPuzzleWebV2EventControllerApproveResultRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventControllerApproveResultRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventControllerApproveResultRequest {
+func (r ApiContentWebV2EventControllerApproveResultRequest) XActingAs(xActingAs string) ApiContentWebV2EventControllerApproveResultRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerApproveResultRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventControllerApproveResultExecute(r)
+func (r ApiContentWebV2EventControllerApproveResultRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventControllerApproveResultExecute(r)
 }
 
 /*
-PuzzleWebV2EventControllerApproveResult Approve event result
+ContentWebV2EventControllerApproveResult Approve event result
 
 Approves a previously-entered result. Queues an async job to advance contest grading when all events in a contest are approved.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2EventControllerApproveResultRequest
+ @return ApiContentWebV2EventControllerApproveResultRequest
 */
-func (a *EventsAPIService) PuzzleWebV2EventControllerApproveResult(ctx context.Context, id string) ApiPuzzleWebV2EventControllerApproveResultRequest {
-	return ApiPuzzleWebV2EventControllerApproveResultRequest{
+func (a *EventsAPIService) ContentWebV2EventControllerApproveResult(ctx context.Context, id string) ApiContentWebV2EventControllerApproveResultRequest {
+	return ApiContentWebV2EventControllerApproveResultRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -60,7 +60,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerApproveResult(ctx context.C
 
 // Execute executes the request
 //  @return EventResponse
-func (a *EventsAPIService) PuzzleWebV2EventControllerApproveResultExecute(r ApiPuzzleWebV2EventControllerApproveResultRequest) (*EventResponse, *http.Response, error) {
+func (a *EventsAPIService) ContentWebV2EventControllerApproveResultExecute(r ApiContentWebV2EventControllerApproveResultRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerApproveResultExecute(r ApiP
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.PuzzleWebV2EventControllerApproveResult")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ContentWebV2EventControllerApproveResult")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -180,7 +180,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerApproveResultExecute(r ApiP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2EventControllerEnterResultRequest struct {
+type ApiContentWebV2EventControllerEnterResultRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	id string
@@ -189,30 +189,30 @@ type ApiPuzzleWebV2EventControllerEnterResultRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventControllerEnterResultRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventControllerEnterResultRequest {
+func (r ApiContentWebV2EventControllerEnterResultRequest) XActingAs(xActingAs string) ApiContentWebV2EventControllerEnterResultRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Result payload
-func (r ApiPuzzleWebV2EventControllerEnterResultRequest) EnterEventResultRequest(enterEventResultRequest EnterEventResultRequest) ApiPuzzleWebV2EventControllerEnterResultRequest {
+func (r ApiContentWebV2EventControllerEnterResultRequest) EnterEventResultRequest(enterEventResultRequest EnterEventResultRequest) ApiContentWebV2EventControllerEnterResultRequest {
 	r.enterEventResultRequest = &enterEventResultRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerEnterResultRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventControllerEnterResultExecute(r)
+func (r ApiContentWebV2EventControllerEnterResultRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventControllerEnterResultExecute(r)
 }
 
 /*
-PuzzleWebV2EventControllerEnterResult Enter event result
+ContentWebV2EventControllerEnterResult Enter event result
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2EventControllerEnterResultRequest
+ @return ApiContentWebV2EventControllerEnterResultRequest
 */
-func (a *EventsAPIService) PuzzleWebV2EventControllerEnterResult(ctx context.Context, id string) ApiPuzzleWebV2EventControllerEnterResultRequest {
-	return ApiPuzzleWebV2EventControllerEnterResultRequest{
+func (a *EventsAPIService) ContentWebV2EventControllerEnterResult(ctx context.Context, id string) ApiContentWebV2EventControllerEnterResultRequest {
+	return ApiContentWebV2EventControllerEnterResultRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -221,7 +221,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerEnterResult(ctx context.Con
 
 // Execute executes the request
 //  @return EventResponse
-func (a *EventsAPIService) PuzzleWebV2EventControllerEnterResultExecute(r ApiPuzzleWebV2EventControllerEnterResultRequest) (*EventResponse, *http.Response, error) {
+func (a *EventsAPIService) ContentWebV2EventControllerEnterResultExecute(r ApiContentWebV2EventControllerEnterResultRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -229,7 +229,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerEnterResultExecute(r ApiPuz
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.PuzzleWebV2EventControllerEnterResult")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ContentWebV2EventControllerEnterResult")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -343,7 +343,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerEnterResultExecute(r ApiPuz
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2EventControllerPendingApprovalRequest struct {
+type ApiContentWebV2EventControllerPendingApprovalRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	cursor *string
@@ -351,36 +351,36 @@ type ApiPuzzleWebV2EventControllerPendingApprovalRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2EventControllerPendingApprovalRequest) Cursor(cursor string) ApiPuzzleWebV2EventControllerPendingApprovalRequest {
+func (r ApiContentWebV2EventControllerPendingApprovalRequest) Cursor(cursor string) ApiContentWebV2EventControllerPendingApprovalRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerPendingApprovalRequest) Limit(limit int32) ApiPuzzleWebV2EventControllerPendingApprovalRequest {
+func (r ApiContentWebV2EventControllerPendingApprovalRequest) Limit(limit int32) ApiContentWebV2EventControllerPendingApprovalRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventControllerPendingApprovalRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventControllerPendingApprovalRequest {
+func (r ApiContentWebV2EventControllerPendingApprovalRequest) XActingAs(xActingAs string) ApiContentWebV2EventControllerPendingApprovalRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerPendingApprovalRequest) Execute() (*EventsListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventControllerPendingApprovalExecute(r)
+func (r ApiContentWebV2EventControllerPendingApprovalRequest) Execute() (*EventsListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventControllerPendingApprovalExecute(r)
 }
 
 /*
-PuzzleWebV2EventControllerPendingApproval List events with results pending approval
+ContentWebV2EventControllerPendingApproval List events with results pending approval
 
 Admins see system events + their own user events; users see only their own.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2EventControllerPendingApprovalRequest
+ @return ApiContentWebV2EventControllerPendingApprovalRequest
 */
-func (a *EventsAPIService) PuzzleWebV2EventControllerPendingApproval(ctx context.Context) ApiPuzzleWebV2EventControllerPendingApprovalRequest {
-	return ApiPuzzleWebV2EventControllerPendingApprovalRequest{
+func (a *EventsAPIService) ContentWebV2EventControllerPendingApproval(ctx context.Context) ApiContentWebV2EventControllerPendingApprovalRequest {
+	return ApiContentWebV2EventControllerPendingApprovalRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -388,7 +388,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerPendingApproval(ctx context
 
 // Execute executes the request
 //  @return EventsListResponse
-func (a *EventsAPIService) PuzzleWebV2EventControllerPendingApprovalExecute(r ApiPuzzleWebV2EventControllerPendingApprovalRequest) (*EventsListResponse, *http.Response, error) {
+func (a *EventsAPIService) ContentWebV2EventControllerPendingApprovalExecute(r ApiContentWebV2EventControllerPendingApprovalRequest) (*EventsListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -396,7 +396,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerPendingApprovalExecute(r Ap
 		localVarReturnValue  *EventsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.PuzzleWebV2EventControllerPendingApproval")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ContentWebV2EventControllerPendingApproval")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -470,7 +470,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerPendingApprovalExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2EventControllerSearchRequest struct {
+type ApiContentWebV2EventControllerSearchRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	q *string
@@ -485,71 +485,71 @@ type ApiPuzzleWebV2EventControllerSearchRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) Q(q string) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) Q(q string) ApiContentWebV2EventControllerSearchRequest {
 	r.q = &q
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) DateFrom(dateFrom string) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) DateFrom(dateFrom string) ApiContentWebV2EventControllerSearchRequest {
 	r.dateFrom = &dateFrom
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) DateTo(dateTo string) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) DateTo(dateTo string) ApiContentWebV2EventControllerSearchRequest {
 	r.dateTo = &dateTo
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) Category(category string) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) Category(category string) ApiContentWebV2EventControllerSearchRequest {
 	r.category = &category
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) Competition(competition string) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) Competition(competition string) ApiContentWebV2EventControllerSearchRequest {
 	r.competition = &competition
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) IsUserEvent(isUserEvent bool) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) IsUserEvent(isUserEvent bool) ApiContentWebV2EventControllerSearchRequest {
 	r.isUserEvent = &isUserEvent
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) Size(size int32) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) Size(size int32) ApiContentWebV2EventControllerSearchRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) Cursor(cursor string) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) Cursor(cursor string) ApiContentWebV2EventControllerSearchRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) Limit(limit int32) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) Limit(limit int32) ApiContentWebV2EventControllerSearchRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventControllerSearchRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventControllerSearchRequest {
+func (r ApiContentWebV2EventControllerSearchRequest) XActingAs(xActingAs string) ApiContentWebV2EventControllerSearchRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerSearchRequest) Execute() (*EventsListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventControllerSearchExecute(r)
+func (r ApiContentWebV2EventControllerSearchRequest) Execute() (*EventsListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventControllerSearchExecute(r)
 }
 
 /*
-PuzzleWebV2EventControllerSearch Search events
+ContentWebV2EventControllerSearch Search events
 
 Elasticsearch-backed event search with cursor pagination.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2EventControllerSearchRequest
+ @return ApiContentWebV2EventControllerSearchRequest
 */
-func (a *EventsAPIService) PuzzleWebV2EventControllerSearch(ctx context.Context) ApiPuzzleWebV2EventControllerSearchRequest {
-	return ApiPuzzleWebV2EventControllerSearchRequest{
+func (a *EventsAPIService) ContentWebV2EventControllerSearch(ctx context.Context) ApiContentWebV2EventControllerSearchRequest {
+	return ApiContentWebV2EventControllerSearchRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -557,7 +557,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerSearch(ctx context.Context)
 
 // Execute executes the request
 //  @return EventsListResponse
-func (a *EventsAPIService) PuzzleWebV2EventControllerSearchExecute(r ApiPuzzleWebV2EventControllerSearchRequest) (*EventsListResponse, *http.Response, error) {
+func (a *EventsAPIService) ContentWebV2EventControllerSearchExecute(r ApiContentWebV2EventControllerSearchRequest) (*EventsListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -565,7 +565,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerSearchExecute(r ApiPuzzleWe
 		localVarReturnValue  *EventsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.PuzzleWebV2EventControllerSearch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ContentWebV2EventControllerSearch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -681,7 +681,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerSearchExecute(r ApiPuzzleWe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2EventControllerShowRequest struct {
+type ApiContentWebV2EventControllerShowRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	id string
@@ -689,24 +689,24 @@ type ApiPuzzleWebV2EventControllerShowRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventControllerShowRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventControllerShowRequest {
+func (r ApiContentWebV2EventControllerShowRequest) XActingAs(xActingAs string) ApiContentWebV2EventControllerShowRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerShowRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventControllerShowExecute(r)
+func (r ApiContentWebV2EventControllerShowRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventControllerShowExecute(r)
 }
 
 /*
-PuzzleWebV2EventControllerShow Get event by es_event_id
+ContentWebV2EventControllerShow Get event by es_event_id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2EventControllerShowRequest
+ @return ApiContentWebV2EventControllerShowRequest
 */
-func (a *EventsAPIService) PuzzleWebV2EventControllerShow(ctx context.Context, id string) ApiPuzzleWebV2EventControllerShowRequest {
-	return ApiPuzzleWebV2EventControllerShowRequest{
+func (a *EventsAPIService) ContentWebV2EventControllerShow(ctx context.Context, id string) ApiContentWebV2EventControllerShowRequest {
+	return ApiContentWebV2EventControllerShowRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -715,7 +715,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerShow(ctx context.Context, i
 
 // Execute executes the request
 //  @return EventResponse
-func (a *EventsAPIService) PuzzleWebV2EventControllerShowExecute(r ApiPuzzleWebV2EventControllerShowRequest) (*EventResponse, *http.Response, error) {
+func (a *EventsAPIService) ContentWebV2EventControllerShowExecute(r ApiContentWebV2EventControllerShowRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -723,7 +723,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerShowExecute(r ApiPuzzleWebV
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.PuzzleWebV2EventControllerShow")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ContentWebV2EventControllerShow")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -813,7 +813,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerShowExecute(r ApiPuzzleWebV
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2EventControllerShowDetailsRequest struct {
+type ApiContentWebV2EventControllerShowDetailsRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	id string
@@ -821,26 +821,26 @@ type ApiPuzzleWebV2EventControllerShowDetailsRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2EventControllerShowDetailsRequest) XActingAs(xActingAs string) ApiPuzzleWebV2EventControllerShowDetailsRequest {
+func (r ApiContentWebV2EventControllerShowDetailsRequest) XActingAs(xActingAs string) ApiContentWebV2EventControllerShowDetailsRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2EventControllerShowDetailsRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2EventControllerShowDetailsExecute(r)
+func (r ApiContentWebV2EventControllerShowDetailsRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2EventControllerShowDetailsExecute(r)
 }
 
 /*
-PuzzleWebV2EventControllerShowDetails Get event details (from Postgres)
+ContentWebV2EventControllerShowDetails Get event details (from Postgres)
 
 Fetches a prediction event directly from Postgres rather than the search index.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2EventControllerShowDetailsRequest
+ @return ApiContentWebV2EventControllerShowDetailsRequest
 */
-func (a *EventsAPIService) PuzzleWebV2EventControllerShowDetails(ctx context.Context, id string) ApiPuzzleWebV2EventControllerShowDetailsRequest {
-	return ApiPuzzleWebV2EventControllerShowDetailsRequest{
+func (a *EventsAPIService) ContentWebV2EventControllerShowDetails(ctx context.Context, id string) ApiContentWebV2EventControllerShowDetailsRequest {
+	return ApiContentWebV2EventControllerShowDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -849,7 +849,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerShowDetails(ctx context.Con
 
 // Execute executes the request
 //  @return EventResponse
-func (a *EventsAPIService) PuzzleWebV2EventControllerShowDetailsExecute(r ApiPuzzleWebV2EventControllerShowDetailsRequest) (*EventResponse, *http.Response, error) {
+func (a *EventsAPIService) ContentWebV2EventControllerShowDetailsExecute(r ApiContentWebV2EventControllerShowDetailsRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -857,7 +857,7 @@ func (a *EventsAPIService) PuzzleWebV2EventControllerShowDetailsExecute(r ApiPuz
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.PuzzleWebV2EventControllerShowDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ContentWebV2EventControllerShowDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

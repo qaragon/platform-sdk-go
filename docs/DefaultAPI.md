@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PuzzleWebV2EventHighlightsControllerGenerate**](DefaultAPI.md#PuzzleWebV2EventHighlightsControllerGenerate) | **Post** /v2/event-highlights/generate | Queue shared daily event highlight preparation
-[**PuzzleWebV2EventHighlightsControllerIndex**](DefaultAPI.md#PuzzleWebV2EventHighlightsControllerIndex) | **Get** /v2/event-highlights | Read Qaragon&#39;s shared daily event Highlights
+[**ContentWebV2EventHighlightsControllerGenerate**](DefaultAPI.md#ContentWebV2EventHighlightsControllerGenerate) | **Post** /v2/event-highlights/generate | Queue shared daily event highlight preparation
+[**ContentWebV2EventHighlightsControllerIndex**](DefaultAPI.md#ContentWebV2EventHighlightsControllerIndex) | **Get** /v2/event-highlights | Read Qaragon&#39;s shared daily event Highlights
 
 
 
-## PuzzleWebV2EventHighlightsControllerGenerate
+## ContentWebV2EventHighlightsControllerGenerate
 
-> EventHighlightsGenerationResponse PuzzleWebV2EventHighlightsControllerGenerate(ctx).XActingAs(xActingAs).EventHighlightsGenerationRequest(eventHighlightsGenerationRequest).Execute()
+> EventHighlightsGenerationResponse ContentWebV2EventHighlightsControllerGenerate(ctx).XActingAs(xActingAs).EventHighlightsGenerationRequest(eventHighlightsGenerationRequest).Execute()
 
 Queue shared daily event highlight preparation
 
@@ -35,13 +35,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.PuzzleWebV2EventHighlightsControllerGenerate(context.Background()).XActingAs(xActingAs).EventHighlightsGenerationRequest(eventHighlightsGenerationRequest).Execute()
+	resp, r, err := apiClient.DefaultAPI.ContentWebV2EventHighlightsControllerGenerate(context.Background()).XActingAs(xActingAs).EventHighlightsGenerationRequest(eventHighlightsGenerationRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.PuzzleWebV2EventHighlightsControllerGenerate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ContentWebV2EventHighlightsControllerGenerate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventHighlightsControllerGenerate`: EventHighlightsGenerationResponse
-	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.PuzzleWebV2EventHighlightsControllerGenerate`: %v\n", resp)
+	// response from `ContentWebV2EventHighlightsControllerGenerate`: EventHighlightsGenerationResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ContentWebV2EventHighlightsControllerGenerate`: %v\n", resp)
 }
 ```
 
@@ -51,7 +51,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventHighlightsControllerGenerateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventHighlightsControllerGenerateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -77,9 +77,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2EventHighlightsControllerIndex
+## ContentWebV2EventHighlightsControllerIndex
 
-> EventHighlightsResponse PuzzleWebV2EventHighlightsControllerIndex(ctx).Date(date).XActingAs(xActingAs).Execute()
+> EventHighlightsResponse ContentWebV2EventHighlightsControllerIndex(ctx).Date(date).XActingAs(xActingAs).Execute()
 
 Read Qaragon's shared daily event Highlights
 
@@ -104,13 +104,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.PuzzleWebV2EventHighlightsControllerIndex(context.Background()).Date(date).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.DefaultAPI.ContentWebV2EventHighlightsControllerIndex(context.Background()).Date(date).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.PuzzleWebV2EventHighlightsControllerIndex``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ContentWebV2EventHighlightsControllerIndex``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2EventHighlightsControllerIndex`: EventHighlightsResponse
-	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.PuzzleWebV2EventHighlightsControllerIndex`: %v\n", resp)
+	// response from `ContentWebV2EventHighlightsControllerIndex`: EventHighlightsResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ContentWebV2EventHighlightsControllerIndex`: %v\n", resp)
 }
 ```
 
@@ -120,7 +120,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2EventHighlightsControllerIndexRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2EventHighlightsControllerIndexRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

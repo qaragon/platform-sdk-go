@@ -69,6 +69,7 @@ docs/CheckinRoomResponseResponse.md
 docs/ClonePredictionSlipRequest.md
 docs/ClonePuzzleSheetRequest.md
 docs/ContentAdministrationAPI.md
+docs/ContentWebV2UserEventsControllerIndex200Response.md
 docs/ContestPuzzleResponse.md
 docs/ContestPuzzlesAPI.md
 docs/ContestStatusResponse.md
@@ -334,7 +335,6 @@ docs/PuzzleSheet.md
 docs/PuzzleSheetResponse.md
 docs/PuzzleSheetsAPI.md
 docs/PuzzleSheetsListResponse.md
-docs/PuzzleWebV2UserEventsControllerIndex200Response.md
 docs/PuzzlesAPI.md
 docs/PuzzlesListResponse.md
 docs/RankingsResponse.md
@@ -482,6 +482,7 @@ model_checkin_room_response.go
 model_checkin_room_response_response.go
 model_clone_prediction_slip_request.go
 model_clone_puzzle_sheet_request.go
+model_content_web_v2_user_events_controller_index_200_response.go
 model_contest_puzzle_response.go
 model_contest_status_response.go
 model_contest_status_response_data.go
@@ -730,7 +731,6 @@ model_puzzle_response.go
 model_puzzle_sheet.go
 model_puzzle_sheet_response.go
 model_puzzle_sheets_list_response.go
-model_puzzle_web_v2_user_events_controller_index_200_response.go
 model_puzzles_list_response.go
 model_rankings_response.go
 model_recurringcontests_contest_type.go

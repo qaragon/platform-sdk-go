@@ -22,13 +22,13 @@ func Test_platform_PuzzleSheetsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet", func(t *testing.T) {
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerClonePuzzleSheet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerClonePuzzleSheet(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,11 +36,11 @@ func Test_platform_PuzzleSheetsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerCreate", func(t *testing.T) {
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreate(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreate(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,11 +48,11 @@ func Test_platform_PuzzleSheetsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet", func(t *testing.T) {
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -60,11 +60,11 @@ func Test_platform_PuzzleSheetsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet", func(t *testing.T) {
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -72,38 +72,24 @@ func Test_platform_PuzzleSheetsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerDelete", func(t *testing.T) {
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerDelete(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerIndex", func(t *testing.T) {
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerIndex", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerIndex(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerShow", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerShow(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerIndex(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -111,13 +97,27 @@ func Test_platform_PuzzleSheetsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test PuzzleSheetsAPIService PuzzleWebV2PuzzleSheetControllerUpdate", func(t *testing.T) {
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerShow", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.PuzzleSheetsAPI.PuzzleWebV2PuzzleSheetControllerUpdate(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerShow(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test PuzzleSheetsAPIService ContentWebV2PuzzleSheetControllerUpdate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.PuzzleSheetsAPI.ContentWebV2PuzzleSheetControllerUpdate(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

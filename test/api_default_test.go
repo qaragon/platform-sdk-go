@@ -22,11 +22,11 @@ func Test_platform_DefaultAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test DefaultAPIService PuzzleWebV2EventHighlightsControllerGenerate", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ContentWebV2EventHighlightsControllerGenerate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DefaultAPI.PuzzleWebV2EventHighlightsControllerGenerate(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DefaultAPI.ContentWebV2EventHighlightsControllerGenerate(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_platform_DefaultAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test DefaultAPIService PuzzleWebV2EventHighlightsControllerIndex", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ContentWebV2EventHighlightsControllerIndex", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DefaultAPI.PuzzleWebV2EventHighlightsControllerIndex(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DefaultAPI.ContentWebV2EventHighlightsControllerIndex(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

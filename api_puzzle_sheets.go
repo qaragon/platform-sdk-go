@@ -24,7 +24,7 @@ import (
 // PuzzleSheetsAPIService PuzzleSheetsAPI service
 type PuzzleSheetsAPIService service
 
-type ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest struct {
+type ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	id string
@@ -33,30 +33,30 @@ type ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest {
+func (r ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Clone payload
-func (r ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest) ClonePuzzleSheetRequest(clonePuzzleSheetRequest ClonePuzzleSheetRequest) ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest {
+func (r ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest) ClonePuzzleSheetRequest(clonePuzzleSheetRequest ClonePuzzleSheetRequest) ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest {
 	r.clonePuzzleSheetRequest = &clonePuzzleSheetRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerClonePuzzleSheetExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerClonePuzzleSheetExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet Clone puzzle sheet
+ContentWebV2PuzzleSheetControllerClonePuzzleSheet Clone puzzle sheet
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest
+ @return ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet(ctx context.Context, id string) ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerClonePuzzleSheet(ctx context.Context, id string) ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest {
+	return ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -65,7 +65,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerClonePuzzleShee
 
 // Execute executes the request
 //  @return PuzzleSheetResponse
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerClonePuzzleSheetExecute(r ApiPuzzleWebV2PuzzleSheetControllerClonePuzzleSheetRequest) (*PuzzleSheetResponse, *http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerClonePuzzleSheetExecute(r ApiContentWebV2PuzzleSheetControllerClonePuzzleSheetRequest) (*PuzzleSheetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerClonePuzzleShee
 		localVarReturnValue  *PuzzleSheetResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerClonePuzzleSheet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -176,7 +176,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerClonePuzzleShee
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleSheetControllerCreateRequest struct {
+type ApiContentWebV2PuzzleSheetControllerCreateRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	xActingAs *string
@@ -184,29 +184,29 @@ type ApiPuzzleWebV2PuzzleSheetControllerCreateRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerCreateRequest {
+func (r ApiContentWebV2PuzzleSheetControllerCreateRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerCreateRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Puzzle sheet payload
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateRequest) CreatePuzzleSheetRequest(createPuzzleSheetRequest CreatePuzzleSheetRequest) ApiPuzzleWebV2PuzzleSheetControllerCreateRequest {
+func (r ApiContentWebV2PuzzleSheetControllerCreateRequest) CreatePuzzleSheetRequest(createPuzzleSheetRequest CreatePuzzleSheetRequest) ApiContentWebV2PuzzleSheetControllerCreateRequest {
 	r.createPuzzleSheetRequest = &createPuzzleSheetRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerCreateExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerCreateRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerCreateExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerCreate Create puzzle sheet
+ContentWebV2PuzzleSheetControllerCreate Create puzzle sheet
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleSheetControllerCreateRequest
+ @return ApiContentWebV2PuzzleSheetControllerCreateRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreate(ctx context.Context) ApiPuzzleWebV2PuzzleSheetControllerCreateRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerCreateRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerCreate(ctx context.Context) ApiContentWebV2PuzzleSheetControllerCreateRequest {
+	return ApiContentWebV2PuzzleSheetControllerCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -214,7 +214,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreate(ctx cont
 
 // Execute executes the request
 //  @return PuzzleSheetResponse
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateExecute(r ApiPuzzleWebV2PuzzleSheetControllerCreateRequest) (*PuzzleSheetResponse, *http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerCreateExecute(r ApiContentWebV2PuzzleSheetControllerCreateRequest) (*PuzzleSheetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -222,7 +222,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateExecute(r
 		localVarReturnValue  *PuzzleSheetResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -302,7 +302,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest struct {
+type ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	xActingAs *string
@@ -310,31 +310,31 @@ type ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest struct 
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest {
+func (r ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Adhoc community sheet payload
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) CreateAdhocCommunitySheetRequest(createAdhocCommunitySheetRequest CreateAdhocCommunitySheetRequest) ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest {
+func (r ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) CreateAdhocCommunitySheetRequest(createAdhocCommunitySheetRequest CreateAdhocCommunitySheetRequest) ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest {
 	r.createAdhocCommunitySheetRequest = &createAdhocCommunitySheetRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet Create adhoc community puzzle sheet
+ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet Create adhoc community puzzle sheet
 
 Builds a system-visibility sheet from puzzle bank questions matching topic+difficulty, scoped to the caller's tenant.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest
+ @return ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(ctx context.Context) ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet(ctx context.Context) ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest {
+	return ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -342,7 +342,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocComm
 
 // Execute executes the request
 //  @return PuzzleSheetResponse
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetExecute(r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) (*PuzzleSheetResponse, *http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetExecute(r ApiContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheetRequest) (*PuzzleSheetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -350,7 +350,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocComm
 		localVarReturnValue  *PuzzleSheetResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -430,7 +430,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocComm
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest struct {
+type ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	xActingAs *string
@@ -438,31 +438,31 @@ type ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest {
+func (r ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Adhoc user sheet payload
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) CreateAdhocUserSheetRequest(createAdhocUserSheetRequest CreateAdhocUserSheetRequest) ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest {
+func (r ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) CreateAdhocUserSheetRequest(createAdhocUserSheetRequest CreateAdhocUserSheetRequest) ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest {
 	r.createAdhocUserSheetRequest = &createAdhocUserSheetRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerCreateAdhocUserSheetExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet Create adhoc user puzzle sheet
+ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet Create adhoc user puzzle sheet
 
 Builds a per-user adhoc sheet by sampling N puzzles from an existing sheet the caller owns within their tenant.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest
+ @return ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet(ctx context.Context) ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet(ctx context.Context) ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest {
+	return ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -470,7 +470,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocUser
 
 // Execute executes the request
 //  @return PuzzleSheetResponse
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetExecute(r ApiPuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) (*PuzzleSheetResponse, *http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerCreateAdhocUserSheetExecute(r ApiContentWebV2PuzzleSheetControllerCreateAdhocUserSheetRequest) (*PuzzleSheetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -478,7 +478,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocUser
 		localVarReturnValue  *PuzzleSheetResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -569,7 +569,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerCreateAdhocUser
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest struct {
+type ApiContentWebV2PuzzleSheetControllerDeleteRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	id string
@@ -577,24 +577,24 @@ type ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest {
+func (r ApiContentWebV2PuzzleSheetControllerDeleteRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerDeleteRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerDeleteExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerDeleteExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerDelete Delete puzzle sheet
+ContentWebV2PuzzleSheetControllerDelete Delete puzzle sheet
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest
+ @return ApiContentWebV2PuzzleSheetControllerDeleteRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerDelete(ctx context.Context, id string) ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerDelete(ctx context.Context, id string) ApiContentWebV2PuzzleSheetControllerDeleteRequest {
+	return ApiContentWebV2PuzzleSheetControllerDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -602,14 +602,14 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerDelete(ctx cont
 }
 
 // Execute executes the request
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerDeleteExecute(r ApiPuzzleWebV2PuzzleSheetControllerDeleteRequest) (*http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerDeleteExecute(r ApiContentWebV2PuzzleSheetControllerDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -679,7 +679,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerDeleteExecute(r
 	return localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleSheetControllerIndexRequest struct {
+type ApiContentWebV2PuzzleSheetControllerIndexRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	format *string
@@ -688,41 +688,41 @@ type ApiPuzzleWebV2PuzzleSheetControllerIndexRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) Format(format string) ApiPuzzleWebV2PuzzleSheetControllerIndexRequest {
+func (r ApiContentWebV2PuzzleSheetControllerIndexRequest) Format(format string) ApiContentWebV2PuzzleSheetControllerIndexRequest {
 	r.format = &format
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) Cursor(cursor string) ApiPuzzleWebV2PuzzleSheetControllerIndexRequest {
+func (r ApiContentWebV2PuzzleSheetControllerIndexRequest) Cursor(cursor string) ApiContentWebV2PuzzleSheetControllerIndexRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) Limit(limit int32) ApiPuzzleWebV2PuzzleSheetControllerIndexRequest {
+func (r ApiContentWebV2PuzzleSheetControllerIndexRequest) Limit(limit int32) ApiContentWebV2PuzzleSheetControllerIndexRequest {
 	r.limit = &limit
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerIndexRequest {
+func (r ApiContentWebV2PuzzleSheetControllerIndexRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerIndexRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) Execute() (*PuzzleSheetsListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerIndexExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerIndexRequest) Execute() (*PuzzleSheetsListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerIndexExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerIndex List puzzle sheets
+ContentWebV2PuzzleSheetControllerIndex List puzzle sheets
 
 Cursor-paginated puzzle sheets visible to the caller within their tenant.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2PuzzleSheetControllerIndexRequest
+ @return ApiContentWebV2PuzzleSheetControllerIndexRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerIndex(ctx context.Context) ApiPuzzleWebV2PuzzleSheetControllerIndexRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerIndexRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerIndex(ctx context.Context) ApiContentWebV2PuzzleSheetControllerIndexRequest {
+	return ApiContentWebV2PuzzleSheetControllerIndexRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -730,7 +730,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerIndex(ctx conte
 
 // Execute executes the request
 //  @return PuzzleSheetsListResponse
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerIndexExecute(r ApiPuzzleWebV2PuzzleSheetControllerIndexRequest) (*PuzzleSheetsListResponse, *http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerIndexExecute(r ApiContentWebV2PuzzleSheetControllerIndexRequest) (*PuzzleSheetsListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -738,7 +738,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerIndexExecute(r 
 		localVarReturnValue  *PuzzleSheetsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerIndex")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerIndex")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -815,7 +815,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerIndexExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleSheetControllerShowRequest struct {
+type ApiContentWebV2PuzzleSheetControllerShowRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	id string
@@ -823,24 +823,24 @@ type ApiPuzzleWebV2PuzzleSheetControllerShowRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerShowRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerShowRequest {
+func (r ApiContentWebV2PuzzleSheetControllerShowRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerShowRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerShowRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerShowExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerShowRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerShowExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerShow Get puzzle sheet
+ContentWebV2PuzzleSheetControllerShow Get puzzle sheet
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PuzzleSheetControllerShowRequest
+ @return ApiContentWebV2PuzzleSheetControllerShowRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerShow(ctx context.Context, id string) ApiPuzzleWebV2PuzzleSheetControllerShowRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerShowRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerShow(ctx context.Context, id string) ApiContentWebV2PuzzleSheetControllerShowRequest {
+	return ApiContentWebV2PuzzleSheetControllerShowRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -849,7 +849,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerShow(ctx contex
 
 // Execute executes the request
 //  @return PuzzleSheetResponse
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerShowExecute(r ApiPuzzleWebV2PuzzleSheetControllerShowRequest) (*PuzzleSheetResponse, *http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerShowExecute(r ApiContentWebV2PuzzleSheetControllerShowRequest) (*PuzzleSheetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -857,7 +857,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerShowExecute(r A
 		localVarReturnValue  *PuzzleSheetResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerShow")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerShow")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -936,7 +936,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerShowExecute(r A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest struct {
+type ApiContentWebV2PuzzleSheetControllerUpdateRequest struct {
 	ctx context.Context
 	ApiService *PuzzleSheetsAPIService
 	id string
@@ -945,30 +945,30 @@ type ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest) XActingAs(xActingAs string) ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest {
+func (r ApiContentWebV2PuzzleSheetControllerUpdateRequest) XActingAs(xActingAs string) ApiContentWebV2PuzzleSheetControllerUpdateRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Puzzle sheet payload
-func (r ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest) CreatePuzzleSheetRequest(createPuzzleSheetRequest CreatePuzzleSheetRequest) ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest {
+func (r ApiContentWebV2PuzzleSheetControllerUpdateRequest) CreatePuzzleSheetRequest(createPuzzleSheetRequest CreatePuzzleSheetRequest) ApiContentWebV2PuzzleSheetControllerUpdateRequest {
 	r.createPuzzleSheetRequest = &createPuzzleSheetRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2PuzzleSheetControllerUpdateExecute(r)
+func (r ApiContentWebV2PuzzleSheetControllerUpdateRequest) Execute() (*PuzzleSheetResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2PuzzleSheetControllerUpdateExecute(r)
 }
 
 /*
-PuzzleWebV2PuzzleSheetControllerUpdate Update puzzle sheet
+ContentWebV2PuzzleSheetControllerUpdate Update puzzle sheet
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest
+ @return ApiContentWebV2PuzzleSheetControllerUpdateRequest
 */
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerUpdate(ctx context.Context, id string) ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest {
-	return ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest{
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerUpdate(ctx context.Context, id string) ApiContentWebV2PuzzleSheetControllerUpdateRequest {
+	return ApiContentWebV2PuzzleSheetControllerUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -977,7 +977,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerUpdate(ctx cont
 
 // Execute executes the request
 //  @return PuzzleSheetResponse
-func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerUpdateExecute(r ApiPuzzleWebV2PuzzleSheetControllerUpdateRequest) (*PuzzleSheetResponse, *http.Response, error) {
+func (a *PuzzleSheetsAPIService) ContentWebV2PuzzleSheetControllerUpdateExecute(r ApiContentWebV2PuzzleSheetControllerUpdateRequest) (*PuzzleSheetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -985,7 +985,7 @@ func (a *PuzzleSheetsAPIService) PuzzleWebV2PuzzleSheetControllerUpdateExecute(r
 		localVarReturnValue  *PuzzleSheetResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.PuzzleWebV2PuzzleSheetControllerUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PuzzleSheetsAPIService.ContentWebV2PuzzleSheetControllerUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

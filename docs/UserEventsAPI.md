@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PuzzleWebV2UserEventsControllerCreate**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerCreate) | **Post** /v2/user-events | Create user event
-[**PuzzleWebV2UserEventsControllerDelete**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerDelete) | **Delete** /v2/user-events/{id} | Delete user event
-[**PuzzleWebV2UserEventsControllerGetResultSuggestions**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerGetResultSuggestions) | **Get** /v2/user-events/{user_events_id}/result-suggestions | Get result suggestions for a user event
-[**PuzzleWebV2UserEventsControllerGetStatus**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerGetStatus) | **Get** /v2/user-events/{user_events_id}/status | Get user event status
-[**PuzzleWebV2UserEventsControllerIndex**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerIndex) | **Get** /v2/user-events | List user events
-[**PuzzleWebV2UserEventsControllerListTemplates**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerListTemplates) | **Get** /v2/event-templates | List event templates
-[**PuzzleWebV2UserEventsControllerShow**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerShow) | **Get** /v2/user-events/{id} | Get user event
-[**PuzzleWebV2UserEventsControllerUpdate**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerUpdate) | **Patch** /v2/user-events/{id} | Update user event
-[**PuzzleWebV2UserEventsControllerUseExistingResult**](UserEventsAPI.md#PuzzleWebV2UserEventsControllerUseExistingResult) | **Post** /v2/user-events/{user_events_id}/use-result | Copy result from another user event
+[**ContentWebV2UserEventsControllerCreate**](UserEventsAPI.md#ContentWebV2UserEventsControllerCreate) | **Post** /v2/user-events | Create user event
+[**ContentWebV2UserEventsControllerDelete**](UserEventsAPI.md#ContentWebV2UserEventsControllerDelete) | **Delete** /v2/user-events/{id} | Delete user event
+[**ContentWebV2UserEventsControllerGetResultSuggestions**](UserEventsAPI.md#ContentWebV2UserEventsControllerGetResultSuggestions) | **Get** /v2/user-events/{user_events_id}/result-suggestions | Get result suggestions for a user event
+[**ContentWebV2UserEventsControllerGetStatus**](UserEventsAPI.md#ContentWebV2UserEventsControllerGetStatus) | **Get** /v2/user-events/{user_events_id}/status | Get user event status
+[**ContentWebV2UserEventsControllerIndex**](UserEventsAPI.md#ContentWebV2UserEventsControllerIndex) | **Get** /v2/user-events | List user events
+[**ContentWebV2UserEventsControllerListTemplates**](UserEventsAPI.md#ContentWebV2UserEventsControllerListTemplates) | **Get** /v2/event-templates | List event templates
+[**ContentWebV2UserEventsControllerShow**](UserEventsAPI.md#ContentWebV2UserEventsControllerShow) | **Get** /v2/user-events/{id} | Get user event
+[**ContentWebV2UserEventsControllerUpdate**](UserEventsAPI.md#ContentWebV2UserEventsControllerUpdate) | **Patch** /v2/user-events/{id} | Update user event
+[**ContentWebV2UserEventsControllerUseExistingResult**](UserEventsAPI.md#ContentWebV2UserEventsControllerUseExistingResult) | **Post** /v2/user-events/{user_events_id}/use-result | Copy result from another user event
 
 
 
-## PuzzleWebV2UserEventsControllerCreate
+## ContentWebV2UserEventsControllerCreate
 
-> EventResponse PuzzleWebV2UserEventsControllerCreate(ctx).XActingAs(xActingAs).CreateUserEventRequest(createUserEventRequest).Execute()
+> EventResponse ContentWebV2UserEventsControllerCreate(ctx).XActingAs(xActingAs).CreateUserEventRequest(createUserEventRequest).Execute()
 
 Create user event
 
@@ -40,13 +40,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerCreate(context.Background()).XActingAs(xActingAs).CreateUserEventRequest(createUserEventRequest).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerCreate(context.Background()).XActingAs(xActingAs).CreateUserEventRequest(createUserEventRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerCreate`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerCreate`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerCreate`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerCreate`: %v\n", resp)
 }
 ```
 
@@ -56,7 +56,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -82,9 +82,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerDelete
+## ContentWebV2UserEventsControllerDelete
 
-> PuzzleWebV2UserEventsControllerDelete(ctx, id).XActingAs(xActingAs).Execute()
+> ContentWebV2UserEventsControllerDelete(ctx, id).XActingAs(xActingAs).Execute()
 
 Delete user event
 
@@ -106,9 +106,9 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerDelete(context.Background(), id).XActingAs(xActingAs).Execute()
+	r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerDelete(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -150,9 +150,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerGetResultSuggestions
+## ContentWebV2UserEventsControllerGetResultSuggestions
 
-> ResultSuggestionsResponse PuzzleWebV2UserEventsControllerGetResultSuggestions(ctx, userEventsId).XActingAs(xActingAs).Execute()
+> ResultSuggestionsResponse ContentWebV2UserEventsControllerGetResultSuggestions(ctx, userEventsId).XActingAs(xActingAs).Execute()
 
 Get result suggestions for a user event
 
@@ -174,13 +174,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerGetResultSuggestions(context.Background(), userEventsId).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerGetResultSuggestions(context.Background(), userEventsId).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerGetResultSuggestions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerGetResultSuggestions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerGetResultSuggestions`: ResultSuggestionsResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerGetResultSuggestions`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerGetResultSuggestions`: ResultSuggestionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerGetResultSuggestions`: %v\n", resp)
 }
 ```
 
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerGetResultSuggestionsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -220,9 +220,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerGetStatus
+## ContentWebV2UserEventsControllerGetStatus
 
-> UserEventStatusResponse PuzzleWebV2UserEventsControllerGetStatus(ctx, userEventsId).XActingAs(xActingAs).Execute()
+> UserEventStatusResponse ContentWebV2UserEventsControllerGetStatus(ctx, userEventsId).XActingAs(xActingAs).Execute()
 
 Get user event status
 
@@ -244,13 +244,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerGetStatus(context.Background(), userEventsId).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerGetStatus(context.Background(), userEventsId).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerGetStatus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerGetStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerGetStatus`: UserEventStatusResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerGetStatus`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerGetStatus`: UserEventStatusResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerGetStatus`: %v\n", resp)
 }
 ```
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerGetStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerGetStatusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -290,9 +290,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerIndex
+## ContentWebV2UserEventsControllerIndex
 
-> PuzzleWebV2UserEventsControllerIndex200Response PuzzleWebV2UserEventsControllerIndex(ctx).All(all).Visibility(visibility).DateFrom(dateFrom).DateTo(dateTo).XActingAs(xActingAs).Execute()
+> ContentWebV2UserEventsControllerIndex200Response ContentWebV2UserEventsControllerIndex(ctx).All(all).Visibility(visibility).DateFrom(dateFrom).DateTo(dateTo).XActingAs(xActingAs).Execute()
 
 List user events
 
@@ -318,13 +318,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerIndex(context.Background()).All(all).Visibility(visibility).DateFrom(dateFrom).DateTo(dateTo).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerIndex(context.Background()).All(all).Visibility(visibility).DateFrom(dateFrom).DateTo(dateTo).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerIndex``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerIndex``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerIndex`: PuzzleWebV2UserEventsControllerIndex200Response
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerIndex`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerIndex`: ContentWebV2UserEventsControllerIndex200Response
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerIndex`: %v\n", resp)
 }
 ```
 
@@ -334,7 +334,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerIndexRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerIndexRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PuzzleWebV2UserEventsControllerIndex200Response**](PuzzleWebV2UserEventsControllerIndex200Response.md)
+[**ContentWebV2UserEventsControllerIndex200Response**](ContentWebV2UserEventsControllerIndex200Response.md)
 
 ### Authorization
 
@@ -363,9 +363,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerListTemplates
+## ContentWebV2UserEventsControllerListTemplates
 
-> EventTemplatesListResponse PuzzleWebV2UserEventsControllerListTemplates(ctx).Category(category).EventType(eventType).XActingAs(xActingAs).Execute()
+> EventTemplatesListResponse ContentWebV2UserEventsControllerListTemplates(ctx).Category(category).EventType(eventType).XActingAs(xActingAs).Execute()
 
 List event templates
 
@@ -390,13 +390,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerListTemplates(context.Background()).Category(category).EventType(eventType).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerListTemplates(context.Background()).Category(category).EventType(eventType).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerListTemplates``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerListTemplates``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerListTemplates`: EventTemplatesListResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerListTemplates`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerListTemplates`: EventTemplatesListResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerListTemplates`: %v\n", resp)
 }
 ```
 
@@ -406,7 +406,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerListTemplatesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerListTemplatesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -433,9 +433,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerShow
+## ContentWebV2UserEventsControllerShow
 
-> EventResponse PuzzleWebV2UserEventsControllerShow(ctx, id).XActingAs(xActingAs).Execute()
+> EventResponse ContentWebV2UserEventsControllerShow(ctx, id).XActingAs(xActingAs).Execute()
 
 Get user event
 
@@ -457,13 +457,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerShow(context.Background(), id).XActingAs(xActingAs).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerShow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerShow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerShow`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerShow`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerShow`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerShow`: %v\n", resp)
 }
 ```
 
@@ -477,7 +477,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerShowRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerShowRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -503,9 +503,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerUpdate
+## ContentWebV2UserEventsControllerUpdate
 
-> EventResponse PuzzleWebV2UserEventsControllerUpdate(ctx, id).XActingAs(xActingAs).UpdateUserEventRequest(updateUserEventRequest).Execute()
+> EventResponse ContentWebV2UserEventsControllerUpdate(ctx, id).XActingAs(xActingAs).UpdateUserEventRequest(updateUserEventRequest).Execute()
 
 Update user event
 
@@ -528,13 +528,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerUpdate(context.Background(), id).XActingAs(xActingAs).UpdateUserEventRequest(updateUserEventRequest).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerUpdate(context.Background(), id).XActingAs(xActingAs).UpdateUserEventRequest(updateUserEventRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerUpdate`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerUpdate`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerUpdate`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerUpdate`: %v\n", resp)
 }
 ```
 
@@ -548,7 +548,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -575,9 +575,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PuzzleWebV2UserEventsControllerUseExistingResult
+## ContentWebV2UserEventsControllerUseExistingResult
 
-> EventResponse PuzzleWebV2UserEventsControllerUseExistingResult(ctx, userEventsId).XActingAs(xActingAs).UseExistingResultRequest(useExistingResultRequest).Execute()
+> EventResponse ContentWebV2UserEventsControllerUseExistingResult(ctx, userEventsId).XActingAs(xActingAs).UseExistingResultRequest(useExistingResultRequest).Execute()
 
 Copy result from another user event
 
@@ -600,13 +600,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserEventsAPI.PuzzleWebV2UserEventsControllerUseExistingResult(context.Background(), userEventsId).XActingAs(xActingAs).UseExistingResultRequest(useExistingResultRequest).Execute()
+	resp, r, err := apiClient.UserEventsAPI.ContentWebV2UserEventsControllerUseExistingResult(context.Background(), userEventsId).XActingAs(xActingAs).UseExistingResultRequest(useExistingResultRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.PuzzleWebV2UserEventsControllerUseExistingResult``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserEventsAPI.ContentWebV2UserEventsControllerUseExistingResult``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PuzzleWebV2UserEventsControllerUseExistingResult`: EventResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.PuzzleWebV2UserEventsControllerUseExistingResult`: %v\n", resp)
+	// response from `ContentWebV2UserEventsControllerUseExistingResult`: EventResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserEventsAPI.ContentWebV2UserEventsControllerUseExistingResult`: %v\n", resp)
 }
 ```
 
@@ -620,7 +620,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPuzzleWebV2UserEventsControllerUseExistingResultRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiContentWebV2UserEventsControllerUseExistingResultRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

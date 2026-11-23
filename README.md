@@ -88,9 +88,9 @@ Class | Method | HTTP request | Description
 *ContentAdministrationAPI* | [**GetAdminAnswerBoardsGeneration**](docs/ContentAdministrationAPI.md#getadminanswerboardsgeneration) | **Get** /v2/admin/answer-boards/generation | Read platform answer-board library generation settings
 *ContentAdministrationAPI* | [**UpdateAdminAnswerBoardsByIdReview**](docs/ContentAdministrationAPI.md#updateadminanswerboardsbyidreview) | **Put** /v2/admin/answer-boards/{id}/review | Approve or reject an answer board for library publication
 *ContentAdministrationAPI* | [**UpdateAdminAnswerBoardsGenerationByKind**](docs/ContentAdministrationAPI.md#updateadminanswerboardsgenerationbykind) | **Put** /v2/admin/answer-boards/generation/{kind} | Configure scheduled library generation
-*ContestPuzzlesAPI* | [**PuzzleWebV2ContestPuzzleControllerGetPuzzle**](docs/ContestPuzzlesAPI.md#puzzlewebv2contestpuzzlecontrollergetpuzzle) | **Get** /v2/contest-puzzles/{contest_id} | Get contest source
-*ContestPuzzlesAPI* | [**PuzzleWebV2ContestPuzzleControllerRankings**](docs/ContestPuzzlesAPI.md#puzzlewebv2contestpuzzlecontrollerrankings) | **Get** /v2/contest-puzzles/{contest_id}/rankings | Get contest rankings
-*ContestPuzzlesAPI* | [**PuzzleWebV2ContestPuzzleControllerStatus**](docs/ContestPuzzlesAPI.md#puzzlewebv2contestpuzzlecontrollerstatus) | **Get** /v2/contest-puzzles/{contest_id}/status | Get contest status
+*ContestPuzzlesAPI* | [**ContentWebV2ContestPuzzleControllerGetPuzzle**](docs/ContestPuzzlesAPI.md#contentwebv2contestpuzzlecontrollergetpuzzle) | **Get** /v2/contest-puzzles/{contest_id} | Get contest source
+*ContestPuzzlesAPI* | [**ContentWebV2ContestPuzzleControllerRankings**](docs/ContestPuzzlesAPI.md#contentwebv2contestpuzzlecontrollerrankings) | **Get** /v2/contest-puzzles/{contest_id}/rankings | Get contest rankings
+*ContestPuzzlesAPI* | [**ContentWebV2ContestPuzzleControllerStatus**](docs/ContestPuzzlesAPI.md#contentwebv2contestpuzzlecontrollerstatus) | **Get** /v2/contest-puzzles/{contest_id}/status | Get contest status
 *ContestsAPI* | [**CreateContests**](docs/ContestsAPI.md#createcontests) | **Post** /v2/contests | Create a contest
 *ContestsAPI* | [**CreateContestsByContestIdBuddyBoards**](docs/ContestsAPI.md#createcontestsbycontestidbuddyboards) | **Post** /v2/contests/{contestId}/buddy-boards | Create a buddy board on a contest (owner &#x3D; caller)
 *ContestsAPI* | [**CreateContestsByContestIdBuddyBoardsByBoardIdInvitesAccept**](docs/ContestsAPI.md#createcontestsbycontestidbuddyboardsbyboardidinvitesaccept) | **Post** /v2/contests/{contestId}/buddy-boards/{boardId}/invites/accept | Accept a pending buddy board invite (invitee only)
@@ -137,14 +137,14 @@ Class | Method | HTTP request | Description
 *CreativeContestsAPI* | [**GetJurorsAssignments**](docs/CreativeContestsAPI.md#getjurorsassignments) | **Get** /v2/jurors/assignments | Get juror assignments (cursor-paginated)
 *CreativeContestsAPI* | [**GetJurorsInvitations**](docs/CreativeContestsAPI.md#getjurorsinvitations) | **Get** /v2/jurors/invitations | Get my pending invitations
 *CreativeContestsAPI* | [**UpdateContestsByIdEntriesByEntryIdScore**](docs/CreativeContestsAPI.md#updatecontestsbyidentriesbyentryidscore) | **Put** /v2/contests/{id}/entries/{entryId}/score | Score an entry
-*DefaultAPI* | [**PuzzleWebV2EventHighlightsControllerGenerate**](docs/DefaultAPI.md#puzzlewebv2eventhighlightscontrollergenerate) | **Post** /v2/event-highlights/generate | Queue shared daily event highlight preparation
-*DefaultAPI* | [**PuzzleWebV2EventHighlightsControllerIndex**](docs/DefaultAPI.md#puzzlewebv2eventhighlightscontrollerindex) | **Get** /v2/event-highlights | Read Qaragon&#39;s shared daily event Highlights
-*EventsAPI* | [**PuzzleWebV2EventControllerApproveResult**](docs/EventsAPI.md#puzzlewebv2eventcontrollerapproveresult) | **Post** /v2/events/{id}/approve | Approve event result
-*EventsAPI* | [**PuzzleWebV2EventControllerEnterResult**](docs/EventsAPI.md#puzzlewebv2eventcontrollerenterresult) | **Patch** /v2/events/{id}/result | Enter event result
-*EventsAPI* | [**PuzzleWebV2EventControllerPendingApproval**](docs/EventsAPI.md#puzzlewebv2eventcontrollerpendingapproval) | **Get** /v2/events/pending-approval | List events with results pending approval
-*EventsAPI* | [**PuzzleWebV2EventControllerSearch**](docs/EventsAPI.md#puzzlewebv2eventcontrollersearch) | **Get** /v2/events/search | Search events
-*EventsAPI* | [**PuzzleWebV2EventControllerShow**](docs/EventsAPI.md#puzzlewebv2eventcontrollershow) | **Get** /v2/events/{id} | Get event by es_event_id
-*EventsAPI* | [**PuzzleWebV2EventControllerShowDetails**](docs/EventsAPI.md#puzzlewebv2eventcontrollershowdetails) | **Get** /v2/events/{id}/details | Get event details (from Postgres)
+*DefaultAPI* | [**ContentWebV2EventHighlightsControllerGenerate**](docs/DefaultAPI.md#contentwebv2eventhighlightscontrollergenerate) | **Post** /v2/event-highlights/generate | Queue shared daily event highlight preparation
+*DefaultAPI* | [**ContentWebV2EventHighlightsControllerIndex**](docs/DefaultAPI.md#contentwebv2eventhighlightscontrollerindex) | **Get** /v2/event-highlights | Read Qaragon&#39;s shared daily event Highlights
+*EventsAPI* | [**ContentWebV2EventControllerApproveResult**](docs/EventsAPI.md#contentwebv2eventcontrollerapproveresult) | **Post** /v2/events/{id}/approve | Approve event result
+*EventsAPI* | [**ContentWebV2EventControllerEnterResult**](docs/EventsAPI.md#contentwebv2eventcontrollerenterresult) | **Patch** /v2/events/{id}/result | Enter event result
+*EventsAPI* | [**ContentWebV2EventControllerPendingApproval**](docs/EventsAPI.md#contentwebv2eventcontrollerpendingapproval) | **Get** /v2/events/pending-approval | List events with results pending approval
+*EventsAPI* | [**ContentWebV2EventControllerSearch**](docs/EventsAPI.md#contentwebv2eventcontrollersearch) | **Get** /v2/events/search | Search events
+*EventsAPI* | [**ContentWebV2EventControllerShow**](docs/EventsAPI.md#contentwebv2eventcontrollershow) | **Get** /v2/events/{id} | Get event by es_event_id
+*EventsAPI* | [**ContentWebV2EventControllerShowDetails**](docs/EventsAPI.md#contentwebv2eventcontrollershowdetails) | **Get** /v2/events/{id}/details | Get event details (from Postgres)
 *FeedsAPI* | [**GetFeed**](docs/FeedsAPI.md#getfeed) | **Get** /v2/feed | Get the trending feed (tenant-scoped, cursor-paginated)
 *FeedsAPI* | [**GetIdentitiesByPiidFeedPersonalized**](docs/FeedsAPI.md#getidentitiesbypiidfeedpersonalized) | **Get** /v2/identities/{piid}/feed-personalized | Get the personalized feed for a platform identity
 *GameContentAdministrationAPI* | [**CreateAdminGamesFansFeudLibraryGenerate**](docs/GameContentAdministrationAPI.md#createadmingamesfansfeudlibrarygenerate) | **Post** /v2/admin/games/fans-feud/library/generate | Generate fresh Fans Feud library content
@@ -194,33 +194,33 @@ Class | Method | HTTP request | Description
 *ParticipationAPI* | [**GetParticipationById**](docs/ParticipationAPI.md#getparticipationbyid) | **Get** /v2/participation/{id} | Get participation by id
 *ParticipationAPI* | [**GetParticipationContestById**](docs/ParticipationAPI.md#getparticipationcontestbyid) | **Get** /v2/participation/contest/{id} | Get member participation by contest id
 *ParticipationAPI* | [**PatchParticipationByParticipationIdGroup**](docs/ParticipationAPI.md#patchparticipationbyparticipationidgroup) | **Patch** /v2/participation/{participationId}/group | Select group for open grouping contest
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerClonePredictionSlip**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollerclonepredictionslip) | **Post** /v2/prediction-slips/{id}/clone | Clone prediction slip
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerCreatePredictionSlip**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollercreatepredictionslip) | **Post** /v2/prediction-slips | Create prediction slip
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerDeletePredictionSlip**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollerdeletepredictionslip) | **Delete** /v2/prediction-slips/{id} | Delete prediction slip
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerListCommunityPredictionSlips**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollerlistcommunitypredictionslips) | **Get** /v2/prediction-slips/community | List public/community prediction slips
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerListCuratedSlips**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollerlistcuratedslips) | **Get** /v2/curated-slips | List curated prediction slips
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerListPredictionSlips**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollerlistpredictionslips) | **Get** /v2/prediction-slips | List the caller&#39;s prediction slips
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerPrepareHighlightedPredictionSlip**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollerpreparehighlightedpredictionslip) | **Post** /v2/prediction-slips/from-highlights | Prepare a Prediction slip from an upcoming highlighted event
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerShowOpenPredictionSlip**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollershowopenpredictionslip) | **Get** /v2/prediction-slips/open | Get the caller&#39;s open prediction slip
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerShowPredictionSlip**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollershowpredictionslip) | **Get** /v2/prediction-slips/{id} | Get prediction slip
-*PredictionSlipsAPI* | [**PuzzleWebV2PredictionControllerUpdatePredictionSlip**](docs/PredictionSlipsAPI.md#puzzlewebv2predictioncontrollerupdatepredictionslip) | **Put** /v2/prediction-slips/{id} | Update prediction slip
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerClonePuzzleSheet**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollerclonepuzzlesheet) | **Post** /v2/puzzle-sheets/{id}/clone | Clone puzzle sheet
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerCreate**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollercreate) | **Post** /v2/puzzle-sheets | Create puzzle sheet
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerCreateAdhocCommunitySheet**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollercreateadhoccommunitysheet) | **Post** /v2/puzzle-sheets/adhoc-community-sheet | Create adhoc community puzzle sheet
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerCreateAdhocUserSheet**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollercreateadhocusersheet) | **Post** /v2/puzzle-sheets/adhoc-user-sheet | Create adhoc user puzzle sheet
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerDelete**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollerdelete) | **Delete** /v2/puzzle-sheets/{id} | Delete puzzle sheet
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerIndex**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollerindex) | **Get** /v2/puzzle-sheets | List puzzle sheets
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerShow**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollershow) | **Get** /v2/puzzle-sheets/{id} | Get puzzle sheet
-*PuzzleSheetsAPI* | [**PuzzleWebV2PuzzleSheetControllerUpdate**](docs/PuzzleSheetsAPI.md#puzzlewebv2puzzlesheetcontrollerupdate) | **Patch** /v2/puzzle-sheets/{id} | Update puzzle sheet
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerCreate**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollercreate) | **Post** /v2/puzzles | Create puzzle
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerDelete**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollerdelete) | **Delete** /v2/puzzles/{id} | Delete puzzle
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerGetTopicConfiguration**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollergettopicconfiguration) | **Get** /v2/puzzles/get-topic-configuration | Get topic configuration
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerGetUniqueCategories**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollergetuniquecategories) | **Get** /v2/puzzles/categories | List unique categories
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerIndex**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollerindex) | **Get** /v2/puzzles | List puzzles
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerMigratePuzzlesToOpensearch**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollermigratepuzzlestoopensearch) | **Get** /v2/puzzles/migrate | Migrate puzzles to OpenSearch
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerSearchPuzzleBank**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollersearchpuzzlebank) | **Get** /v2/puzzles/search-puzzle-bank | Search puzzle bank
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerShow**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollershow) | **Get** /v2/puzzles/{id} | Get puzzle
-*PuzzlesAPI* | [**PuzzleWebV2PuzzleControllerUpdate**](docs/PuzzlesAPI.md#puzzlewebv2puzzlecontrollerupdate) | **Patch** /v2/puzzles/{id} | Update puzzle
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerClonePredictionSlip**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollerclonepredictionslip) | **Post** /v2/prediction-slips/{id}/clone | Clone prediction slip
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerCreatePredictionSlip**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollercreatepredictionslip) | **Post** /v2/prediction-slips | Create prediction slip
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerDeletePredictionSlip**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollerdeletepredictionslip) | **Delete** /v2/prediction-slips/{id} | Delete prediction slip
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerListCommunityPredictionSlips**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollerlistcommunitypredictionslips) | **Get** /v2/prediction-slips/community | List public/community prediction slips
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerListCuratedSlips**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollerlistcuratedslips) | **Get** /v2/curated-slips | List curated prediction slips
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerListPredictionSlips**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollerlistpredictionslips) | **Get** /v2/prediction-slips | List the caller&#39;s prediction slips
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerPrepareHighlightedPredictionSlip**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollerpreparehighlightedpredictionslip) | **Post** /v2/prediction-slips/from-highlights | Prepare a Prediction slip from an upcoming highlighted event
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerShowOpenPredictionSlip**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollershowopenpredictionslip) | **Get** /v2/prediction-slips/open | Get the caller&#39;s open prediction slip
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerShowPredictionSlip**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollershowpredictionslip) | **Get** /v2/prediction-slips/{id} | Get prediction slip
+*PredictionSlipsAPI* | [**ContentWebV2PredictionControllerUpdatePredictionSlip**](docs/PredictionSlipsAPI.md#contentwebv2predictioncontrollerupdatepredictionslip) | **Put** /v2/prediction-slips/{id} | Update prediction slip
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerClonePuzzleSheet**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollerclonepuzzlesheet) | **Post** /v2/puzzle-sheets/{id}/clone | Clone puzzle sheet
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerCreate**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollercreate) | **Post** /v2/puzzle-sheets | Create puzzle sheet
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerCreateAdhocCommunitySheet**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollercreateadhoccommunitysheet) | **Post** /v2/puzzle-sheets/adhoc-community-sheet | Create adhoc community puzzle sheet
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerCreateAdhocUserSheet**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollercreateadhocusersheet) | **Post** /v2/puzzle-sheets/adhoc-user-sheet | Create adhoc user puzzle sheet
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerDelete**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollerdelete) | **Delete** /v2/puzzle-sheets/{id} | Delete puzzle sheet
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerIndex**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollerindex) | **Get** /v2/puzzle-sheets | List puzzle sheets
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerShow**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollershow) | **Get** /v2/puzzle-sheets/{id} | Get puzzle sheet
+*PuzzleSheetsAPI* | [**ContentWebV2PuzzleSheetControllerUpdate**](docs/PuzzleSheetsAPI.md#contentwebv2puzzlesheetcontrollerupdate) | **Patch** /v2/puzzle-sheets/{id} | Update puzzle sheet
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerCreate**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollercreate) | **Post** /v2/puzzles | Create puzzle
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerDelete**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollerdelete) | **Delete** /v2/puzzles/{id} | Delete puzzle
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerGetTopicConfiguration**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollergettopicconfiguration) | **Get** /v2/puzzles/get-topic-configuration | Get topic configuration
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerGetUniqueCategories**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollergetuniquecategories) | **Get** /v2/puzzles/categories | List unique categories
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerIndex**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollerindex) | **Get** /v2/puzzles | List puzzles
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerMigratePuzzlesToOpensearch**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollermigratepuzzlestoopensearch) | **Get** /v2/puzzles/migrate | Migrate puzzles to OpenSearch
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerSearchPuzzleBank**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollersearchpuzzlebank) | **Get** /v2/puzzles/search-puzzle-bank | Search puzzle bank
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerShow**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollershow) | **Get** /v2/puzzles/{id} | Get puzzle
+*PuzzlesAPI* | [**ContentWebV2PuzzleControllerUpdate**](docs/PuzzlesAPI.md#contentwebv2puzzlecontrollerupdate) | **Patch** /v2/puzzles/{id} | Update puzzle
 *SpacesAPI* | [**CreateSpaces**](docs/SpacesAPI.md#createspaces) | **Post** /v2/spaces | Create a space
 *SpacesAPI* | [**CreateSpacesByIdReport**](docs/SpacesAPI.md#createspacesbyidreport) | **Post** /v2/spaces/{id}/report | Report a space
 *SpacesAPI* | [**CreateSpacesByIdTeamSets**](docs/SpacesAPI.md#createspacesbyidteamsets) | **Post** /v2/spaces/{id}/team-sets | Create a space-owned team set
@@ -278,15 +278,15 @@ Class | Method | HTTP request | Description
 *TournamentsAPI* | [**GetSpacesByIdTournaments**](docs/TournamentsAPI.md#getspacesbyidtournaments) | **Get** /v2/spaces/{id}/tournaments | List space tournaments (cursor-paginated)
 *TournamentsAPI* | [**GetTournaments**](docs/TournamentsAPI.md#gettournaments) | **Get** /v2/tournaments | List the caller&#39;s tournaments (cursor-paginated)
 *TournamentsAPI* | [**GetTournamentsById**](docs/TournamentsAPI.md#gettournamentsbyid) | **Get** /v2/tournaments/{id} | Get tournament
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerCreate**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollercreate) | **Post** /v2/user-events | Create user event
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerDelete**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollerdelete) | **Delete** /v2/user-events/{id} | Delete user event
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerGetResultSuggestions**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollergetresultsuggestions) | **Get** /v2/user-events/{user_events_id}/result-suggestions | Get result suggestions for a user event
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerGetStatus**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollergetstatus) | **Get** /v2/user-events/{user_events_id}/status | Get user event status
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerIndex**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollerindex) | **Get** /v2/user-events | List user events
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerListTemplates**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollerlisttemplates) | **Get** /v2/event-templates | List event templates
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerShow**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollershow) | **Get** /v2/user-events/{id} | Get user event
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerUpdate**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrollerupdate) | **Patch** /v2/user-events/{id} | Update user event
-*UserEventsAPI* | [**PuzzleWebV2UserEventsControllerUseExistingResult**](docs/UserEventsAPI.md#puzzlewebv2usereventscontrolleruseexistingresult) | **Post** /v2/user-events/{user_events_id}/use-result | Copy result from another user event
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerCreate**](docs/UserEventsAPI.md#contentwebv2usereventscontrollercreate) | **Post** /v2/user-events | Create user event
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerDelete**](docs/UserEventsAPI.md#contentwebv2usereventscontrollerdelete) | **Delete** /v2/user-events/{id} | Delete user event
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerGetResultSuggestions**](docs/UserEventsAPI.md#contentwebv2usereventscontrollergetresultsuggestions) | **Get** /v2/user-events/{user_events_id}/result-suggestions | Get result suggestions for a user event
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerGetStatus**](docs/UserEventsAPI.md#contentwebv2usereventscontrollergetstatus) | **Get** /v2/user-events/{user_events_id}/status | Get user event status
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerIndex**](docs/UserEventsAPI.md#contentwebv2usereventscontrollerindex) | **Get** /v2/user-events | List user events
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerListTemplates**](docs/UserEventsAPI.md#contentwebv2usereventscontrollerlisttemplates) | **Get** /v2/event-templates | List event templates
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerShow**](docs/UserEventsAPI.md#contentwebv2usereventscontrollershow) | **Get** /v2/user-events/{id} | Get user event
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerUpdate**](docs/UserEventsAPI.md#contentwebv2usereventscontrollerupdate) | **Patch** /v2/user-events/{id} | Update user event
+*UserEventsAPI* | [**ContentWebV2UserEventsControllerUseExistingResult**](docs/UserEventsAPI.md#contentwebv2usereventscontrolleruseexistingresult) | **Post** /v2/user-events/{user_events_id}/use-result | Copy result from another user event
 *VenuesAPI* | [**CreateVenues**](docs/VenuesAPI.md#createvenues) | **Post** /v2/venues | Create a venue under the calling tenant
 *VenuesAPI* | [**CreateVenuesByVenueIdSpaces**](docs/VenuesAPI.md#createvenuesbyvenueidspaces) | **Post** /v2/venues/{venueId}/spaces | Create a space under one of the tenant&#39;s venues
 *VenuesAPI* | [**GetVenues**](docs/VenuesAPI.md#getvenues) | **Get** /v2/venues | List venues owned by the calling tenant
@@ -322,6 +322,7 @@ Class | Method | HTTP request | Description
  - [CheckinRoomResponseResponse](docs/CheckinRoomResponseResponse.md)
  - [ClonePredictionSlipRequest](docs/ClonePredictionSlipRequest.md)
  - [ClonePuzzleSheetRequest](docs/ClonePuzzleSheetRequest.md)
+ - [ContentWebV2UserEventsControllerIndex200Response](docs/ContentWebV2UserEventsControllerIndex200Response.md)
  - [ContestPuzzleResponse](docs/ContestPuzzleResponse.md)
  - [ContestStatusResponse](docs/ContestStatusResponse.md)
  - [ContestStatusResponseData](docs/ContestStatusResponseData.md)
@@ -570,7 +571,6 @@ Class | Method | HTTP request | Description
  - [PuzzleSheet](docs/PuzzleSheet.md)
  - [PuzzleSheetResponse](docs/PuzzleSheetResponse.md)
  - [PuzzleSheetsListResponse](docs/PuzzleSheetsListResponse.md)
- - [PuzzleWebV2UserEventsControllerIndex200Response](docs/PuzzleWebV2UserEventsControllerIndex200Response.md)
  - [PuzzlesListResponse](docs/PuzzlesListResponse.md)
  - [RankingsResponse](docs/RankingsResponse.md)
  - [RecurringcontestsContestType](docs/RecurringcontestsContestType.md)

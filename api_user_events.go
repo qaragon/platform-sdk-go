@@ -25,7 +25,7 @@ import (
 // UserEventsAPIService UserEventsAPI service
 type UserEventsAPIService service
 
-type ApiPuzzleWebV2UserEventsControllerCreateRequest struct {
+type ApiContentWebV2UserEventsControllerCreateRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	xActingAs *string
@@ -33,29 +33,29 @@ type ApiPuzzleWebV2UserEventsControllerCreateRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerCreateRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerCreateRequest {
+func (r ApiContentWebV2UserEventsControllerCreateRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerCreateRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // User event payload
-func (r ApiPuzzleWebV2UserEventsControllerCreateRequest) CreateUserEventRequest(createUserEventRequest CreateUserEventRequest) ApiPuzzleWebV2UserEventsControllerCreateRequest {
+func (r ApiContentWebV2UserEventsControllerCreateRequest) CreateUserEventRequest(createUserEventRequest CreateUserEventRequest) ApiContentWebV2UserEventsControllerCreateRequest {
 	r.createUserEventRequest = &createUserEventRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerCreateRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerCreateExecute(r)
+func (r ApiContentWebV2UserEventsControllerCreateRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerCreateExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerCreate Create user event
+ContentWebV2UserEventsControllerCreate Create user event
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2UserEventsControllerCreateRequest
+ @return ApiContentWebV2UserEventsControllerCreateRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerCreate(ctx context.Context) ApiPuzzleWebV2UserEventsControllerCreateRequest {
-	return ApiPuzzleWebV2UserEventsControllerCreateRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerCreate(ctx context.Context) ApiContentWebV2UserEventsControllerCreateRequest {
+	return ApiContentWebV2UserEventsControllerCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -63,7 +63,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerCreate(ctx context
 
 // Execute executes the request
 //  @return EventResponse
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerCreateExecute(r ApiPuzzleWebV2UserEventsControllerCreateRequest) (*EventResponse, *http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerCreateExecute(r ApiContentWebV2UserEventsControllerCreateRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -71,7 +71,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerCreateExecute(r Ap
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -173,7 +173,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerCreateExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerDeleteRequest struct {
+type ApiContentWebV2UserEventsControllerDeleteRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	id string
@@ -181,24 +181,24 @@ type ApiPuzzleWebV2UserEventsControllerDeleteRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerDeleteRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerDeleteRequest {
+func (r ApiContentWebV2UserEventsControllerDeleteRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerDeleteRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerDeleteExecute(r)
+func (r ApiContentWebV2UserEventsControllerDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerDeleteExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerDelete Delete user event
+ContentWebV2UserEventsControllerDelete Delete user event
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2UserEventsControllerDeleteRequest
+ @return ApiContentWebV2UserEventsControllerDeleteRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerDelete(ctx context.Context, id string) ApiPuzzleWebV2UserEventsControllerDeleteRequest {
-	return ApiPuzzleWebV2UserEventsControllerDeleteRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerDelete(ctx context.Context, id string) ApiContentWebV2UserEventsControllerDeleteRequest {
+	return ApiContentWebV2UserEventsControllerDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -206,14 +206,14 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerDelete(ctx context
 }
 
 // Execute executes the request
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerDeleteExecute(r ApiPuzzleWebV2UserEventsControllerDeleteRequest) (*http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerDeleteExecute(r ApiContentWebV2UserEventsControllerDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -305,7 +305,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerDeleteExecute(r Ap
 	return localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest struct {
+type ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	userEventsId string
@@ -313,24 +313,24 @@ type ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest {
+func (r ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest) Execute() (*ResultSuggestionsResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerGetResultSuggestionsExecute(r)
+func (r ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest) Execute() (*ResultSuggestionsResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerGetResultSuggestionsExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerGetResultSuggestions Get result suggestions for a user event
+ContentWebV2UserEventsControllerGetResultSuggestions Get result suggestions for a user event
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userEventsId
- @return ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest
+ @return ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetResultSuggestions(ctx context.Context, userEventsId string) ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest {
-	return ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerGetResultSuggestions(ctx context.Context, userEventsId string) ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest {
+	return ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest{
 		ApiService: a,
 		ctx: ctx,
 		userEventsId: userEventsId,
@@ -339,7 +339,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetResultSuggestio
 
 // Execute executes the request
 //  @return ResultSuggestionsResponse
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetResultSuggestionsExecute(r ApiPuzzleWebV2UserEventsControllerGetResultSuggestionsRequest) (*ResultSuggestionsResponse, *http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerGetResultSuggestionsExecute(r ApiContentWebV2UserEventsControllerGetResultSuggestionsRequest) (*ResultSuggestionsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -347,7 +347,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetResultSuggestio
 		localVarReturnValue  *ResultSuggestionsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerGetResultSuggestions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerGetResultSuggestions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -426,7 +426,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetResultSuggestio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerGetStatusRequest struct {
+type ApiContentWebV2UserEventsControllerGetStatusRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	userEventsId string
@@ -434,24 +434,24 @@ type ApiPuzzleWebV2UserEventsControllerGetStatusRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerGetStatusRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerGetStatusRequest {
+func (r ApiContentWebV2UserEventsControllerGetStatusRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerGetStatusRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerGetStatusRequest) Execute() (*UserEventStatusResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerGetStatusExecute(r)
+func (r ApiContentWebV2UserEventsControllerGetStatusRequest) Execute() (*UserEventStatusResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerGetStatusExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerGetStatus Get user event status
+ContentWebV2UserEventsControllerGetStatus Get user event status
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userEventsId
- @return ApiPuzzleWebV2UserEventsControllerGetStatusRequest
+ @return ApiContentWebV2UserEventsControllerGetStatusRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetStatus(ctx context.Context, userEventsId string) ApiPuzzleWebV2UserEventsControllerGetStatusRequest {
-	return ApiPuzzleWebV2UserEventsControllerGetStatusRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerGetStatus(ctx context.Context, userEventsId string) ApiContentWebV2UserEventsControllerGetStatusRequest {
+	return ApiContentWebV2UserEventsControllerGetStatusRequest{
 		ApiService: a,
 		ctx: ctx,
 		userEventsId: userEventsId,
@@ -460,7 +460,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetStatus(ctx cont
 
 // Execute executes the request
 //  @return UserEventStatusResponse
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetStatusExecute(r ApiPuzzleWebV2UserEventsControllerGetStatusRequest) (*UserEventStatusResponse, *http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerGetStatusExecute(r ApiContentWebV2UserEventsControllerGetStatusRequest) (*UserEventStatusResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -468,7 +468,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetStatusExecute(r
 		localVarReturnValue  *UserEventStatusResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerGetStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerGetStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -547,7 +547,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerGetStatusExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerIndexRequest struct {
+type ApiContentWebV2UserEventsControllerIndexRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	all *bool
@@ -557,60 +557,60 @@ type ApiPuzzleWebV2UserEventsControllerIndexRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerIndexRequest) All(all bool) ApiPuzzleWebV2UserEventsControllerIndexRequest {
+func (r ApiContentWebV2UserEventsControllerIndexRequest) All(all bool) ApiContentWebV2UserEventsControllerIndexRequest {
 	r.all = &all
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerIndexRequest) Visibility(visibility string) ApiPuzzleWebV2UserEventsControllerIndexRequest {
+func (r ApiContentWebV2UserEventsControllerIndexRequest) Visibility(visibility string) ApiContentWebV2UserEventsControllerIndexRequest {
 	r.visibility = &visibility
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerIndexRequest) DateFrom(dateFrom time.Time) ApiPuzzleWebV2UserEventsControllerIndexRequest {
+func (r ApiContentWebV2UserEventsControllerIndexRequest) DateFrom(dateFrom time.Time) ApiContentWebV2UserEventsControllerIndexRequest {
 	r.dateFrom = &dateFrom
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerIndexRequest) DateTo(dateTo time.Time) ApiPuzzleWebV2UserEventsControllerIndexRequest {
+func (r ApiContentWebV2UserEventsControllerIndexRequest) DateTo(dateTo time.Time) ApiContentWebV2UserEventsControllerIndexRequest {
 	r.dateTo = &dateTo
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerIndexRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerIndexRequest {
+func (r ApiContentWebV2UserEventsControllerIndexRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerIndexRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerIndexRequest) Execute() (*PuzzleWebV2UserEventsControllerIndex200Response, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerIndexExecute(r)
+func (r ApiContentWebV2UserEventsControllerIndexRequest) Execute() (*ContentWebV2UserEventsControllerIndex200Response, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerIndexExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerIndex List user events
+ContentWebV2UserEventsControllerIndex List user events
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2UserEventsControllerIndexRequest
+ @return ApiContentWebV2UserEventsControllerIndexRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerIndex(ctx context.Context) ApiPuzzleWebV2UserEventsControllerIndexRequest {
-	return ApiPuzzleWebV2UserEventsControllerIndexRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerIndex(ctx context.Context) ApiContentWebV2UserEventsControllerIndexRequest {
+	return ApiContentWebV2UserEventsControllerIndexRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PuzzleWebV2UserEventsControllerIndex200Response
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerIndexExecute(r ApiPuzzleWebV2UserEventsControllerIndexRequest) (*PuzzleWebV2UserEventsControllerIndex200Response, *http.Response, error) {
+//  @return ContentWebV2UserEventsControllerIndex200Response
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerIndexExecute(r ApiContentWebV2UserEventsControllerIndexRequest) (*ContentWebV2UserEventsControllerIndex200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PuzzleWebV2UserEventsControllerIndex200Response
+		localVarReturnValue  *ContentWebV2UserEventsControllerIndex200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerIndex")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerIndex")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -690,7 +690,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerIndexExecute(r Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerListTemplatesRequest struct {
+type ApiContentWebV2UserEventsControllerListTemplatesRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	category *string
@@ -698,36 +698,36 @@ type ApiPuzzleWebV2UserEventsControllerListTemplatesRequest struct {
 	xActingAs *string
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerListTemplatesRequest) Category(category string) ApiPuzzleWebV2UserEventsControllerListTemplatesRequest {
+func (r ApiContentWebV2UserEventsControllerListTemplatesRequest) Category(category string) ApiContentWebV2UserEventsControllerListTemplatesRequest {
 	r.category = &category
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerListTemplatesRequest) EventType(eventType string) ApiPuzzleWebV2UserEventsControllerListTemplatesRequest {
+func (r ApiContentWebV2UserEventsControllerListTemplatesRequest) EventType(eventType string) ApiContentWebV2UserEventsControllerListTemplatesRequest {
 	r.eventType = &eventType
 	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerListTemplatesRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerListTemplatesRequest {
+func (r ApiContentWebV2UserEventsControllerListTemplatesRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerListTemplatesRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerListTemplatesRequest) Execute() (*EventTemplatesListResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerListTemplatesExecute(r)
+func (r ApiContentWebV2UserEventsControllerListTemplatesRequest) Execute() (*EventTemplatesListResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerListTemplatesExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerListTemplates List event templates
+ContentWebV2UserEventsControllerListTemplates List event templates
 
 Public catalog of templates users can instantiate as user events.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPuzzleWebV2UserEventsControllerListTemplatesRequest
+ @return ApiContentWebV2UserEventsControllerListTemplatesRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerListTemplates(ctx context.Context) ApiPuzzleWebV2UserEventsControllerListTemplatesRequest {
-	return ApiPuzzleWebV2UserEventsControllerListTemplatesRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerListTemplates(ctx context.Context) ApiContentWebV2UserEventsControllerListTemplatesRequest {
+	return ApiContentWebV2UserEventsControllerListTemplatesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -735,7 +735,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerListTemplates(ctx 
 
 // Execute executes the request
 //  @return EventTemplatesListResponse
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerListTemplatesExecute(r ApiPuzzleWebV2UserEventsControllerListTemplatesRequest) (*EventTemplatesListResponse, *http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerListTemplatesExecute(r ApiContentWebV2UserEventsControllerListTemplatesRequest) (*EventTemplatesListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -743,7 +743,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerListTemplatesExecu
 		localVarReturnValue  *EventTemplatesListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerListTemplates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerListTemplates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -817,7 +817,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerListTemplatesExecu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerShowRequest struct {
+type ApiContentWebV2UserEventsControllerShowRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	id string
@@ -825,24 +825,24 @@ type ApiPuzzleWebV2UserEventsControllerShowRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerShowRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerShowRequest {
+func (r ApiContentWebV2UserEventsControllerShowRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerShowRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerShowRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerShowExecute(r)
+func (r ApiContentWebV2UserEventsControllerShowRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerShowExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerShow Get user event
+ContentWebV2UserEventsControllerShow Get user event
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2UserEventsControllerShowRequest
+ @return ApiContentWebV2UserEventsControllerShowRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerShow(ctx context.Context, id string) ApiPuzzleWebV2UserEventsControllerShowRequest {
-	return ApiPuzzleWebV2UserEventsControllerShowRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerShow(ctx context.Context, id string) ApiContentWebV2UserEventsControllerShowRequest {
+	return ApiContentWebV2UserEventsControllerShowRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -851,7 +851,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerShow(ctx context.C
 
 // Execute executes the request
 //  @return EventResponse
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerShowExecute(r ApiPuzzleWebV2UserEventsControllerShowRequest) (*EventResponse, *http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerShowExecute(r ApiContentWebV2UserEventsControllerShowRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -859,7 +859,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerShowExecute(r ApiP
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerShow")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerShow")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -949,7 +949,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerShowExecute(r ApiP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerUpdateRequest struct {
+type ApiContentWebV2UserEventsControllerUpdateRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	id string
@@ -958,30 +958,30 @@ type ApiPuzzleWebV2UserEventsControllerUpdateRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerUpdateRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerUpdateRequest {
+func (r ApiContentWebV2UserEventsControllerUpdateRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerUpdateRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // User event update payload
-func (r ApiPuzzleWebV2UserEventsControllerUpdateRequest) UpdateUserEventRequest(updateUserEventRequest UpdateUserEventRequest) ApiPuzzleWebV2UserEventsControllerUpdateRequest {
+func (r ApiContentWebV2UserEventsControllerUpdateRequest) UpdateUserEventRequest(updateUserEventRequest UpdateUserEventRequest) ApiContentWebV2UserEventsControllerUpdateRequest {
 	r.updateUserEventRequest = &updateUserEventRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerUpdateRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerUpdateExecute(r)
+func (r ApiContentWebV2UserEventsControllerUpdateRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerUpdateExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerUpdate Update user event
+ContentWebV2UserEventsControllerUpdate Update user event
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPuzzleWebV2UserEventsControllerUpdateRequest
+ @return ApiContentWebV2UserEventsControllerUpdateRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUpdate(ctx context.Context, id string) ApiPuzzleWebV2UserEventsControllerUpdateRequest {
-	return ApiPuzzleWebV2UserEventsControllerUpdateRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerUpdate(ctx context.Context, id string) ApiContentWebV2UserEventsControllerUpdateRequest {
+	return ApiContentWebV2UserEventsControllerUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -990,7 +990,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUpdate(ctx context
 
 // Execute executes the request
 //  @return EventResponse
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUpdateExecute(r ApiPuzzleWebV2UserEventsControllerUpdateRequest) (*EventResponse, *http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerUpdateExecute(r ApiContentWebV2UserEventsControllerUpdateRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -998,7 +998,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUpdateExecute(r Ap
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1101,7 +1101,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUpdateExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest struct {
+type ApiContentWebV2UserEventsControllerUseExistingResultRequest struct {
 	ctx context.Context
 	ApiService *UserEventsAPIService
 	userEventsId string
@@ -1110,30 +1110,30 @@ type ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest struct {
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
-func (r ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest) XActingAs(xActingAs string) ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest {
+func (r ApiContentWebV2UserEventsControllerUseExistingResultRequest) XActingAs(xActingAs string) ApiContentWebV2UserEventsControllerUseExistingResultRequest {
 	r.xActingAs = &xActingAs
 	return r
 }
 
 // Source event payload
-func (r ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest) UseExistingResultRequest(useExistingResultRequest UseExistingResultRequest) ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest {
+func (r ApiContentWebV2UserEventsControllerUseExistingResultRequest) UseExistingResultRequest(useExistingResultRequest UseExistingResultRequest) ApiContentWebV2UserEventsControllerUseExistingResultRequest {
 	r.useExistingResultRequest = &useExistingResultRequest
 	return r
 }
 
-func (r ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest) Execute() (*EventResponse, *http.Response, error) {
-	return r.ApiService.PuzzleWebV2UserEventsControllerUseExistingResultExecute(r)
+func (r ApiContentWebV2UserEventsControllerUseExistingResultRequest) Execute() (*EventResponse, *http.Response, error) {
+	return r.ApiService.ContentWebV2UserEventsControllerUseExistingResultExecute(r)
 }
 
 /*
-PuzzleWebV2UserEventsControllerUseExistingResult Copy result from another user event
+ContentWebV2UserEventsControllerUseExistingResult Copy result from another user event
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userEventsId
- @return ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest
+ @return ApiContentWebV2UserEventsControllerUseExistingResultRequest
 */
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUseExistingResult(ctx context.Context, userEventsId string) ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest {
-	return ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest{
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerUseExistingResult(ctx context.Context, userEventsId string) ApiContentWebV2UserEventsControllerUseExistingResultRequest {
+	return ApiContentWebV2UserEventsControllerUseExistingResultRequest{
 		ApiService: a,
 		ctx: ctx,
 		userEventsId: userEventsId,
@@ -1142,7 +1142,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUseExistingResult(
 
 // Execute executes the request
 //  @return EventResponse
-func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUseExistingResultExecute(r ApiPuzzleWebV2UserEventsControllerUseExistingResultRequest) (*EventResponse, *http.Response, error) {
+func (a *UserEventsAPIService) ContentWebV2UserEventsControllerUseExistingResultExecute(r ApiContentWebV2UserEventsControllerUseExistingResultRequest) (*EventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1150,7 +1150,7 @@ func (a *UserEventsAPIService) PuzzleWebV2UserEventsControllerUseExistingResultE
 		localVarReturnValue  *EventResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.PuzzleWebV2UserEventsControllerUseExistingResult")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserEventsAPIService.ContentWebV2UserEventsControllerUseExistingResult")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
