@@ -20,6 +20,7 @@ var _ MappedNullable = &DomainContest{}
 
 // DomainContest struct for DomainContest
 type DomainContest struct {
+	BonusRewards []DomainBonusReward `json:"bonus_rewards,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Difficulty *string `json:"difficulty,omitempty"`
@@ -67,6 +68,38 @@ func NewDomainContest() *DomainContest {
 func NewDomainContestWithDefaults() *DomainContest {
 	this := DomainContest{}
 	return &this
+}
+
+// GetBonusRewards returns the BonusRewards field value if set, zero value otherwise.
+func (o *DomainContest) GetBonusRewards() []DomainBonusReward {
+	if o == nil || IsNil(o.BonusRewards) {
+		var ret []DomainBonusReward
+		return ret
+	}
+	return o.BonusRewards
+}
+
+// GetBonusRewardsOk returns a tuple with the BonusRewards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainContest) GetBonusRewardsOk() ([]DomainBonusReward, bool) {
+	if o == nil || IsNil(o.BonusRewards) {
+		return nil, false
+	}
+	return o.BonusRewards, true
+}
+
+// HasBonusRewards returns a boolean if a field has been set.
+func (o *DomainContest) HasBonusRewards() bool {
+	if o != nil && !IsNil(o.BonusRewards) {
+		return true
+	}
+
+	return false
+}
+
+// SetBonusRewards gets a reference to the given []DomainBonusReward and assigns it to the BonusRewards field.
+func (o *DomainContest) SetBonusRewards(v []DomainBonusReward) {
+	o.BonusRewards = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -943,6 +976,9 @@ func (o DomainContest) MarshalJSON() ([]byte, error) {
 
 func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BonusRewards) {
+		toSerialize["bonus_rewards"] = o.BonusRewards
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}

@@ -29,6 +29,7 @@ type ApiCreateContestsByIdEnrollmentRequest struct {
 	ApiService *ParticipationAPIService
 	id string
 	xActingAs *string
+	contesthttpEnrollmentRequest *ContesthttpEnrollmentRequest
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
@@ -37,16 +38,22 @@ func (r ApiCreateContestsByIdEnrollmentRequest) XActingAs(xActingAs string) ApiC
 	return r
 }
 
+// Participation Space; omitted uses the Contest home Space
+func (r ApiCreateContestsByIdEnrollmentRequest) ContesthttpEnrollmentRequest(contesthttpEnrollmentRequest ContesthttpEnrollmentRequest) ApiCreateContestsByIdEnrollmentRequest {
+	r.contesthttpEnrollmentRequest = &contesthttpEnrollmentRequest
+	return r
+}
+
 func (r ApiCreateContestsByIdEnrollmentRequest) Execute() (*DomainEnrollmentResponse, *http.Response, error) {
 	return r.ApiService.CreateContestsByIdEnrollmentExecute(r)
 }
 
 /*
-CreateContestsByIdEnrollment Enroll in a contest's pre-enrollment pool
+CreateContestsByIdEnrollment Enroll in a contest
 
 Declares the caller's intent to play before play opens (ADR 0058). Only
 valid for a required-enrollment contest (Contest.EnrollmentTiming != nil), and
-only inside that window. Idempotent — a repeat call returns the existing row.
+only inside that window. Shared access, qualification and configured eligibility rules apply. Idempotent — a repeat call returns the existing row.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Contest ID
@@ -83,7 +90,7 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreat
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -102,6 +109,8 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreat
 	if r.xActingAs != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Acting-As", r.xActingAs, "simple", "")
 	}
+	// body params
+	localVarPostBody = r.contesthttpEnrollmentRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -135,7 +144,29 @@ func (a *ParticipationAPIService) CreateContestsByIdEnrollmentExecute(r ApiCreat
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v HttpxErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpxErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpxErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -399,17 +430,6 @@ func (a *ParticipationAPIService) DeleteContestsByIdEnrollmentExecute(r ApiDelet
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpxErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpxErrorResponse

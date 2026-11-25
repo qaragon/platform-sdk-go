@@ -184,7 +184,7 @@ Class | Method | HTTP request | Description
 *MessagesAPI* | [**GetMessages**](docs/MessagesAPI.md#getmessages) | **Get** /v2/messages | List messages for the caller
 *MessagesAPI* | [**GetMessagesById**](docs/MessagesAPI.md#getmessagesbyid) | **Get** /v2/messages/{id} | Get a message by ID
 *MessagesAPI* | [**UpdateMessagesById**](docs/MessagesAPI.md#updatemessagesbyid) | **Put** /v2/messages/{id} | Update a message&#39;s status
-*ParticipationAPI* | [**CreateContestsByIdEnrollment**](docs/ParticipationAPI.md#createcontestsbyidenrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a contest&#39;s pre-enrollment pool
+*ParticipationAPI* | [**CreateContestsByIdEnrollment**](docs/ParticipationAPI.md#createcontestsbyidenrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a contest
 *ParticipationAPI* | [**CreateParticipationByIdStart**](docs/ParticipationAPI.md#createparticipationbyidstart) | **Post** /v2/participation/{id}/start | Log the start of a participation
 *ParticipationAPI* | [**DeleteContestsByIdEnrollment**](docs/ParticipationAPI.md#deletecontestsbyidenrollment) | **Delete** /v2/contests/{id}/enrollment | Withdraw the caller&#39;s enrollment from a contest
 *ParticipationAPI* | [**GetContestsByIdGroupedScoreboard**](docs/ParticipationAPI.md#getcontestsbyidgroupedscoreboard) | **Get** /v2/contests/{id}/grouped-scoreboard | Get ScoreBoard
@@ -328,6 +328,7 @@ Class | Method | HTTP request | Description
  - [ContestStatusResponseData](docs/ContestStatusResponseData.md)
  - [ContesthttpCreateContestPayload](docs/ContesthttpCreateContestPayload.md)
  - [ContesthttpCreatePlatformContestHostingRequest](docs/ContesthttpCreatePlatformContestHostingRequest.md)
+ - [ContesthttpEnrollmentRequest](docs/ContesthttpEnrollmentRequest.md)
  - [ContesthttpUpdateContestHeaderImage](docs/ContesthttpUpdateContestHeaderImage.md)
  - [ContesthttpUpdateContestRequest](docs/ContesthttpUpdateContestRequest.md)
  - [ContestsRegionRequest](docs/ContestsRegionRequest.md)
@@ -349,6 +350,7 @@ Class | Method | HTTP request | Description
  - [DomainBlockListResponse](docs/DomainBlockListResponse.md)
  - [DomainBlockResponse](docs/DomainBlockResponse.md)
  - [DomainBoardContext](docs/DomainBoardContext.md)
+ - [DomainBonusReward](docs/DomainBonusReward.md)
  - [DomainBuddyBoard](docs/DomainBuddyBoard.md)
  - [DomainBuddyBoardInvite](docs/DomainBuddyBoardInvite.md)
  - [DomainBuddyBoardInviteListResponse](docs/DomainBuddyBoardInviteListResponse.md)

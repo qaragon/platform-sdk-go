@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BonusRewards** | Pointer to [**[]DomainBonusReward**](DomainBonusReward.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Difficulty** | Pointer to **string** |  | [optional] 
@@ -50,6 +51,31 @@ will change when the set of required properties is changed
 NewDomainContestWithDefaults instantiates a new DomainContest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBonusRewards
+
+`func (o *DomainContest) GetBonusRewards() []DomainBonusReward`
+
+GetBonusRewards returns the BonusRewards field if non-nil, zero value otherwise.
+
+### GetBonusRewardsOk
+
+`func (o *DomainContest) GetBonusRewardsOk() (*[]DomainBonusReward, bool)`
+
+GetBonusRewardsOk returns a tuple with the BonusRewards field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBonusRewards
+
+`func (o *DomainContest) SetBonusRewards(v []DomainBonusReward)`
+
+SetBonusRewards sets BonusRewards field to given value.
+
+### HasBonusRewards
+
+`func (o *DomainContest) HasBonusRewards() bool`
+
+HasBonusRewards returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

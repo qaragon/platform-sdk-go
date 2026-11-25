@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BonusRewardIds** | Pointer to **[]string** |  | [optional] 
 **Breakdown** | Pointer to [**[]DomainParticipationResultBreakdownInner**](DomainParticipationResultBreakdownInner.md) | Legacy field used to migrate pre-v2 records that lack graded_sheet. Stripped before v2 responses. | [optional] 
 **GlobalRank** | Pointer to **int32** |  | [optional] 
 **GradedAt** | Pointer to **string** | Grading timestamp | [optional] 
-**GradedSheet** | Pointer to **[]int32** | Complete graded sheet (v2 preferred) | [optional] 
+**GradedSheet** | Pointer to **map[string]interface{}** | Complete graded sheet (v2 preferred) | [optional] 
 **GroupRank** | Pointer to **int32** |  | [optional] 
 **ParticipationPoint** | Pointer to **float32** | Participation points with 3 decimal precision | [optional] 
 **ResultsIncomplete** | Pointer to **bool** | True if &lt; MinJurorScores for creative contests | [optional] 
@@ -38,6 +39,31 @@ will change when the set of required properties is changed
 NewDomainParticipationResultWithDefaults instantiates a new DomainParticipationResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBonusRewardIds
+
+`func (o *DomainParticipationResult) GetBonusRewardIds() []string`
+
+GetBonusRewardIds returns the BonusRewardIds field if non-nil, zero value otherwise.
+
+### GetBonusRewardIdsOk
+
+`func (o *DomainParticipationResult) GetBonusRewardIdsOk() (*[]string, bool)`
+
+GetBonusRewardIdsOk returns a tuple with the BonusRewardIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBonusRewardIds
+
+`func (o *DomainParticipationResult) SetBonusRewardIds(v []string)`
+
+SetBonusRewardIds sets BonusRewardIds field to given value.
+
+### HasBonusRewardIds
+
+`func (o *DomainParticipationResult) HasBonusRewardIds() bool`
+
+HasBonusRewardIds returns a boolean if a field has been set.
 
 ### GetBreakdown
 
@@ -116,20 +142,20 @@ HasGradedAt returns a boolean if a field has been set.
 
 ### GetGradedSheet
 
-`func (o *DomainParticipationResult) GetGradedSheet() []int32`
+`func (o *DomainParticipationResult) GetGradedSheet() map[string]interface{}`
 
 GetGradedSheet returns the GradedSheet field if non-nil, zero value otherwise.
 
 ### GetGradedSheetOk
 
-`func (o *DomainParticipationResult) GetGradedSheetOk() (*[]int32, bool)`
+`func (o *DomainParticipationResult) GetGradedSheetOk() (*map[string]interface{}, bool)`
 
 GetGradedSheetOk returns a tuple with the GradedSheet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGradedSheet
 
-`func (o *DomainParticipationResult) SetGradedSheet(v []int32)`
+`func (o *DomainParticipationResult) SetGradedSheet(v map[string]interface{})`
 
 SetGradedSheet sets GradedSheet field to given value.
 

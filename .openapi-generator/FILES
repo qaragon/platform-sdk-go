@@ -76,6 +76,7 @@ docs/ContestStatusResponse.md
 docs/ContestStatusResponseData.md
 docs/ContesthttpCreateContestPayload.md
 docs/ContesthttpCreatePlatformContestHostingRequest.md
+docs/ContesthttpEnrollmentRequest.md
 docs/ContesthttpUpdateContestHeaderImage.md
 docs/ContesthttpUpdateContestRequest.md
 docs/ContestsAPI.md
@@ -100,6 +101,7 @@ docs/DomainBlock.md
 docs/DomainBlockListResponse.md
 docs/DomainBlockResponse.md
 docs/DomainBoardContext.md
+docs/DomainBonusReward.md
 docs/DomainBuddyBoard.md
 docs/DomainBuddyBoardInvite.md
 docs/DomainBuddyBoardInviteListResponse.md
@@ -488,6 +490,7 @@ model_contest_status_response.go
 model_contest_status_response_data.go
 model_contesthttp_create_contest_payload.go
 model_contesthttp_create_platform_contest_hosting_request.go
+model_contesthttp_enrollment_request.go
 model_contesthttp_update_contest_header_image.go
 model_contesthttp_update_contest_request.go
 model_contests_region_request.go
@@ -509,6 +512,7 @@ model_domain_block.go
 model_domain_block_list_response.go
 model_domain_block_response.go
 model_domain_board_context.go
+model_domain_bonus_reward.go
 model_domain_buddy_board.go
 model_domain_buddy_board_invite.go
 model_domain_buddy_board_invite_list_response.go

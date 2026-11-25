@@ -2471,7 +2471,14 @@ type ApiGetContestsByIdRequest struct {
 	ctx context.Context
 	ApiService *ContestsAPIService
 	id string
+	spaceId *string
 	xActingAs *string
+}
+
+// Authorized Participation Space for eligibility
+func (r ApiGetContestsByIdRequest) SpaceId(spaceId string) ApiGetContestsByIdRequest {
+	r.spaceId = &spaceId
+	return r
 }
 
 // Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls.
@@ -2521,6 +2528,9 @@ func (a *ContestsAPIService) GetContestsByIdExecute(r ApiGetContestsByIdRequest)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.spaceId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "space_id", r.spaceId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2562,6 +2572,17 @@ func (a *ContestsAPIService) GetContestsByIdExecute(r ApiGetContestsByIdRequest)
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v HttpxErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v HttpxErrorResponse
@@ -2903,6 +2924,7 @@ type ApiGetContestsByIdParticipationRequest struct {
 	cursor *string
 	limit *int32
 	winners *bool
+	includeBonusWinners *bool
 	status *string
 	xActingAs *string
 }
@@ -2922,6 +2944,12 @@ func (r ApiGetContestsByIdParticipationRequest) Limit(limit int32) ApiGetContest
 // Restrict to winning participations only
 func (r ApiGetContestsByIdParticipationRequest) Winners(winners bool) ApiGetContestsByIdParticipationRequest {
 	r.winners = &winners
+	return r
+}
+
+// Include bonus recipients when filtering winners
+func (r ApiGetContestsByIdParticipationRequest) IncludeBonusWinners(includeBonusWinners bool) ApiGetContestsByIdParticipationRequest {
+	r.includeBonusWinners = &includeBonusWinners
 	return r
 }
 
@@ -2988,6 +3016,9 @@ func (a *ContestsAPIService) GetContestsByIdParticipationExecute(r ApiGetContest
 	}
 	if r.winners != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "winners", r.winners, "form", "")
+	}
+	if r.includeBonusWinners != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include_bonus_winners", r.includeBonusWinners, "form", "")
 	}
 	if r.status != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")

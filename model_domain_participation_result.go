@@ -20,13 +20,14 @@ var _ MappedNullable = &DomainParticipationResult{}
 
 // DomainParticipationResult struct for DomainParticipationResult
 type DomainParticipationResult struct {
+	BonusRewardIds []string `json:"bonus_reward_ids,omitempty"`
 	// Legacy field used to migrate pre-v2 records that lack graded_sheet. Stripped before v2 responses.
 	Breakdown []DomainParticipationResultBreakdownInner `json:"breakdown,omitempty"`
 	GlobalRank *int32 `json:"global_rank,omitempty"`
 	// Grading timestamp
 	GradedAt *string `json:"graded_at,omitempty"`
 	// Complete graded sheet (v2 preferred)
-	GradedSheet []int32 `json:"graded_sheet,omitempty"`
+	GradedSheet map[string]interface{} `json:"graded_sheet,omitempty"`
 	GroupRank *int32 `json:"group_rank,omitempty"`
 	// Participation points with 3 decimal precision
 	ParticipationPoint *float32 `json:"participation_point,omitempty"`
@@ -58,6 +59,38 @@ func NewDomainParticipationResult() *DomainParticipationResult {
 func NewDomainParticipationResultWithDefaults() *DomainParticipationResult {
 	this := DomainParticipationResult{}
 	return &this
+}
+
+// GetBonusRewardIds returns the BonusRewardIds field value if set, zero value otherwise.
+func (o *DomainParticipationResult) GetBonusRewardIds() []string {
+	if o == nil || IsNil(o.BonusRewardIds) {
+		var ret []string
+		return ret
+	}
+	return o.BonusRewardIds
+}
+
+// GetBonusRewardIdsOk returns a tuple with the BonusRewardIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainParticipationResult) GetBonusRewardIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.BonusRewardIds) {
+		return nil, false
+	}
+	return o.BonusRewardIds, true
+}
+
+// HasBonusRewardIds returns a boolean if a field has been set.
+func (o *DomainParticipationResult) HasBonusRewardIds() bool {
+	if o != nil && !IsNil(o.BonusRewardIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetBonusRewardIds gets a reference to the given []string and assigns it to the BonusRewardIds field.
+func (o *DomainParticipationResult) SetBonusRewardIds(v []string) {
+	o.BonusRewardIds = v
 }
 
 // GetBreakdown returns the Breakdown field value if set, zero value otherwise.
@@ -157,9 +190,9 @@ func (o *DomainParticipationResult) SetGradedAt(v string) {
 }
 
 // GetGradedSheet returns the GradedSheet field value if set, zero value otherwise.
-func (o *DomainParticipationResult) GetGradedSheet() []int32 {
+func (o *DomainParticipationResult) GetGradedSheet() map[string]interface{} {
 	if o == nil || IsNil(o.GradedSheet) {
-		var ret []int32
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.GradedSheet
@@ -167,9 +200,9 @@ func (o *DomainParticipationResult) GetGradedSheet() []int32 {
 
 // GetGradedSheetOk returns a tuple with the GradedSheet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainParticipationResult) GetGradedSheetOk() ([]int32, bool) {
+func (o *DomainParticipationResult) GetGradedSheetOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.GradedSheet) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.GradedSheet, true
 }
@@ -183,8 +216,8 @@ func (o *DomainParticipationResult) HasGradedSheet() bool {
 	return false
 }
 
-// SetGradedSheet gets a reference to the given []int32 and assigns it to the GradedSheet field.
-func (o *DomainParticipationResult) SetGradedSheet(v []int32) {
+// SetGradedSheet gets a reference to the given map[string]interface{} and assigns it to the GradedSheet field.
+func (o *DomainParticipationResult) SetGradedSheet(v map[string]interface{}) {
 	o.GradedSheet = v
 }
 
@@ -550,6 +583,9 @@ func (o DomainParticipationResult) MarshalJSON() ([]byte, error) {
 
 func (o DomainParticipationResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BonusRewardIds) {
+		toSerialize["bonus_reward_ids"] = o.BonusRewardIds
+	}
 	if !IsNil(o.Breakdown) {
 		toSerialize["breakdown"] = o.Breakdown
 	}

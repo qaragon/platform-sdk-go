@@ -1206,7 +1206,7 @@ Name | Type | Description  | Notes
 
 ## GetContestsById
 
-> DomainContestResponse GetContestsById(ctx, id).XActingAs(xActingAs).Execute()
+> DomainContestResponse GetContestsById(ctx, id).SpaceId(spaceId).XActingAs(xActingAs).Execute()
 
 Get a contest by ID
 
@@ -1224,11 +1224,12 @@ import (
 
 func main() {
 	id := "id_example" // string | Contest ID
+	spaceId := "spaceId_example" // string | Authorized Participation Space for eligibility (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.GetContestsById(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestsAPI.GetContestsById(context.Background(), id).SpaceId(spaceId).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.GetContestsById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1254,6 +1255,7 @@ Other parameters are passed through a pointer to a apiGetContestsByIdRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **spaceId** | **string** | Authorized Participation Space for eligibility | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 
 ### Return type
@@ -1422,7 +1424,7 @@ Name | Type | Description  | Notes
 
 ## GetContestsByIdParticipation
 
-> DomainParticipationListResponse GetContestsByIdParticipation(ctx, id).Cursor(cursor).Limit(limit).Winners(winners).Status(status).XActingAs(xActingAs).Execute()
+> DomainParticipationListResponse GetContestsByIdParticipation(ctx, id).Cursor(cursor).Limit(limit).Winners(winners).IncludeBonusWinners(includeBonusWinners).Status(status).XActingAs(xActingAs).Execute()
 
 Get contest participation result (cursor-paginated)
 
@@ -1445,12 +1447,13 @@ func main() {
 	cursor := "cursor_example" // string | Opaque pagination cursor (optional)
 	limit := int32(56) // int32 | Page size (optional)
 	winners := true // bool | Restrict to winning participations only (optional)
+	includeBonusWinners := true // bool | Include bonus recipients when filtering winners (optional)
 	status := "status_example" // string | Restrict to a single participation status (enrolled, participated, timed_out); omit for all (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContestsAPI.GetContestsByIdParticipation(context.Background(), id).Cursor(cursor).Limit(limit).Winners(winners).Status(status).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ContestsAPI.GetContestsByIdParticipation(context.Background(), id).Cursor(cursor).Limit(limit).Winners(winners).IncludeBonusWinners(includeBonusWinners).Status(status).XActingAs(xActingAs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContestsAPI.GetContestsByIdParticipation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1479,6 +1482,7 @@ Name | Type | Description  | Notes
  **cursor** | **string** | Opaque pagination cursor | 
  **limit** | **int32** | Page size | 
  **winners** | **bool** | Restrict to winning participations only | 
+ **includeBonusWinners** | **bool** | Include bonus recipients when filtering winners | 
  **status** | **string** | Restrict to a single participation status (enrolled, participated, timed_out); omit for all | 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
 

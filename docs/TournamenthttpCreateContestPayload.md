@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Answers** | Pointer to [**[]GuessGuessAnswer**](GuessGuessAnswer.md) |  | [optional] 
 **AttemptLimit** | Pointer to **int32** |  | [optional] 
 **BoardId** | Pointer to **string** |  | [optional] 
+**BonusRewards** | Pointer to [**[]DomainBonusReward**](DomainBonusReward.md) |  | [optional] 
 **Category** | Pointer to **string** |  | [optional] 
 **ClaimScope** | Pointer to **string** |  | [optional] 
 **ClueStrategy** | Pointer to **string** |  | [optional] 
@@ -163,6 +164,31 @@ SetBoardId sets BoardId field to given value.
 `func (o *TournamenthttpCreateContestPayload) HasBoardId() bool`
 
 HasBoardId returns a boolean if a field has been set.
+
+### GetBonusRewards
+
+`func (o *TournamenthttpCreateContestPayload) GetBonusRewards() []DomainBonusReward`
+
+GetBonusRewards returns the BonusRewards field if non-nil, zero value otherwise.
+
+### GetBonusRewardsOk
+
+`func (o *TournamenthttpCreateContestPayload) GetBonusRewardsOk() (*[]DomainBonusReward, bool)`
+
+GetBonusRewardsOk returns a tuple with the BonusRewards field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBonusRewards
+
+`func (o *TournamenthttpCreateContestPayload) SetBonusRewards(v []DomainBonusReward)`
+
+SetBonusRewards sets BonusRewards field to given value.
+
+### HasBonusRewards
+
+`func (o *TournamenthttpCreateContestPayload) HasBonusRewards() bool`
+
+HasBonusRewards returns a boolean if a field has been set.
 
 ### GetCategory
 

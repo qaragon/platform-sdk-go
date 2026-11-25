@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateContestsByIdEnrollment**](ParticipationAPI.md#CreateContestsByIdEnrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a contest&#39;s pre-enrollment pool
+[**CreateContestsByIdEnrollment**](ParticipationAPI.md#CreateContestsByIdEnrollment) | **Post** /v2/contests/{id}/enrollment | Enroll in a contest
 [**CreateParticipationByIdStart**](ParticipationAPI.md#CreateParticipationByIdStart) | **Post** /v2/participation/{id}/start | Log the start of a participation
 [**DeleteContestsByIdEnrollment**](ParticipationAPI.md#DeleteContestsByIdEnrollment) | **Delete** /v2/contests/{id}/enrollment | Withdraw the caller&#39;s enrollment from a contest
 [**GetContestsByIdGroupedScoreboard**](ParticipationAPI.md#GetContestsByIdGroupedScoreboard) | **Get** /v2/contests/{id}/grouped-scoreboard | Get ScoreBoard
@@ -19,9 +19,9 @@ Method | HTTP request | Description
 
 ## CreateContestsByIdEnrollment
 
-> DomainEnrollmentResponse CreateContestsByIdEnrollment(ctx, id).XActingAs(xActingAs).Execute()
+> DomainEnrollmentResponse CreateContestsByIdEnrollment(ctx, id).XActingAs(xActingAs).ContesthttpEnrollmentRequest(contesthttpEnrollmentRequest).Execute()
 
-Enroll in a contest's pre-enrollment pool
+Enroll in a contest
 
 
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	id := "id_example" // string | Contest ID
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
+	contesthttpEnrollmentRequest := *openapiclient.NewContesthttpEnrollmentRequest() // ContesthttpEnrollmentRequest | Participation Space; omitted uses the Contest home Space (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ParticipationAPI.CreateContestsByIdEnrollment(context.Background(), id).XActingAs(xActingAs).Execute()
+	resp, r, err := apiClient.ParticipationAPI.CreateContestsByIdEnrollment(context.Background(), id).XActingAs(xActingAs).ContesthttpEnrollmentRequest(contesthttpEnrollmentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ParticipationAPI.CreateContestsByIdEnrollment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xActingAs** | **string** | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. | 
+ **contesthttpEnrollmentRequest** | [**ContesthttpEnrollmentRequest**](ContesthttpEnrollmentRequest.md) | Participation Space; omitted uses the Contest home Space | 
 
 ### Return type
 
@@ -81,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

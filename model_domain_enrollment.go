@@ -24,6 +24,7 @@ type DomainEnrollment struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Member *IdentitiesPlatformIdentity `json:"member,omitempty"`
+	SpaceId *string `json:"space_id,omitempty"`
 }
 
 // NewDomainEnrollment instantiates a new DomainEnrollment object
@@ -171,6 +172,38 @@ func (o *DomainEnrollment) SetMember(v IdentitiesPlatformIdentity) {
 	o.Member = &v
 }
 
+// GetSpaceId returns the SpaceId field value if set, zero value otherwise.
+func (o *DomainEnrollment) GetSpaceId() string {
+	if o == nil || IsNil(o.SpaceId) {
+		var ret string
+		return ret
+	}
+	return *o.SpaceId
+}
+
+// GetSpaceIdOk returns a tuple with the SpaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainEnrollment) GetSpaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SpaceId) {
+		return nil, false
+	}
+	return o.SpaceId, true
+}
+
+// HasSpaceId returns a boolean if a field has been set.
+func (o *DomainEnrollment) HasSpaceId() bool {
+	if o != nil && !IsNil(o.SpaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpaceId gets a reference to the given string and assigns it to the SpaceId field.
+func (o *DomainEnrollment) SetSpaceId(v string) {
+	o.SpaceId = &v
+}
+
 func (o DomainEnrollment) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -192,6 +225,9 @@ func (o DomainEnrollment) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Member) {
 		toSerialize["member"] = o.Member
+	}
+	if !IsNil(o.SpaceId) {
+		toSerialize["space_id"] = o.SpaceId
 	}
 	return toSerialize, nil
 }

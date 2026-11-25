@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BonusRewards** | Pointer to [**[]DomainBonusReward**](DomainBonusReward.md) |  | [optional] 
 **Description** | **string** |  | 
 **GroupingType** | Pointer to **string** |  | [optional] 
 **NoOfGroups** | **int32** |  | 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed
 NewContesthttpUpdateContestRequestWithDefaults instantiates a new ContesthttpUpdateContestRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBonusRewards
+
+`func (o *ContesthttpUpdateContestRequest) GetBonusRewards() []DomainBonusReward`
+
+GetBonusRewards returns the BonusRewards field if non-nil, zero value otherwise.
+
+### GetBonusRewardsOk
+
+`func (o *ContesthttpUpdateContestRequest) GetBonusRewardsOk() (*[]DomainBonusReward, bool)`
+
+GetBonusRewardsOk returns a tuple with the BonusRewards field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBonusRewards
+
+`func (o *ContesthttpUpdateContestRequest) SetBonusRewards(v []DomainBonusReward)`
+
+SetBonusRewards sets BonusRewards field to given value.
+
+### HasBonusRewards
+
+`func (o *ContesthttpUpdateContestRequest) HasBonusRewards() bool`
+
+HasBonusRewards returns a boolean if a field has been set.
 
 ### GetDescription
 

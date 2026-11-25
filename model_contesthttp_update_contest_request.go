@@ -22,6 +22,7 @@ var _ MappedNullable = &ContesthttpUpdateContestRequest{}
 
 // ContesthttpUpdateContestRequest struct for ContesthttpUpdateContestRequest
 type ContesthttpUpdateContestRequest struct {
+	BonusRewards []DomainBonusReward `json:"bonus_rewards,omitempty"`
 	Description string `json:"description"`
 	GroupingType *string `json:"grouping_type,omitempty"`
 	NoOfGroups int32 `json:"no_of_groups"`
@@ -54,6 +55,38 @@ func NewContesthttpUpdateContestRequest(description string, noOfGroups int32, re
 func NewContesthttpUpdateContestRequestWithDefaults() *ContesthttpUpdateContestRequest {
 	this := ContesthttpUpdateContestRequest{}
 	return &this
+}
+
+// GetBonusRewards returns the BonusRewards field value if set, zero value otherwise.
+func (o *ContesthttpUpdateContestRequest) GetBonusRewards() []DomainBonusReward {
+	if o == nil || IsNil(o.BonusRewards) {
+		var ret []DomainBonusReward
+		return ret
+	}
+	return o.BonusRewards
+}
+
+// GetBonusRewardsOk returns a tuple with the BonusRewards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContesthttpUpdateContestRequest) GetBonusRewardsOk() ([]DomainBonusReward, bool) {
+	if o == nil || IsNil(o.BonusRewards) {
+		return nil, false
+	}
+	return o.BonusRewards, true
+}
+
+// HasBonusRewards returns a boolean if a field has been set.
+func (o *ContesthttpUpdateContestRequest) HasBonusRewards() bool {
+	if o != nil && !IsNil(o.BonusRewards) {
+		return true
+	}
+
+	return false
+}
+
+// SetBonusRewards gets a reference to the given []DomainBonusReward and assigns it to the BonusRewards field.
+func (o *ContesthttpUpdateContestRequest) SetBonusRewards(v []DomainBonusReward) {
+	o.BonusRewards = v
 }
 
 // GetDescription returns the Description field value
@@ -242,6 +275,9 @@ func (o ContesthttpUpdateContestRequest) MarshalJSON() ([]byte, error) {
 
 func (o ContesthttpUpdateContestRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BonusRewards) {
+		toSerialize["bonus_rewards"] = o.BonusRewards
+	}
 	toSerialize["description"] = o.Description
 	if !IsNil(o.GroupingType) {
 		toSerialize["grouping_type"] = o.GroupingType
