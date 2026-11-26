@@ -27,7 +27,6 @@ type TournamenthttpCreateContestPayload struct {
 	Answers []GuessGuessAnswer `json:"answers,omitempty"`
 	AttemptLimit *int32 `json:"attempt_limit,omitempty"`
 	BoardId *string `json:"board_id,omitempty"`
-	BonusRewards []DomainBonusReward `json:"bonus_rewards,omitempty"`
 	Category *string `json:"category,omitempty"`
 	ClaimScope *string `json:"claim_scope,omitempty"`
 	ClueStrategy *string `json:"clue_strategy,omitempty"`
@@ -46,7 +45,7 @@ type TournamenthttpCreateContestPayload struct {
 	Prompt *string `json:"prompt,omitempty"`
 	Quorum *int32 `json:"quorum,omitempty"`
 	RatingModel *string `json:"rating_model,omitempty"`
-	Reward DomainReward `json:"reward"`
+	Rewards []DomainContestReward `json:"rewards,omitempty"`
 	RoomSize *int32 `json:"room_size,omitempty"`
 	RoomVisibility *string `json:"room_visibility,omitempty"`
 	RulePreset *string `json:"rule_preset,omitempty"`
@@ -74,9 +73,8 @@ type _TournamenthttpCreateContestPayload TournamenthttpCreateContestPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTournamenthttpCreateContestPayload(reward DomainReward, sourceType string, spaceId string, timing DomainTiming, title string) *TournamenthttpCreateContestPayload {
+func NewTournamenthttpCreateContestPayload(sourceType string, spaceId string, timing DomainTiming, title string) *TournamenthttpCreateContestPayload {
 	this := TournamenthttpCreateContestPayload{}
-	this.Reward = reward
 	this.SourceType = sourceType
 	this.SpaceId = spaceId
 	this.Timing = timing
@@ -218,38 +216,6 @@ func (o *TournamenthttpCreateContestPayload) HasBoardId() bool {
 // SetBoardId gets a reference to the given string and assigns it to the BoardId field.
 func (o *TournamenthttpCreateContestPayload) SetBoardId(v string) {
 	o.BoardId = &v
-}
-
-// GetBonusRewards returns the BonusRewards field value if set, zero value otherwise.
-func (o *TournamenthttpCreateContestPayload) GetBonusRewards() []DomainBonusReward {
-	if o == nil || IsNil(o.BonusRewards) {
-		var ret []DomainBonusReward
-		return ret
-	}
-	return o.BonusRewards
-}
-
-// GetBonusRewardsOk returns a tuple with the BonusRewards field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TournamenthttpCreateContestPayload) GetBonusRewardsOk() ([]DomainBonusReward, bool) {
-	if o == nil || IsNil(o.BonusRewards) {
-		return nil, false
-	}
-	return o.BonusRewards, true
-}
-
-// HasBonusRewards returns a boolean if a field has been set.
-func (o *TournamenthttpCreateContestPayload) HasBonusRewards() bool {
-	if o != nil && !IsNil(o.BonusRewards) {
-		return true
-	}
-
-	return false
-}
-
-// SetBonusRewards gets a reference to the given []DomainBonusReward and assigns it to the BonusRewards field.
-func (o *TournamenthttpCreateContestPayload) SetBonusRewards(v []DomainBonusReward) {
-	o.BonusRewards = v
 }
 
 // GetCategory returns the Category field value if set, zero value otherwise.
@@ -796,28 +762,36 @@ func (o *TournamenthttpCreateContestPayload) SetRatingModel(v string) {
 	o.RatingModel = &v
 }
 
-// GetReward returns the Reward field value
-func (o *TournamenthttpCreateContestPayload) GetReward() DomainReward {
-	if o == nil {
-		var ret DomainReward
+// GetRewards returns the Rewards field value if set, zero value otherwise.
+func (o *TournamenthttpCreateContestPayload) GetRewards() []DomainContestReward {
+	if o == nil || IsNil(o.Rewards) {
+		var ret []DomainContestReward
 		return ret
 	}
-
-	return o.Reward
+	return o.Rewards
 }
 
-// GetRewardOk returns a tuple with the Reward field value
+// GetRewardsOk returns a tuple with the Rewards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TournamenthttpCreateContestPayload) GetRewardOk() (*DomainReward, bool) {
-	if o == nil {
+func (o *TournamenthttpCreateContestPayload) GetRewardsOk() ([]DomainContestReward, bool) {
+	if o == nil || IsNil(o.Rewards) {
 		return nil, false
 	}
-	return &o.Reward, true
+	return o.Rewards, true
 }
 
-// SetReward sets field value
-func (o *TournamenthttpCreateContestPayload) SetReward(v DomainReward) {
-	o.Reward = v
+// HasRewards returns a boolean if a field has been set.
+func (o *TournamenthttpCreateContestPayload) HasRewards() bool {
+	if o != nil && !IsNil(o.Rewards) {
+		return true
+	}
+
+	return false
+}
+
+// SetRewards gets a reference to the given []DomainContestReward and assigns it to the Rewards field.
+func (o *TournamenthttpCreateContestPayload) SetRewards(v []DomainContestReward) {
+	o.Rewards = v
 }
 
 // GetRoomSize returns the RoomSize field value if set, zero value otherwise.
@@ -1386,9 +1360,6 @@ func (o TournamenthttpCreateContestPayload) ToMap() (map[string]interface{}, err
 	if !IsNil(o.BoardId) {
 		toSerialize["board_id"] = o.BoardId
 	}
-	if !IsNil(o.BonusRewards) {
-		toSerialize["bonus_rewards"] = o.BonusRewards
-	}
 	if !IsNil(o.Category) {
 		toSerialize["category"] = o.Category
 	}
@@ -1440,7 +1411,9 @@ func (o TournamenthttpCreateContestPayload) ToMap() (map[string]interface{}, err
 	if !IsNil(o.RatingModel) {
 		toSerialize["rating_model"] = o.RatingModel
 	}
-	toSerialize["reward"] = o.Reward
+	if !IsNil(o.Rewards) {
+		toSerialize["rewards"] = o.Rewards
+	}
 	if !IsNil(o.RoomSize) {
 		toSerialize["room_size"] = o.RoomSize
 	}
@@ -1495,7 +1468,6 @@ func (o *TournamenthttpCreateContestPayload) UnmarshalJSON(data []byte) (err err
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"reward",
 		"source_type",
 		"space_id",
 		"timing",

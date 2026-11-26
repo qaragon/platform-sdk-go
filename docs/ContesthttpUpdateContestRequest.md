@@ -4,11 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BonusRewards** | Pointer to [**[]DomainBonusReward**](DomainBonusReward.md) |  | [optional] 
 **Description** | **string** |  | 
 **GroupingType** | Pointer to **string** |  | [optional] 
 **NoOfGroups** | **int32** |  | 
-**Reward** | [**DomainReward**](DomainReward.md) |  | 
+**Rewards** | Pointer to [**[]DomainContestReward**](DomainContestReward.md) |  | [optional] 
 **Timing** | [**DomainTiming**](DomainTiming.md) |  | 
 **Title** | **string** |  | 
 **WinnersPerGroup** | **int32** |  | 
@@ -17,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewContesthttpUpdateContestRequest
 
-`func NewContesthttpUpdateContestRequest(description string, noOfGroups int32, reward DomainReward, timing DomainTiming, title string, winnersPerGroup int32, ) *ContesthttpUpdateContestRequest`
+`func NewContesthttpUpdateContestRequest(description string, noOfGroups int32, timing DomainTiming, title string, winnersPerGroup int32, ) *ContesthttpUpdateContestRequest`
 
 NewContesthttpUpdateContestRequest instantiates a new ContesthttpUpdateContestRequest object
 This constructor will assign default values to properties that have it defined,
@@ -31,31 +30,6 @@ will change when the set of required properties is changed
 NewContesthttpUpdateContestRequestWithDefaults instantiates a new ContesthttpUpdateContestRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetBonusRewards
-
-`func (o *ContesthttpUpdateContestRequest) GetBonusRewards() []DomainBonusReward`
-
-GetBonusRewards returns the BonusRewards field if non-nil, zero value otherwise.
-
-### GetBonusRewardsOk
-
-`func (o *ContesthttpUpdateContestRequest) GetBonusRewardsOk() (*[]DomainBonusReward, bool)`
-
-GetBonusRewardsOk returns a tuple with the BonusRewards field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBonusRewards
-
-`func (o *ContesthttpUpdateContestRequest) SetBonusRewards(v []DomainBonusReward)`
-
-SetBonusRewards sets BonusRewards field to given value.
-
-### HasBonusRewards
-
-`func (o *ContesthttpUpdateContestRequest) HasBonusRewards() bool`
-
-HasBonusRewards returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -122,25 +96,30 @@ and a boolean to check if the value has been set.
 SetNoOfGroups sets NoOfGroups field to given value.
 
 
-### GetReward
+### GetRewards
 
-`func (o *ContesthttpUpdateContestRequest) GetReward() DomainReward`
+`func (o *ContesthttpUpdateContestRequest) GetRewards() []DomainContestReward`
 
-GetReward returns the Reward field if non-nil, zero value otherwise.
+GetRewards returns the Rewards field if non-nil, zero value otherwise.
 
-### GetRewardOk
+### GetRewardsOk
 
-`func (o *ContesthttpUpdateContestRequest) GetRewardOk() (*DomainReward, bool)`
+`func (o *ContesthttpUpdateContestRequest) GetRewardsOk() (*[]DomainContestReward, bool)`
 
-GetRewardOk returns a tuple with the Reward field if it's non-nil, zero value otherwise
+GetRewardsOk returns a tuple with the Rewards field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReward
+### SetRewards
 
-`func (o *ContesthttpUpdateContestRequest) SetReward(v DomainReward)`
+`func (o *ContesthttpUpdateContestRequest) SetRewards(v []DomainContestReward)`
 
-SetReward sets Reward field to given value.
+SetRewards sets Rewards field to given value.
 
+### HasRewards
+
+`func (o *ContesthttpUpdateContestRequest) HasRewards() bool`
+
+HasRewards returns a boolean if a field has been set.
 
 ### GetTiming
 

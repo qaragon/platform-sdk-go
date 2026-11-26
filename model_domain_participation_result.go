@@ -20,15 +20,13 @@ var _ MappedNullable = &DomainParticipationResult{}
 
 // DomainParticipationResult struct for DomainParticipationResult
 type DomainParticipationResult struct {
-	BonusRewardIds []string `json:"bonus_reward_ids,omitempty"`
-	// Legacy field used to migrate pre-v2 records that lack graded_sheet. Stripped before v2 responses.
-	Breakdown []DomainParticipationResultBreakdownInner `json:"breakdown,omitempty"`
 	GlobalRank *int32 `json:"global_rank,omitempty"`
 	// Grading timestamp
 	GradedAt *string `json:"graded_at,omitempty"`
-	// Complete graded sheet (v2 preferred)
+	// Complete graded sheet
 	GradedSheet map[string]interface{} `json:"graded_sheet,omitempty"`
 	GroupRank *int32 `json:"group_rank,omitempty"`
+	IsContestWinner *bool `json:"is_contest_winner,omitempty"`
 	// Participation points with 3 decimal precision
 	ParticipationPoint *float32 `json:"participation_point,omitempty"`
 	// True if < MinJurorScores for creative contests
@@ -37,10 +35,6 @@ type DomainParticipationResult struct {
 	ScorePct *string `json:"score_pct,omitempty"`
 	SubmissionZone *string `json:"submission_zone,omitempty"`
 	Time *string `json:"time,omitempty"`
-	// Legacy fields used to backfill ZoneDeduction/SubmissionZone for pre-v2 records.
-	TimePenalty *string `json:"time_penalty,omitempty"`
-	TimePenaltyZone *string `json:"time_penalty_zone,omitempty"`
-	Won *bool `json:"won,omitempty"`
 	ZoneDeduction *string `json:"zone_deduction,omitempty"`
 }
 
@@ -59,70 +53,6 @@ func NewDomainParticipationResult() *DomainParticipationResult {
 func NewDomainParticipationResultWithDefaults() *DomainParticipationResult {
 	this := DomainParticipationResult{}
 	return &this
-}
-
-// GetBonusRewardIds returns the BonusRewardIds field value if set, zero value otherwise.
-func (o *DomainParticipationResult) GetBonusRewardIds() []string {
-	if o == nil || IsNil(o.BonusRewardIds) {
-		var ret []string
-		return ret
-	}
-	return o.BonusRewardIds
-}
-
-// GetBonusRewardIdsOk returns a tuple with the BonusRewardIds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainParticipationResult) GetBonusRewardIdsOk() ([]string, bool) {
-	if o == nil || IsNil(o.BonusRewardIds) {
-		return nil, false
-	}
-	return o.BonusRewardIds, true
-}
-
-// HasBonusRewardIds returns a boolean if a field has been set.
-func (o *DomainParticipationResult) HasBonusRewardIds() bool {
-	if o != nil && !IsNil(o.BonusRewardIds) {
-		return true
-	}
-
-	return false
-}
-
-// SetBonusRewardIds gets a reference to the given []string and assigns it to the BonusRewardIds field.
-func (o *DomainParticipationResult) SetBonusRewardIds(v []string) {
-	o.BonusRewardIds = v
-}
-
-// GetBreakdown returns the Breakdown field value if set, zero value otherwise.
-func (o *DomainParticipationResult) GetBreakdown() []DomainParticipationResultBreakdownInner {
-	if o == nil || IsNil(o.Breakdown) {
-		var ret []DomainParticipationResultBreakdownInner
-		return ret
-	}
-	return o.Breakdown
-}
-
-// GetBreakdownOk returns a tuple with the Breakdown field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainParticipationResult) GetBreakdownOk() ([]DomainParticipationResultBreakdownInner, bool) {
-	if o == nil || IsNil(o.Breakdown) {
-		return nil, false
-	}
-	return o.Breakdown, true
-}
-
-// HasBreakdown returns a boolean if a field has been set.
-func (o *DomainParticipationResult) HasBreakdown() bool {
-	if o != nil && !IsNil(o.Breakdown) {
-		return true
-	}
-
-	return false
-}
-
-// SetBreakdown gets a reference to the given []DomainParticipationResultBreakdownInner and assigns it to the Breakdown field.
-func (o *DomainParticipationResult) SetBreakdown(v []DomainParticipationResultBreakdownInner) {
-	o.Breakdown = v
 }
 
 // GetGlobalRank returns the GlobalRank field value if set, zero value otherwise.
@@ -251,6 +181,38 @@ func (o *DomainParticipationResult) HasGroupRank() bool {
 // SetGroupRank gets a reference to the given int32 and assigns it to the GroupRank field.
 func (o *DomainParticipationResult) SetGroupRank(v int32) {
 	o.GroupRank = &v
+}
+
+// GetIsContestWinner returns the IsContestWinner field value if set, zero value otherwise.
+func (o *DomainParticipationResult) GetIsContestWinner() bool {
+	if o == nil || IsNil(o.IsContestWinner) {
+		var ret bool
+		return ret
+	}
+	return *o.IsContestWinner
+}
+
+// GetIsContestWinnerOk returns a tuple with the IsContestWinner field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainParticipationResult) GetIsContestWinnerOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsContestWinner) {
+		return nil, false
+	}
+	return o.IsContestWinner, true
+}
+
+// HasIsContestWinner returns a boolean if a field has been set.
+func (o *DomainParticipationResult) HasIsContestWinner() bool {
+	if o != nil && !IsNil(o.IsContestWinner) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsContestWinner gets a reference to the given bool and assigns it to the IsContestWinner field.
+func (o *DomainParticipationResult) SetIsContestWinner(v bool) {
+	o.IsContestWinner = &v
 }
 
 // GetParticipationPoint returns the ParticipationPoint field value if set, zero value otherwise.
@@ -445,102 +407,6 @@ func (o *DomainParticipationResult) SetTime(v string) {
 	o.Time = &v
 }
 
-// GetTimePenalty returns the TimePenalty field value if set, zero value otherwise.
-func (o *DomainParticipationResult) GetTimePenalty() string {
-	if o == nil || IsNil(o.TimePenalty) {
-		var ret string
-		return ret
-	}
-	return *o.TimePenalty
-}
-
-// GetTimePenaltyOk returns a tuple with the TimePenalty field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainParticipationResult) GetTimePenaltyOk() (*string, bool) {
-	if o == nil || IsNil(o.TimePenalty) {
-		return nil, false
-	}
-	return o.TimePenalty, true
-}
-
-// HasTimePenalty returns a boolean if a field has been set.
-func (o *DomainParticipationResult) HasTimePenalty() bool {
-	if o != nil && !IsNil(o.TimePenalty) {
-		return true
-	}
-
-	return false
-}
-
-// SetTimePenalty gets a reference to the given string and assigns it to the TimePenalty field.
-func (o *DomainParticipationResult) SetTimePenalty(v string) {
-	o.TimePenalty = &v
-}
-
-// GetTimePenaltyZone returns the TimePenaltyZone field value if set, zero value otherwise.
-func (o *DomainParticipationResult) GetTimePenaltyZone() string {
-	if o == nil || IsNil(o.TimePenaltyZone) {
-		var ret string
-		return ret
-	}
-	return *o.TimePenaltyZone
-}
-
-// GetTimePenaltyZoneOk returns a tuple with the TimePenaltyZone field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainParticipationResult) GetTimePenaltyZoneOk() (*string, bool) {
-	if o == nil || IsNil(o.TimePenaltyZone) {
-		return nil, false
-	}
-	return o.TimePenaltyZone, true
-}
-
-// HasTimePenaltyZone returns a boolean if a field has been set.
-func (o *DomainParticipationResult) HasTimePenaltyZone() bool {
-	if o != nil && !IsNil(o.TimePenaltyZone) {
-		return true
-	}
-
-	return false
-}
-
-// SetTimePenaltyZone gets a reference to the given string and assigns it to the TimePenaltyZone field.
-func (o *DomainParticipationResult) SetTimePenaltyZone(v string) {
-	o.TimePenaltyZone = &v
-}
-
-// GetWon returns the Won field value if set, zero value otherwise.
-func (o *DomainParticipationResult) GetWon() bool {
-	if o == nil || IsNil(o.Won) {
-		var ret bool
-		return ret
-	}
-	return *o.Won
-}
-
-// GetWonOk returns a tuple with the Won field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainParticipationResult) GetWonOk() (*bool, bool) {
-	if o == nil || IsNil(o.Won) {
-		return nil, false
-	}
-	return o.Won, true
-}
-
-// HasWon returns a boolean if a field has been set.
-func (o *DomainParticipationResult) HasWon() bool {
-	if o != nil && !IsNil(o.Won) {
-		return true
-	}
-
-	return false
-}
-
-// SetWon gets a reference to the given bool and assigns it to the Won field.
-func (o *DomainParticipationResult) SetWon(v bool) {
-	o.Won = &v
-}
-
 // GetZoneDeduction returns the ZoneDeduction field value if set, zero value otherwise.
 func (o *DomainParticipationResult) GetZoneDeduction() string {
 	if o == nil || IsNil(o.ZoneDeduction) {
@@ -583,12 +449,6 @@ func (o DomainParticipationResult) MarshalJSON() ([]byte, error) {
 
 func (o DomainParticipationResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BonusRewardIds) {
-		toSerialize["bonus_reward_ids"] = o.BonusRewardIds
-	}
-	if !IsNil(o.Breakdown) {
-		toSerialize["breakdown"] = o.Breakdown
-	}
 	if !IsNil(o.GlobalRank) {
 		toSerialize["global_rank"] = o.GlobalRank
 	}
@@ -600,6 +460,9 @@ func (o DomainParticipationResult) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.GroupRank) {
 		toSerialize["group_rank"] = o.GroupRank
+	}
+	if !IsNil(o.IsContestWinner) {
+		toSerialize["is_contest_winner"] = o.IsContestWinner
 	}
 	if !IsNil(o.ParticipationPoint) {
 		toSerialize["participation_point"] = o.ParticipationPoint
@@ -618,15 +481,6 @@ func (o DomainParticipationResult) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Time) {
 		toSerialize["time"] = o.Time
-	}
-	if !IsNil(o.TimePenalty) {
-		toSerialize["time_penalty"] = o.TimePenalty
-	}
-	if !IsNil(o.TimePenaltyZone) {
-		toSerialize["time_penalty_zone"] = o.TimePenaltyZone
-	}
-	if !IsNil(o.Won) {
-		toSerialize["won"] = o.Won
 	}
 	if !IsNil(o.ZoneDeduction) {
 		toSerialize["zone_deduction"] = o.ZoneDeduction

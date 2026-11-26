@@ -4,21 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BonusRewardIds** | Pointer to **[]string** |  | [optional] 
-**Breakdown** | Pointer to [**[]DomainParticipationResultBreakdownInner**](DomainParticipationResultBreakdownInner.md) | Legacy field used to migrate pre-v2 records that lack graded_sheet. Stripped before v2 responses. | [optional] 
 **GlobalRank** | Pointer to **int32** |  | [optional] 
 **GradedAt** | Pointer to **string** | Grading timestamp | [optional] 
-**GradedSheet** | Pointer to **map[string]interface{}** | Complete graded sheet (v2 preferred) | [optional] 
+**GradedSheet** | Pointer to **map[string]interface{}** | Complete graded sheet | [optional] 
 **GroupRank** | Pointer to **int32** |  | [optional] 
+**IsContestWinner** | Pointer to **bool** |  | [optional] 
 **ParticipationPoint** | Pointer to **float32** | Participation points with 3 decimal precision | [optional] 
 **ResultsIncomplete** | Pointer to **bool** | True if &lt; MinJurorScores for creative contests | [optional] 
 **Score** | Pointer to **int32** |  | [optional] 
 **ScorePct** | Pointer to **string** |  | [optional] 
 **SubmissionZone** | Pointer to **string** |  | [optional] 
 **Time** | Pointer to **string** |  | [optional] 
-**TimePenalty** | Pointer to **string** | Legacy fields used to backfill ZoneDeduction/SubmissionZone for pre-v2 records. | [optional] 
-**TimePenaltyZone** | Pointer to **string** |  | [optional] 
-**Won** | Pointer to **bool** |  | [optional] 
 **ZoneDeduction** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -39,56 +35,6 @@ will change when the set of required properties is changed
 NewDomainParticipationResultWithDefaults instantiates a new DomainParticipationResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetBonusRewardIds
-
-`func (o *DomainParticipationResult) GetBonusRewardIds() []string`
-
-GetBonusRewardIds returns the BonusRewardIds field if non-nil, zero value otherwise.
-
-### GetBonusRewardIdsOk
-
-`func (o *DomainParticipationResult) GetBonusRewardIdsOk() (*[]string, bool)`
-
-GetBonusRewardIdsOk returns a tuple with the BonusRewardIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBonusRewardIds
-
-`func (o *DomainParticipationResult) SetBonusRewardIds(v []string)`
-
-SetBonusRewardIds sets BonusRewardIds field to given value.
-
-### HasBonusRewardIds
-
-`func (o *DomainParticipationResult) HasBonusRewardIds() bool`
-
-HasBonusRewardIds returns a boolean if a field has been set.
-
-### GetBreakdown
-
-`func (o *DomainParticipationResult) GetBreakdown() []DomainParticipationResultBreakdownInner`
-
-GetBreakdown returns the Breakdown field if non-nil, zero value otherwise.
-
-### GetBreakdownOk
-
-`func (o *DomainParticipationResult) GetBreakdownOk() (*[]DomainParticipationResultBreakdownInner, bool)`
-
-GetBreakdownOk returns a tuple with the Breakdown field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBreakdown
-
-`func (o *DomainParticipationResult) SetBreakdown(v []DomainParticipationResultBreakdownInner)`
-
-SetBreakdown sets Breakdown field to given value.
-
-### HasBreakdown
-
-`func (o *DomainParticipationResult) HasBreakdown() bool`
-
-HasBreakdown returns a boolean if a field has been set.
 
 ### GetGlobalRank
 
@@ -189,6 +135,31 @@ SetGroupRank sets GroupRank field to given value.
 `func (o *DomainParticipationResult) HasGroupRank() bool`
 
 HasGroupRank returns a boolean if a field has been set.
+
+### GetIsContestWinner
+
+`func (o *DomainParticipationResult) GetIsContestWinner() bool`
+
+GetIsContestWinner returns the IsContestWinner field if non-nil, zero value otherwise.
+
+### GetIsContestWinnerOk
+
+`func (o *DomainParticipationResult) GetIsContestWinnerOk() (*bool, bool)`
+
+GetIsContestWinnerOk returns a tuple with the IsContestWinner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsContestWinner
+
+`func (o *DomainParticipationResult) SetIsContestWinner(v bool)`
+
+SetIsContestWinner sets IsContestWinner field to given value.
+
+### HasIsContestWinner
+
+`func (o *DomainParticipationResult) HasIsContestWinner() bool`
+
+HasIsContestWinner returns a boolean if a field has been set.
 
 ### GetParticipationPoint
 
@@ -339,81 +310,6 @@ SetTime sets Time field to given value.
 `func (o *DomainParticipationResult) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
-
-### GetTimePenalty
-
-`func (o *DomainParticipationResult) GetTimePenalty() string`
-
-GetTimePenalty returns the TimePenalty field if non-nil, zero value otherwise.
-
-### GetTimePenaltyOk
-
-`func (o *DomainParticipationResult) GetTimePenaltyOk() (*string, bool)`
-
-GetTimePenaltyOk returns a tuple with the TimePenalty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimePenalty
-
-`func (o *DomainParticipationResult) SetTimePenalty(v string)`
-
-SetTimePenalty sets TimePenalty field to given value.
-
-### HasTimePenalty
-
-`func (o *DomainParticipationResult) HasTimePenalty() bool`
-
-HasTimePenalty returns a boolean if a field has been set.
-
-### GetTimePenaltyZone
-
-`func (o *DomainParticipationResult) GetTimePenaltyZone() string`
-
-GetTimePenaltyZone returns the TimePenaltyZone field if non-nil, zero value otherwise.
-
-### GetTimePenaltyZoneOk
-
-`func (o *DomainParticipationResult) GetTimePenaltyZoneOk() (*string, bool)`
-
-GetTimePenaltyZoneOk returns a tuple with the TimePenaltyZone field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimePenaltyZone
-
-`func (o *DomainParticipationResult) SetTimePenaltyZone(v string)`
-
-SetTimePenaltyZone sets TimePenaltyZone field to given value.
-
-### HasTimePenaltyZone
-
-`func (o *DomainParticipationResult) HasTimePenaltyZone() bool`
-
-HasTimePenaltyZone returns a boolean if a field has been set.
-
-### GetWon
-
-`func (o *DomainParticipationResult) GetWon() bool`
-
-GetWon returns the Won field if non-nil, zero value otherwise.
-
-### GetWonOk
-
-`func (o *DomainParticipationResult) GetWonOk() (*bool, bool)`
-
-GetWonOk returns a tuple with the Won field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWon
-
-`func (o *DomainParticipationResult) SetWon(v bool)`
-
-SetWon sets Won field to given value.
-
-### HasWon
-
-`func (o *DomainParticipationResult) HasWon() bool`
-
-HasWon returns a boolean if a field has been set.
 
 ### GetZoneDeduction
 

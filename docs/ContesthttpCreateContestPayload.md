@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **Answers** | Pointer to [**[]GuessGuessAnswer**](GuessGuessAnswer.md) |  | [optional] 
 **AttemptLimit** | Pointer to **int32** |  | [optional] 
 **BoardId** | Pointer to **string** |  | [optional] 
-**BonusRewards** | Pointer to [**[]DomainBonusReward**](DomainBonusReward.md) |  | [optional] 
 **Category** | Pointer to **string** |  | [optional] 
 **ClaimScope** | Pointer to **string** |  | [optional] 
 **ClueStrategy** | Pointer to **string** |  | [optional] 
@@ -26,7 +25,7 @@ Name | Type | Description | Notes
 **Prompt** | Pointer to **string** |  | [optional] 
 **Quorum** | Pointer to **int32** |  | [optional] 
 **RatingModel** | Pointer to **string** |  | [optional] 
-**Reward** | [**DomainReward**](DomainReward.md) |  | 
+**Rewards** | Pointer to [**[]DomainContestReward**](DomainContestReward.md) |  | [optional] 
 **RoomSize** | Pointer to **int32** |  | [optional] 
 **RoomVisibility** | Pointer to **string** |  | [optional] 
 **RulePreset** | Pointer to **string** |  | [optional] 
@@ -50,7 +49,7 @@ Name | Type | Description | Notes
 
 ### NewContesthttpCreateContestPayload
 
-`func NewContesthttpCreateContestPayload(reward DomainReward, sourceType string, spaceId string, timing DomainTiming, title string, ) *ContesthttpCreateContestPayload`
+`func NewContesthttpCreateContestPayload(sourceType string, spaceId string, timing DomainTiming, title string, ) *ContesthttpCreateContestPayload`
 
 NewContesthttpCreateContestPayload instantiates a new ContesthttpCreateContestPayload object
 This constructor will assign default values to properties that have it defined,
@@ -164,31 +163,6 @@ SetBoardId sets BoardId field to given value.
 `func (o *ContesthttpCreateContestPayload) HasBoardId() bool`
 
 HasBoardId returns a boolean if a field has been set.
-
-### GetBonusRewards
-
-`func (o *ContesthttpCreateContestPayload) GetBonusRewards() []DomainBonusReward`
-
-GetBonusRewards returns the BonusRewards field if non-nil, zero value otherwise.
-
-### GetBonusRewardsOk
-
-`func (o *ContesthttpCreateContestPayload) GetBonusRewardsOk() (*[]DomainBonusReward, bool)`
-
-GetBonusRewardsOk returns a tuple with the BonusRewards field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBonusRewards
-
-`func (o *ContesthttpCreateContestPayload) SetBonusRewards(v []DomainBonusReward)`
-
-SetBonusRewards sets BonusRewards field to given value.
-
-### HasBonusRewards
-
-`func (o *ContesthttpCreateContestPayload) HasBonusRewards() bool`
-
-HasBonusRewards returns a boolean if a field has been set.
 
 ### GetCategory
 
@@ -615,25 +589,30 @@ SetRatingModel sets RatingModel field to given value.
 
 HasRatingModel returns a boolean if a field has been set.
 
-### GetReward
+### GetRewards
 
-`func (o *ContesthttpCreateContestPayload) GetReward() DomainReward`
+`func (o *ContesthttpCreateContestPayload) GetRewards() []DomainContestReward`
 
-GetReward returns the Reward field if non-nil, zero value otherwise.
+GetRewards returns the Rewards field if non-nil, zero value otherwise.
 
-### GetRewardOk
+### GetRewardsOk
 
-`func (o *ContesthttpCreateContestPayload) GetRewardOk() (*DomainReward, bool)`
+`func (o *ContesthttpCreateContestPayload) GetRewardsOk() (*[]DomainContestReward, bool)`
 
-GetRewardOk returns a tuple with the Reward field if it's non-nil, zero value otherwise
+GetRewardsOk returns a tuple with the Rewards field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReward
+### SetRewards
 
-`func (o *ContesthttpCreateContestPayload) SetReward(v DomainReward)`
+`func (o *ContesthttpCreateContestPayload) SetRewards(v []DomainContestReward)`
 
-SetReward sets Reward field to given value.
+SetRewards sets Rewards field to given value.
 
+### HasRewards
+
+`func (o *ContesthttpCreateContestPayload) HasRewards() bool`
+
+HasRewards returns a boolean if a field has been set.
 
 ### GetRoomSize
 

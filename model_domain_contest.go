@@ -20,7 +20,6 @@ var _ MappedNullable = &DomainContest{}
 
 // DomainContest struct for DomainContest
 type DomainContest struct {
-	BonusRewards []DomainBonusReward `json:"bonus_rewards,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Difficulty *string `json:"difficulty,omitempty"`
@@ -34,7 +33,7 @@ type DomainContest struct {
 	NoOfGroups *int32 `json:"no_of_groups,omitempty"`
 	NoOfPuzzles *int32 `json:"no_of_puzzles,omitempty"`
 	ParticipationRules *DomainParticipationRules `json:"participation_rules,omitempty"`
-	Reward *DomainReward `json:"reward,omitempty"`
+	Rewards []DomainContestReward `json:"rewards,omitempty"`
 	Sender *IdentitiesPlatformIdentity `json:"sender,omitempty"`
 	SourceId *string `json:"source_id,omitempty"`
 	SourceType *DomainContestType `json:"source_type,omitempty"`
@@ -47,7 +46,6 @@ type DomainContest struct {
 	SubmissionZoneConfiguration *DomainSubmissionZoneConfiguration `json:"submission_zone_configuration,omitempty"`
 	TeamSet *TeamsTeamSet `json:"team_set,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
-	TimePenaltyConfiguration []DomainTimePenaltyConfiguration `json:"time_penalty_configuration,omitempty"`
 	Timing *DomainTiming `json:"timing,omitempty"`
 	Title *string `json:"title,omitempty"`
 	WinnersPerGroup *int32 `json:"winners_per_group,omitempty"`
@@ -68,38 +66,6 @@ func NewDomainContest() *DomainContest {
 func NewDomainContestWithDefaults() *DomainContest {
 	this := DomainContest{}
 	return &this
-}
-
-// GetBonusRewards returns the BonusRewards field value if set, zero value otherwise.
-func (o *DomainContest) GetBonusRewards() []DomainBonusReward {
-	if o == nil || IsNil(o.BonusRewards) {
-		var ret []DomainBonusReward
-		return ret
-	}
-	return o.BonusRewards
-}
-
-// GetBonusRewardsOk returns a tuple with the BonusRewards field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetBonusRewardsOk() ([]DomainBonusReward, bool) {
-	if o == nil || IsNil(o.BonusRewards) {
-		return nil, false
-	}
-	return o.BonusRewards, true
-}
-
-// HasBonusRewards returns a boolean if a field has been set.
-func (o *DomainContest) HasBonusRewards() bool {
-	if o != nil && !IsNil(o.BonusRewards) {
-		return true
-	}
-
-	return false
-}
-
-// SetBonusRewards gets a reference to the given []DomainBonusReward and assigns it to the BonusRewards field.
-func (o *DomainContest) SetBonusRewards(v []DomainBonusReward) {
-	o.BonusRewards = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -454,36 +420,36 @@ func (o *DomainContest) SetParticipationRules(v DomainParticipationRules) {
 	o.ParticipationRules = &v
 }
 
-// GetReward returns the Reward field value if set, zero value otherwise.
-func (o *DomainContest) GetReward() DomainReward {
-	if o == nil || IsNil(o.Reward) {
-		var ret DomainReward
+// GetRewards returns the Rewards field value if set, zero value otherwise.
+func (o *DomainContest) GetRewards() []DomainContestReward {
+	if o == nil || IsNil(o.Rewards) {
+		var ret []DomainContestReward
 		return ret
 	}
-	return *o.Reward
+	return o.Rewards
 }
 
-// GetRewardOk returns a tuple with the Reward field value if set, nil otherwise
+// GetRewardsOk returns a tuple with the Rewards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainContest) GetRewardOk() (*DomainReward, bool) {
-	if o == nil || IsNil(o.Reward) {
+func (o *DomainContest) GetRewardsOk() ([]DomainContestReward, bool) {
+	if o == nil || IsNil(o.Rewards) {
 		return nil, false
 	}
-	return o.Reward, true
+	return o.Rewards, true
 }
 
-// HasReward returns a boolean if a field has been set.
-func (o *DomainContest) HasReward() bool {
-	if o != nil && !IsNil(o.Reward) {
+// HasRewards returns a boolean if a field has been set.
+func (o *DomainContest) HasRewards() bool {
+	if o != nil && !IsNil(o.Rewards) {
 		return true
 	}
 
 	return false
 }
 
-// SetReward gets a reference to the given DomainReward and assigns it to the Reward field.
-func (o *DomainContest) SetReward(v DomainReward) {
-	o.Reward = &v
+// SetRewards gets a reference to the given []DomainContestReward and assigns it to the Rewards field.
+func (o *DomainContest) SetRewards(v []DomainContestReward) {
+	o.Rewards = v
 }
 
 // GetSender returns the Sender field value if set, zero value otherwise.
@@ -838,38 +804,6 @@ func (o *DomainContest) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
-// GetTimePenaltyConfiguration returns the TimePenaltyConfiguration field value if set, zero value otherwise.
-func (o *DomainContest) GetTimePenaltyConfiguration() []DomainTimePenaltyConfiguration {
-	if o == nil || IsNil(o.TimePenaltyConfiguration) {
-		var ret []DomainTimePenaltyConfiguration
-		return ret
-	}
-	return o.TimePenaltyConfiguration
-}
-
-// GetTimePenaltyConfigurationOk returns a tuple with the TimePenaltyConfiguration field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DomainContest) GetTimePenaltyConfigurationOk() ([]DomainTimePenaltyConfiguration, bool) {
-	if o == nil || IsNil(o.TimePenaltyConfiguration) {
-		return nil, false
-	}
-	return o.TimePenaltyConfiguration, true
-}
-
-// HasTimePenaltyConfiguration returns a boolean if a field has been set.
-func (o *DomainContest) HasTimePenaltyConfiguration() bool {
-	if o != nil && !IsNil(o.TimePenaltyConfiguration) {
-		return true
-	}
-
-	return false
-}
-
-// SetTimePenaltyConfiguration gets a reference to the given []DomainTimePenaltyConfiguration and assigns it to the TimePenaltyConfiguration field.
-func (o *DomainContest) SetTimePenaltyConfiguration(v []DomainTimePenaltyConfiguration) {
-	o.TimePenaltyConfiguration = v
-}
-
 // GetTiming returns the Timing field value if set, zero value otherwise.
 func (o *DomainContest) GetTiming() DomainTiming {
 	if o == nil || IsNil(o.Timing) {
@@ -976,9 +910,6 @@ func (o DomainContest) MarshalJSON() ([]byte, error) {
 
 func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BonusRewards) {
-		toSerialize["bonus_rewards"] = o.BonusRewards
-	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -1012,8 +943,8 @@ func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParticipationRules) {
 		toSerialize["participation_rules"] = o.ParticipationRules
 	}
-	if !IsNil(o.Reward) {
-		toSerialize["reward"] = o.Reward
+	if !IsNil(o.Rewards) {
+		toSerialize["rewards"] = o.Rewards
 	}
 	if !IsNil(o.Sender) {
 		toSerialize["sender"] = o.Sender
@@ -1047,9 +978,6 @@ func (o DomainContest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
-	}
-	if !IsNil(o.TimePenaltyConfiguration) {
-		toSerialize["time_penalty_configuration"] = o.TimePenaltyConfiguration
 	}
 	if !IsNil(o.Timing) {
 		toSerialize["timing"] = o.Timing

@@ -57,7 +57,7 @@ import (
 )
 
 func main() {
-	contesthttpCreateContestPayload := *openapiclient.NewContesthttpCreateContestPayload(*openapiclient.NewDomainReward("RewardType_example", "Value_example"), "SourceType_example", "SpaceId_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // ContesthttpCreateContestPayload | Contest payload
+	contesthttpCreateContestPayload := *openapiclient.NewContesthttpCreateContestPayload("SourceType_example", "SpaceId_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // ContesthttpCreateContestPayload | Contest payload
 	idempotencyKey := "idempotencyKey_example" // string | Retry key (~24h). Same key + same body replays the original response; a different body returns 422 (ADR 0055). (optional)
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
@@ -647,7 +647,7 @@ import (
 
 func main() {
 	id := "id_example" // string | Tournament ID
-	tournamenthttpCreateContestPayload := *openapiclient.NewTournamenthttpCreateContestPayload(*openapiclient.NewDomainReward("RewardType_example", "Value_example"), "SourceType_example", "SpaceId_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // TournamenthttpCreateContestPayload | Contest payload
+	tournamenthttpCreateContestPayload := *openapiclient.NewTournamenthttpCreateContestPayload("SourceType_example", "SpaceId_example", *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example") // TournamenthttpCreateContestPayload | Contest payload
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -2194,7 +2194,7 @@ import (
 
 func main() {
 	id := "id_example" // string | Contest ID
-	contesthttpUpdateContestRequest := *openapiclient.NewContesthttpUpdateContestRequest("Description_example", int32(123), *openapiclient.NewDomainReward("RewardType_example", "Value_example"), *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example", int32(123)) // ContesthttpUpdateContestRequest | Contest payload
+	contesthttpUpdateContestRequest := *openapiclient.NewContesthttpUpdateContestRequest("Description_example", int32(123), *openapiclient.NewDomainTiming("EndAt_example", "StartAt_example"), "Title_example", int32(123)) // ContesthttpUpdateContestRequest | Contest payload
 	xActingAs := "xActingAs_example" // string | Acting-as. The platform identity id (piid) this request is on behalf of. The platform verifies the piid belongs to the calling tenant and acts as that identity. Omit for tenant-level calls. (optional)
 
 	configuration := openapiclient.NewConfiguration()

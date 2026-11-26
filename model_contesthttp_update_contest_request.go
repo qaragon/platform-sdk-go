@@ -22,11 +22,10 @@ var _ MappedNullable = &ContesthttpUpdateContestRequest{}
 
 // ContesthttpUpdateContestRequest struct for ContesthttpUpdateContestRequest
 type ContesthttpUpdateContestRequest struct {
-	BonusRewards []DomainBonusReward `json:"bonus_rewards,omitempty"`
 	Description string `json:"description"`
 	GroupingType *string `json:"grouping_type,omitempty"`
 	NoOfGroups int32 `json:"no_of_groups"`
-	Reward DomainReward `json:"reward"`
+	Rewards []DomainContestReward `json:"rewards,omitempty"`
 	Timing DomainTiming `json:"timing"`
 	Title string `json:"title"`
 	WinnersPerGroup int32 `json:"winners_per_group"`
@@ -38,11 +37,10 @@ type _ContesthttpUpdateContestRequest ContesthttpUpdateContestRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContesthttpUpdateContestRequest(description string, noOfGroups int32, reward DomainReward, timing DomainTiming, title string, winnersPerGroup int32) *ContesthttpUpdateContestRequest {
+func NewContesthttpUpdateContestRequest(description string, noOfGroups int32, timing DomainTiming, title string, winnersPerGroup int32) *ContesthttpUpdateContestRequest {
 	this := ContesthttpUpdateContestRequest{}
 	this.Description = description
 	this.NoOfGroups = noOfGroups
-	this.Reward = reward
 	this.Timing = timing
 	this.Title = title
 	this.WinnersPerGroup = winnersPerGroup
@@ -55,38 +53,6 @@ func NewContesthttpUpdateContestRequest(description string, noOfGroups int32, re
 func NewContesthttpUpdateContestRequestWithDefaults() *ContesthttpUpdateContestRequest {
 	this := ContesthttpUpdateContestRequest{}
 	return &this
-}
-
-// GetBonusRewards returns the BonusRewards field value if set, zero value otherwise.
-func (o *ContesthttpUpdateContestRequest) GetBonusRewards() []DomainBonusReward {
-	if o == nil || IsNil(o.BonusRewards) {
-		var ret []DomainBonusReward
-		return ret
-	}
-	return o.BonusRewards
-}
-
-// GetBonusRewardsOk returns a tuple with the BonusRewards field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContesthttpUpdateContestRequest) GetBonusRewardsOk() ([]DomainBonusReward, bool) {
-	if o == nil || IsNil(o.BonusRewards) {
-		return nil, false
-	}
-	return o.BonusRewards, true
-}
-
-// HasBonusRewards returns a boolean if a field has been set.
-func (o *ContesthttpUpdateContestRequest) HasBonusRewards() bool {
-	if o != nil && !IsNil(o.BonusRewards) {
-		return true
-	}
-
-	return false
-}
-
-// SetBonusRewards gets a reference to the given []DomainBonusReward and assigns it to the BonusRewards field.
-func (o *ContesthttpUpdateContestRequest) SetBonusRewards(v []DomainBonusReward) {
-	o.BonusRewards = v
 }
 
 // GetDescription returns the Description field value
@@ -169,28 +135,36 @@ func (o *ContesthttpUpdateContestRequest) SetNoOfGroups(v int32) {
 	o.NoOfGroups = v
 }
 
-// GetReward returns the Reward field value
-func (o *ContesthttpUpdateContestRequest) GetReward() DomainReward {
-	if o == nil {
-		var ret DomainReward
+// GetRewards returns the Rewards field value if set, zero value otherwise.
+func (o *ContesthttpUpdateContestRequest) GetRewards() []DomainContestReward {
+	if o == nil || IsNil(o.Rewards) {
+		var ret []DomainContestReward
 		return ret
 	}
-
-	return o.Reward
+	return o.Rewards
 }
 
-// GetRewardOk returns a tuple with the Reward field value
+// GetRewardsOk returns a tuple with the Rewards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContesthttpUpdateContestRequest) GetRewardOk() (*DomainReward, bool) {
-	if o == nil {
+func (o *ContesthttpUpdateContestRequest) GetRewardsOk() ([]DomainContestReward, bool) {
+	if o == nil || IsNil(o.Rewards) {
 		return nil, false
 	}
-	return &o.Reward, true
+	return o.Rewards, true
 }
 
-// SetReward sets field value
-func (o *ContesthttpUpdateContestRequest) SetReward(v DomainReward) {
-	o.Reward = v
+// HasRewards returns a boolean if a field has been set.
+func (o *ContesthttpUpdateContestRequest) HasRewards() bool {
+	if o != nil && !IsNil(o.Rewards) {
+		return true
+	}
+
+	return false
+}
+
+// SetRewards gets a reference to the given []DomainContestReward and assigns it to the Rewards field.
+func (o *ContesthttpUpdateContestRequest) SetRewards(v []DomainContestReward) {
+	o.Rewards = v
 }
 
 // GetTiming returns the Timing field value
@@ -275,15 +249,14 @@ func (o ContesthttpUpdateContestRequest) MarshalJSON() ([]byte, error) {
 
 func (o ContesthttpUpdateContestRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BonusRewards) {
-		toSerialize["bonus_rewards"] = o.BonusRewards
-	}
 	toSerialize["description"] = o.Description
 	if !IsNil(o.GroupingType) {
 		toSerialize["grouping_type"] = o.GroupingType
 	}
 	toSerialize["no_of_groups"] = o.NoOfGroups
-	toSerialize["reward"] = o.Reward
+	if !IsNil(o.Rewards) {
+		toSerialize["rewards"] = o.Rewards
+	}
 	toSerialize["timing"] = o.Timing
 	toSerialize["title"] = o.Title
 	toSerialize["winners_per_group"] = o.WinnersPerGroup
@@ -297,7 +270,6 @@ func (o *ContesthttpUpdateContestRequest) UnmarshalJSON(data []byte) (err error)
 	requiredProperties := []string{
 		"description",
 		"no_of_groups",
-		"reward",
 		"timing",
 		"title",
 		"winners_per_group",

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Contest** | Pointer to [**DomainContest**](DomainContest.md) |  | [optional] 
 **ContestGroupName** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
+**EarnedRewards** | Pointer to [**[]DomainContestReward**](DomainContestReward.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LastModifiedAt** | Pointer to **string** |  | [optional] 
 **Participant** | Pointer to [**IdentitiesPlatformIdentity**](IdentitiesPlatformIdentity.md) |  | [optional] 
@@ -112,6 +113,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *DomainParticipation) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetEarnedRewards
+
+`func (o *DomainParticipation) GetEarnedRewards() []DomainContestReward`
+
+GetEarnedRewards returns the EarnedRewards field if non-nil, zero value otherwise.
+
+### GetEarnedRewardsOk
+
+`func (o *DomainParticipation) GetEarnedRewardsOk() (*[]DomainContestReward, bool)`
+
+GetEarnedRewardsOk returns a tuple with the EarnedRewards field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEarnedRewards
+
+`func (o *DomainParticipation) SetEarnedRewards(v []DomainContestReward)`
+
+SetEarnedRewards sets EarnedRewards field to given value.
+
+### HasEarnedRewards
+
+`func (o *DomainParticipation) HasEarnedRewards() bool`
+
+HasEarnedRewards returns a boolean if a field has been set.
 
 ### GetId
 

@@ -13701,30 +13701,6 @@ components:
         space:
           $ref: "#/components/schemas/spaces.Space"
       type: object
-    Domain.BonusReward:
-      example:
-        id: id
-        name: name
-        positions:
-        - 0
-        - 0
-        reward:
-          currency: currency
-          redemption_condition: redemption_condition
-          reward_type: none
-          value: value
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        positions:
-          items:
-            type: integer
-          type: array
-        reward:
-          $ref: "#/components/schemas/Domain.Reward"
-      type: object
     Domain.BuddyBoard:
       example:
         contest_id: contest_id
@@ -14028,27 +14004,6 @@ components:
             value: value
           title: title
         contest:
-          bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
           created_at: created_at
           description: description
           difficulty: difficulty
@@ -14067,9 +14022,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -14083,25 +14038,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -14223,22 +14194,13 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
@@ -14246,27 +14208,6 @@ components:
           winners_per_group: 2
         member_participation:
           contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -14285,9 +14226,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -14301,25 +14242,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -14441,22 +14398,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -14464,6 +14412,27 @@ components:
             winners_per_group: 2
           contest_group_name: contest_group_name
           createdAt: createdAt
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           id: id
           lastModifiedAt: lastModifiedAt
           participant:
@@ -14489,46 +14458,53 @@ components:
             tenant_id: tenant_id
           platform_identity_id: platform_identity_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           solutions:
           - ""
           - ""
           space_id: space_id
           status: status
-          submission_number: 7
+          submission_number: 5
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           time: time
         scores:
         - contest_id: contest_id
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           group: group
           member:
             company: company
@@ -14552,38 +14528,45 @@ components:
             profile_pic: profile_pic
             tenant_id: tenant_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
         - contest_id: contest_id
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           group: group
           member:
             company: company
@@ -14607,39 +14590,46 @@ components:
             profile_pic: profile_pic
             tenant_id: tenant_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
         winners:
         - contest_id: contest_id
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           group: group
           member:
             company: company
@@ -14663,38 +14653,45 @@ components:
             profile_pic: profile_pic
             tenant_id: tenant_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
         - contest_id: contest_id
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           group: group
           member:
             company: company
@@ -14718,37 +14715,23 @@ components:
             profile_pic: profile_pic
             tenant_id: tenant_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
       properties:
         buddy_board:
           $ref: "#/components/schemas/Domain.BuddyBoard"
@@ -14781,27 +14764,6 @@ components:
               value: value
             title: title
           contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -14820,9 +14782,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -14836,25 +14798,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -14976,22 +14954,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -14999,27 +14968,6 @@ components:
             winners_per_group: 2
           member_participation:
             contest:
-              bonus_rewards:
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
               created_at: created_at
               description: description
               difficulty: difficulty
@@ -15038,9 +14986,9 @@ components:
                   icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
-              no_of_groups: 1
-              no_of_puzzles: 5
+                  sort_order: 0
+              no_of_groups: 6
+              no_of_puzzles: 1
               participation_rules:
                 allowed_regions:
                 - code: code
@@ -15054,25 +15002,41 @@ components:
                 id: id
                 maximum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 maximum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 member_can_enroll: true
                 minimum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 minimum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 new_members_only: true
                 preset: preset
-              reward:
+              rewards:
+              - awarded_to: contest_winners
                 currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
                 redemption_condition: redemption_condition
                 reward_type: none
                 value: value
@@ -15194,22 +15158,13 @@ components:
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 type: type
               tenant_id: tenant_id
-              time_penalty_configuration:
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
               timing:
                 end_at: end_at
                 start_at: start_at
@@ -15217,6 +15172,27 @@ components:
               winners_per_group: 2
             contest_group_name: contest_group_name
             createdAt: createdAt
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             id: id
             lastModifiedAt: lastModifiedAt
             participant:
@@ -15242,46 +15218,53 @@ components:
               tenant_id: tenant_id
             platform_identity_id: platform_identity_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             solutions:
             - ""
             - ""
             space_id: space_id
             status: status
-            submission_number: 7
+            submission_number: 5
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             time: time
           scores:
           - contest_id: contest_id
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             group: group
             member:
               company: company
@@ -15305,38 +15288,45 @@ components:
               profile_pic: profile_pic
               tenant_id: tenant_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
           - contest_id: contest_id
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             group: group
             member:
               company: company
@@ -15360,39 +15350,46 @@ components:
               profile_pic: profile_pic
               tenant_id: tenant_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
           winners:
           - contest_id: contest_id
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             group: group
             member:
               company: company
@@ -15416,38 +15413,45 @@ components:
               profile_pic: profile_pic
               tenant_id: tenant_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
           - contest_id: contest_id
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             group: group
             member:
               company: company
@@ -15471,37 +15475,23 @@ components:
               profile_pic: profile_pic
               tenant_id: tenant_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
       properties:
         data:
           $ref: "#/components/schemas/Domain.BuddyBoardView"
@@ -15566,27 +15556,6 @@ components:
       type: object
     Domain.Contest:
       example:
-        bonus_rewards:
-        - id: id
-          name: name
-          positions:
-          - 0
-          - 0
-          reward:
-            currency: currency
-            redemption_condition: redemption_condition
-            reward_type: none
-            value: value
-        - id: id
-          name: name
-          positions:
-          - 0
-          - 0
-          reward:
-            currency: currency
-            redemption_condition: redemption_condition
-            reward_type: none
-            value: value
         created_at: created_at
         description: description
         difficulty: difficulty
@@ -15605,9 +15574,9 @@ components:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
-        no_of_groups: 1
-        no_of_puzzles: 5
+            sort_order: 0
+        no_of_groups: 6
+        no_of_puzzles: 1
         participation_rules:
           allowed_regions:
           - code: code
@@ -15621,25 +15590,41 @@ components:
           id: id
           maximum_participation:
             monthly: 5
-            total: 2
-            weekly: 7
+            total: 5
+            weekly: 2
           maximum_participation_won:
             monthly: 5
-            total: 2
-            weekly: 7
+            total: 5
+            weekly: 2
           member_can_enroll: true
           minimum_participation:
             monthly: 5
-            total: 2
-            weekly: 7
+            total: 5
+            weekly: 2
           minimum_participation_won:
             monthly: 5
-            total: 2
-            weekly: 7
+            total: 5
+            weekly: 2
           new_members_only: true
           preset: preset
-        reward:
+        rewards:
+        - awarded_to: contest_winners
           currency: currency
+          id: id
+          name: name
+          positions:
+          - 7
+          - 7
+          redemption_condition: redemption_condition
+          reward_type: none
+          value: value
+        - awarded_to: contest_winners
+          currency: currency
+          id: id
+          name: name
+          positions:
+          - 7
+          - 7
           redemption_condition: redemption_condition
           reward_type: none
           value: value
@@ -15761,32 +15746,19 @@ components:
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           type: type
         tenant_id: tenant_id
-        time_penalty_configuration:
-        - color: color
-          description: description
-          reduction: reduction
-          zone: zone
-        - color: color
-          description: description
-          reduction: reduction
-          zone: zone
         timing:
           end_at: end_at
           start_at: start_at
         title: title
         winners_per_group: 2
       properties:
-        bonus_rewards:
-          items:
-            $ref: "#/components/schemas/Domain.BonusReward"
-          type: array
         created_at:
           type: string
         description:
@@ -15815,8 +15787,10 @@ components:
           type: integer
         participation_rules:
           $ref: "#/components/schemas/Domain.ParticipationRules"
-        reward:
-          $ref: "#/components/schemas/Domain.Reward"
+        rewards:
+          items:
+            $ref: "#/components/schemas/Domain.ContestReward"
+          type: array
         sender:
           $ref: "#/components/schemas/identities.PlatformIdentity"
         source_id:
@@ -15841,10 +15815,6 @@ components:
           $ref: "#/components/schemas/teams.TeamSet"
         tenant_id:
           type: string
-        time_penalty_configuration:
-          items:
-            $ref: "#/components/schemas/Domain.TimePenaltyConfiguration"
-          type: array
         timing:
           $ref: "#/components/schemas/Domain.Timing"
         title:
@@ -16045,28 +16015,7 @@ components:
     Domain.ContestListResponse:
       example:
         data:
-        - bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          created_at: created_at
+        - created_at: created_at
           description: description
           difficulty: difficulty
           enrollment_timing: ""
@@ -16084,9 +16033,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -16100,25 +16049,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -16240,49 +16205,19 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
           title: title
           winners_per_group: 2
-        - bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          created_at: created_at
+        - created_at: created_at
           description: description
           difficulty: difficulty
           enrollment_timing: ""
@@ -16300,9 +16235,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -16316,25 +16251,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -16456,22 +16407,13 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
@@ -16496,27 +16438,6 @@ components:
     Domain.ContestResponse:
       example:
         data:
-          bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
           created_at: created_at
           description: description
           difficulty: difficulty
@@ -16535,9 +16456,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -16551,25 +16472,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -16691,22 +16628,13 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
@@ -16717,6 +16645,52 @@ components:
           $ref: "#/components/schemas/Domain.Contest"
       required:
       - data
+      type: object
+    Domain.ContestReward:
+      example:
+        awarded_to: contest_winners
+        currency: currency
+        id: id
+        name: name
+        positions:
+        - 7
+        - 7
+        redemption_condition: redemption_condition
+        reward_type: none
+        value: value
+      properties:
+        awarded_to:
+          enum:
+          - contest_winners
+          - group_positions
+          type: string
+        currency:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        positions:
+          items:
+            type: integer
+          type: array
+        redemption_condition:
+          type: string
+        reward_type:
+          enum:
+          - none
+          - money
+          - data
+          - airtime
+          - surprise
+          - other
+          type: string
+        value:
+          type: string
+      required:
+      - awarded_to
+      - reward_type
+      - value
       type: object
     Domain.ContestType:
       enum:
@@ -16737,27 +16711,6 @@ components:
     Domain.Enrollment:
       example:
         contest:
-          bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
           created_at: created_at
           description: description
           difficulty: difficulty
@@ -16776,9 +16729,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -16792,25 +16745,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -16932,22 +16901,13 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
@@ -16993,27 +16953,6 @@ components:
       example:
         data:
           contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -17032,9 +16971,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -17048,25 +16987,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -17188,22 +17143,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -17384,27 +17330,6 @@ components:
     Domain.GroupedScoreBoard:
       example:
         contest:
-          bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
           created_at: created_at
           description: description
           difficulty: difficulty
@@ -17423,9 +17348,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -17439,25 +17364,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -17579,22 +17520,13 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
@@ -17602,27 +17534,6 @@ components:
           winners_per_group: 2
         member_participation:
           contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -17641,9 +17552,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -17657,25 +17568,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -17797,22 +17724,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -17820,6 +17738,27 @@ components:
             winners_per_group: 2
           contest_group_name: contest_group_name
           createdAt: createdAt
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           id: id
           lastModifiedAt: lastModifiedAt
           participant:
@@ -17845,47 +17784,54 @@ components:
             tenant_id: tenant_id
           platform_identity_id: platform_identity_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           solutions:
           - ""
           - ""
           space_id: space_id
           status: status
-          submission_number: 7
+          submission_number: 5
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           time: time
         scores_by_group:
           key:
           - contest_id: contest_id
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             group: group
             member:
               company: company
@@ -17909,38 +17855,45 @@ components:
               profile_pic: profile_pic
               tenant_id: tenant_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
           - contest_id: contest_id
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             group: group
             member:
               company: company
@@ -17964,37 +17917,23 @@ components:
               profile_pic: profile_pic
               tenant_id: tenant_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
         team_results:
           teams:
           - leading: true
@@ -18002,7 +17941,7 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             winner_share_pct: 0.8008281904610115
             winners: 6
           - leading: true
@@ -18010,7 +17949,7 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             winner_share_pct: 0.8008281904610115
             winners: 6
           total_winners: 1
@@ -18032,27 +17971,6 @@ components:
       example:
         data:
           contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -18071,9 +17989,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -18087,25 +18005,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -18227,22 +18161,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -18250,27 +18175,6 @@ components:
             winners_per_group: 2
           member_participation:
             contest:
-              bonus_rewards:
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
               created_at: created_at
               description: description
               difficulty: difficulty
@@ -18289,9 +18193,9 @@ components:
                   icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
-              no_of_groups: 1
-              no_of_puzzles: 5
+                  sort_order: 0
+              no_of_groups: 6
+              no_of_puzzles: 1
               participation_rules:
                 allowed_regions:
                 - code: code
@@ -18305,25 +18209,41 @@ components:
                 id: id
                 maximum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 maximum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 member_can_enroll: true
                 minimum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 minimum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 new_members_only: true
                 preset: preset
-              reward:
+              rewards:
+              - awarded_to: contest_winners
                 currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
                 redemption_condition: redemption_condition
                 reward_type: none
                 value: value
@@ -18445,22 +18365,13 @@ components:
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 type: type
               tenant_id: tenant_id
-              time_penalty_configuration:
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
               timing:
                 end_at: end_at
                 start_at: start_at
@@ -18468,6 +18379,27 @@ components:
               winners_per_group: 2
             contest_group_name: contest_group_name
             createdAt: createdAt
+            earned_rewards:
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
             id: id
             lastModifiedAt: lastModifiedAt
             participant:
@@ -18493,47 +18425,54 @@ components:
               tenant_id: tenant_id
             platform_identity_id: platform_identity_id
             result:
-              bonus_reward_ids:
-              - bonus_reward_ids
-              - bonus_reward_ids
-              breakdown:
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              - correct_solution: correct_solution
-                participant_solution: participant_solution
-                points: 0.8008281904610115
-                puzzle_number: 6
-              global_rank: 1
+              global_rank: 0
               graded_at: graded_at
               graded_sheet: "{}"
-              group_rank: 5
-              participation_point: 5.637376656633329
+              group_rank: 6
+              is_contest_winner: true
+              participation_point: 1.4658129805029452
               results_incomplete: true
-              score: 2
+              score: 5
               score_pct: score_pct
               submission_zone: submission_zone
               time: time
-              time_penalty: time_penalty
-              time_penalty_zone: time_penalty_zone
-              won: true
               zone_deduction: zone_deduction
             solutions:
             - ""
             - ""
             space_id: space_id
             status: status
-            submission_number: 7
+            submission_number: 5
             team:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             time: time
           scores_by_group:
             key:
             - contest_id: contest_id
+              earned_rewards:
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
               group: group
               member:
                 company: company
@@ -18557,38 +18496,45 @@ components:
                 profile_pic: profile_pic
                 tenant_id: tenant_id
               result:
-                bonus_reward_ids:
-                - bonus_reward_ids
-                - bonus_reward_ids
-                breakdown:
-                - correct_solution: correct_solution
-                  participant_solution: participant_solution
-                  points: 0.8008281904610115
-                  puzzle_number: 6
-                - correct_solution: correct_solution
-                  participant_solution: participant_solution
-                  points: 0.8008281904610115
-                  puzzle_number: 6
-                global_rank: 1
+                global_rank: 0
                 graded_at: graded_at
                 graded_sheet: "{}"
-                group_rank: 5
-                participation_point: 5.637376656633329
+                group_rank: 6
+                is_contest_winner: true
+                participation_point: 1.4658129805029452
                 results_incomplete: true
-                score: 2
+                score: 5
                 score_pct: score_pct
                 submission_zone: submission_zone
                 time: time
-                time_penalty: time_penalty
-                time_penalty_zone: time_penalty_zone
-                won: true
                 zone_deduction: zone_deduction
               team:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
             - contest_id: contest_id
+              earned_rewards:
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
               group: group
               member:
                 company: company
@@ -18612,37 +18558,23 @@ components:
                 profile_pic: profile_pic
                 tenant_id: tenant_id
               result:
-                bonus_reward_ids:
-                - bonus_reward_ids
-                - bonus_reward_ids
-                breakdown:
-                - correct_solution: correct_solution
-                  participant_solution: participant_solution
-                  points: 0.8008281904610115
-                  puzzle_number: 6
-                - correct_solution: correct_solution
-                  participant_solution: participant_solution
-                  points: 0.8008281904610115
-                  puzzle_number: 6
-                global_rank: 1
+                global_rank: 0
                 graded_at: graded_at
                 graded_sheet: "{}"
-                group_rank: 5
-                participation_point: 5.637376656633329
+                group_rank: 6
+                is_contest_winner: true
+                participation_point: 1.4658129805029452
                 results_incomplete: true
-                score: 2
+                score: 5
                 score_pct: score_pct
                 submission_zone: submission_zone
                 time: time
-                time_penalty: time_penalty
-                time_penalty_zone: time_penalty_zone
-                won: true
                 zone_deduction: zone_deduction
               team:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
           team_results:
             teams:
             - leading: true
@@ -18650,7 +18582,7 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               winner_share_pct: 0.8008281904610115
               winners: 6
             - leading: true
@@ -18658,7 +18590,7 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               winner_share_pct: 0.8008281904610115
               winners: 6
             total_winners: 1
@@ -18671,8 +18603,8 @@ components:
     Domain.IntervalOccurrence:
       example:
         monthly: 5
-        total: 2
-        weekly: 7
+        total: 5
+        weekly: 2
       properties:
         monthly:
           type: integer
@@ -19294,7 +19226,7 @@ components:
           icon_url: icon_url
           id: id
           name: name
-          sort_order: 6
+          sort_order: 0
       properties:
         can_participate:
           type: boolean
@@ -19313,6 +19245,27 @@ components:
     Domain.MemberResult:
       example:
         contest_id: contest_id
+        earned_rewards:
+        - awarded_to: contest_winners
+          currency: currency
+          id: id
+          name: name
+          positions:
+          - 7
+          - 7
+          redemption_condition: redemption_condition
+          reward_type: none
+          value: value
+        - awarded_to: contest_winners
+          currency: currency
+          id: id
+          name: name
+          positions:
+          - 7
+          - 7
+          redemption_condition: redemption_condition
+          reward_type: none
+          value: value
         group: group
         member:
           company: company
@@ -19336,40 +19289,30 @@ components:
           profile_pic: profile_pic
           tenant_id: tenant_id
         result:
-          bonus_reward_ids:
-          - bonus_reward_ids
-          - bonus_reward_ids
-          breakdown:
-          - correct_solution: correct_solution
-            participant_solution: participant_solution
-            points: 0.8008281904610115
-            puzzle_number: 6
-          - correct_solution: correct_solution
-            participant_solution: participant_solution
-            points: 0.8008281904610115
-            puzzle_number: 6
-          global_rank: 1
+          global_rank: 0
           graded_at: graded_at
           graded_sheet: "{}"
-          group_rank: 5
-          participation_point: 5.637376656633329
+          group_rank: 6
+          is_contest_winner: true
+          participation_point: 1.4658129805029452
           results_incomplete: true
-          score: 2
+          score: 5
           score_pct: score_pct
           submission_zone: submission_zone
           time: time
-          time_penalty: time_penalty
-          time_penalty_zone: time_penalty_zone
-          won: true
           zone_deduction: zone_deduction
         team:
           icon_url: icon_url
           id: id
           name: name
-          sort_order: 6
+          sort_order: 0
       properties:
         contest_id:
           type: string
+        earned_rewards:
+          items:
+            $ref: "#/components/schemas/Domain.ContestReward"
+          type: array
         group:
           type: string
         member:
@@ -19383,6 +19326,27 @@ components:
       example:
         data:
           contest_id: contest_id
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           group: group
           member:
             company: company
@@ -19406,37 +19370,23 @@ components:
             profile_pic: profile_pic
             tenant_id: tenant_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
       properties:
         data:
           $ref: "#/components/schemas/Domain.MemberResult"
@@ -19465,27 +19415,6 @@ components:
     Domain.Participation:
       example:
         contest:
-          bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
           created_at: created_at
           description: description
           difficulty: difficulty
@@ -19504,9 +19433,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -19520,25 +19449,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -19660,22 +19605,13 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
@@ -19683,6 +19619,27 @@ components:
           winners_per_group: 2
         contest_group_name: contest_group_name
         createdAt: createdAt
+        earned_rewards:
+        - awarded_to: contest_winners
+          currency: currency
+          id: id
+          name: name
+          positions:
+          - 7
+          - 7
+          redemption_condition: redemption_condition
+          reward_type: none
+          value: value
+        - awarded_to: contest_winners
+          currency: currency
+          id: id
+          name: name
+          positions:
+          - 7
+          - 7
+          redemption_condition: redemption_condition
+          reward_type: none
+          value: value
         id: id
         lastModifiedAt: lastModifiedAt
         participant:
@@ -19708,43 +19665,29 @@ components:
           tenant_id: tenant_id
         platform_identity_id: platform_identity_id
         result:
-          bonus_reward_ids:
-          - bonus_reward_ids
-          - bonus_reward_ids
-          breakdown:
-          - correct_solution: correct_solution
-            participant_solution: participant_solution
-            points: 0.8008281904610115
-            puzzle_number: 6
-          - correct_solution: correct_solution
-            participant_solution: participant_solution
-            points: 0.8008281904610115
-            puzzle_number: 6
-          global_rank: 1
+          global_rank: 0
           graded_at: graded_at
           graded_sheet: "{}"
-          group_rank: 5
-          participation_point: 5.637376656633329
+          group_rank: 6
+          is_contest_winner: true
+          participation_point: 1.4658129805029452
           results_incomplete: true
-          score: 2
+          score: 5
           score_pct: score_pct
           submission_zone: submission_zone
           time: time
-          time_penalty: time_penalty
-          time_penalty_zone: time_penalty_zone
-          won: true
           zone_deduction: zone_deduction
         solutions:
         - ""
         - ""
         space_id: space_id
         status: status
-        submission_number: 7
+        submission_number: 5
         team:
           icon_url: icon_url
           id: id
           name: name
-          sort_order: 6
+          sort_order: 0
         time: time
       properties:
         contest:
@@ -19753,6 +19696,10 @@ components:
           type: string
         createdAt:
           type: string
+        earned_rewards:
+          items:
+            $ref: "#/components/schemas/Domain.ContestReward"
+          type: array
         id:
           type: string
         lastModifiedAt:
@@ -19811,27 +19758,6 @@ components:
       example:
         data:
         - contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -19850,9 +19776,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -19866,25 +19792,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -20006,22 +19948,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -20029,6 +19962,27 @@ components:
             winners_per_group: 2
           contest_group_name: contest_group_name
           createdAt: createdAt
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           id: id
           lastModifiedAt: lastModifiedAt
           participant:
@@ -20054,66 +20008,31 @@ components:
             tenant_id: tenant_id
           platform_identity_id: platform_identity_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           solutions:
           - ""
           - ""
           space_id: space_id
           status: status
-          submission_number: 7
+          submission_number: 5
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           time: time
         - contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -20132,9 +20051,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -20148,25 +20067,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -20288,22 +20223,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -20311,6 +20237,27 @@ components:
             winners_per_group: 2
           contest_group_name: contest_group_name
           createdAt: createdAt
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           id: id
           lastModifiedAt: lastModifiedAt
           participant:
@@ -20336,43 +20283,29 @@ components:
             tenant_id: tenant_id
           platform_identity_id: platform_identity_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           solutions:
           - ""
           - ""
           space_id: space_id
           status: status
-          submission_number: 7
+          submission_number: 5
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           time: time
         pagination:
           has_next: true
@@ -20394,27 +20327,6 @@ components:
       example:
         data:
           contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -20433,9 +20345,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -20449,25 +20361,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -20589,22 +20517,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -20612,6 +20531,27 @@ components:
             winners_per_group: 2
           contest_group_name: contest_group_name
           createdAt: createdAt
+          earned_rewards:
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
           id: id
           lastModifiedAt: lastModifiedAt
           participant:
@@ -20637,43 +20577,29 @@ components:
             tenant_id: tenant_id
           platform_identity_id: platform_identity_id
           result:
-            bonus_reward_ids:
-            - bonus_reward_ids
-            - bonus_reward_ids
-            breakdown:
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            - correct_solution: correct_solution
-              participant_solution: participant_solution
-              points: 0.8008281904610115
-              puzzle_number: 6
-            global_rank: 1
+            global_rank: 0
             graded_at: graded_at
             graded_sheet: "{}"
-            group_rank: 5
-            participation_point: 5.637376656633329
+            group_rank: 6
+            is_contest_winner: true
+            participation_point: 1.4658129805029452
             results_incomplete: true
-            score: 2
+            score: 5
             score_pct: score_pct
             submission_zone: submission_zone
             time: time
-            time_penalty: time_penalty
-            time_penalty_zone: time_penalty_zone
-            won: true
             zone_deduction: zone_deduction
           solutions:
           - ""
           - ""
           space_id: space_id
           status: status
-          submission_number: 7
+          submission_number: 5
           team:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           time: time
       properties:
         data:
@@ -20683,53 +20609,31 @@ components:
       type: object
     Domain.ParticipationResult:
       example:
-        bonus_reward_ids:
-        - bonus_reward_ids
-        - bonus_reward_ids
-        breakdown:
-        - correct_solution: correct_solution
-          participant_solution: participant_solution
-          points: 0.8008281904610115
-          puzzle_number: 6
-        - correct_solution: correct_solution
-          participant_solution: participant_solution
-          points: 0.8008281904610115
-          puzzle_number: 6
-        global_rank: 1
+        global_rank: 0
         graded_at: graded_at
         graded_sheet: "{}"
-        group_rank: 5
-        participation_point: 5.637376656633329
+        group_rank: 6
+        is_contest_winner: true
+        participation_point: 1.4658129805029452
         results_incomplete: true
-        score: 2
+        score: 5
         score_pct: score_pct
         submission_zone: submission_zone
         time: time
-        time_penalty: time_penalty
-        time_penalty_zone: time_penalty_zone
-        won: true
         zone_deduction: zone_deduction
       properties:
-        bonus_reward_ids:
-          items:
-            type: string
-          type: array
-        breakdown:
-          description: Legacy field used to migrate pre-v2 records that lack graded_sheet.
-            Stripped before v2 responses.
-          items:
-            $ref: "#/components/schemas/Domain_ParticipationResult_breakdown_inner"
-          type: array
         global_rank:
           type: integer
         graded_at:
           description: Grading timestamp
           type: string
         graded_sheet:
-          description: Complete graded sheet (v2 preferred)
+          description: Complete graded sheet
           type: object
         group_rank:
           type: integer
+        is_contest_winner:
+          type: boolean
         participation_point:
           description: Participation points with 3 decimal precision
           type: number
@@ -20744,14 +20648,6 @@ components:
           type: string
         time:
           type: string
-        time_penalty:
-          description: Legacy fields used to backfill ZoneDeduction/SubmissionZone
-            for pre-v2 records.
-          type: string
-        time_penalty_zone:
-          type: string
-        won:
-          type: boolean
         zone_deduction:
           type: string
       type: object
@@ -20769,21 +20665,21 @@ components:
         id: id
         maximum_participation:
           monthly: 5
-          total: 2
-          weekly: 7
+          total: 5
+          weekly: 2
         maximum_participation_won:
           monthly: 5
-          total: 2
-          weekly: 7
+          total: 5
+          weekly: 2
         member_can_enroll: true
         minimum_participation:
           monthly: 5
-          total: 2
-          weekly: 7
+          total: 5
+          weekly: 2
         minimum_participation_won:
           monthly: 5
-          total: 2
-          weekly: 7
+          total: 5
+          weekly: 2
         new_members_only: true
         preset: preset
       properties:
@@ -22123,7 +22019,7 @@ components:
           icon_url: icon_url
           id: id
           name: name
-          sort_order: 6
+          sort_order: 0
         winner_share_pct: 0.8008281904610115
         winners: 6
       properties:
@@ -22144,7 +22040,7 @@ components:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           winner_share_pct: 0.8008281904610115
           winners: 6
         - leading: true
@@ -22152,7 +22048,7 @@ components:
             icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           winner_share_pct: 0.8008281904610115
           winners: 6
         total_winners: 1
@@ -22163,22 +22059,6 @@ components:
           type: array
         total_winners:
           type: integer
-      type: object
-    Domain.TimePenaltyConfiguration:
-      example:
-        color: color
-        description: description
-        reduction: reduction
-        zone: zone
-      properties:
-        color:
-          type: string
-        description:
-          type: string
-        reduction:
-          type: string
-        zone:
-          type: string
       type: object
     Domain.Timing:
       example:
@@ -25764,10 +25644,6 @@ components:
           type: integer
         board_id:
           type: string
-        bonus_rewards:
-          items:
-            $ref: "#/components/schemas/Domain.BonusReward"
-          type: array
         category:
           type: string
         claim_scope:
@@ -25838,8 +25714,10 @@ components:
           enum:
           - win_fraction
           type: string
-        reward:
-          $ref: "#/components/schemas/Domain.Reward"
+        rewards:
+          items:
+            $ref: "#/components/schemas/Domain.ContestReward"
+          type: array
         room_size:
           minimum: 2
           type: integer
@@ -25904,7 +25782,6 @@ components:
           minimum: 0
           type: integer
       required:
-      - reward
       - source_type
       - space_id
       - timing
@@ -25919,10 +25796,6 @@ components:
       type: object
     contesthttp.UpdateContestRequest:
       properties:
-        bonus_rewards:
-          items:
-            $ref: "#/components/schemas/Domain.BonusReward"
-          type: array
         description:
           type: string
         grouping_type:
@@ -25933,8 +25806,10 @@ components:
         no_of_groups:
           minimum: 1
           type: integer
-        reward:
-          $ref: "#/components/schemas/Domain.Reward"
+        rewards:
+          items:
+            $ref: "#/components/schemas/Domain.ContestReward"
+          type: array
         timing:
           $ref: "#/components/schemas/Domain.Timing"
         title:
@@ -25945,7 +25820,6 @@ components:
       required:
       - description
       - no_of_groups
-      - reward
       - timing
       - title
       - winners_per_group
@@ -27684,27 +27558,6 @@ components:
     highlights.Highlight:
       example:
         contest:
-          bonus_rewards:
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
-          - id: id
-            name: name
-            positions:
-            - 0
-            - 0
-            reward:
-              currency: currency
-              redemption_condition: redemption_condition
-              reward_type: none
-              value: value
           created_at: created_at
           description: description
           difficulty: difficulty
@@ -27723,9 +27576,9 @@ components:
               icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
-          no_of_groups: 1
-          no_of_puzzles: 5
+              sort_order: 0
+          no_of_groups: 6
+          no_of_puzzles: 1
           participation_rules:
             allowed_regions:
             - code: code
@@ -27739,25 +27592,41 @@ components:
             id: id
             maximum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             maximum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             member_can_enroll: true
             minimum_participation:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             minimum_participation_won:
               monthly: 5
-              total: 2
-              weekly: 7
+              total: 5
+              weekly: 2
             new_members_only: true
             preset: preset
-          reward:
+          rewards:
+          - awarded_to: contest_winners
             currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
+            redemption_condition: redemption_condition
+            reward_type: none
+            value: value
+          - awarded_to: contest_winners
+            currency: currency
+            id: id
+            name: name
+            positions:
+            - 7
+            - 7
             redemption_condition: redemption_condition
             reward_type: none
             value: value
@@ -27879,22 +27748,13 @@ components:
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             - icon_url: icon_url
               id: id
               name: name
-              sort_order: 6
+              sort_order: 0
             type: type
           tenant_id: tenant_id
-          time_penalty_configuration:
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
-          - color: color
-            description: description
-            reduction: reduction
-            zone: zone
           timing:
             end_at: end_at
             start_at: start_at
@@ -29653,7 +29513,7 @@ components:
         icon_url: icon_url
         id: id
         name: name
-        sort_order: 6
+        sort_order: 0
       properties:
         icon_url:
           type: string
@@ -29677,11 +29537,11 @@ components:
         - icon_url: icon_url
           id: id
           name: name
-          sort_order: 6
+          sort_order: 0
         - icon_url: icon_url
           id: id
           name: name
-          sort_order: 6
+          sort_order: 0
         type: type
       properties:
         category:
@@ -29717,11 +29577,11 @@ components:
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           type: type
         - category: category
           id: id
@@ -29734,11 +29594,11 @@ components:
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           type: type
         pagination:
           has_next: true
@@ -29770,11 +29630,11 @@ components:
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           - icon_url: icon_url
             id: id
             name: name
-            sort_order: 6
+            sort_order: 0
           type: type
       properties:
         data:
@@ -29920,10 +29780,6 @@ components:
           type: integer
         board_id:
           type: string
-        bonus_rewards:
-          items:
-            $ref: "#/components/schemas/Domain.BonusReward"
-          type: array
         category:
           type: string
         claim_scope:
@@ -29994,8 +29850,10 @@ components:
           enum:
           - win_fraction
           type: string
-        reward:
-          $ref: "#/components/schemas/Domain.Reward"
+        rewards:
+          items:
+            $ref: "#/components/schemas/Domain.ContestReward"
+          type: array
         room_size:
           minimum: 2
           type: integer
@@ -30060,7 +29918,6 @@ components:
           minimum: 0
           type: integer
       required:
-      - reward
       - source_type
       - space_id
       - timing
@@ -30605,27 +30462,6 @@ components:
       example:
         data:
           contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -30644,9 +30480,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -30660,25 +30496,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -30800,22 +30652,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -30838,27 +30681,6 @@ components:
         data:
           data:
             contest:
-              bonus_rewards:
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
               created_at: created_at
               description: description
               difficulty: difficulty
@@ -30877,9 +30699,9 @@ components:
                   icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
-              no_of_groups: 1
-              no_of_puzzles: 5
+                  sort_order: 0
+              no_of_groups: 6
+              no_of_puzzles: 1
               participation_rules:
                 allowed_regions:
                 - code: code
@@ -30893,25 +30715,41 @@ components:
                 id: id
                 maximum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 maximum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 member_can_enroll: true
                 minimum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 minimum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 new_members_only: true
                 preset: preset
-              reward:
+              rewards:
+              - awarded_to: contest_winners
                 currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
                 redemption_condition: redemption_condition
                 reward_type: none
                 value: value
@@ -31033,22 +30871,13 @@ components:
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 type: type
               tenant_id: tenant_id
-              time_penalty_configuration:
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
               timing:
                 end_at: end_at
                 start_at: start_at
@@ -31084,27 +30913,6 @@ components:
       example:
         data:
         - contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -31123,9 +30931,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -31139,25 +30947,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -31279,22 +31103,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -31305,27 +31120,6 @@ components:
           id: id
           position: 6
         - contest:
-            bonus_rewards:
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
-            - id: id
-              name: name
-              positions:
-              - 0
-              - 0
-              reward:
-                currency: currency
-                redemption_condition: redemption_condition
-                reward_type: none
-                value: value
             created_at: created_at
             description: description
             difficulty: difficulty
@@ -31344,9 +31138,9 @@ components:
                 icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
-            no_of_groups: 1
-            no_of_puzzles: 5
+                sort_order: 0
+            no_of_groups: 6
+            no_of_puzzles: 1
             participation_rules:
               allowed_regions:
               - code: code
@@ -31360,25 +31154,41 @@ components:
               id: id
               maximum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               maximum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               member_can_enroll: true
               minimum_participation:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               minimum_participation_won:
                 monthly: 5
-                total: 2
-                weekly: 7
+                total: 5
+                weekly: 2
               new_members_only: true
               preset: preset
-            reward:
+            rewards:
+            - awarded_to: contest_winners
               currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
+              redemption_condition: redemption_condition
+              reward_type: none
+              value: value
+            - awarded_to: contest_winners
+              currency: currency
+              id: id
+              name: name
+              positions:
+              - 7
+              - 7
               redemption_condition: redemption_condition
               reward_type: none
               value: value
@@ -31500,22 +31310,13 @@ components:
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               - icon_url: icon_url
                 id: id
                 name: name
-                sort_order: 6
+                sort_order: 0
               type: type
             tenant_id: tenant_id
-            time_penalty_configuration:
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
-            - color: color
-              description: description
-              reduction: reduction
-              zone: zone
             timing:
               end_at: end_at
               start_at: start_at
@@ -31538,27 +31339,6 @@ components:
         data:
           data:
           - contest:
-              bonus_rewards:
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
               created_at: created_at
               description: description
               difficulty: difficulty
@@ -31577,9 +31357,9 @@ components:
                   icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
-              no_of_groups: 1
-              no_of_puzzles: 5
+                  sort_order: 0
+              no_of_groups: 6
+              no_of_puzzles: 1
               participation_rules:
                 allowed_regions:
                 - code: code
@@ -31593,25 +31373,41 @@ components:
                 id: id
                 maximum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 maximum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 member_can_enroll: true
                 minimum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 minimum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 new_members_only: true
                 preset: preset
-              reward:
+              rewards:
+              - awarded_to: contest_winners
                 currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
                 redemption_condition: redemption_condition
                 reward_type: none
                 value: value
@@ -31733,22 +31529,13 @@ components:
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 type: type
               tenant_id: tenant_id
-              time_penalty_configuration:
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
               timing:
                 end_at: end_at
                 start_at: start_at
@@ -31759,27 +31546,6 @@ components:
             id: id
             position: 6
           - contest:
-              bonus_rewards:
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
-              - id: id
-                name: name
-                positions:
-                - 0
-                - 0
-                reward:
-                  currency: currency
-                  redemption_condition: redemption_condition
-                  reward_type: none
-                  value: value
               created_at: created_at
               description: description
               difficulty: difficulty
@@ -31798,9 +31564,9 @@ components:
                   icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
-              no_of_groups: 1
-              no_of_puzzles: 5
+                  sort_order: 0
+              no_of_groups: 6
+              no_of_puzzles: 1
               participation_rules:
                 allowed_regions:
                 - code: code
@@ -31814,25 +31580,41 @@ components:
                 id: id
                 maximum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 maximum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 member_can_enroll: true
                 minimum_participation:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 minimum_participation_won:
                   monthly: 5
-                  total: 2
-                  weekly: 7
+                  total: 5
+                  weekly: 2
                 new_members_only: true
                 preset: preset
-              reward:
+              rewards:
+              - awarded_to: contest_winners
                 currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
+                redemption_condition: redemption_condition
+                reward_type: none
+                value: value
+              - awarded_to: contest_winners
+                currency: currency
+                id: id
+                name: name
+                positions:
+                - 7
+                - 7
                 redemption_condition: redemption_condition
                 reward_type: none
                 value: value
@@ -31954,22 +31736,13 @@ components:
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 - icon_url: icon_url
                   id: id
                   name: name
-                  sort_order: 6
+                  sort_order: 0
                 type: type
               tenant_id: tenant_id
-              time_penalty_configuration:
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
-              - color: color
-                description: description
-                reduction: reduction
-                zone: zone
               timing:
                 end_at: end_at
                 start_at: start_at
@@ -32236,23 +32009,6 @@ components:
       - items: {}
         type: array
       - type: object
-    Domain_ParticipationResult_breakdown_inner:
-      example:
-        correct_solution: correct_solution
-        participant_solution: participant_solution
-        points: 0.8008281904610115
-        puzzle_number: 6
-      properties:
-        correct_solution:
-          type: string
-        participant_solution:
-          type: string
-        points:
-          description: Points with 3 decimal precision
-          type: number
-        puzzle_number:
-          type: integer
-      type: object
     EventHighlightsGenerationResponse_data:
       example:
         date: 2000-01-23

@@ -23,6 +23,7 @@ type DomainParticipation struct {
 	Contest *DomainContest `json:"contest,omitempty"`
 	ContestGroupName *string `json:"contest_group_name,omitempty"`
 	CreatedAt *string `json:"createdAt,omitempty"`
+	EarnedRewards []DomainContestReward `json:"earned_rewards,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LastModifiedAt *string `json:"lastModifiedAt,omitempty"`
 	Participant *IdentitiesPlatformIdentity `json:"participant,omitempty"`
@@ -147,6 +148,38 @@ func (o *DomainParticipation) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *DomainParticipation) SetCreatedAt(v string) {
 	o.CreatedAt = &v
+}
+
+// GetEarnedRewards returns the EarnedRewards field value if set, zero value otherwise.
+func (o *DomainParticipation) GetEarnedRewards() []DomainContestReward {
+	if o == nil || IsNil(o.EarnedRewards) {
+		var ret []DomainContestReward
+		return ret
+	}
+	return o.EarnedRewards
+}
+
+// GetEarnedRewardsOk returns a tuple with the EarnedRewards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainParticipation) GetEarnedRewardsOk() ([]DomainContestReward, bool) {
+	if o == nil || IsNil(o.EarnedRewards) {
+		return nil, false
+	}
+	return o.EarnedRewards, true
+}
+
+// HasEarnedRewards returns a boolean if a field has been set.
+func (o *DomainParticipation) HasEarnedRewards() bool {
+	if o != nil && !IsNil(o.EarnedRewards) {
+		return true
+	}
+
+	return false
+}
+
+// SetEarnedRewards gets a reference to the given []DomainContestReward and assigns it to the EarnedRewards field.
+func (o *DomainParticipation) SetEarnedRewards(v []DomainContestReward) {
+	o.EarnedRewards = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -519,6 +552,9 @@ func (o DomainParticipation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.EarnedRewards) {
+		toSerialize["earned_rewards"] = o.EarnedRewards
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id

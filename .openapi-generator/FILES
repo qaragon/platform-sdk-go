@@ -101,7 +101,6 @@ docs/DomainBlock.md
 docs/DomainBlockListResponse.md
 docs/DomainBlockResponse.md
 docs/DomainBoardContext.md
-docs/DomainBonusReward.md
 docs/DomainBuddyBoard.md
 docs/DomainBuddyBoardInvite.md
 docs/DomainBuddyBoardInviteListResponse.md
@@ -118,6 +117,7 @@ docs/DomainContestHosting.md
 docs/DomainContestHostingListResponse.md
 docs/DomainContestListResponse.md
 docs/DomainContestResponse.md
+docs/DomainContestReward.md
 docs/DomainContestType.md
 docs/DomainEnrollment.md
 docs/DomainEnrollmentResponse.md
@@ -148,7 +148,6 @@ docs/DomainParticipationCount.md
 docs/DomainParticipationListResponse.md
 docs/DomainParticipationResponse.md
 docs/DomainParticipationResult.md
-docs/DomainParticipationResultBreakdownInner.md
 docs/DomainParticipationRules.md
 docs/DomainParticipationSolutions.md
 docs/DomainPeriod.md
@@ -186,7 +185,6 @@ docs/DomainSubmissionZone.md
 docs/DomainSubmissionZoneConfiguration.md
 docs/DomainTeamResult.md
 docs/DomainTeamResults.md
-docs/DomainTimePenaltyConfiguration.md
 docs/DomainTiming.md
 docs/DomainTournament.md
 docs/DomainTournamentConfiguration.md
@@ -512,7 +510,6 @@ model_domain_block.go
 model_domain_block_list_response.go
 model_domain_block_response.go
 model_domain_board_context.go
-model_domain_bonus_reward.go
 model_domain_buddy_board.go
 model_domain_buddy_board_invite.go
 model_domain_buddy_board_invite_list_response.go
@@ -529,6 +526,7 @@ model_domain_contest_hosting.go
 model_domain_contest_hosting_list_response.go
 model_domain_contest_list_response.go
 model_domain_contest_response.go
+model_domain_contest_reward.go
 model_domain_contest_type.go
 model_domain_enrollment.go
 model_domain_enrollment_response.go
@@ -559,7 +557,6 @@ model_domain_participation_count.go
 model_domain_participation_list_response.go
 model_domain_participation_response.go
 model_domain_participation_result.go
-model_domain_participation_result_breakdown_inner.go
 model_domain_participation_rules.go
 model_domain_participation_solutions.go
 model_domain_period.go
@@ -597,7 +594,6 @@ model_domain_submission_zone.go
 model_domain_submission_zone_configuration.go
 model_domain_team_result.go
 model_domain_team_results.go
-model_domain_time_penalty_configuration.go
 model_domain_timing.go
 model_domain_tournament.go
 model_domain_tournament_configuration.go
